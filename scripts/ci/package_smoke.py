@@ -1,0 +1,112 @@
+"""Offline wheel acceptance in a disposable environment without source imports."""
+import argparse
+import json
+import os
+from pathlib import Path
+import subprocess
+import tempfile
+import venv
+
+ROOT = Path(__file__).resolve().parents[2]
+
+
+def check(wheel):
+    results = []
+    with tempfile.TemporaryDirectory(prefix='aikya-wheel-acceptance-') as temporary:
+        base = Path(temporary)
+        environment = base / 'environment'
+        venv.EnvBuilder(with_pip=True).create(environment)
+        python = environment / ('Scripts/python.exe' if os.name == 'nt' else 'bin/python')
+        env = {**os.environ, 'PYTHONPATH': '', 'PYTHONDONTWRITEBYTECODE': '1', 'HOME': str(base / 'home'), 'AIKYA_EXECUTION_CACHE': str(base / 'cache')}
+        env.pop('CLAUDE_PROJECT_DIR', None)
+
+        def run(*argv, expected=0, stdin=None):
+            process = subprocess.run([str(python), *map(str, argv)], cwd=base, env=env, input=stdin, capture_output=True, text=True, timeout=120)
+            if process.returncode != expected:
+                raise ValueError('Wheel subprocess failed: ' + process.stderr[-2000:] + process.stdout[-2000:])
+            return process
+
+        run('-m', 'pip', 'install', '--no-deps', '--no-index', wheel)
+        run('-I', '-m', 'aikya', '--help')
+        run('-I', '-c', "from importlib.metadata import version;from importlib.util import find_spec;from aikya.documentation.templates import validate_catalog;assert version('aikya-harness')=='" + (ROOT / 'VERSION').read_text().strip() + "';assert find_spec('claude_agent_sdk') is None;assert validate_catalog()['templates']==120")
+        for scope in ('global', 'project'):
+            env['HOME'] = str(base / (scope + '-home'))
+            env['USERPROFILE'] = env['HOME']
+            env['CLAUDE_CONFIG_DIR'] = str(Path(env['HOME']) / '.claude')
+            registered = base / (scope + '-registered')
+            run('-I', '-c', 'from aikya.installation.registration import main;raise SystemExit(main())', '--scope', scope, '--target', registered)
+            runtime = Path(env['HOME']) / '.claude/aikya-harnes' if scope == 'global' else registered / '.aikya/runtime'
+            if scope == 'global':
+                mixed = base / 'mixed-registered'
+                run('-I', '-c', 'from aikya.installation.registration import main;raise SystemExit(main())',
+                    '--scope', 'project', '--target', mixed)
+                assert not (mixed / '.aikya/runtime').exists()
+                assert not list((mixed / '.claude/skills').glob('aikya-*/SKILL.md'))
+                results.append({'scope': 'global-and-project', 'command': 'reuse-command-registration', 'result': 'passed'})
+            worktree = run('-B', runtime / 'workspace_guard.py', stdin=json.dumps(
+                {'tool_name': 'Agent', 'tool_input': {'isolation': 'worktree'}}))
+            assert json.loads(worktree.stdout)['hookSpecificOutput']['permissionDecision'] == 'ask'
+            # Exercise the shipped mobile-skill hook and explicit phase CLI with no source imports.
+            bridge = {'schema': 1, 'origin_root': str(registered.resolve()),
+                      'session_id': 'wheel-mobile-session', 'invocation_id': 'a' * 32,
+                      'command': 'aikya-mobile-feature', 'cache_root': str(base / 'cache')}
+            env['AIKYA_FLOW_CONTEXT'] = json.dumps(bridge)
+            payload = {'cwd': str(registered), 'session_id': bridge['session_id'],
+                       'hook_event_name': 'UserPromptSubmit', 'prompt_id': scope + '-mobile',
+                       'prompt': '/aikya-mobile-feature'}
+            run('-B', runtime / 'execution_observer.py', 'hook', stdin=json.dumps(payload))
+            import hashlib
+            identity = hashlib.sha256((str(registered.resolve()) + '\0' + bridge['session_id']).encode()).hexdigest()
+            index = json.loads((base / 'cache' / identity / ('flow-' + bridge['invocation_id'] + '.json')).read_text())
+            assert index['command'] == 'aikya-mobile-feature' and len(index['runs']) == 1
+            phase = run('-B', runtime / 'execution_observer.py', 'phase', '--root', registered,
+                        '--phase', 'explore', '--status', 'running')
+            raw = json.loads(phase.stdout)
+            assert raw['flow_invocation'] == bridge['invocation_id']
+            assert raw['phases']['explore']['status'] == 'running'
+            assert raw['phases']['implement']['status'] == 'pending'
+            assert raw['phases']['validate']['evidence'] == []
+            env.pop('AIKYA_FLOW_CONTEXT')
+            results.append({'scope': scope, 'command': 'mobile-feature-hook-and-phase', 'result': 'passed'})
+            for method in ('odd', 'sdd'):
+                for command in ('init', 'analyze'):
+                    target = base / '-'.join((scope, method, command))
+                    target.mkdir()
+                    args = [runtime / 'aikya_cli.py', command, '--target', target, '--methodology', method, '--docs-lang', 'en']
+                    if command == 'init':
+                        answers = base / '-'.join((scope, method, 'answers.json'))
+                        answers.write_bytes((ROOT / 'examples/next-react/answers.json').read_bytes())
+                        args += ['--answers', answers, '--external', 'skip']
+                    else:
+                        (target / 'pom.xml').write_text('<project/>')
+                        args += ['--approved']
+                    run('-B', *args)
+                    assert (target / 'aikya/docs/indice.md').is_file()
+                    (target / 'memory_fixture.py').write_text('class LocalMemoryFixture: pass\n')
+                    run('-B', runtime / 'aikya_cli.py', 'memory', '--target', target, '--refresh')
+                    assert 'LocalMemoryFixture' in (target / 'aikya/docs/memory/view/index.html').read_text()
+                    assert (target / 'aikya/docs/memory/view/report.md').read_text().endswith('GENERATED BY AIKYA HARNESS\n')
+                    context = run('-B', runtime / 'aikya_cli.py', 'context', '--target', target, '--query', 'LocalMemoryFixture', '--allowed-file', 'memory_fixture.py')
+                    assert 'LocalMemoryFixture' in context.stdout
+                    assert len(context.stdout)<6001
+                    for outside in ('docs', 'plans', 'plan', 'bugs', 'features'):
+                        assert not (target / outside).exists(), outside
+                    run('-B', target / 'aikya/scripts/harness/docs_guard.py', 'base')
+                    run('-B', target / 'aikya/scripts/harness/agent_runtime.py', 'check', expected=4)
+                    results.append({'scope': scope, 'methodology': method, 'command': command, 'result': 'passed'})
+    return {'wheel': Path(wheel).name, 'source_imports': False, 'sdk_installed': False, 'cases': results}
+
+
+def main():
+    parser = argparse.ArgumentParser(description=__doc__)
+    parser.add_argument('--wheel', type=Path, required=True)
+    parser.add_argument('--output', type=Path)
+    args = parser.parse_args()
+    report = check(args.wheel.resolve())
+    if args.output:
+        args.output.write_text(json.dumps(report, indent=2) + '\n')
+    print(json.dumps(report, indent=2))
+
+
+if __name__ == '__main__':
+    main()

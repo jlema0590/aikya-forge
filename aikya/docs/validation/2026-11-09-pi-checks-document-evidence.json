@@ -1,0 +1,81 @@
+{
+  "schema": 1,
+  "date": "2026-11-09",
+  "base": "c3aa491",
+  "source": {
+    "packages/aikya-pi/src/documentation.ts": "84a62b767ba7f17a2713bd18a51918f340f3145a32f93e5f9aeb388e69fa6e42",
+    "packages/aikya-pi/src/host.ts": "fd6eb063ccf5d5f489b2b48ba2042df27fb73e3788b7852754a16768ce834864",
+    "packages/aikya-pi/src/native-checks.ts": "d4997951af9c0b0c3f162161f7228be881738628ebaa54f800d88f5e56413d71",
+    "packages/aikya-pi/tests/check-classification.test.ts": "b41bed39f9e690b492c1be56d4ce54d7c47fd0fbd07770b370def0e880fdba6e",
+    "src/aikya/quality/source.py": "10214c7a56361fb10c0f139767fb34e182802759fe5d1783cc5674b0398c3cc8",
+    "src/aikya/review/candidates.py": "8caeb72170fedc081d4aa425916504e6ab63879b8e83a85c676b2a5cc51431e2",
+    "src/aikya/review/contracts.py": "d4738c76683a5d07348dbff76fadd5460893aaf4da8a98f45105966274392d7e",
+    "src/aikya/review/controller.py": "1a69ea52de3eed46e6bc27e0b22873190b0c5953b3c1377e3e9aa2f069ccb24b",
+    "src/aikya/review/definitions.py": "9f7b056b74b0d2ea391d51fe055baef35ca308566d36c853505ff21efaed232d",
+    "src/aikya/review/document_transitions.py": "dc1fc57cae879805cd6d4cf19df3a5a94d58b6e7512caeb039aa299ec174910b",
+    "src/aikya/review/execution_evidence.py": "5b1173e3f6239a44dcd942e4d582090f246eaa93cbe2bd839356fca08fda2574",
+    "src/aikya/review/executor.py": "7371a7425771e3af9153fc181088ca82dcdf05c3d4baef465bd2b046bbc83ec7",
+    "src/aikya/review/process.py": "9c41778502ee663ff9ace106bb217f9779c4aafa9434498a9863dcc39882c718",
+    "src/aikya/services/authorization.py": "9adf2cb24168c14db2fc7e52d23ad8682bb3073e9a4bd4dc9f21ecb02ba97f73",
+    "src/aikya/services/check_classification.py": "cd2105e38a5f975b706772f566ebc95cbc1bfb08259a7d1f3af5e844c6b1cc32",
+    "src/aikya/services/checks.py": "0f31470014d3fa1fc94a78b32719b1d6641ec2fa2b1cf5ac1651bdea7d05c28d",
+    "src/aikya/services/documentation.py": "05f378f2a594a2261e5618f907c84c494512715fc909f6c9294450ab6904514c",
+    "src/aikya/services/documentation_recovery.py": "66ebe044a6192c0a1d67f6a0e63f83ab19d3a4d49cae598af593e363cc58b45f",
+    "src/aikya/services/generation_inputs.py": "e0486519224f1ac4360049edf4e1eb57d0ea535ad4dab7bd956634a2d7ec2d89",
+    "src/aikya/services/review.py": "351bee0f9d2a8c1885bbdbdde2ac6bf498d31dc0a75850413c0d8fd947132bbc",
+    "src/aikya/services/runtime_state.py": "9fe64372e533c546169992dfaefff17ef34c983990e4db7c6b5f8ea4732a3553",
+    "src/aikya/services/scaffold_generation.py": "99536a575ff2357deef2afae3dd7346341c6a4fd9361c1f43340fed923138e10",
+    "src/aikya/services/scaffold_recipes.py": "827c531e1303e999632413af6e6c9d0a0d61b867c825b14b50e17348530071ad",
+    "src/aikya/services/scaffold_records.py": "4d6799d0abb0de4465d0825eea02217cebff09bb4991763ce3868881964831c6",
+    "tests/test_pi_check_classification.py": "03ffbc2bfb49df23f38dcd16f7ecc09b0363f56b217e016b7f4e4a0f81424635",
+    "tests/test_pi_document_continuity.py": "d3bb4fc1e2e1ed9ea1576aaf089807219c3c57f66763ca8e8286d65922905bb4",
+    "tests/test_pi_document_recovery.py": "00ba5c844d5a3d5f59998df805c0355362068164e5b4c7aa5eedcda1d4d327f8",
+    "tests/test_pi_generation.py": "8187e51886d2561ca6d7028df02ff0e8132c16e5cdbb7bb64b8d4849c779f9fc",
+    "tests/test_pi_scaffold_generation.py": "4792155005143e82f290f4a0128ed198128eb9b1ed6c7b085f4166d4e0bf68cf",
+    "tests/test_review_executor.py": "e656e66e6a8681a820deabe9a37670fdec7e96a036acd382f2d2da196569826c",
+    "tests/test_service_authorization.py": "416d66f230746c99ff747611fc9653c80c450a71f918f4640bde9a2d5d4d7bfd"
+  },
+  "wheel_sha256": "62c597cc0b5dfea1aa5006893fa115a6245c9cf94ac6300b56dcdf69bb399c17",
+  "python": {
+    "tests": 1017,
+    "failures": 0,
+    "skips": 2,
+    "seconds": 1276.85
+  },
+  "pi": {
+    "tests": 67,
+    "node26_ms": 19152.250833,
+    "node22_ms": 19190.570708
+  },
+  "installed_host": {
+    "classified_checks": 17,
+    "document_contracts": 38
+  },
+  "pty": {
+    "project": "/private/tmp/aikya-v8-controls-pty-c4pedu1w",
+    "node": "22.19.0",
+    "python": "3.13.18",
+    "pi": "1.5.0",
+    "provider": "disabled",
+    "language": "es",
+    "snapshot_cancel": true,
+    "execution_cancel": true,
+    "process_counts": null,
+    "checks_observed": true,
+    "review_required": true,
+    "recovery_cancel": true,
+    "interrupted_effect_reconciled": true,
+    "no_document_replay": true,
+    "documentary_successor": true,
+    "invalid_classification_refused": true,
+    "all_footers_once": true,
+    "exit_code": 0
+  },
+  "official_generator_names": {
+    "dotnet": "Jourpass.Api",
+    "npm": "jourpass-ui"
+  },
+  "native_windows_linux_tested": false,
+  "live_provider_tested": false,
+  "stable_v8_released": false
+}

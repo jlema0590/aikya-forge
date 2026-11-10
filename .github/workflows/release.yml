@@ -1,0 +1,194 @@
+name: Aikya | Automatic GitHub Release
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: aikya-release-publication
+  cancel-in-progress: false
+  queue: max
+
+jobs:
+  verify:
+    name: Verify release contract, tests and catalog
+    if: github.repository == 'jlema0590/aikya-harness' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    outputs:
+      release_tag: ${{ steps.contract.outputs.release_tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install contributor package and build tools
+        run: |
+          python -m pip install 'setuptools>=77' wheel build
+          python -m pip install --no-build-isolation --no-deps -e .
+      - name: Validate VERSION, changelog and tags
+        id: contract
+        run: python scripts/ci/release_contract.py check --github-output "$GITHUB_OUTPUT"
+      - name: Check Python syntax
+        run: |
+          python -m compileall -q src scripts/ci
+          python -m py_compile scripts/ci/github_tag.py
+
+      - name: Run unit and regression tests
+        run: python -m unittest discover -s tests -p 'test_*.py' -q
+      - name: Check curated catalog and example profiles
+        run: |
+          python scripts/ci/check_assets.py
+          python scripts/ci/smoke_profiles.py
+
+  package:
+    name: Build installable release artifacts
+    needs: verify
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install contributor package and build tools
+        run: |
+          python -m pip install 'setuptools>=77' wheel build
+          python -m pip install --no-build-isolation --no-deps -e .
+      - name: Create source ZIP and notes
+        shell: bash
+        env:
+          RELEASE_TAG: ${{ needs.verify.outputs.release_tag }}
+        run: |
+          set -euo pipefail
+          mkdir -p dist
+          python scripts/ci/release_contract.py notes --output dist/RELEASE_NOTES.md
+          git archive --format=zip --prefix=aikya-harness/ \
+            --output="dist/aikya-harness-$RELEASE_TAG.zip" "$GITHUB_SHA"
+          python -m build --no-isolation
+          python scripts/ci/package_smoke.py --wheel "dist/aikya_harness-${RELEASE_TAG#v}-py3-none-any.whl"
+          python scripts/ci/parser_wheels.py --output dist
+          python scripts/ci/build_installers.py --version "${RELEASE_TAG#v}" --output dist
+          python scripts/ci/release_assets.py --directory dist --version "${RELEASE_TAG#v}"
+          (cd dist && sha256sum --check SHA256SUMS)
+      - uses: actions/upload-artifact@v4
+        with:
+          name: aikya-release-${{ github.sha }}
+          path: dist/
+          if-no-files-found: error
+          retention-days: 90
+
+  installer-tests:
+    needs: [verify, package]
+    uses: ./.github/workflows/installers.yml
+    with:
+      artifact-name: aikya-release-${{ github.sha }}
+
+  publish:
+    name: Create tag and publish GitHub Release
+    needs: [verify, package, installer-tests]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      RELEASE_TAG: ${{ needs.verify.outputs.release_tag }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install contributor package and build tools
+        run: |
+          python -m pip install 'setuptools>=77' wheel build
+          python -m pip install --no-build-isolation --no-deps -e .
+      - uses: actions/download-artifact@v4
+        with:
+          name: aikya-release-${{ github.sha }}
+          path: dist
+      - name: Validate archive
+        shell: bash
+        run: |
+          set -euo pipefail
+          test -s "dist/aikya-harness-$RELEASE_TAG.zip"
+          test -s dist/SHA256SUMS
+          test -s dist/RELEASE_NOTES.md
+          (cd dist && sha256sum --check SHA256SUMS)
+      - name: Check tag existence with explicit HTTP handling
+        id: tag_state
+        shell: bash
+        run: |
+          set -euo pipefail
+          STATUS="$(python3 scripts/ci/github_tag.py \
+            --repository "$GITHUB_REPOSITORY" \
+            --tag "$RELEASE_TAG" \
+            --sha "$GITHUB_SHA")"
+          case "$STATUS" in
+            match|missing)
+              echo "Tag $RELEASE_TAG: $STATUS"
+              echo "tag_status=$STATUS" >> "$GITHUB_OUTPUT"
+              ;;
+            *) echo "::error::Unexpected tag status: $STATUS"; exit 1 ;;
+          esac
+
+      - name: Publish GitHub Release or recover missing assets
+        shell: bash
+        env:
+          TAG_STATUS: ${{ steps.tag_state.outputs.tag_status }}
+        run: |
+          set -euo pipefail
+          python scripts/ci/release_assets.py --directory dist --version "${RELEASE_TAG#v}" > release-assets.txt
+          mapfile -t ASSETS < release-assets.txt
+          if gh release view "$RELEASE_TAG" --json tagName >/dev/null 2>&1; then
+            mkdir -p existing-release
+            gh release download "$RELEASE_TAG" --dir existing-release
+            python scripts/ci/release_assets.py --directory dist --version "${RELEASE_TAG#v}" \
+              --existing existing-release > missing-assets.txt
+            while IFS= read -r ASSET; do
+              [ -n "$ASSET" ] && gh release upload "$RELEASE_TAG" "dist/$ASSET"
+            done < missing-assets.txt
+          else
+            FILES=()
+            for ASSET in "${ASSETS[@]}"; do FILES+=("dist/$ASSET"); done
+            if [[ "$TAG_STATUS" == "match" ]]; then
+              gh release create "$RELEASE_TAG" "${FILES[@]}" --verify-tag \
+                --title "Aikya Harness $RELEASE_TAG" --notes-file dist/RELEASE_NOTES.md --latest
+            elif [[ "$TAG_STATUS" == "missing" ]]; then
+              gh release create "$RELEASE_TAG" "${FILES[@]}" --target "$GITHUB_SHA" \
+                --title "Aikya Harness $RELEASE_TAG" --notes-file dist/RELEASE_NOTES.md --latest
+            else
+              echo "::error::Unexpected tag state"; exit 1
+            fi
+          fi
+
+          # Verify that the remote tag still resolves to the expected commit.
+          python3 scripts/ci/github_tag.py \
+            --repository "$GITHUB_REPOSITORY" \
+            --tag "$RELEASE_TAG" --sha "$GITHUB_SHA" | grep -Fxq match
+          gh release view "$RELEASE_TAG" --json url --jq '.url'
+
+  install-pages:
+    name: Publish verified short installation URLs
+    needs: [verify, publish]
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    uses: ./.github/workflows/install-pages.yml
+    with:
+      release-tag: ${{ needs.verify.outputs.release_tag }}

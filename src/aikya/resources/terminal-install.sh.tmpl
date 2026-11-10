@@ -1,0 +1,57 @@
+#!/bin/sh
+# Native Aikya @@VERSION@@; requires curl/tar and a system SHA-256 tool, not Python or Node.
+set -eu
+previous=''; offline_dir=''; dry_run=''
+for argument in "$@"; do
+    if [ -n "$previous" ]; then
+        case "$previous" in
+            --version) [ "$argument" = '@@VERSION@@' ] || { echo 'Use the installer belonging to the requested version.' >&2; exit 2; };;
+            --channel) [ "$argument" = '@@CHANNEL@@' ] || { echo 'Installer channel differs from its pinned release.' >&2; exit 2; };;
+            --scope) [ "$argument" = global ] || { echo 'Native binaries use global scope; project memory stays local.' >&2; exit 2; };;
+            --offline-dir) offline_dir="$argument";;
+        esac
+        previous=''; continue
+    fi
+    case "$argument" in
+        --version|--channel|--scope|--offline-dir) previous="$argument";;
+        --dry-run) dry_run=1;;
+        --no-path|--yes) ;;
+        *) echo 'Unknown native installer option.' >&2; exit 2;;
+    esac
+done
+[ -z "$previous" ] || { echo 'Missing native installer option value.' >&2; exit 2; }
+if [ -n "$dry_run" ]; then
+    printf '%s\n' '{"action":"install","version":"@@VERSION@@","channel":"@@CHANNEL@@","writes":false,"network":false}'
+    exit 0
+fi
+case "$(uname -m)" in arm64|aarch64) arch=arm64;; x86_64|amd64) arch=x64;; *) echo 'Unsupported native architecture.' >&2; exit 2;; esac
+case "$(uname -s)" in
+    Darwin) platform="darwin-$arch";;
+    Linux)
+        if getconf GNU_LIBC_VERSION >/dev/null 2>&1; then abi=gnu
+        else case "$(ldd --version 2>&1 || true)" in *musl*) abi=musl;; *) echo 'Unknown Linux C runtime; no fallback is selected.' >&2; exit 2;; esac; fi
+        platform="linux-$arch-$abi";;
+    *) echo 'Use the native PowerShell installer on Windows.' >&2; exit 2;;
+esac
+case "$platform" in
+@@PLATFORMS@@
+    *) echo 'This artifact set has no verified bundle for this platform.' >&2; exit 2;;
+esac
+stage="$(mktemp -d "${TMPDIR:-/tmp}/aikya-native.XXXXXXXX")"
+stage="$(cd "$stage" && pwd -P)"
+trap 'rm -rf "$stage"' EXIT HUP INT TERM
+archive="$stage/terminal.tar.gz"
+if [ -n "$offline_dir" ]; then cp "$offline_dir/$asset" "$archive"
+else
+    command -v curl >/dev/null 2>&1 || { echo 'curl is required to fetch the verified native bundle.' >&2; exit 2; }
+    curl -q --fail --silent --show-error --location --proto '=https' --proto-redir '=https' --connect-timeout 15 --max-time 300 --max-filesize 256000000 "https://github.com/jlema0590/aikya-forge/releases/download/v@@VERSION@@/$asset" -o "$archive"
+fi
+[ "$(wc -c < "$archive")" -le 256000000 ] || { echo 'Native archive exceeds its download bound.' >&2; exit 2; }
+if command -v sha256sum >/dev/null 2>&1; then actual="$(sha256sum "$archive")"
+elif command -v shasum >/dev/null 2>&1; then actual="$(shasum -a 256 "$archive")"
+else echo 'A system SHA-256 tool (sha256sum or shasum) is required.' >&2; exit 2; fi
+actual=${actual%% *}
+[ "$actual" = "$checksum" ] || { echo 'Native bundle integrity checksum mismatch.' >&2; exit 2; }
+mkdir "$stage/payload"
+tar -xzf "$archive" -C "$stage/payload"
+"$stage/payload/$python" -I -B -m aikya.installation.managed_cli install --payload "$stage/payload" --version '@@VERSION@@' --channel '@@CHANNEL@@' --yes "$@"

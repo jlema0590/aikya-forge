@@ -1,0 +1,27 @@
+name: Aikya | Token budget (v6)
+
+on:
+  pull_request:
+    branches: [develop, main]
+  push:
+    branches: [develop]
+
+permissions:
+  contents: read
+
+jobs:
+  static-context-budget:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - name: Install contributor package and build tools
+        run: |
+          python -m pip install 'setuptools>=77' wheel build
+          python -m pip install --no-build-isolation --no-deps -e .
+      - name: Validate baseline static context proxy
+        run: python3 scripts/ci/context_budget.py --max-proxy-tokens 6000
+      - name: Unit tests for model policy and token metrics
+        run: python3 -m unittest discover -s tests -p test_token_efficiency.py -v

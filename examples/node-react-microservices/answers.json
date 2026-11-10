@@ -1,0 +1,18 @@
+{
+  "mode": "new",
+  "name": "plataforma-eventos",
+  "backend": "node",
+  "backend_framework": "nestjs",
+  "frontend": "react",
+  "mobile": "none",
+  "architecture": "microservices",
+  "architecture_patterns": [
+    "event-driven"
+  ],
+  "database": "postgresql",
+  "ci": "gitlab-ci",
+  "deployment": "kubernetes",
+  "package_manager": "pnpm",
+  "notes": "Evaluate distributed systems costs: establish boundaries and contracts before creating additional services.",
+  "repository_layout": "monorepo"
+}

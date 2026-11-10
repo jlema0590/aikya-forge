@@ -1,0 +1,47 @@
+name: Propose an Aikya feature
+description: Suggest new capabilities for development, infrastructure, DevOps or agents
+labels: []
+body:
+  - type: dropdown
+    id: category
+    attributes:
+      label: Area
+      options:
+        - Development (backend / frontend / mobile)
+        - Infrastructure (Terraform / OpenTofu / Ansible)
+        - DevOps (Docker / Compose / Kubernetes / Helm / Kustomize)
+        - Software architectures
+        - Agents or engineering skills
+        - Installation / onboarding / runtime
+        - Testing and quality
+        - CI/CD and releases
+        - Documentation / user experience
+        - Other
+    validations:
+      required: true
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem or need
+      description: What specific problem should this feature solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Include relevant onboarding questions, commands, agents, skills and expected artifacts.
+    validations:
+      required: true
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance criteria
+      description: Which tests or results would prove that the solution works?
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives and compatibility
+      description: Impact on previous profiles, security and possible alternative approaches.
