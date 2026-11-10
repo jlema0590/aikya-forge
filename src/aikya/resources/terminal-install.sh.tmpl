@@ -55,3 +55,4 @@ actual=${actual%% *}
 mkdir "$stage/payload"
 tar -xzf "$archive" -C "$stage/payload"
 "$stage/payload/$python" -I -B -m aikya.installation.managed_cli install --payload "$stage/payload" --version '@@VERSION@@' --channel '@@CHANNEL@@' --yes "$@"
+printf '%s\n' 'Aikya Forge is installed. Open a new terminal and run: aikya' 'Manage the installation with: aikya-manage doctor' >&2

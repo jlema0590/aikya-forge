@@ -1,0 +1,8 @@
+@echo off
+setlocal
+rem Aikya Forge @@VERSION@@: open this file from the extracted installer folder.
+for %%I in ("%~dp0.") do set "AIKYA_INSTALLER_DIR=%%~fI"
+powershell.exe -NoLogo -NoProfile -ExecutionPolicy Bypass -File "%AIKYA_INSTALLER_DIR%\install.ps1" -OfflineDir "%AIKYA_INSTALLER_DIR%" %*
+set "AIKYA_INSTALL_RESULT=%ERRORLEVEL%"
+if "%~1"=="" pause
+exit /b %AIKYA_INSTALL_RESULT%

@@ -1,0 +1,5 @@
+#!/bin/sh
+# Aikya Forge @@VERSION@@: open this file from the extracted installer folder.
+set -eu
+installer_dir=$(CDPATH= cd -- "$(dirname -- "$0")" && pwd -P)
+exec /bin/sh "$installer_dir/install.sh" --offline-dir "$installer_dir" "$@"

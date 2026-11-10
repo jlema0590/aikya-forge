@@ -1,4 +1,4 @@
-"""Exercise final Harness/Mods assets with real Claude in disposable configurations."""
+"""Exercise final Forge/Mods assets with real Claude in disposable configurations."""
 import argparse
 import json
 import os
@@ -12,8 +12,9 @@ import tempfile
 def check(assets, mods_assets):
     if not shutil.which('claude'):
         raise ValueError('Real native Claude CLI is required for this acceptance check')
-    wheel=next(assets.glob('aikya_harness-*-py3-none-any.whl'))
-    version=wheel.name.removeprefix('aikya_harness-').removesuffix('-py3-none-any.whl')
+    wheels=list(assets.glob('aikya_forge-*-py3-none-any.whl')) or list(assets.glob('aikya_harness-*-py3-none-any.whl'))
+    if len(wheels)!=1:raise ValueError('Expected one Aikya core wheel')
+    version=wheels[0].name.split('-',1)[1].removesuffix('-py3-none-any.whl')
     mods_version=json.loads((mods_assets/'release.json').read_text())['version'].removeprefix('v')
     results=[]
     with tempfile.TemporaryDirectory(prefix='aikya-mods-smoke-') as temporary:

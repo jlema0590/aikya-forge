@@ -5,6 +5,7 @@ from pathlib import Path
 import re
 from urllib.parse import urlsplit
 from urllib.request import HTTPRedirectHandler, build_opener
+from .identity import wheel_name
 
 REPOSITORY = 'https://github.com/jlema0590/aikya-forge'
 HOSTS = {'github.com', 'api.github.com', 'release-assets.githubusercontent.com', 'objects.githubusercontent.com'}
@@ -78,7 +79,7 @@ def parse_checksums(raw):
 def fetch_release(version: str, destination: Path, offline_dir: Path | None = None) -> dict[str, Path]:
     version = validate_version(version)
     base_url = REPOSITORY + '/releases/download/v' + version + '/'
-    name = 'aikya_harness-' + version + '-py3-none-any.whl'
+    name = wheel_name(version)
     def read(filename, limit=LIMIT):
         if offline_dir is None:
             return https_bytes(base_url + filename, limit)

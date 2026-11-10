@@ -1,0 +1,70 @@
+{
+  "wheel": "aikya_forge-0.1.0-py3-none-any.whl",
+  "source_imports": false,
+  "sdk_installed": false,
+  "cases": [
+    {
+      "scope": "global-and-project",
+      "command": "reuse-command-registration",
+      "result": "passed"
+    },
+    {
+      "scope": "global",
+      "command": "mobile-feature-hook-and-phase",
+      "result": "passed"
+    },
+    {
+      "scope": "global",
+      "methodology": "odd",
+      "command": "init",
+      "result": "passed"
+    },
+    {
+      "scope": "global",
+      "methodology": "odd",
+      "command": "analyze",
+      "result": "passed"
+    },
+    {
+      "scope": "global",
+      "methodology": "sdd",
+      "command": "init",
+      "result": "passed"
+    },
+    {
+      "scope": "global",
+      "methodology": "sdd",
+      "command": "analyze",
+      "result": "passed"
+    },
+    {
+      "scope": "project",
+      "command": "mobile-feature-hook-and-phase",
+      "result": "passed"
+    },
+    {
+      "scope": "project",
+      "methodology": "odd",
+      "command": "init",
+      "result": "passed"
+    },
+    {
+      "scope": "project",
+      "methodology": "odd",
+      "command": "analyze",
+      "result": "passed"
+    },
+    {
+      "scope": "project",
+      "methodology": "sdd",
+      "command": "init",
+      "result": "passed"
+    },
+    {
+      "scope": "project",
+      "methodology": "sdd",
+      "command": "analyze",
+      "result": "passed"
+    }
+  ]
+}

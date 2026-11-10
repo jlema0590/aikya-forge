@@ -1,5 +1,5 @@
 name: Report an Aikya bug
-description: Report a problem in the harness, agents, skills or project generators
+description: Report a problem in Forge, agents, skills or project generators
 labels: []
 body:
   - type: markdown

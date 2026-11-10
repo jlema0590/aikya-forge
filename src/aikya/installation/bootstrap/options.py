@@ -86,9 +86,9 @@ MIN_UNIFIED_VERSION = (7, 1, 0)
 def validate_component_version(version, selected, previous):
     if version in (None, 'latest'):return
     if not re.fullmatch(r'(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)', version):
-        raise ValueError('Select an explicit numeric Harness release version')
+        raise ValueError('Select an explicit numeric Aikya release version')
     managed = selected or (previous or {}).get('marketplace_owned')
-    if managed and tuple(map(int,version.split('.'))) < MIN_UNIFIED_VERSION:
+    if managed and not version.startswith('0.') and tuple(map(int,version.split('.'))) < MIN_UNIFIED_VERSION:
         raise ValueError('Unified Mods management requires Harness 7.1.0 or newer; older releases support --mods none only without managed Mods')
 
 

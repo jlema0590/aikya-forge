@@ -193,7 +193,7 @@ def install_all(root: Path, profile: dict[str, Any], *, permission: bool, dry_ru
         raise ValueError('Select a skill source with --only or --repo before installation.')
     root = root.resolve()
     if (root/'.claude').is_symlink() or (root/'.claude/skills').is_symlink() or (root/'.harness').is_symlink():
-        raise ValueError('Symlinked .claude/.harness paths are not allowed for external installations.')
+        raise ValueError('Symlinked .claude/.Forge paths are not allowed for external installations.')
     if not root.is_dir():
         raise RuntimeError('El destino debe existir y ser directorio.')
     if dry_run:
@@ -246,7 +246,7 @@ def install_github_skill(root: Path, *, name: str, repo: str, skill_path: str,
     if commit is not None and selected!=commit:raise ValueError('Resolved source differs from the approved commit')
     dest=root/'.claude/skills'/name
     if (root/'.claude').is_symlink() or (root/'.claude/skills').is_symlink() or (root/'.harness').is_symlink():
-        raise ValueError('Symlinked .claude/.harness paths are not allowed for external installations.')
+        raise ValueError('Symlinked .claude/.Forge paths are not allowed for external installations.')
     if dest.exists() or dest.is_symlink():raise FileExistsError('Existing selected skill is preserved')
     captured=github_source.capture(repo,skill_path,selected,compatibility='legacy')
     text=captured['files']['SKILL.md'].decode('utf8').replace('\r\n','\n').replace('\r','\n')[:12000]
@@ -270,7 +270,7 @@ def install_custom(root: Path, profile: dict[str, Any], *, name: str, repo: str,
         raise PermissionError('Installation requires explicit approval.')
     root=root.resolve()
     if (root/'.claude').is_symlink() or (root/'.claude/skills').is_symlink() or (root/'.harness').is_symlink():
-        raise ValueError('Symlinked .claude/.harness paths are not allowed for external installations.')
+        raise ValueError('Symlinked .claude/.Forge paths are not allowed for external installations.')
     lock=root/'.harness/external-skills-lock.json'
     record={'schema_version':1,'sources':{name:repo},'updated_at_utc':datetime.now(timezone.utc).isoformat(),'skills':{}}
     if lock.is_file():
@@ -294,7 +294,7 @@ def install_custom(root: Path, profile: dict[str, Any], *, name: str, repo: str,
     return record
 
 def main(argv: list[str]|None = None) -> int:
-    parser = argparse.ArgumentParser(description='Aikya Harness external Agent Skills management')
+    parser = argparse.ArgumentParser(description='Aikya Forge external Agent Skills management')
     parser.add_argument('action',choices=['plan','install','status'])
     parser.add_argument('--target',type=Path,default=Path.cwd())
     parser.add_argument('--only',help='Nombres predefinidos separados por coma')

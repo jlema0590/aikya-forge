@@ -1,0 +1,2502 @@
+ERROR: Clearing the derived cache requires --approved
+ERROR: Code index unavailable or corrupt; preserve and rebuild explicitly
+Instalando/verificando: ponytail
+  -> installed
+Inventario: aikya/docs/skills.md actualizado
+ponytail: present
+Inventario: aikya/docs/skills.md sin cambios
+Instalando/verificando: ponytail
+  -> installed
+Inventario: aikya/docs/skills.md sin cambios
+synthetic-process: RUNNING ['/Users/jlema/11-Project-aikya-harness/git/aikya-forge/.venv/bin/python', '-c', 'raise SystemExit(1)']
+REQUIREMENTS PENDING: request developer approval before updating SDKs.
+NOTICE: Flow invocation metadata unavailable.
+NOTICE: execution metadata unavailable: Invocation superseded; ignore late event
+synthetic-process: FAILED (exit 1)
+RESULTADO: FAILED (1 check(s) pendientes/fallidos)
+bad: INVALID_CWD (fuera del repositorio o inexistente)
+RESULTADO: FAILED (1 check(s) pendientes/fallidos)
+docs:structure: RUNNING ['/Users/jlema/11-Project-aikya-harness/git/aikya-forge/.venv/bin/python', 'aikya/scripts/harness/docs_guard.py', 'base']
+docs:structure: PASSED
+RESULTADO: PASSED (0 check(s) pendientes/fallidos)
+ERROR SDD: Invalid approvals
+ERROR SDD: Action requires --input JSON
+{
+  "valid": false,
+  "specifications": 1,
+  "errors": [
+    "/private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpmui8piz9/aikya/docs/specs/development/SPEC-001/state.json: id must be non-empty text"
+  ]
+}
+{
+  "valid": true,
+  "specifications": 0,
+  "errors": []
+}
+{
+  "id": "SPEC-001",
+  "status": "SPEC_DRAFT",
+  "path": "aikya/docs/specs/development/SPEC-001"
+}
+{
+  "specifications": [
+    "SPEC-001"
+  ]
+}
+{
+  "id": "SPEC-001",
+  "project_type": "development",
+  "phase": "SPEC_DRAFT",
+  "approved": [],
+  "outstanding_questions": 1,
+  "total_tasks": 0,
+  "completed_tasks": 0,
+  "requirements": 1
+}
+Destino ya existente: /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpnw8nl7ry/repo/apps/api; no se sobrescribe ni ejecuta.
+Preserved modified user PATH block
+Instalando/verificando: ponytail
+  -> installed
+Instalando/verificando: graphify
+  -> FAILED: offline
+Inventario: aikya/docs/skills.md actualizado
+
+=== AIKYA TOOLCHAIN REQUIREMENTS ===
+{
+  "schema_version": 1,
+  "project": "/private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpasg46zms",
+  "platform": "Darwin",
+  "ready": false,
+  "checks": [
+    {
+      "tool": "python3",
+      "status": "ok",
+      "installed": "3.13.18",
+      "expected": "3.9+",
+      "detail": "",
+      "official_url": "https://www.python.org/downloads/"
+    },
+    {
+      "tool": "git",
+      "status": "ok",
+      "installed": "2.56.0",
+      "expected": null,
+      "detail": "",
+      "official_url": "https://git-scm.com/downloads"
+    },
+    {
+      "tool": "node",
+      "status": "ok",
+      "installed": "26.12.1",
+      "expected": null,
+      "detail": "",
+      "official_url": "https://nodejs.org/en/download"
+    },
+    {
+      "tool": "pnpm",
+      "status": "missing",
+      "installed": null,
+      "expected": null,
+      "detail": "No encontrado en PATH",
+      "official_url": "https://pnpm.io/installation"
+    }
+  ],
+  "note": "Non-destructive diagnosis. No SDKs or dependencies are installed. Framework, AGP and Xcode compatibility requires separate verification."
+}
+
+=== AIKYA TOOLCHAIN REQUIREMENTS ===
+{
+  "schema_version": 1,
+  "project": "/private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok",
+  "platform": "Darwin",
+  "ready": false,
+  "checks": [
+    {
+      "tool": "python3",
+      "status": "ok",
+      "installed": "3.13.18",
+      "expected": "3.9+",
+      "detail": "",
+      "official_url": "https://www.python.org/downloads/"
+    },
+    {
+      "tool": "git",
+      "status": "ok",
+      "installed": "2.56.0",
+      "expected": null,
+      "detail": "",
+      "official_url": "https://git-scm.com/downloads"
+    },
+    {
+      "tool": "node",
+      "status": "ok",
+      "installed": "26.12.1",
+      "expected": null,
+      "detail": "",
+      "official_url": "https://nodejs.org/en/download"
+    },
+    {
+      "tool": "pnpm",
+      "status": "missing",
+      "installed": null,
+      "expected": null,
+      "detail": "No encontrado en PATH",
+      "official_url": "https://pnpm.io/installation"
+    }
+  ],
+  "note": "Non-destructive diagnosis. No SDKs or dependencies are installed. Framework, AGP and Xcode compatibility requires separate verification."
+}
+
+=== RESUMEN DE DECISIONES ===
+{
+  "methodology": "odd",
+  "project_type": "development",
+  "mode": "new",
+  "repository_layout": "monorepo",
+  "backend": "next",
+  "frontend": "react",
+  "mobile": "none",
+  "mobile_framework": "none",
+  "android_language": "none",
+  "ios_ui": "none",
+  "architecture": "layered",
+  "database": "postgresql",
+  "ci": "github-actions",
+  "deployment": "cloud-managed",
+  "package_manager": "pnpm",
+  "quality": "unit+integration",
+  "notes": "",
+  "name": "portal-next",
+  "api_style": "undecided",
+  "auth": "undecided",
+  "observability": "undecided",
+  "backend_framework": "undecided",
+  "frontend_rendering": "undecided",
+  "runtime_versions": "",
+  "architecture_patterns": [],
+  "infrastructure": {
+    "provider": "none",
+    "iac": "none",
+    "configuration_management": "none",
+    "containers": {
+      "enabled": false,
+      "compose": false
+    },
+    "orchestration": "none",
+    "deployment_method": "none",
+    "environments": [],
+    "image_repository": "",
+    "container_port": null,
+    "source_kind": "none",
+    "helm_chart_mode": "create",
+    "helm_chart_path": ""
+  }
+}
+
+=== RESULTADO ===
+- CREATED .aikya/docs-policy.json
+- CREATE runtime asset: aikya_cli.py
+- CREATE runtime asset: aikya_session.py
+- CREATE runtime asset: agent_loop.py
+- CREATE runtime asset: agent_loop_state.py
+- CREATE runtime asset: agent_runtime.py
+- CREATE runtime asset: execution_state.py
+- CREATE runtime asset: check_events.py
+- CREATE runtime asset: command_workflows.py
+- CREATE runtime asset: execution_config.py
+- CREATE runtime asset: execution_lifecycle.py
+- CREATE runtime asset: execution_observer.py
+- CREATE runtime asset: workspace_guard.py
+- CREATE runtime asset: runtime_metrics.py
+- CREATE runtime asset: aikya_statusline.py
+- CREATE runtime asset: aikya_subagent_statusline.py
+- CREATE runtime asset: agent_memory.py
+- CREATE runtime asset: memory_store.py
+- CREATE runtime asset: agent_memory_extract.py
+- CREATE runtime asset: install.py
+- CREATE runtime asset: aikya_setup.py
+- CREATE runtime asset: aikya_requirements.py
+- CREATE runtime asset: aikya_analyze.py
+- CREATE runtime asset: project_discovery.py
+- CREATE runtime asset: profile_builder.py
+- CREATE runtime asset: analysis_manifest.py
+- CREATE runtime asset: aikya_layout.py
+- CREATE runtime asset: infrastructure_profile.py
+- CREATE runtime asset: methodology.py
+- CREATE runtime asset: odd_engine.py
+- CREATE runtime asset: sdd_assets.py
+- CREATE runtime asset: sdd_localization.py
+- CREATE runtime asset: sdd_templates.py
+- CREATE runtime asset: doc_bootstrap.py
+- CREATE runtime asset: docs_language.py
+- CREATE runtime asset: docs_layout.py
+- CREATE runtime asset: docs_templates_en.py
+- CREATE runtime asset: docs_templates_es.py
+- CREATE runtime asset: docs_migration_hashes.py
+- CREATE runtime asset: claude_templates.py
+- CREATE runtime asset: documentation_templates.py
+- CREATE runtime asset: documentation_workflows.py
+- CREATE runtime asset: engineering_catalog.py
+- CREATE runtime asset: external_skills.py
+- CREATE runtime asset: skills_registry.py
+- CREATE runtime asset: aikya_router.py
+- CREATE runtime asset: model_capabilities.py
+- CREATE runtime asset: token_policy.py
+- CREATE runtime asset: token_report.py
+- CREATE runtime asset: code_quality.py
+- CREATE runtime asset: durable_io.py
+- CREATE runtime asset: _aikya_bootstrap.py
+- CREATE runtime asset: requirements-agent-loop.txt
+- CREATE runtime asset: docs/AGENT_LOOP.md
+- CREATE runtime asset: docs/SECURITY_CONTROLS.md
+- CREATE runtime asset: template/scripts/harness/docs_guard.py
+- CREATE runtime asset: docs_guard.py
+- CREATE runtime asset: template/scripts/harness/infrastructure.py
+- CREATE runtime asset: infrastructure.py
+- CREATE runtime asset: template/scripts/harness/run_checks.py
+- CREATE runtime asset: run_checks.py
+- CREATE runtime asset: template/scripts/harness/scaffold.py
+- CREATE runtime asset: scaffold.py
+- CREATE runtime asset: template/scripts/harness/skills_lint.py
+- CREATE runtime asset: skills_lint.py
+- CREATE runtime asset: src/aikya/__init__.py
+- CREATE runtime asset: src/aikya/__main__.py
+- CREATE runtime asset: src/aikya/catalogs/__init__.py
+- CREATE runtime asset: src/aikya/catalogs/engineering.py
+- CREATE runtime asset: src/aikya/catalogs/external.py
+- CREATE runtime asset: src/aikya/catalogs/github_source.py
+- CREATE runtime asset: src/aikya/catalogs/skill_paths.py
+- CREATE runtime asset: src/aikya/catalogs/skills.py
+- CREATE runtime asset: src/aikya/cli/__init__.py
+- CREATE runtime asset: src/aikya/cli/analysis.py
+- CREATE runtime asset: src/aikya/cli/arguments.py
+- CREATE runtime asset: src/aikya/cli/commands.py
+- CREATE runtime asset: src/aikya/cli/dispatch.py
+- CREATE runtime asset: src/aikya/cli/loop_command.py
+- CREATE runtime asset: src/aikya/cli/main.py
+- CREATE runtime asset: src/aikya/cli/memory.py
+- CREATE runtime asset: src/aikya/cli/queries.py
+- CREATE runtime asset: src/aikya/cli/session.py
+- CREATE runtime asset: src/aikya/cli/summary.py
+- CREATE runtime asset: src/aikya/cli/terminal.py
+- CREATE runtime asset: src/aikya/code_index/__init__.py
+- CREATE runtime asset: src/aikya/code_index/__main__.py
+- CREATE runtime asset: src/aikya/code_index/contracts.py
+- CREATE runtime asset: src/aikya/code_index/coverage.py
+- CREATE runtime asset: src/aikya/code_index/hooks.py
+- CREATE runtime asset: src/aikya/code_index/parsers/__init__.py
+- CREATE runtime asset: src/aikya/code_index/parsers/dart.py
+- CREATE runtime asset: src/aikya/code_index/parsers/python.py
+- CREATE runtime asset: src/aikya/code_index/parsers/registry.py
+- CREATE runtime asset: src/aikya/code_index/parsers/treesitter.py
+- CREATE runtime asset: src/aikya/code_index/policy.py
+- CREATE runtime asset: src/aikya/code_index/query.py
+- CREATE runtime asset: src/aikya/code_index/scan.py
+- CREATE runtime asset: src/aikya/code_index/store.py
+- CREATE runtime asset: src/aikya/code_index/sync.py
+- CREATE runtime asset: src/aikya/code_index/watch.py
+- CREATE runtime asset: src/aikya/context/__init__.py
+- CREATE runtime asset: src/aikya/context/cli.py
+- CREATE runtime asset: src/aikya/context/prepare.py
+- CREATE runtime asset: src/aikya/context/ranking.py
+- CREATE runtime asset: src/aikya/core/__init__.py
+- CREATE runtime asset: src/aikya/core/budgets.py
+- CREATE runtime asset: src/aikya/core/checkpoints.py
+- CREATE runtime asset: src/aikya/core/loop.py
+- CREATE runtime asset: src/aikya/core/package_paths.py
+- CREATE runtime asset: src/aikya/core/permissions.py
+- CREATE runtime asset: src/aikya/core/pipe_reader.py
+- CREATE runtime asset: src/aikya/core/runtime.py
+- CREATE runtime asset: src/aikya/core/state.py
+- CREATE runtime asset: src/aikya/discovery/__init__.py
+- CREATE runtime asset: src/aikya/discovery/analyze.py
+- CREATE runtime asset: src/aikya/discovery/infrastructure.py
+- CREATE runtime asset: src/aikya/discovery/layout.py
+- CREATE runtime asset: src/aikya/discovery/manifest.py
+- CREATE runtime asset: src/aikya/discovery/profiles.py
+- CREATE runtime asset: src/aikya/discovery/scanner.py
+- CREATE runtime asset: src/aikya/documentation/__init__.py
+- CREATE runtime asset: src/aikya/documentation/bootstrap.py
+- CREATE runtime asset: src/aikya/documentation/claude.py
+- CREATE runtime asset: src/aikya/documentation/composition.py
+- CREATE runtime asset: src/aikya/documentation/guard.py
+- CREATE runtime asset: src/aikya/documentation/language.py
+- CREATE runtime asset: src/aikya/documentation/layout.py
+- CREATE runtime asset: src/aikya/documentation/migration_hashes.py
+- CREATE runtime asset: src/aikya/documentation/pages_en.py
+- CREATE runtime asset: src/aikya/documentation/pages_es.py
+- CREATE runtime asset: src/aikya/documentation/templates.py
+- CREATE runtime asset: src/aikya/installation/__init__.py
+- CREATE runtime asset: src/aikya/installation/assets.py
+- CREATE runtime asset: src/aikya/installation/bootstrap/__init__.py
+- CREATE runtime asset: src/aikya/installation/bootstrap/__main__.py
+- CREATE runtime asset: src/aikya/installation/bootstrap/claude_plugins.py
+- CREATE runtime asset: src/aikya/installation/bootstrap/cli.py
+- CREATE runtime asset: src/aikya/installation/bootstrap/code_index.py
+- CREATE runtime asset: src/aikya/installation/bootstrap/components.py
+- CREATE runtime asset: src/aikya/installation/bootstrap/coordinator.py
+- CREATE runtime asset: src/aikya/installation/bootstrap/download.py
+- CREATE runtime asset: src/aikya/installation/bootstrap/environment.py
+- CREATE runtime asset: src/aikya/installation/bootstrap/identity.py
+- CREATE runtime asset: src/aikya/installation/bootstrap/launchers.py
+- CREATE runtime asset: src/aikya/installation/bootstrap/mods.py
+- CREATE runtime asset: src/aikya/installation/bootstrap/options.py
+- CREATE runtime asset: src/aikya/installation/bootstrap/settings.py
+- CREATE runtime asset: src/aikya/installation/bootstrap/state.py
+- CREATE runtime asset: src/aikya/installation/bootstrap/user_path.py
+- CREATE runtime asset: src/aikya/installation/build_sources.py
+- CREATE runtime asset: src/aikya/installation/checks.py
+- CREATE runtime asset: src/aikya/installation/command_scopes.py
+- CREATE runtime asset: src/aikya/installation/compatibility.py
+- CREATE runtime asset: src/aikya/installation/configuration.py
+- CREATE runtime asset: src/aikya/installation/context.py
+- CREATE runtime asset: src/aikya/installation/defaults.py
+- CREATE runtime asset: src/aikya/installation/discovery.py
+- CREATE runtime asset: src/aikya/installation/documents.py
+- CREATE runtime asset: src/aikya/installation/facade.py
+- CREATE runtime asset: src/aikya/installation/hook_commands.py
+- CREATE runtime asset: src/aikya/installation/infrastructure.py
+- CREATE runtime asset: src/aikya/installation/interview.py
+- CREATE runtime asset: src/aikya/installation/io.py
+- CREATE runtime asset: src/aikya/installation/managed_archives.py
+- CREATE runtime asset: src/aikya/installation/managed_bundle.py
+- CREATE runtime asset: src/aikya/installation/managed_cli.py
+- CREATE runtime asset: src/aikya/installation/managed_distribution.py
+- CREATE runtime asset: src/aikya/installation/managed_entries.py
+- CREATE runtime asset: src/aikya/installation/managed_inputs.py
+- CREATE runtime asset: src/aikya/installation/managed_install.py
+- CREATE runtime asset: src/aikya/installation/managed_launchers.py
+- CREATE runtime asset: src/aikya/installation/managed_migration.py
+- CREATE runtime asset: src/aikya/installation/managed_node.py
+- CREATE runtime asset: src/aikya/installation/managed_ownership.py
+- CREATE runtime asset: src/aikya/installation/managed_payload.py
+- CREATE runtime asset: src/aikya/installation/managed_probe.py
+- CREATE runtime asset: src/aikya/installation/managed_releases.py
+- CREATE runtime asset: src/aikya/installation/managed_runtime.py
+- CREATE runtime asset: src/aikya/installation/managed_versions.py
+- CREATE runtime asset: src/aikya/installation/managed_wheel.py
+- CREATE runtime asset: src/aikya/installation/migration_v8.py
+- CREATE runtime asset: src/aikya/installation/migrations.py
+- CREATE runtime asset: src/aikya/installation/pipeline.py
+- CREATE runtime asset: src/aikya/installation/portable.py
+- CREATE runtime asset: src/aikya/installation/preflight.py
+- CREATE runtime asset: src/aikya/installation/profile.py
+- CREATE runtime asset: src/aikya/installation/project_assets.py
+- CREATE runtime asset: src/aikya/installation/registration.py
+- CREATE runtime asset: src/aikya/installation/requirements.py
+- CREATE runtime asset: src/aikya/installation/runtime.py
+- CREATE runtime asset: src/aikya/installation/signatures.py
+- CREATE runtime asset: src/aikya/memory/__init__.py
+- CREATE runtime asset: src/aikya/memory/contracts.py
+- CREATE runtime asset: src/aikya/memory/extraction.py
+- CREATE runtime asset: src/aikya/memory/knowledge.py
+- CREATE runtime asset: src/aikya/memory/store.py
+- CREATE runtime asset: src/aikya/memory/viewer/__init__.py
+- CREATE runtime asset: src/aikya/memory/viewer/client.py
+- CREATE runtime asset: src/aikya/memory/viewer/collect.py
+- CREATE runtime asset: src/aikya/memory/viewer/contracts.py
+- CREATE runtime asset: src/aikya/memory/viewer/export.py
+- CREATE runtime asset: src/aikya/memory/viewer/graph.py
+- CREATE runtime asset: src/aikya/memory/viewer/live.py
+- CREATE runtime asset: src/aikya/memory/viewer/publication.py
+- CREATE runtime asset: src/aikya/memory/viewer/render.py
+- CREATE runtime asset: src/aikya/memory/viewer/watch.py
+- CREATE runtime asset: src/aikya/middleware/__init__.py
+- CREATE runtime asset: src/aikya/middleware/commands.py
+- CREATE runtime asset: src/aikya/middleware/compaction.py
+- CREATE runtime asset: src/aikya/middleware/configuration.py
+- CREATE runtime asset: src/aikya/middleware/events.py
+- CREATE runtime asset: src/aikya/middleware/flow_bridge.py
+- CREATE runtime asset: src/aikya/middleware/lifecycle.py
+- CREATE runtime asset: src/aikya/middleware/metrics.py
+- CREATE runtime asset: src/aikya/middleware/observer.py
+- CREATE runtime asset: src/aikya/middleware/statusline.py
+- CREATE runtime asset: src/aikya/middleware/subagent_statusline.py
+- CREATE runtime asset: src/aikya/middleware/task_context.py
+- CREATE runtime asset: src/aikya/middleware/usage.py
+- CREATE runtime asset: src/aikya/middleware/workspace.py
+- CREATE runtime asset: src/aikya/module_map.json
+- CREATE runtime asset: src/aikya/quality/__init__.py
+- CREATE runtime asset: src/aikya/quality/context_budget.py
+- CREATE runtime asset: src/aikya/quality/efficiency.py
+- CREATE runtime asset: src/aikya/quality/source.py
+- CREATE runtime asset: src/aikya/resource_paths.py
+- CREATE runtime asset: src/aikya/review/__init__.py
+- CREATE runtime asset: src/aikya/review/admission.py
+- CREATE runtime asset: src/aikya/review/authentication.py
+- CREATE runtime asset: src/aikya/review/candidates.py
+- CREATE runtime asset: src/aikya/review/cli.py
+- CREATE runtime asset: src/aikya/review/contracts.py
+- CREATE runtime asset: src/aikya/review/controller.py
+- CREATE runtime asset: src/aikya/review/definitions.py
+- CREATE runtime asset: src/aikya/review/document_transitions.py
+- CREATE runtime asset: src/aikya/review/execution_evidence.py
+- CREATE runtime asset: src/aikya/review/executor.py
+- CREATE runtime asset: src/aikya/review/observations.py
+- CREATE runtime asset: src/aikya/review/process.py
+- CREATE runtime asset: src/aikya/review/publication.py
+- CREATE runtime asset: src/aikya/review/receipts.py
+- CREATE runtime asset: src/aikya/review/recovery.py
+- CREATE runtime asset: src/aikya/review/reports.py
+- CREATE runtime asset: src/aikya/routing/__init__.py
+- CREATE runtime asset: src/aikya/routing/models.py
+- CREATE runtime asset: src/aikya/routing/pi_usage.py
+- CREATE runtime asset: src/aikya/routing/policy.py
+- CREATE runtime asset: src/aikya/routing/router.py
+- CREATE runtime asset: src/aikya/routing/usage.py
+- CREATE runtime asset: src/aikya/services/__init__.py
+- CREATE runtime asset: src/aikya/services/architecture_findings.py
+- CREATE runtime asset: src/aikya/services/authorization.py
+- CREATE runtime asset: src/aikya/services/authorization_tokens.py
+- CREATE runtime asset: src/aikya/services/batch_inputs.py
+- CREATE runtime asset: src/aikya/services/batch_records.py
+- CREATE runtime asset: src/aikya/services/batch_recovery.py
+- CREATE runtime asset: src/aikya/services/bootstrap_plans.py
+- CREATE runtime asset: src/aikya/services/bridge.py
+- CREATE runtime asset: src/aikya/services/bug_document.py
+- CREATE runtime asset: src/aikya/services/bug_evidence.py
+- CREATE runtime asset: src/aikya/services/check_cancel.py
+- CREATE runtime asset: src/aikya/services/check_classification.py
+- CREATE runtime asset: src/aikya/services/checks.py
+- CREATE runtime asset: src/aikya/services/diagnostics.py
+- CREATE runtime asset: src/aikya/services/documentation.py
+- CREATE runtime asset: src/aikya/services/documentation_inputs.py
+- CREATE runtime asset: src/aikya/services/documentation_recovery.py
+- CREATE runtime asset: src/aikya/services/engineering_workflows.py
+- CREATE runtime asset: src/aikya/services/generation.py
+- CREATE runtime asset: src/aikya/services/generation_inputs.py
+- CREATE runtime asset: src/aikya/services/infra_validation.py
+- CREATE runtime asset: src/aikya/services/maintenance.py
+- CREATE runtime asset: src/aikya/services/memory.py
+- CREATE runtime asset: src/aikya/services/mobile_inputs.py
+- CREATE runtime asset: src/aikya/services/mobile_workflow.py
+- CREATE runtime asset: src/aikya/services/odd_binding.py
+- CREATE runtime asset: src/aikya/services/odd_workflow.py
+- CREATE runtime asset: src/aikya/services/project_bootstrap.py
+- CREATE runtime asset: src/aikya/services/review.py
+- CREATE runtime asset: src/aikya/services/runtime_state.py
+- CREATE runtime asset: src/aikya/services/scaffold_generation.py
+- CREATE runtime asset: src/aikya/services/scaffold_recipes.py
+- CREATE runtime asset: src/aikya/services/scaffold_records.py
+- CREATE runtime asset: src/aikya/services/sdd.py
+- CREATE runtime asset: src/aikya/services/sdd_completion.py
+- CREATE runtime asset: src/aikya/services/selected_skills.py
+- CREATE runtime asset: src/aikya/services/skill_fetch.py
+- CREATE runtime asset: src/aikya/services/skill_library.py
+- CREATE runtime asset: src/aikya/services/skill_library_state.py
+- CREATE runtime asset: src/aikya/services/skill_management.py
+- CREATE runtime asset: src/aikya/services/skill_packages.py
+- CREATE runtime asset: src/aikya/services/skill_project_changes.py
+- CREATE runtime asset: src/aikya/services/skill_source.py
+- CREATE runtime asset: src/aikya/services/skill_sources.py
+- CREATE runtime asset: src/aikya/services/source_batches.py
+- CREATE runtime asset: src/aikya/services/task_binding.py
+- CREATE runtime asset: src/aikya/services/task_run_completion.py
+- CREATE runtime asset: src/aikya/services/task_run_inputs.py
+- CREATE runtime asset: src/aikya/services/task_run_lifecycle.py
+- CREATE runtime asset: src/aikya/services/task_run_records.py
+- CREATE runtime asset: src/aikya/services/task_run_reviews.py
+- CREATE runtime asset: src/aikya/services/task_runs.py
+- CREATE runtime asset: src/aikya/services/workflows.py
+- CREATE runtime asset: src/aikya/storage.py
+- CREATE runtime asset: src/aikya/tools/__init__.py
+- CREATE runtime asset: src/aikya/tools/check_evidence.py
+- CREATE runtime asset: src/aikya/tools/checks.py
+- CREATE runtime asset: src/aikya/tools/infrastructure.py
+- CREATE runtime asset: src/aikya/tools/scaffold.py
+- CREATE runtime asset: src/aikya/tools/skills_lint.py
+- CREATE runtime asset: src/aikya/workflows/__init__.py
+- CREATE runtime asset: src/aikya/workflows/methodology.py
+- CREATE runtime asset: src/aikya/workflows/mobile_scope.py
+- CREATE runtime asset: src/aikya/workflows/odd.py
+- CREATE runtime asset: src/aikya/workflows/sdd/__init__.py
+- CREATE runtime asset: src/aikya/workflows/sdd/assets.py
+- CREATE runtime asset: src/aikya/workflows/sdd/cli.py
+- CREATE runtime asset: src/aikya/workflows/sdd/contracts.py
+- CREATE runtime asset: src/aikya/workflows/sdd/engine.py
+- CREATE runtime asset: src/aikya/workflows/sdd/localization.py
+- CREATE runtime asset: src/aikya/workflows/sdd/rendering.py
+- CREATE runtime asset: src/aikya/workflows/sdd/state.py
+- CREATE runtime asset: src/aikya/workflows/sdd/templates.py
+- CREATE runtime asset: src/aikya/workflows/sdd/validation.py
+- CREATE runtime asset: template/.claude/agents/architect.md
+- CREATE runtime asset: template/.claude/agents/backend-engineer.md
+- CREATE runtime asset: template/.claude/agents/developer.md
+- CREATE runtime asset: template/.claude/agents/documentation-maintainer.md
+- CREATE runtime asset: template/.claude/agents/frontend-engineer.md
+- CREATE runtime asset: template/.claude/agents/mobile-engineer.md
+- CREATE runtime asset: template/.claude/agents/qa-reviewer.md
+- CREATE runtime asset: template/.claude/agents/security-reviewer.md
+- CREATE runtime asset: template/.claude/hooks/check_edit.py
+- CREATE runtime asset: template/.claude/hooks/execution_status.py
+- CREATE runtime asset: template/.claude/hooks/guard_bash.py
+- CREATE runtime asset: template/.claude/hooks/request_docs.py
+- CREATE runtime asset: template/.claude/hooks/skills_ready.py
+- CREATE runtime asset: template/.claude/hooks/stop_docs.py
+- CREATE runtime asset: template/.claude/hooks/welcome.py
+- CREATE runtime asset: template/.claude/rules/01-documentation-policy.md
+- CREATE runtime asset: template/.claude/rules/02-context-budget.md
+- CREATE runtime asset: template/.claude/rules/03-code-quality.md
+- CREATE runtime asset: template/.claude/rules/04-workspace-policy.md
+- CREATE runtime asset: template/.claude/rules/architecture.md
+- CREATE runtime asset: template/.claude/settings.json
+- CREATE runtime asset: template/.claude/skills/architecture-review/SKILL.md
+- CREATE runtime asset: template/.claude/skills/bugfix/SKILL.md
+- CREATE runtime asset: template/.claude/skills/documentation-sync/SKILL.md
+- CREATE runtime asset: template/.claude/skills/feature/SKILL.md
+- CREATE runtime asset: template/.claude/skills/mobile-feature/SKILL.md
+- CREATE runtime asset: template/.claude/skills/project-bootstrap/SKILL.md
+- CREATE runtime asset: template/.claude/skills/project-init/SKILL.md
+- CREATE runtime asset: template/.claude/skills/verify/SKILL.md
+- CREATE runtime asset: template/CLAUDE.md
+- CREATE runtime asset: template/harness.json
+- CREATE runtime asset: template/tests/test_harness.py
+- CREATE runtime asset: aikya-skills/aikya-analyze/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-answers/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-arc-review/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-bugfix/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-clarify/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-docs/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-docs-sync/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-doctor/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-feature/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-implement/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-infra/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-init/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-install-skill/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-memory/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-mobile-feature/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-models/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-plan/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-project/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-quality/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-scaffold/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-sdd-status/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-skills-plan/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-skills-status/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-specify/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-tasks/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-tests/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-tokens/SKILL.md
+- CREATE runtime asset: aikya-skills/aikya-verify/SKILL.md
+- CREATE runtime asset: engineering/agents/aikya-auxiliary-analyzer.md
+- CREATE runtime asset: engineering/agents/aikya-docs-assistant.md
+- CREATE runtime asset: engineering/agents/angular-developer.md
+- CREATE runtime asset: engineering/agents/ansible-engineer.md
+- CREATE runtime asset: engineering/agents/astro-tailwind-developer.md
+- CREATE runtime asset: engineering/agents/cicd-engineer.md
+- CREATE runtime asset: engineering/agents/clean-architecture-architect.md
+- CREATE runtime asset: engineering/agents/cloud-architect.md
+- CREATE runtime asset: engineering/agents/code-reviewer.md
+- CREATE runtime asset: engineering/agents/docker-developer.md
+- CREATE runtime asset: engineering/agents/dotnet-developer.md
+- CREATE runtime asset: engineering/agents/event-driven-architect.md
+- CREATE runtime asset: engineering/agents/flutter-developer.md
+- CREATE runtime asset: engineering/agents/helm-engineer.md
+- CREATE runtime asset: engineering/agents/java-developer.md
+- CREATE runtime asset: engineering/agents/kotlin-developer.md
+- CREATE runtime asset: engineering/agents/kubernetes-engineer.md
+- CREATE runtime asset: engineering/agents/layered-architecture-architect.md
+- CREATE runtime asset: engineering/agents/log-summarizer.md
+- CREATE runtime asset: engineering/agents/microservices-architect.md
+- CREATE runtime asset: engineering/agents/monolith-architect.md
+- CREATE runtime asset: engineering/agents/nextjs-developer.md
+- CREATE runtime asset: engineering/agents/node-backend-developer.md
+- CREATE runtime asset: engineering/agents/orchestrator.md
+- CREATE runtime asset: engineering/agents/planner.md
+- CREATE runtime asset: engineering/agents/python-developer.md
+- CREATE runtime asset: engineering/agents/react-developer.md
+- CREATE runtime asset: engineering/agents/terraform-engineer.md
+- CREATE runtime asset: engineering/agents/test-engineer.md
+- CREATE runtime asset: engineering/agents/vue-developer.md
+- CREATE runtime asset: engineering/skills/angular-engineering/SKILL.md
+- CREATE runtime asset: engineering/skills/ansible-automation/SKILL.md
+- CREATE runtime asset: engineering/skills/astro-performance/SKILL.md
+- CREATE runtime asset: engineering/skills/cicd-pipelines/SKILL.md
+- CREATE runtime asset: engineering/skills/clean-architecture/SKILL.md
+- CREATE runtime asset: engineering/skills/cloud-architecture/SKILL.md
+- CREATE runtime asset: engineering/skills/cloud-security/SKILL.md
+- CREATE runtime asset: engineering/skills/code-review/SKILL.md
+- CREATE runtime asset: engineering/skills/docker-best-practices/SKILL.md
+- CREATE runtime asset: engineering/skills/dotnet-engineering/SKILL.md
+- CREATE runtime asset: engineering/skills/event-driven-architecture/SKILL.md
+- CREATE runtime asset: engineering/skills/finops-optimization/SKILL.md
+- CREATE runtime asset: engineering/skills/flutter-architecture/SKILL.md
+- CREATE runtime asset: engineering/skills/helm-deployment/SKILL.md
+- CREATE runtime asset: engineering/skills/java-engineering/SKILL.md
+- CREATE runtime asset: engineering/skills/kotlin-engineering/SKILL.md
+- CREATE runtime asset: engineering/skills/kubernetes-operations/SKILL.md
+- CREATE runtime asset: engineering/skills/kustomize-deployment/SKILL.md
+- CREATE runtime asset: engineering/skills/layered-architecture/SKILL.md
+- CREATE runtime asset: engineering/skills/microservices-architecture/SKILL.md
+- CREATE runtime asset: engineering/skills/modular-monolith-architecture/SKILL.md
+- CREATE runtime asset: engineering/skills/nextjs-architecture/SKILL.md
+- CREATE runtime asset: engineering/skills/node-api-design/SKILL.md
+- CREATE runtime asset: engineering/skills/python-engineering/SKILL.md
+- CREATE runtime asset: engineering/skills/react-engineering/SKILL.md
+- CREATE runtime asset: engineering/skills/security-audit/SKILL.md
+- CREATE runtime asset: engineering/skills/terraform-iac/SKILL.md
+- CREATE runtime asset: engineering/skills/testing-strategy/SKILL.md
+- CREATE runtime asset: engineering/skills/vue-architecture/SKILL.md
+- CREATE runtime asset: sdd-templates/api.spec.md
+- CREATE runtime asset: sdd-templates/constitution.md
+- CREATE runtime asset: sdd-templates/database.spec.md
+- CREATE runtime asset: sdd-templates/design.md
+- CREATE runtime asset: sdd-templates/evidence.md
+- CREATE runtime asset: sdd-templates/feature.spec.md
+- CREATE runtime asset: sdd-templates/review.md
+- CREATE runtime asset: sdd-templates/spec.md
+- CREATE runtime asset: sdd-templates/tasks.md
+- CREATE runtime asset: claude-templates/development.md
+- CREATE runtime asset: claude-templates/devops.md
+- CREATE runtime asset: claude-templates/infrastructure.md
+- CREATE runtime asset: aikya-template/docs/CONTRIBUTING.md
+- CREATE runtime asset: aikya-template/docs/INDEX.md
+- CREATE runtime asset: aikya-template/docs/LICENSE
+- CREATE runtime asset: aikya-template/docs/NOTICE.txt
+- CREATE runtime asset: aikya-template/docs/README.md
+- CREATE runtime asset: aikya-template/docs/ai-assisted-development/README.md
+- CREATE runtime asset: aikya-template/docs/ai-assisted-development/evaluation/README.md
+- CREATE runtime asset: aikya-template/docs/ai-assisted-development/evaluation/eval-run-log.md
+- CREATE runtime asset: aikya-template/docs/ai-assisted-development/evaluation/evaluation-plan.md
+- CREATE runtime asset: aikya-template/docs/ai-assisted-development/foundations/README.md
+- CREATE runtime asset: aikya-template/docs/ai-assisted-development/foundations/agent-instructions-file.md
+- CREATE runtime asset: aikya-template/docs/ai-assisted-development/foundations/task-plan.md
+- CREATE runtime asset: aikya-template/docs/ai-assisted-development/specification/README.md
+- CREATE runtime asset: aikya-template/docs/ai-assisted-development/specification/agent-task-specification.md
+- CREATE runtime asset: aikya-template/docs/data-engineering/README.md
+- CREATE runtime asset: aikya-template/docs/data-engineering/foundations/README.md
+- CREATE runtime asset: aikya-template/docs/data-engineering/foundations/data-contract.md
+- CREATE runtime asset: aikya-template/docs/data-engineering/foundations/data-pipeline-design-document.md
+- CREATE runtime asset: aikya-template/docs/data-engineering/foundations/dataset-catalog-entry.md
+- CREATE runtime asset: aikya-template/docs/data-engineering/governance/README.md
+- CREATE runtime asset: aikya-template/docs/data-engineering/governance/data-classification-and-access-policy.md
+- CREATE runtime asset: aikya-template/docs/data-engineering/governance/data-lineage-record.md
+- CREATE runtime asset: aikya-template/docs/data-engineering/governance/data-quality-specification.md
+- CREATE runtime asset: aikya-template/docs/data-engineering/operations/README.md
+- CREATE runtime asset: aikya-template/docs/data-engineering/operations/backfill-and-reprocessing-plan.md
+- CREATE runtime asset: aikya-template/docs/data-engineering/operations/freshness-and-sla-log.md
+- CREATE runtime asset: aikya-template/docs/data-engineering/operations/pipeline-runbook.md
+- CREATE runtime asset: aikya-template/docs/game-development/README.md
+- CREATE runtime asset: aikya-template/docs/game-development/foundations/README.md
+- CREATE runtime asset: aikya-template/docs/game-development/foundations/art-bible.md
+- CREATE runtime asset: aikya-template/docs/game-development/foundations/business-plan.md
+- CREATE runtime asset: aikya-template/docs/game-development/foundations/game-design-document.md
+- CREATE runtime asset: aikya-template/docs/game-development/live-operations/README.md
+- CREATE runtime asset: aikya-template/docs/game-development/live-operations/age-rating-compliance-record.md
+- CREATE runtime asset: aikya-template/docs/game-development/live-operations/balance-log.md
+- CREATE runtime asset: aikya-template/docs/game-development/live-operations/deployment-plan.md
+- CREATE runtime asset: aikya-template/docs/game-development/live-operations/live-ops-plan.md
+- CREATE runtime asset: aikya-template/docs/game-development/live-operations/privacy-ledger.md
+- CREATE runtime asset: aikya-template/docs/game-development/live-operations/release-notes.md
+- CREATE runtime asset: aikya-template/docs/game-development/production/README.md
+- CREATE runtime asset: aikya-template/docs/game-development/production/asset-and-contribution-log.md
+- CREATE runtime asset: aikya-template/docs/game-development/production/cycle-retrospective.md
+- CREATE runtime asset: aikya-template/docs/general-swe/README.md
+- CREATE runtime asset: aikya-template/docs/general-swe/agile-scrum/README.md
+- CREATE runtime asset: aikya-template/docs/general-swe/agile-scrum/definition-of-done.md
+- CREATE runtime asset: aikya-template/docs/general-swe/agile-scrum/product-backlog-item.md
+- CREATE runtime asset: aikya-template/docs/general-swe/agile-scrum/product-goal.md
+- CREATE runtime asset: aikya-template/docs/general-swe/agile-scrum/sprint-backlog.md
+- CREATE runtime asset: aikya-template/docs/general-swe/agile-scrum/sprint-retrospective.md
+- CREATE runtime asset: aikya-template/docs/general-swe/agile-scrum/sprint-review-notes.md
+- CREATE runtime asset: aikya-template/docs/general-swe/agile-scrum/team-working-agreement.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/README.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/architecture-decision-record.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/architecture-overview.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/branching-strategy.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/bug-report.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/changelog.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/code-review-guidelines.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/coding-standards.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/configuration-management-plan.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/contributing-guide.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/data-model.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/deployment-plan.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/deprecation-plan.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/feature-request.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/glossary.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/governance.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/incident-postmortem.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/interface-control-document.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/onboarding-guide.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/pull-request-template.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/release-notes.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/rfc.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/runbook.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/security.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/service-readme.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/support.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/technical-design-document.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/test-case-specification.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/test-strategy.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/test-summary-report.md
+- CREATE runtime asset: aikya-template/docs/general-swe/foundations/threat-model.md
+- CREATE runtime asset: aikya-template/docs/general-swe/kanban/README.md
+- CREATE runtime asset: aikya-template/docs/general-swe/kanban/blocker-log.md
+- CREATE runtime asset: aikya-template/docs/general-swe/kanban/definition-of-workflow.md
+- CREATE runtime asset: aikya-template/docs/general-swe/kanban/flow-review.md
+- CREATE runtime asset: aikya-template/docs/general-swe/kanban/kanban-system-design.md
+- CREATE runtime asset: aikya-template/docs/general-swe/kanban/work-item-types.md
+- CREATE runtime asset: aikya-template/docs/general-swe/lean/README.md
+- CREATE runtime asset: aikya-template/docs/general-swe/lean/a3.md
+- CREATE runtime asset: aikya-template/docs/general-swe/lean/experiment-record.md
+- CREATE runtime asset: aikya-template/docs/general-swe/lean/improvement-kata.md
+- CREATE runtime asset: aikya-template/docs/general-swe/lean/value-stream-map.md
+- CREATE runtime asset: aikya-template/docs/general-swe/project-management/README.md
+- CREATE runtime asset: aikya-template/docs/general-swe/project-management/project-brief.md
+- CREATE runtime asset: aikya-template/docs/general-swe/project-management/project-charter.md
+- CREATE runtime asset: aikya-template/docs/general-swe/project-management/risk-register.md
+- CREATE runtime asset: aikya-template/docs/general-swe/project-management/stakeholder-register.md
+- CREATE runtime asset: aikya-template/docs/general-swe/requirements/README.md
+- CREATE runtime asset: aikya-template/docs/general-swe/requirements/non-functional-requirements.md
+- CREATE runtime asset: aikya-template/docs/general-swe/requirements/product-requirements-document.md
+- CREATE runtime asset: aikya-template/docs/general-swe/requirements/use-case-specification.md
+- CREATE runtime asset: aikya-template/docs/general-swe/requirements/vision-and-scope.md
+- CREATE runtime asset: aikya-template/docs/general-swe/security-and-compliance/README.md
+- CREATE runtime asset: aikya-template/docs/general-swe/security-and-compliance/data-protection-impact-assessment.md
+- CREATE runtime asset: aikya-template/docs/general-swe/security-and-compliance/data-retention-policy.md
+- CREATE runtime asset: aikya-template/docs/general-swe/security-and-compliance/incident-response-plan.md
+- CREATE runtime asset: aikya-template/docs/general-swe/security-and-compliance/record-of-processing-activities.md
+- CREATE runtime asset: aikya-template/docs/general-swe/security-and-compliance/security-review-checklist.md
+- CREATE runtime asset: aikya-template/docs/general-swe/shape-up/README.md
+- CREATE runtime asset: aikya-template/docs/general-swe/shape-up/cool-down-guide.md
+- CREATE runtime asset: aikya-template/docs/general-swe/shape-up/kick-off-message.md
+- CREATE runtime asset: aikya-template/docs/general-swe/shape-up/pitch.md
+- CREATE runtime asset: aikya-template/docs/general-swe/shape-up/scope-map.md
+- CREATE runtime asset: aikya-template/docs/general-swe/user-documentation/README.md
+- CREATE runtime asset: aikya-template/docs/general-swe/user-documentation/documentation-style-guide.md
+- CREATE runtime asset: aikya-template/docs/general-swe/user-documentation/explanation.md
+- CREATE runtime asset: aikya-template/docs/general-swe/user-documentation/how-to-guide.md
+- CREATE runtime asset: aikya-template/docs/general-swe/user-documentation/installation-guide.md
+- CREATE runtime asset: aikya-template/docs/general-swe/user-documentation/reference-page.md
+- CREATE runtime asset: aikya-template/docs/general-swe/user-documentation/troubleshooting-guide.md
+- CREATE runtime asset: aikya-template/docs/general-swe/user-documentation/tutorial.md
+- CREATE runtime asset: aikya-template/docs/general-swe/waterfall/README.md
+- CREATE runtime asset: aikya-template/docs/general-swe/waterfall/change-request.md
+- CREATE runtime asset: aikya-template/docs/general-swe/waterfall/master-test-plan.md
+- CREATE runtime asset: aikya-template/docs/general-swe/waterfall/phase-gate-review.md
+- CREATE runtime asset: aikya-template/docs/general-swe/waterfall/requirements-traceability-matrix.md
+- CREATE runtime asset: aikya-template/docs/general-swe/waterfall/software-design-description.md
+- CREATE runtime asset: aikya-template/docs/general-swe/waterfall/software-requirements-specification.md
+- CREATE runtime asset: aikya-template/docs/general-swe/waterfall/user-acceptance-test-plan.md
+- CREATE runtime asset: aikya-template/docs/platform-engineering/README.md
+- CREATE runtime asset: aikya-template/docs/platform-engineering/foundations/README.md
+- CREATE runtime asset: aikya-template/docs/platform-engineering/foundations/platform-onboarding-guide.md
+- CREATE runtime asset: aikya-template/docs/platform-engineering/foundations/service-catalog-entry.md
+- CREATE runtime asset: aikya-template/docs/platform-engineering/reliability/README.md
+- CREATE runtime asset: aikya-template/docs/platform-engineering/reliability/error-budget-policy.md
+- CREATE runtime asset: aikya-template/docs/platform-engineering/reliability/slo-document.md
+- CREATE runtime asset: aikya-template/docs/platform-engineering/reliability/toil-log.md
+- CREATE runtime asset: aikya-template/docs/platform-engineering/resilience/README.md
+- CREATE runtime asset: aikya-template/docs/platform-engineering/resilience/capacity-plan.md
+- CREATE runtime asset: aikya-template/docs/platform-engineering/resilience/disaster-recovery-plan.md
+- CREATE runtime asset: aikya-template/docs/web-development/README.md
+- CREATE runtime asset: aikya-template/docs/web-development/accessibility/README.md
+- CREATE runtime asset: aikya-template/docs/web-development/accessibility/accessibility-conformance-report.md
+- CREATE runtime asset: aikya-template/docs/web-development/accessibility/accessibility-statement.md
+- CREATE runtime asset: aikya-template/docs/web-development/accessibility/accessibility-test-plan.md
+- CREATE runtime asset: aikya-template/docs/web-development/foundations/README.md
+- CREATE runtime asset: aikya-template/docs/web-development/foundations/api-design-guide.md
+- CREATE runtime asset: aikya-template/docs/web-development/foundations/brand-and-visual-guidelines.md
+- CREATE runtime asset: aikya-template/docs/web-development/foundations/browser-support-policy.md
+- CREATE runtime asset: aikya-template/docs/web-development/foundations/design-system-guide.md
+- CREATE runtime asset: aikya-template/docs/web-development/foundations/frontend-architecture.md
+- CREATE runtime asset: aikya-template/docs/web-development/foundations/rollout-plan.md
+- CREATE runtime asset: aikya-template/docs/web-development/performance/README.md
+- CREATE runtime asset: aikya-template/docs/web-development/performance/performance-budget.md
+- CREATE runtime asset: aikya-template/docs/web-development/performance/performance-review.md
+- CREATE runtime asset: aikya-template/manifest.json
+- CREATE runtime asset: migrations/documentation-hashes.json
+- CREATE runtime asset: migrations/structure-predecessors.json
+- CREATE runtime asset: migrations/template-path-predecessors.json
+- CREATE runtime asset: migrations/v55/hooks/request_docs.py
+- CREATE runtime asset: migrations/v55/hooks/skills_ready.py
+- CREATE runtime asset: migrations/v55/hooks/stop_docs.py
+- CREATE runtime asset: compatibility/_aikya_bootstrap.py
+- CREATE runtime asset: compatibility/adapter.py.tmpl
+- CREATE runtime asset: src/aikya/resources/memory-viewer/camera.js
+- CREATE runtime asset: src/aikya/resources/memory-viewer/graph.js
+- CREATE runtime asset: src/aikya/resources/memory-viewer/index.html.tmpl
+- CREATE runtime asset: src/aikya/resources/memory-viewer/labels.js
+- CREATE runtime asset: src/aikya/resources/memory-viewer/layout.js
+- CREATE runtime asset: src/aikya/resources/memory-viewer/viewer.css
+- CREATE runtime asset: src/aikya/resources/memory-viewer/viewer.js
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.harness/project-profile.json
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/agents/architect.md
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/agents/backend-engineer.md
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/agents/developer.md
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/agents/documentation-maintainer.md
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/agents/frontend-engineer.md
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/agents/mobile-engineer.md
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/agents/qa-reviewer.md
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/agents/security-reviewer.md
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/hooks/check_edit.py
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/hooks/execution_status.py
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/hooks/guard_bash.py
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/hooks/request_docs.py
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/hooks/skills_ready.py
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/hooks/stop_docs.py
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/hooks/welcome.py
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/rules/01-documentation-policy.md
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/rules/02-context-budget.md
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/rules/03-code-quality.md
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/rules/04-workspace-policy.md
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/rules/architecture.md
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/architecture-review/SKILL.md
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/bugfix/SKILL.md
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/documentation-sync/SKILL.md
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/feature/SKILL.md
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/mobile-feature/SKILL.md
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/project-bootstrap/SKILL.md
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/project-init/SKILL.md
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/verify/SKILL.md
+- CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/aikya/test/test_harness.py
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-init/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-analyze/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-answers/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-doctor/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-project/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-infra/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-scaffold/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-feature/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-bugfix/SKILL.mdERROR: mode=new requires an empty directory (overwrite protection).
+Requisitos pendientes: ejecuta /aikya-doctor.
+ - git: missing
+ - dotnet: missing
+
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-arc-review/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-mobile-feature/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-skills-status/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-skills-plan/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-quality/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-docs/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-tests/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-docs-sync/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-verify/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-models/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-tokens/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-install-skill/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-specify/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-clarify/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-plan/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-tasks/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-implement/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-sdd-status/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/skills/aikya-memory/SKILL.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.aikya/model-policy.json
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/settings.json
+- REGISTERED Aikya execution visibility: /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/settings.json
+- NEEDS_REVIEW: custom status line preserved; proposed values: /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.aikya/visibility-proposed.json
+- REGISTERED explicit-worktree permission policy: /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/settings.json
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/CLAUDE.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.claude/rules/00-project-profile.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/harness.json
+- CREATED aikya/docs/README.md
+- CREATED aikya/docs/overview.md
+- CREATED aikya/docs/plan/roadmap.md
+- CREATED aikya/docs/architecture/architecture-overview.md
+- CREATED aikya/docs/operations/deployment.md
+- CREATED aikya/docs/plan/testing.md
+- CREATED aikya/docs/decisions/README.md
+- CREATED aikya/docs/decisions/0001-entrevista-stack.md
+- CREATED aikya/docs/changes/README.md
+- CREATED aikya/docs/tools/token-policy.md
+- INSTALADO agents/cicd-engineer
+- INSTALADO agents/cloud-architect
+- INSTALADO agents/code-reviewer
+- INSTALADO agents/layered-architecture-architect
+- INSTALADO agents/nextjs-developer
+- INSTALADO agents/planner
+- INSTALADO agents/react-developer
+- INSTALADO agents/test-engineer
+- INSTALADO skills/cicd-pipelines
+- INSTALADO skills/cloud-architecture
+- INSTALADO skills/code-review
+- INSTALADO skills/layered-architecture
+- INSTALADO skills/nextjs-architecture
+- INSTALADO skills/react-engineering
+- INSTALADO skills/security-audit
+- INSTALADO skills/testing-strategy
+- INVENTARIO aikya/docs/skills.md actualizado
+- INVENTARIO aikya/docs/skills.md sin cambios
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/apps/README.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/packages/README.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/contracts/README.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/pnpm-workspace.yaml
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/package.json
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/compose.yaml
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/infra/docker/README.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/infra/observability/README.md
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/infra/observability/otel.env.example
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.env.example
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.gitignore
+- CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmp9losijok/.github/workflows/harness.yml
+- LOCAL MEMORY complete: aikya/docs/memory/view/index.html
+External skills: no source selected. Use /aikya-install-skill to review a source of your choice.
+
+Siguiente: desde Claude Code ejecuta /aikya-doctor y /aikya-scaffold plan; luego /aikya-quality.
+
+Aikya installed. Resolve outstanding SDK requirements before running project generators.
+Inventario: aikya/docs/skills.md actualizado
+Inventario: aikya/docs/skills.md actualizado
+Instalando/verificando: ponytail
+  -> installed
+Inventario: aikya/docs/skills.md actualizado
+# Engineering Scaffold (generadores oficiales; ejecución opcional)
+
+- Aplicación Next.js + React: npx create-next-app@latest . --typescript --eslint --app --yes --skip-install  →  .
+
+Cada comando puede acceder a Internet e instalar dependencias. Revisa versiones/SDK y los destinos antes de usar `apply`. Docker/CI/OTel requieren ajustes una vez generada la aplicación.
+
+EJECUTANDO EN STAGING: ['npx', 'create-next-app@latest', '.', '--typescript', '--eslint', '--app', '--yes', '--skip-install']
+Conflictos en la raíz, no se copió ningún archivo: app/page.tsx
+# Engineering Scaffold (generadores oficiales; ejecución opcional)
+
+- Aplicación Next.js + React: npx create-next-app@latest . --typescript --eslint --app --yes --skip-install  →  .
+
+Cada comando puede acceder a Internet e instalar dependencias. Revisa versiones/SDK y los destinos antes de usar `apply`. Docker/CI/OTel requieren ajustes una vez generada la aplicación.
+
+EJECUTANDO EN STAGING: ['npx', 'create-next-app@latest', '.', '--typescript', '--eslint', '--app', '--yes', '--skip-install']
+No se permiten generadores de aplicación en Infrastructure/DevOps.
+NOTICE: legacy declarative profile; use /aikya-analyze for automatic existing-repository discovery.
+Scaffolding completado. Verifica pruebas, checks de harness.json y documentación en aikya/docs/.
+{
+  "mode": "existing",
+  "dry_run": false,
+  "actions": [
+    "CREATED .aikya/docs-policy.json",
+    "CREATE runtime asset: aikya_cli.py",
+    "CREATE runtime asset: aikya_session.py",
+    "CREATE runtime asset: agent_loop.py",
+    "CREATE runtime asset: agent_loop_state.py",
+    "CREATE runtime asset: agent_runtime.py",
+    "CREATE runtime asset: execution_state.py",
+    "CREATE runtime asset: check_events.py",
+    "CREATE runtime asset: command_workflows.py",
+    "CREATE runtime asset: execution_config.py",
+    "CREATE runtime asset: execution_lifecycle.py",
+    "CREATE runtime asset: execution_observer.py",
+    "CREATE runtime asset: workspace_guard.py",
+    "CREATE runtime asset: runtime_metrics.py",
+    "CREATE runtime asset: aikya_statusline.py",
+    "CREATE runtime asset: aikya_subagent_statusline.py",
+    "CREATE runtime asset: agent_memory.py",
+    "CREATE runtime asset: memory_store.py",
+    "CREATE runtime asset: agent_memory_extract.py",
+    "CREATE runtime asset: install.py",
+    "CREATE runtime asset: aikya_setup.py",
+    "CREATE runtime asset: aikya_requirements.py",
+    "CREATE runtime asset: aikya_analyze.py",
+    "CREATE runtime asset: project_discovery.py",
+    "CREATE runtime asset: profile_builder.py",
+    "CREATE runtime asset: analysis_manifest.py",
+    "CREATE runtime asset: aikya_layout.py",
+    "CREATE runtime asset: infrastructure_profile.py",
+    "CREATE runtime asset: methodology.py",
+    "CREATE runtime asset: odd_engine.py",
+    "CREATE runtime asset: sdd_assets.py",
+    "CREATE runtime asset: sdd_localization.py",
+    "CREATE runtime asset: sdd_templates.py",
+    "CREATE runtime asset: doc_bootstrap.py",
+    "CREATE runtime asset: docs_language.py",
+    "CREATE runtime asset: docs_layout.py",
+    "CREATE runtime asset: docs_templates_en.py",
+    "CREATE runtime asset: docs_templates_es.py",
+    "CREATE runtime asset: docs_migration_hashes.py",
+    "CREATE runtime asset: claude_templates.py",
+    "CREATE runtime asset: documentation_templates.py",
+    "CREATE runtime asset: documentation_workflows.py",
+    "CREATE runtime asset: engineering_catalog.py",
+    "CREATE runtime asset: external_skills.py",
+    "CREATE runtime asset: skills_registry.py",
+    "CREATE runtime asset: aikya_router.py",
+    "CREATE runtime asset: model_capabilities.py",
+    "CREATE runtime asset: token_policy.py",
+    "CREATE runtime asset: token_report.py",
+    "CREATE runtime asset: code_quality.py",
+    "CREATE runtime asset: durable_io.py",
+    "CREATE runtime asset: _aikya_bootstrap.py",
+    "CREATE runtime asset: requirements-agent-loop.txt",
+    "CREATE runtime asset: docs/AGENT_LOOP.md",
+    "CREATE runtime asset: docs/SECURITY_CONTROLS.md",
+    "CREATE runtime asset: template/scripts/harness/docs_guard.py",
+    "CREATE runtime asset: docs_guard.py",
+    "CREATE runtime asset: template/scripts/harness/infrastructure.py",
+    "CREATE runtime asset: infrastructure.py",
+    "CREATE runtime asset: template/scripts/harness/run_checks.py",
+    "CREATE runtime asset: run_checks.py",
+    "CREATE runtime asset: template/scripts/harness/scaffold.py",
+    "CREATE runtime asset: scaffold.py",
+    "CREATE runtime asset: template/scripts/harness/skills_lint.py",
+    "CREATE runtime asset: skills_lint.py",
+    "CREATE runtime asset: src/aikya/__init__.py",
+    "CREATE runtime asset: src/aikya/__main__.py",
+    "CREATE runtime asset: src/aikya/catalogs/__init__.py",
+    "CREATE runtime asset: src/aikya/catalogs/engineering.py",
+    "CREATE runtime asset: src/aikya/catalogs/external.py",
+    "CREATE runtime asset: src/aikya/catalogs/github_source.py",
+    "CREATE runtime asset: src/aikya/catalogs/skill_paths.py",
+    "CREATE runtime asset: src/aikya/catalogs/skills.py",
+    "CREATE runtime asset: src/aikya/cli/__init__.py",
+    "CREATE runtime asset: src/aikya/cli/analysis.py",
+    "CREATE runtime asset: src/aikya/cli/arguments.py",
+    "CREATE runtime asset: src/aikya/cli/commands.py",
+    "CREATE runtime asset: src/aikya/cli/dispatch.py",
+    "CREATE runtime asset: src/aikya/cli/loop_command.py",
+    "CREATE runtime asset: src/aikya/cli/main.py",
+    "CREATE runtime asset: src/aikya/cli/memory.py",
+    "CREATE runtime asset: src/aikya/cli/queries.py",
+    "CREATE runtime asset: src/aikya/cli/session.py",
+    "CREATE runtime asset: src/aikya/cli/summary.py",
+    "CREATE runtime asset: src/aikya/cli/terminal.py",
+    "CREATE runtime asset: src/aikya/code_index/__init__.py",
+    "CREATE runtime asset: src/aikya/code_index/__main__.py",
+    "CREATE runtime asset: src/aikya/code_index/contracts.py",
+    "CREATE runtime asset: src/aikya/code_index/coverage.py",
+    "CREATE runtime asset: src/aikya/code_index/hooks.py",
+    "CREATE runtime asset: src/aikya/code_index/parsers/__init__.py",
+    "CREATE runtime asset: src/aikya/code_index/parsers/dart.py",
+    "CREATE runtime asset: src/aikya/code_index/parsers/python.py",
+    "CREATE runtime asset: src/aikya/code_index/parsers/registry.py",
+    "CREATE runtime asset: src/aikya/code_index/parsers/treesitter.py",
+    "CREATE runtime asset: src/aikya/code_index/policy.py",
+    "CREATE runtime asset: src/aikya/code_index/query.py",
+    "CREATE runtime asset: src/aikya/code_index/scan.py",
+    "CREATE runtime asset: src/aikya/code_index/store.py",
+    "CREATE runtime asset: src/aikya/code_index/sync.py",
+    "CREATE runtime asset: src/aikya/code_index/watch.py",
+    "CREATE runtime asset: src/aikya/context/__init__.py",
+    "CREATE runtime asset: src/aikya/context/cli.py",
+    "CREATE runtime asset: src/aikya/context/prepare.py",
+    "CREATE runtime asset: src/aikya/context/ranking.py",
+    "CREATE runtime asset: src/aikya/core/__init__.py",
+    "CREATE runtime asset: src/aikya/core/budgets.py",
+    "CREATE runtime asset: src/aikya/core/checkpoints.py",
+    "CREATE runtime asset: src/aikya/core/loop.py",
+    "CREATE runtime asset: src/aikya/core/package_paths.py",
+    "CREATE runtime asset: src/aikya/core/permissions.py",
+    "CREATE runtime asset: src/aikya/core/pipe_reader.py",
+    "CREATE runtime asset: src/aikya/core/runtime.py",
+    "CREATE runtime asset: src/aikya/core/state.py",
+    "CREATE runtime asset: src/aikya/discovery/__init__.py",
+    "CREATE runtime asset: src/aikya/discovery/analyze.py",
+    "CREATE runtime asset: src/aikya/discovery/infrastructure.py",
+    "CREATE runtime asset: src/aikya/discovery/layout.py",
+    "CREATE runtime asset: src/aikya/discovery/manifest.py",
+    "CREATE runtime asset: src/aikya/discovery/profiles.py",
+    "CREATE runtime asset: src/aikya/discovery/scanner.py",
+    "CREATE runtime asset: src/aikya/documentation/__init__.py",
+    "CREATE runtime asset: src/aikya/documentation/bootstrap.py",
+    "CREATE runtime asset: src/aikya/documentation/claude.py",
+    "CREATE runtime asset: src/aikya/documentation/composition.py",
+    "CREATE runtime asset: src/aikya/documentation/guard.py",
+    "CREATE runtime asset: src/aikya/documentation/language.py",
+    "CREATE runtime asset: src/aikya/documentation/layout.py",
+    "CREATE runtime asset: src/aikya/documentation/migration_hashes.py",
+    "CREATE runtime asset: src/aikya/documentation/pages_en.py",
+    "CREATE runtime asset: src/aikya/documentation/pages_es.py",
+    "CREATE runtime asset: src/aikya/documentation/templates.py",
+    "CREATE runtime asset: src/aikya/installation/__init__.py",
+    "CREATE runtime asset: src/aikya/installation/assets.py",
+    "CREATE runtime asset: src/aikya/installation/bootstrap/__init__.py",
+    "CREATE runtime asset: src/aikya/installation/bootstrap/__main__.py",
+    "CREATE runtime asset: src/aikya/installation/bootstrap/claude_plugins.py",
+    "CREATE runtime asset: src/aikya/installation/bootstrap/cli.py",
+    "CREATE runtime asset: src/aikya/installation/bootstrap/code_index.py",
+    "CREATE runtime asset: src/aikya/installation/bootstrap/components.py",
+    "CREATE runtime asset: src/aikya/installation/bootstrap/coordinator.py",
+    "CREATE runtime asset: src/aikya/installation/bootstrap/download.py",
+    "CREATE runtime asset: src/aikya/installation/bootstrap/environment.py",
+    "CREATE runtime asset: src/aikya/installation/bootstrap/identity.py",
+    "CREATE runtime asset: src/aikya/installation/bootstrap/launchers.py",
+    "CREATE runtime asset: src/aikya/installation/bootstrap/mods.py",
+    "CREATE runtime asset: src/aikya/installation/bootstrap/options.py",
+    "CREATE runtime asset: src/aikya/installation/bootstrap/settings.py",
+    "CREATE runtime asset: src/aikya/installation/bootstrap/state.py",
+    "CREATE runtime asset: src/aikya/installation/bootstrap/user_path.py",
+    "CREATE runtime asset: src/aikya/installation/build_sources.py",
+    "CREATE runtime asset: src/aikya/installation/checks.py",
+    "CREATE runtime asset: src/aikya/installation/command_scopes.py",
+    "CREATE runtime asset: src/aikya/installation/compatibility.py",
+    "CREATE runtime asset: src/aikya/installation/configuration.py",
+    "CREATE runtime asset: src/aikya/installation/context.py",
+    "CREATE runtime asset: src/aikya/installation/defaults.py",
+    "CREATE runtime asset: src/aikya/installation/discovery.py",
+    "CREATE runtime asset: src/aikya/installation/documents.py",
+    "CREATE runtime asset: src/aikya/installation/facade.py",
+    "CREATE runtime asset: src/aikya/installation/hook_commands.py",
+    "CREATE runtime asset: src/aikya/installation/infrastructure.py",
+    "CREATE runtime asset: src/aikya/installation/interview.py",
+    "CREATE runtime asset: src/aikya/installation/io.py",
+    "CREATE runtime asset: src/aikya/installation/managed_archives.py",
+    "CREATE runtime asset: src/aikya/installation/managed_bundle.py",
+    "CREATE runtime asset: src/aikya/installation/managed_cli.py",
+    "CREATE runtime asset: src/aikya/installation/managed_distribution.py",
+    "CREATE runtime asset: src/aikya/installation/managed_entries.py",
+    "CREATE runtime asset: src/aikya/installation/managed_inputs.py",
+    "CREATE runtime asset: src/aikya/installation/managed_install.py",
+    "CREATE runtime asset: src/aikya/installation/managed_launchers.py",
+    "CREATE runtime asset: src/aikya/installation/managed_migration.py",
+    "CREATE runtime asset: src/aikya/installation/managed_node.py",
+    "CREATE runtime asset: src/aikya/installation/managed_ownership.py",
+    "CREATE runtime asset: src/aikya/installation/managed_payload.py",
+    "CREATE runtime asset: src/aikya/installation/managed_probe.py",
+    "CREATE runtime asset: src/aikya/installation/managed_releases.py",
+    "CREATE runtime asset: src/aikya/installation/managed_runtime.py",
+    "CREATE runtime asset: src/aikya/installation/managed_versions.py",
+    "CREATE runtime asset: src/aikya/installation/managed_wheel.py",
+    "CREATE runtime asset: src/aikya/installation/migration_v8.py",
+    "CREATE runtime asset: src/aikya/installation/migrations.py",
+    "CREATE runtime asset: src/aikya/installation/pipeline.py",
+    "CREATE runtime asset: src/aikya/installation/portable.py",
+    "CREATE runtime asset: src/aikya/installation/preflight.py",
+    "CREATE runtime asset: src/aikya/installation/profile.py",
+    "CREATE runtime asset: src/aikya/installation/project_assets.py",
+    "CREATE runtime asset: src/aikya/installation/registration.py",
+    "CREATE runtime asset: src/aikya/installation/requirements.py",
+    "CREATE runtime asset: src/aikya/installation/runtime.py",
+    "CREATE runtime asset: src/aikya/installation/signatures.py",
+    "CREATE runtime asset: src/aikya/memory/__init__.py",
+    "CREATE runtime asset: src/aikya/memory/contracts.py",
+    "CREATE runtime asset: src/aikya/memory/extraction.py",
+    "CREATE runtime asset: src/aikya/memory/knowledge.py",
+    "CREATE runtime asset: src/aikya/memory/store.py",
+    "CREATE runtime asset: src/aikya/memory/viewer/__init__.py",
+    "CREATE runtime asset: src/aikya/memory/viewer/client.py",
+    "CREATE runtime asset: src/aikya/memory/viewer/collect.py",
+    "CREATE runtime asset: src/aikya/memory/viewer/contracts.py",
+    "CREATE runtime asset: src/aikya/memory/viewer/export.py",
+    "CREATE runtime asset: src/aikya/memory/viewer/graph.py",
+    "CREATE runtime asset: src/aikya/memory/viewer/live.py",
+    "CREATE runtime asset: src/aikya/memory/viewer/publication.py",
+    "CREATE runtime asset: src/aikya/memory/viewer/render.py",
+    "CREATE runtime asset: src/aikya/memory/viewer/watch.py",
+    "CREATE runtime asset: src/aikya/middleware/__init__.py",
+    "CREATE runtime asset: src/aikya/middleware/commands.py",
+    "CREATE runtime asset: src/aikya/middleware/compaction.py",
+    "CREATE runtime asset: src/aikya/middleware/configuration.py",
+    "CREATE runtime asset: src/aikya/middleware/events.py",
+    "CREATE runtime asset: src/aikya/middleware/flow_bridge.py",
+    "CREATE runtime asset: src/aikya/middleware/lifecycle.py",
+    "CREATE runtime asset: src/aikya/middleware/metrics.py",
+    "CREATE runtime asset: src/aikya/middleware/observer.py",
+    "CREATE runtime asset: src/aikya/middleware/statusline.py",
+    "CREATE runtime asset: src/aikya/middleware/subagent_statusline.py",
+    "CREATE runtime asset: src/aikya/middleware/task_context.py",
+    "CREATE runtime asset: src/aikya/middleware/usage.py",
+    "CREATE runtime asset: src/aikya/middleware/workspace.py",
+    "CREATE runtime asset: src/aikya/module_map.json",
+    "CREATE runtime asset: src/aikya/quality/__init__.py",
+    "CREATE runtime asset: src/aikya/quality/context_budget.py",
+    "CREATE runtime asset: src/aikya/quality/efficiency.py",
+    "CREATE runtime asset: src/aikya/quality/source.py",
+    "CREATE runtime asset: src/aikya/resource_paths.py",
+    "CREATE runtime asset: src/aikya/review/__init__.py",
+    "CREATE runtime asset: src/aikya/review/admission.py",
+    "CREATE runtime asset: src/aikya/review/authentication.py",
+    "CREATE runtime asset: src/aikya/review/candidates.py",
+    "CREATE runtime asset: src/aikya/review/cli.py",
+    "CREATE runtime asset: src/aikya/review/contracts.py",
+    "CREATE runtime asset: src/aikya/review/controller.py",
+    "CREATE runtime asset: src/aikya/review/definitions.py",
+    "CREATE runtime asset: src/aikya/review/document_transitions.py",
+    "CREATE runtime asset: src/aikya/review/execution_evidence.py",
+    "CREATE runtime asset: src/aikya/review/executor.py",
+    "CREATE runtime asset: src/aikya/review/observations.py",
+    "CREATE runtime asset: src/aikya/review/process.py",
+    "CREATE runtime asset: src/aikya/review/publication.py",
+    "CREATE runtime asset: src/aikya/review/receipts.py",
+    "CREATE runtime asset: src/aikya/review/recovery.py",
+    "CREATE runtime asset: src/aikya/review/reports.py",
+    "CREATE runtime asset: src/aikya/routing/__init__.py",
+    "CREATE runtime asset: src/aikya/routing/models.py",
+    "CREATE runtime asset: src/aikya/routing/pi_usage.py",
+    "CREATE runtime asset: src/aikya/routing/policy.py",
+    "CREATE runtime asset: src/aikya/routing/router.py",
+    "CREATE runtime asset: src/aikya/routing/usage.py",
+    "CREATE runtime asset: src/aikya/services/__init__.py",
+    "CREATE runtime asset: src/aikya/services/architecture_findings.py",
+    "CREATE runtime asset: src/aikya/services/authorization.py",
+    "CREATE runtime asset: src/aikya/services/authorization_tokens.py",
+    "CREATE runtime asset: src/aikya/services/batch_inputs.py",
+    "CREATE runtime asset: src/aikya/services/batch_records.py",
+    "CREATE runtime asset: src/aikya/services/batch_recovery.py",
+    "CREATE runtime asset: src/aikya/services/bootstrap_plans.py",
+    "CREATE runtime asset: src/aikya/services/bridge.py",
+    "CREATE runtime asset: src/aikya/services/bug_document.py",
+    "CREATE runtime asset: src/aikya/services/bug_evidence.py",
+    "CREATE runtime asset: src/aikya/services/check_cancel.py",
+    "CREATE runtime asset: src/aikya/services/check_classification.py",
+    "CREATE runtime asset: src/aikya/services/checks.py",
+    "CREATE runtime asset: src/aikya/services/diagnostics.py",
+    "CREATE runtime asset: src/aikya/services/documentation.py",
+    "CREATE runtime asset: src/aikya/services/documentation_inputs.py",
+    "CREATE runtime asset: src/aikya/services/documentation_recovery.py",
+    "CREATE runtime asset: src/aikya/services/engineering_workflows.py",
+    "CREATE runtime asset: src/aikya/services/generation.py",
+    "CREATE runtime asset: src/aikya/services/generation_inputs.py",
+    "CREATE runtime asset: src/aikya/services/infra_validation.py",
+    "CREATE runtime asset: src/aikya/services/maintenance.py",
+    "CREATE runtime asset: src/aikya/services/memory.py",
+    "CREATE runtime asset: src/aikya/services/mobile_inputs.py",
+    "CREATE runtime asset: src/aikya/services/mobile_workflow.py",
+    "CREATE runtime asset: src/aikya/services/odd_binding.py",
+    "CREATE runtime asset: src/aikya/services/odd_workflow.py",
+    "CREATE runtime asset: src/aikya/services/project_bootstrap.py",
+    "CREATE runtime asset: src/aikya/services/review.py",
+    "CREATE runtime asset: src/aikya/services/runtime_state.py",
+    "CREATE runtime asset: src/aikya/services/scaffold_generation.py",
+    "CREATE runtime asset: src/aikya/services/scaffold_recipes.py",
+    "CREATE runtime asset: src/aikya/services/scaffold_records.py",
+    "CREATE runtime asset: src/aikya/services/sdd.py",
+    "CREATE runtime asset: src/aikya/services/sdd_completion.py",
+    "CREATE runtime asset: src/aikya/services/selected_skills.py",
+    "CREATE runtime asset: src/aikya/services/skill_fetch.py",
+    "CREATE runtime asset: src/aikya/services/skill_library.py",
+    "CREATE runtime asset: src/aikya/services/skill_library_state.py",
+    "CREATE runtime asset: src/aikya/services/skill_management.py",
+    "CREATE runtime asset: src/aikya/services/skill_packages.py",
+    "CREATE runtime asset: src/aikya/services/skill_project_changes.py",
+    "CREATE runtime asset: src/aikya/services/skill_source.py",
+    "CREATE runtime asset: src/aikya/services/skill_sources.py",
+    "CREATE runtime asset: src/aikya/services/source_batches.py",
+    "CREATE runtime asset: src/aikya/services/task_binding.py",
+    "CREATE runtime asset: src/aikya/services/task_run_completion.py",
+    "CREATE runtime asset: src/aikya/services/task_run_inputs.py",
+    "CREATE runtime asset: src/aikya/services/task_run_lifecycle.py",
+    "CREATE runtime asset: src/aikya/services/task_run_records.py",
+    "CREATE runtime asset: src/aikya/services/task_run_reviews.py",
+    "CREATE runtime asset: src/aikya/services/task_runs.py",
+    "CREATE runtime asset: src/aikya/services/workflows.py",
+    "CREATE runtime asset: src/aikya/storage.py",
+    "CREATE runtime asset: src/aikya/tools/__init__.py",
+    "CREATE runtime asset: src/aikya/tools/check_evidence.py",
+    "CREATE runtime asset: src/aikya/tools/checks.py",
+    "CREATE runtime asset: src/aikya/tools/infrastructure.py",
+    "CREATE runtime asset: src/aikya/tools/scaffold.py",
+    "CREATE runtime asset: src/aikya/tools/skills_lint.py",
+    "CREATE runtime asset: src/aikya/workflows/__init__.py",
+    "CREATE runtime asset: src/aikya/workflows/methodology.py",
+    "CREATE runtime asset: src/aikya/workflows/mobile_scope.py",
+    "CREATE runtime asset: src/aikya/workflows/odd.py",
+    "CREATE runtime asset: src/aikya/workflows/sdd/__init__.py",
+    "CREATE runtime asset: src/aikya/workflows/sdd/assets.py",
+    "CREATE runtime asset: src/aikya/workflows/sdd/cli.py",
+    "CREATE runtime asset: src/aikya/workflows/sdd/contracts.py",
+    "CREATE runtime asset: src/aikya/workflows/sdd/engine.py",
+    "CREATE runtime asset: src/aikya/workflows/sdd/localization.py",
+    "CREATE runtime asset: src/aikya/workflows/sdd/rendering.py",
+    "CREATE runtime asset: src/aikya/workflows/sdd/state.py",
+    "CREATE runtime asset: src/aikya/workflows/sdd/templates.py",
+    "CREATE runtime asset: src/aikya/workflows/sdd/validation.py",
+    "CREATE runtime asset: template/.claude/agents/architect.md",
+    "CREATE runtime asset: template/.claude/agents/backend-engineer.md",
+    "CREATE runtime asset: template/.claude/agents/developer.md",
+    "CREATE runtime asset: template/.claude/agents/documentation-maintainer.md",
+    "CREATE runtime asset: template/.claude/agents/frontend-engineer.md",
+    "CREATE runtime asset: template/.claude/agents/mobile-engineer.md",
+    "CREATE runtime asset: template/.claude/agents/qa-reviewer.md",
+    "CREATE runtime asset: template/.claude/agents/security-reviewer.md",
+    "CREATE runtime asset: template/.claude/hooks/check_edit.py",
+    "CREATE runtime asset: template/.claude/hooks/execution_status.py",
+    "CREATE runtime asset: template/.claude/hooks/guard_bash.py",
+    "CREATE runtime asset: template/.claude/hooks/request_docs.py",
+    "CREATE runtime asset: template/.claude/hooks/skills_ready.py",
+    "CREATE runtime asset: template/.claude/hooks/stop_docs.py",
+    "CREATE runtime asset: template/.claude/hooks/welcome.py",
+    "CREATE runtime asset: template/.claude/rules/01-documentation-policy.md",
+    "CREATE runtime asset: template/.claude/rules/02-context-budget.md",
+    "CREATE runtime asset: template/.claude/rules/03-code-quality.md",
+    "CREATE runtime asset: template/.claude/rules/04-workspace-policy.md",
+    "CREATE runtime asset: template/.claude/rules/architecture.md",
+    "CREATE runtime asset: template/.claude/settings.json",
+    "CREATE runtime asset: template/.claude/skills/architecture-review/SKILL.md",
+    "CREATE runtime asset: template/.claude/skills/bugfix/SKILL.md",
+    "CREATE runtime asset: template/.claude/skills/documentation-sync/SKILL.md",
+    "CREATE runtime asset: template/.claude/skills/feature/SKILL.md",
+    "CREATE runtime asset: template/.claude/skills/mobile-feature/SKILL.md",
+    "CREATE runtime asset: template/.claude/skills/project-bootstrap/SKILL.md",
+    "CREATE runtime asset: template/.claude/skills/project-init/SKILL.md",
+    "CREATE runtime asset: template/.claude/skills/verify/SKILL.md",
+    "CREATE runtime asset: template/CLAUDE.md",
+    "CREATE runtime asset: template/harness.json",
+    "CREATE runtime asset: template/tests/test_harness.py",
+    "CREATE runtime asset: aikya-skills/aikya-analyze/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-answers/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-arc-review/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-bugfix/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-clarify/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-docs/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-docs-sync/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-doctor/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-feature/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-implement/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-infra/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-init/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-install-skill/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-memory/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-mobile-feature/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-models/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-plan/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-project/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-quality/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-scaffold/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-sdd-status/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-skills-plan/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-skills-status/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-specify/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-tasks/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-tests/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-tokens/SKILL.md",
+    "CREATE runtime asset: aikya-skills/aikya-verify/SKILL.md",
+    "CREATE runtime asset: engineering/agents/aikya-auxiliary-analyzer.md",
+    "CREATE runtime asset: engineering/agents/aikya-docs-assistant.md",
+    "CREATE runtime asset: engineering/agents/angular-developer.md",
+    "CREATE runtime asset: engineering/agents/ansible-engineer.md",
+    "CREATE runtime asset: engineering/agents/astro-tailwind-developer.md",
+    "CREATE runtime asset: engineering/agents/cicd-engineer.md",
+    "CREATE runtime asset: engineering/agents/clean-architecture-architect.md",
+    "CREATE runtime asset: engineering/agents/cloud-architect.md",
+    "CREATE runtime asset: engineering/agents/code-reviewer.md",
+    "CREATE runtime asset: engineering/agents/docker-developer.md",
+    "CREATE runtime asset: engineering/agents/dotnet-developer.md",
+    "CREATE runtime asset: engineering/agents/event-driven-architect.md",
+    "CREATE runtime asset: engineering/agents/flutter-developer.md",
+    "CREATE runtime asset: engineering/agents/helm-engineer.md",
+    "CREATE runtime asset: engineering/agents/java-developer.md",
+    "CREATE runtime asset: engineering/agents/kotlin-developer.md",
+    "CREATE runtime asset: engineering/agents/kubernetes-engineer.md",
+    "CREATE runtime asset: engineering/agents/layered-architecture-architect.md",
+    "CREATE runtime asset: engineering/agents/log-summarizer.md",
+    "CREATE runtime asset: engineering/agents/microservices-architect.md",
+    "CREATE runtime asset: engineering/agents/monolith-architect.md",
+    "CREATE runtime asset: engineering/agents/nextjs-developer.md",
+    "CREATE runtime asset: engineering/agents/node-backend-developer.md",
+    "CREATE runtime asset: engineering/agents/orchestrator.md",
+    "CREATE runtime asset: engineering/agents/planner.md",
+    "CREATE runtime asset: engineering/agents/python-developer.md",
+    "CREATE runtime asset: engineering/agents/react-developer.md",
+    "CREATE runtime asset: engineering/agents/terraform-engineer.md",
+    "CREATE runtime asset: engineering/agents/test-engineer.md",
+    "CREATE runtime asset: engineering/agents/vue-developer.md",
+    "CREATE runtime asset: engineering/skills/angular-engineering/SKILL.md",
+    "CREATE runtime asset: engineering/skills/ansible-automation/SKILL.md",
+    "CREATE runtime asset: engineering/skills/astro-performance/SKILL.md",
+    "CREATE runtime asset: engineering/skills/cicd-pipelines/SKILL.md",
+    "CREATE runtime asset: engineering/skills/clean-architecture/SKILL.md",
+    "CREATE runtime asset: engineering/skills/cloud-architecture/SKILL.md",
+    "CREATE runtime asset: engineering/skills/cloud-security/SKILL.md",
+    "CREATE runtime asset: engineering/skills/code-review/SKILL.md",
+    "CREATE runtime asset: engineering/skills/docker-best-practices/SKILL.md",
+    "CREATE runtime asset: engineering/skills/dotnet-engineering/SKILL.md",
+    "CREATE runtime asset: engineering/skills/event-driven-architecture/SKILL.md",
+    "CREATE runtime asset: engineering/skills/finops-optimization/SKILL.md",
+    "CREATE runtime asset: engineering/skills/flutter-architecture/SKILL.md",
+    "CREATE runtime asset: engineering/skills/helm-deployment/SKILL.md",
+    "CREATE runtime asset: engineering/skills/java-engineering/SKILL.md",
+    "CREATE runtime asset: engineering/skills/kotlin-engineering/SKILL.md",
+    "CREATE runtime asset: engineering/skills/kubernetes-operations/SKILL.md",
+    "CREATE runtime asset: engineering/skills/kustomize-deployment/SKILL.md",
+    "CREATE runtime asset: engineering/skills/layered-architecture/SKILL.md",
+    "CREATE runtime asset: engineering/skills/microservices-architecture/SKILL.md",
+    "CREATE runtime asset: engineering/skills/modular-monolith-architecture/SKILL.md",
+    "CREATE runtime asset: engineering/skills/nextjs-architecture/SKILL.md",
+    "CREATE runtime asset: engineering/skills/node-api-design/SKILL.md",
+    "CREATE runtime asset: engineering/skills/python-engineering/SKILL.md",
+    "CREATE runtime asset: engineering/skills/react-engineering/SKILL.md",
+    "CREATE runtime asset: engineering/skills/security-audit/SKILL.md",
+    "CREATE runtime asset: engineering/skills/terraform-iac/SKILL.md",
+    "CREATE runtime asset: engineering/skills/testing-strategy/SKILL.md",
+    "CREATE runtime asset: engineering/skills/vue-architecture/SKILL.md",
+    "CREATE runtime asset: sdd-templates/api.spec.md",
+    "CREATE runtime asset: sdd-templates/constitution.md",
+    "CREATE runtime asset: sdd-templates/database.spec.md",
+    "CREATE runtime asset: sdd-templates/design.md",
+    "CREATE runtime asset: sdd-templates/evidence.md",
+    "CREATE runtime asset: sdd-templates/feature.spec.md",
+    "CREATE runtime asset: sdd-templates/review.md",
+    "CREATE runtime asset: sdd-templates/spec.md",
+    "CREATE runtime asset: sdd-templates/tasks.md",
+    "CREATE runtime asset: claude-templates/development.md",
+    "CREATE runtime asset: claude-templates/devops.md",
+    "CREATE runtime asset: claude-templates/infrastructure.md",
+    "CREATE runtime asset: aikya-template/docs/CONTRIBUTING.md",
+    "CREATE runtime asset: aikya-template/docs/INDEX.md",
+    "CREATE runtime asset: aikya-template/docs/LICENSE",
+    "CREATE runtime asset: aikya-template/docs/NOTICE.txt",
+    "CREATE runtime asset: aikya-template/docs/README.md",
+    "CREATE runtime asset: aikya-template/docs/ai-assisted-development/README.md",
+    "CREATE runtime asset: aikya-template/docs/ai-assisted-development/evaluation/README.md",
+    "CREATE runtime asset: aikya-template/docs/ai-assisted-development/evaluation/eval-run-log.md",
+    "CREATE runtime asset: aikya-template/docs/ai-assisted-development/evaluation/evaluation-plan.md",
+    "CREATE runtime asset: aikya-template/docs/ai-assisted-development/foundations/README.md",
+    "CREATE runtime asset: aikya-template/docs/ai-assisted-development/foundations/agent-instructions-file.md",
+    "CREATE runtime asset: aikya-template/docs/ai-assisted-development/foundations/task-plan.md",
+    "CREATE runtime asset: aikya-template/docs/ai-assisted-development/specification/README.md",
+    "CREATE runtime asset: aikya-template/docs/ai-assisted-development/specification/agent-task-specification.md",
+    "CREATE runtime asset: aikya-template/docs/data-engineering/README.md",
+    "CREATE runtime asset: aikya-template/docs/data-engineering/foundations/README.md",
+    "CREATE runtime asset: aikya-template/docs/data-engineering/foundations/data-contract.md",
+    "CREATE runtime asset: aikya-template/docs/data-engineering/foundations/data-pipeline-design-document.md",
+    "CREATE runtime asset: aikya-template/docs/data-engineering/foundations/dataset-catalog-entry.md",
+    "CREATE runtime asset: aikya-template/docs/data-engineering/governance/README.md",
+    "CREATE runtime asset: aikya-template/docs/data-engineering/governance/data-classification-and-access-policy.md",
+    "CREATE runtime asset: aikya-template/docs/data-engineering/governance/data-lineage-record.md",
+    "CREATE runtime asset: aikya-template/docs/data-engineering/governance/data-quality-specification.md",
+    "CREATE runtime asset: aikya-template/docs/data-engineering/operations/README.md",
+    "CREATE runtime asset: aikya-template/docs/data-engineering/operations/backfill-and-reprocessing-plan.md",
+    "CREATE runtime asset: aikya-template/docs/data-engineering/operations/freshness-and-sla-log.md",
+    "CREATE runtime asset: aikya-template/docs/data-engineering/operations/pipeline-runbook.md",
+    "CREATE runtime asset: aikya-template/docs/game-development/README.md",
+    "CREATE runtime asset: aikya-template/docs/game-development/foundations/README.md",
+    "CREATE runtime asset: aikya-template/docs/game-development/foundations/art-bible.md",
+    "CREATE runtime asset: aikya-template/docs/game-development/foundations/business-plan.md",
+    "CREATE runtime asset: aikya-template/docs/game-development/foundations/game-design-document.md",
+    "CREATE runtime asset: aikya-template/docs/game-development/live-operations/README.md",
+    "CREATE runtime asset: aikya-template/docs/game-development/live-operations/age-rating-compliance-record.md",
+    "CREATE runtime asset: aikya-template/docs/game-development/live-operations/balance-log.md",
+    "CREATE runtime asset: aikya-template/docs/game-development/live-operations/deployment-plan.md",
+    "CREATE runtime asset: aikya-template/docs/game-development/live-operations/live-ops-plan.md",
+    "CREATE runtime asset: aikya-template/docs/game-development/live-operations/privacy-ledger.md",
+    "CREATE runtime asset: aikya-template/docs/game-development/live-operations/release-notes.md",
+    "CREATE runtime asset: aikya-template/docs/game-development/production/README.md",
+    "CREATE runtime asset: aikya-template/docs/game-development/production/asset-and-contribution-log.md",
+    "CREATE runtime asset: aikya-template/docs/game-development/production/cycle-retrospective.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/README.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/agile-scrum/README.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/agile-scrum/definition-of-done.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/agile-scrum/product-backlog-item.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/agile-scrum/product-goal.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/agile-scrum/sprint-backlog.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/agile-scrum/sprint-retrospective.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/agile-scrum/sprint-review-notes.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/agile-scrum/team-working-agreement.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/README.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/architecture-decision-record.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/architecture-overview.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/branching-strategy.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/bug-report.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/changelog.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/code-review-guidelines.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/coding-standards.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/configuration-management-plan.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/contributing-guide.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/data-model.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/deployment-plan.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/deprecation-plan.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/feature-request.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/glossary.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/governance.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/incident-postmortem.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/interface-control-document.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/onboarding-guide.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/pull-request-template.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/release-notes.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/rfc.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/runbook.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/security.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/service-readme.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/support.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/technical-design-document.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/test-case-specification.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/test-strategy.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/test-summary-report.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/foundations/threat-model.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/kanban/README.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/kanban/blocker-log.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/kanban/definition-of-workflow.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/kanban/flow-review.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/kanban/kanban-system-design.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/kanban/work-item-types.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/lean/README.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/lean/a3.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/lean/experiment-record.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/lean/improvement-kata.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/lean/value-stream-map.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/project-management/README.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/project-management/project-brief.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/project-management/project-charter.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/project-management/risk-register.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/project-management/stakeholder-register.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/requirements/README.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/requirements/non-functional-requirements.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/requirements/product-requirements-document.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/requirements/use-case-specification.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/requirements/vision-and-scope.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/security-and-compliance/README.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/security-and-compliance/data-protection-impact-assessment.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/security-and-compliance/data-retention-policy.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/security-and-compliance/incident-response-plan.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/security-and-compliance/record-of-processing-activities.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/security-and-compliance/security-review-checklist.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/shape-up/README.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/shape-up/cool-down-guide.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/shape-up/kick-off-message.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/shape-up/pitch.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/shape-up/scope-map.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/user-documentation/README.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/user-documentation/documentation-style-guide.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/user-documentation/explanation.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/user-documentation/how-to-guide.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/user-documentation/installation-guide.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/user-documentation/reference-page.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/user-documentation/troubleshooting-guide.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/user-documentation/tutorial.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/waterfall/README.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/waterfall/change-request.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/waterfall/master-test-plan.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/waterfall/phase-gate-review.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/waterfall/requirements-traceability-matrix.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/waterfall/software-design-description.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/waterfall/software-requirements-specification.md",
+    "CREATE runtime asset: aikya-template/docs/general-swe/waterfall/user-acceptance-test-plan.md",
+    "CREATE runtime asset: aikya-template/docs/platform-engineering/README.md",
+    "CREATE runtime asset: aikya-template/docs/platform-engineering/foundations/README.md",
+    "CREATE runtime asset: aikya-template/docs/platform-engineering/foundations/platform-onboarding-guide.md",
+    "CREATE runtime asset: aikya-template/docs/platform-engineering/foundations/service-catalog-entry.md",
+    "CREATE runtime asset: aikya-template/docs/platform-engineering/reliability/README.md",
+    "CREATE runtime asset: aikya-template/docs/platform-engineering/reliability/error-budget-policy.md",
+    "CREATE runtime asset: aikya-template/docs/platform-engineering/reliability/slo-document.md",
+    "CREATE runtime asset: aikya-template/docs/platform-engineering/reliability/toil-log.md",
+    "CREATE runtime asset: aikya-template/docs/platform-engineering/resilience/README.md",
+    "CREATE runtime asset: aikya-template/docs/platform-engineering/resilience/capacity-plan.md",
+    "CREATE runtime asset: aikya-template/docs/platform-engineering/resilience/disaster-recovery-plan.md",
+    "CREATE runtime asset: aikya-template/docs/web-development/README.md",
+    "CREATE runtime asset: aikya-template/docs/web-development/accessibility/README.md",
+    "CREATE runtime asset: aikya-template/docs/web-development/accessibility/accessibility-conformance-report.md",
+    "CREATE runtime asset: aikya-template/docs/web-development/accessibility/accessibility-statement.md",
+    "CREATE runtime asset: aikya-template/docs/web-development/accessibility/accessibility-test-plan.md",
+    "CREATE runtime asset: aikya-template/docs/web-development/foundations/README.md",
+    "CREATE runtime asset: aikya-template/docs/web-development/foundations/api-design-guide.md",
+    "CREATE runtime asset: aikya-template/docs/web-development/foundations/brand-and-visual-guidelines.md",
+    "CREATE runtime asset: aikya-template/docs/web-development/foundations/browser-support-policy.md",
+    "CREATE runtime asset: aikya-template/docs/web-development/foundations/design-system-guide.md",
+    "CREATE runtime asset: aikya-template/docs/web-development/foundations/frontend-architecture.md",
+    "CREATE runtime asset: aikya-template/docs/web-development/foundations/rollout-plan.md",
+    "CREATE runtime asset: aikya-template/docs/web-development/performance/README.md",
+    "CREATE runtime asset: aikya-template/docs/web-development/performance/performance-budget.md",
+    "CREATE runtime asset: aikya-template/docs/web-development/performance/performance-review.md",
+    "CREATE runtime asset: aikya-template/manifest.json",
+    "CREATE runtime asset: migrations/documentation-hashes.json",
+    "CREATE runtime asset: migrations/structure-predecessors.json",
+    "CREATE runtime asset: migrations/template-path-predecessors.json",
+    "CREATE runtime asset: migrations/v55/hooks/request_docs.py",
+    "CREATE runtime asset: migrations/v55/hooks/skills_ready.py",
+    "CREATE runtime asset: migrations/v55/hooks/stop_docs.py",
+    "CREATE runtime asset: compatibility/_aikya_bootstrap.py",
+    "CREATE runtime asset: compatibility/adapter.py.tmpl",
+    "CREATE runtime asset: src/aikya/resources/memory-viewer/camera.js",
+    "CREATE runtime asset: src/aikya/resources/memory-viewer/graph.js",
+    "CREATE runtime asset: src/aikya/resources/memory-viewer/index.html.tmpl",
+    "CREATE runtime asset: src/aikya/resources/memory-viewer/labels.js",
+    "CREATE runtime asset: src/aikya/resources/memory-viewer/layout.js",
+    "CREATE runtime asset: src/aikya/resources/memory-viewer/viewer.css",
+    "CREATE runtime asset: src/aikya/resources/memory-viewer/viewer.js",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.harness/project-profile.json",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/agents/architect.md",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/agents/backend-engineer.md",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/agents/developer.md",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/agents/documentation-maintainer.md",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/agents/frontend-engineer.md",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/agents/mobile-engineer.md",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/agents/qa-reviewer.md",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/agents/security-reviewer.md",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/hooks/check_edit.py",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/hooks/execution_status.py",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/hooks/guard_bash.py",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/hooks/request_docs.py",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/hooks/skills_ready.py",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/hooks/stop_docs.py",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/hooks/welcome.py",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/rules/01-documentation-policy.md",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/rules/02-context-budget.md",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/rules/03-code-quality.md",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/rules/04-workspace-policy.md",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/rules/architecture.md",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/architecture-review/SKILL.md",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/bugfix/SKILL.md",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/documentation-sync/SKILL.md",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/feature/SKILL.md",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/mobile-feature/SKILL.md",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/project-bootstrap/SKILL.md",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/project-init/SKILL.md",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/verify/SKILL.md",
+    "CREADO /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/aikya/test/test_harness.py",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-init/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-analyze/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-answers/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-doctor/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-project/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-infra/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-scaffold/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-feature/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-bugfix/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-arc-review/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-mobile-feature/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-skills-status/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-skills-plan/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-quality/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-docs/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-tests/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-docs-sync/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-verify/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-models/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-tokens/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-install-skill/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-specify/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-clarify/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-plan/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-tasks/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-implement/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-sdd-status/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/skills/aikya-memory/SKILL.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.aikya/model-policy.json",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/settings.json",
+    "REGISTERED Aikya execution visibility: /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/settings.json",
+    "NEEDS_REVIEW: custom status line preserved; proposed values: /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.aikya/visibility-proposed.json",
+    "REGISTERED explicit-worktree permission policy: /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/settings.json",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/CLAUDE.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/.claude/rules/00-project-profile.md",
+    "CREATED /private/var/folders/qz/p2bqqqxx1z7dkx3wfbylfw0w0000gn/T/tmpj_r16fbz/harness.json",
+    "CREATED aikya/docs/README.md",
+    "CREATED aikya/docs/overview.md",
+    "CREATED aikya/docs/architecture/architecture-overview.md",
+    "CREATED aikya/docs/changes/README.md",
+    "CREATED aikya/docs/tools/token-policy.md",
+    "INSTALADO agents/code-reviewer",
+    "INSTALADO agents/java-developer",
+    "INSTALADO agents/planner",
+    "INSTALADO agents/test-engineer",
+    "INSTALADO skills/code-review",
+    "INSTALADO skills/java-engineering",
+    "INSTALADO skills/security-audit",
+    "INSTALADO skills/testing-strategy",
+    "INVENTARIO aikya/docs/skills.md actualizado",
+    "INVENTARIO aikya/docs/skills.md sin cambios",
+    "LOCAL MEMORY complete: aikya/docs/memory/view/index.html"
+  ]
+}ERROR: /aikya-init is only for new projects; use /aikya-analyze
+======================================================================
+ERROR: test_checks_modifying_the_candidate_cannot_certify_it (test_agent_loop.AgentLoopTests.test_checks_modifying_the_candidate_cannot_certify_it)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop.py", line 41, in test_checks_modifying_the_candidate_cannot_certify_it
+    result=self.engine().run(self.root,raw,runtime(),approved=True)
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_denied_tool_and_missing_usage_stop_instead_of_retrying (test_agent_loop.AgentLoopTests.test_denied_tool_and_missing_usage_stop_instead_of_retrying) (mode='escape')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop.py", line 36, in test_denied_tool_and_missing_usage_stop_instead_of_retrying
+    result=m.run(self.root,config(),runtime(mode),approved=True)
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_denied_tool_and_missing_usage_stop_instead_of_retrying (test_agent_loop.AgentLoopTests.test_denied_tool_and_missing_usage_stop_instead_of_retrying) (mode='unknown_usage')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop.py", line 36, in test_denied_tool_and_missing_usage_stop_instead_of_retrying
+    result=m.run(self.root,config(),runtime(mode),approved=True)
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_model_claim_of_done_never_overrides_failed_checks_and_stops_without_progress (test_agent_loop.AgentLoopTests.test_model_claim_of_done_never_overrides_failed_checks_and_stops_without_progress)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop.py", line 18, in test_model_claim_of_done_never_overrides_failed_checks_and_stops_without_progress
+    result=self.engine().run(self.root,config(),runtime('claim'),approved=True)
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_review_rejection_and_iteration_cap_preserve_unfinished_task (test_agent_loop.AgentLoopTests.test_review_rejection_and_iteration_cap_preserve_unfinished_task)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop.py", line 44, in test_review_rejection_and_iteration_cap_preserve_unfinished_task
+    raw={**config(),'max_iterations':1};result=self.engine().run(self.root,raw,runtime('reject'),approved=True)
+                                               ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_scoped_edit_checks_and_distinct_review_complete_the_recorded_task (test_agent_loop.AgentLoopTests.test_scoped_edit_checks_and_distinct_review_complete_the_recorded_task)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop.py", line 11, in test_scoped_edit_checks_and_distinct_review_complete_the_recorded_task
+    m=self.engine();result=m.run(self.root,config(),runtime(),approved=True)
+                           ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_cancel_before_execution_and_elapsed_or_cost_budget_exhaustion_are_durable (test_agent_loop_adversarial.AdversarialLoopTests.test_cancel_before_execution_and_elapsed_or_cost_budget_exhaustion_are_durable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_adversarial.py", line 21, in test_cancel_before_execution_and_elapsed_or_cost_budget_exhaustion_are_durable
+    root=project(tmp);first=agent_loop.run(root,config(),runtime(),approved=True,cancel=lambda:True)
+                            ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_changed_candidate_during_review_cannot_complete_task (test_agent_loop_adversarial.AdversarialLoopTests.test_changed_candidate_during_review_cannot_complete_task)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_adversarial.py", line 50, in test_changed_candidate_during_review_cannot_complete_task
+    root=project(tmp);result=agent_loop.run(root,config(),runtime('stale'),approved=True)
+                             ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_check_changes_to_approvals_block_before_another_runtime_call (test_agent_loop_adversarial.AdversarialLoopTests.test_check_changes_to_approvals_block_before_another_runtime_call)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_adversarial.py", line 46, in test_check_changes_to_approvals_block_before_another_runtime_call
+    result=agent_loop.run(root,raw,runtime(),approved=True)
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_exhausted_iterations_cannot_be_reset_by_resuming (test_agent_loop_adversarial.AdversarialLoopTests.test_exhausted_iterations_cannot_be_reset_by_resuming)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_adversarial.py", line 54, in test_exhausted_iterations_cannot_be_reset_by_resuming
+    root=project(tmp);raw={**config(),'max_iterations':1};first=agent_loop.run(root,raw,runtime('claim'),approved=True)
+                                                                ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_moved_symlinked_checkpoint_and_custom_summary_are_never_followed_or_replaced (test_agent_loop_adversarial.AdversarialLoopTests.test_moved_symlinked_checkpoint_and_custom_summary_are_never_followed_or_replaced)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_adversarial.py", line 27, in test_moved_symlinked_checkpoint_and_custom_summary_are_never_followed_or_replaced
+    root=project(tmp);result=agent_loop.run(root,{**config(),'max_iterations':1},runtime('claim'),approved=True)
+                             ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_reviewed_reconciliation_retains_effect_history_and_charges_unknown_queries (test_agent_loop_adversarial.AdversarialLoopTests.test_reviewed_reconciliation_retains_effect_history_and_charges_unknown_queries)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_adversarial.py", line 64, in test_reviewed_reconciliation_retains_effect_history_and_charges_unknown_queries
+    root=project(tmp);first=agent_loop.run(root,config(),runtime('pending'),approved=True)
+                            ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_unknown_usage_crash_and_process_timeout_cannot_be_retried_for_free (test_agent_loop_adversarial.AdversarialLoopTests.test_unknown_usage_crash_and_process_timeout_cannot_be_retried_for_free)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_adversarial.py", line 59, in test_unknown_usage_crash_and_process_timeout_cannot_be_retried_for_free
+    root=project(tmp);first=agent_loop.run(root,config(),runtime('crash'),approved=True)
+                            ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_budget_exhaustion_stops_before_review_and_timeout_does_not_reset_on_resume (test_agent_loop_adversarial.ConcurrentAndBudgetTests.test_budget_exhaustion_stops_before_review_and_timeout_does_not_reset_on_resume)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_adversarial.py", line 93, in test_budget_exhaustion_stops_before_review_and_timeout_does_not_reset_on_resume
+    root=project(tmp);raw={**config(),'max_cost_usd':.0005};result=agent_loop.run(root,raw,runtime(),approved=True)
+                                                                   ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_all_project_types_locales_and_methodologies_keep_their_original_gates (test_agent_loop_adversarial.MethodologyMatrixTests.test_all_project_types_locales_and_methodologies_keep_their_original_gates) (kind='development', locale='en', method='odd')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_adversarial.py", line 84, in test_all_project_types_locales_and_methodologies_keep_their_original_gates
+    result=agent_loop.run(root,raw,runtime(),approved=True);self.assertEqual('completed',result['status'])
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_all_project_types_locales_and_methodologies_keep_their_original_gates (test_agent_loop_adversarial.MethodologyMatrixTests.test_all_project_types_locales_and_methodologies_keep_their_original_gates) (kind='development', locale='en', method='sdd')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_adversarial.py", line 84, in test_all_project_types_locales_and_methodologies_keep_their_original_gates
+    result=agent_loop.run(root,raw,runtime(),approved=True);self.assertEqual('completed',result['status'])
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_all_project_types_locales_and_methodologies_keep_their_original_gates (test_agent_loop_adversarial.MethodologyMatrixTests.test_all_project_types_locales_and_methodologies_keep_their_original_gates) (kind='development', locale='es', method='odd')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_adversarial.py", line 84, in test_all_project_types_locales_and_methodologies_keep_their_original_gates
+    result=agent_loop.run(root,raw,runtime(),approved=True);self.assertEqual('completed',result['status'])
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_all_project_types_locales_and_methodologies_keep_their_original_gates (test_agent_loop_adversarial.MethodologyMatrixTests.test_all_project_types_locales_and_methodologies_keep_their_original_gates) (kind='development', locale='es', method='sdd')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_adversarial.py", line 84, in test_all_project_types_locales_and_methodologies_keep_their_original_gates
+    result=agent_loop.run(root,raw,runtime(),approved=True);self.assertEqual('completed',result['status'])
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_all_project_types_locales_and_methodologies_keep_their_original_gates (test_agent_loop_adversarial.MethodologyMatrixTests.test_all_project_types_locales_and_methodologies_keep_their_original_gates) (kind='infrastructure', locale='en', method='odd')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_adversarial.py", line 84, in test_all_project_types_locales_and_methodologies_keep_their_original_gates
+    result=agent_loop.run(root,raw,runtime(),approved=True);self.assertEqual('completed',result['status'])
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_all_project_types_locales_and_methodologies_keep_their_original_gates (test_agent_loop_adversarial.MethodologyMatrixTests.test_all_project_types_locales_and_methodologies_keep_their_original_gates) (kind='infrastructure', locale='en', method='sdd')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_adversarial.py", line 84, in test_all_project_types_locales_and_methodologies_keep_their_original_gates
+    result=agent_loop.run(root,raw,runtime(),approved=True);self.assertEqual('completed',result['status'])
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_all_project_types_locales_and_methodologies_keep_their_original_gates (test_agent_loop_adversarial.MethodologyMatrixTests.test_all_project_types_locales_and_methodologies_keep_their_original_gates) (kind='infrastructure', locale='es', method='odd')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_adversarial.py", line 84, in test_all_project_types_locales_and_methodologies_keep_their_original_gates
+    result=agent_loop.run(root,raw,runtime(),approved=True);self.assertEqual('completed',result['status'])
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_all_project_types_locales_and_methodologies_keep_their_original_gates (test_agent_loop_adversarial.MethodologyMatrixTests.test_all_project_types_locales_and_methodologies_keep_their_original_gates) (kind='infrastructure', locale='es', method='sdd')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_adversarial.py", line 84, in test_all_project_types_locales_and_methodologies_keep_their_original_gates
+    result=agent_loop.run(root,raw,runtime(),approved=True);self.assertEqual('completed',result['status'])
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_all_project_types_locales_and_methodologies_keep_their_original_gates (test_agent_loop_adversarial.MethodologyMatrixTests.test_all_project_types_locales_and_methodologies_keep_their_original_gates) (kind='devops', locale='en', method='odd')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_adversarial.py", line 84, in test_all_project_types_locales_and_methodologies_keep_their_original_gates
+    result=agent_loop.run(root,raw,runtime(),approved=True);self.assertEqual('completed',result['status'])
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_all_project_types_locales_and_methodologies_keep_their_original_gates (test_agent_loop_adversarial.MethodologyMatrixTests.test_all_project_types_locales_and_methodologies_keep_their_original_gates) (kind='devops', locale='en', method='sdd')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_adversarial.py", line 84, in test_all_project_types_locales_and_methodologies_keep_their_original_gates
+    result=agent_loop.run(root,raw,runtime(),approved=True);self.assertEqual('completed',result['status'])
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_all_project_types_locales_and_methodologies_keep_their_original_gates (test_agent_loop_adversarial.MethodologyMatrixTests.test_all_project_types_locales_and_methodologies_keep_their_original_gates) (kind='devops', locale='es', method='odd')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_adversarial.py", line 84, in test_all_project_types_locales_and_methodologies_keep_their_original_gates
+    result=agent_loop.run(root,raw,runtime(),approved=True);self.assertEqual('completed',result['status'])
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_all_project_types_locales_and_methodologies_keep_their_original_gates (test_agent_loop_adversarial.MethodologyMatrixTests.test_all_project_types_locales_and_methodologies_keep_their_original_gates) (kind='devops', locale='es', method='sdd')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_adversarial.py", line 84, in test_all_project_types_locales_and_methodologies_keep_their_original_gates
+    result=agent_loop.run(root,raw,runtime(),approved=True);self.assertEqual('completed',result['status'])
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_user_interrupt_is_recorded_without_exposing_an_uncaught_traceback (test_agent_loop_adversarial.UserInterruptTests.test_user_interrupt_is_recorded_without_exposing_an_uncaught_traceback)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_adversarial.py", line 118, in test_user_interrupt_is_recorded_without_exposing_an_uncaught_traceback
+    result=agent_loop.run(root,config(),runtime(),approved=True,cancel=interrupted)
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_interrupted_summary_projection_remains_recoverable_without_overwriting_custom_reports (test_agent_loop_recovery.CheckpointCrashTests.test_interrupted_summary_projection_remains_recoverable_without_overwriting_custom_reports)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_recovery.py", line 60, in test_interrupted_summary_projection_remains_recoverable_without_overwriting_custom_reports
+    root=project(tmp);first=agent_loop.run(root,config(),runtime(),approved=True,cancel=lambda:True);data=store.load(root,first['run_id']);data['reason']='checkpoint_probe'
+                            ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_source_change_in_the_completion_checkpoint_never_closes_the_task (test_agent_loop_recovery.CheckpointCrashTests.test_source_change_in_the_completion_checkpoint_never_closes_the_task)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_recovery.py", line 82, in test_source_change_in_the_completion_checkpoint_never_closes_the_task
+    with patch.object(store,'save',side_effect=change_after_intent):result=agent_loop.run(root,config(),runtime(),approved=True)
+                                                                           ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_completed_resume_is_idempotent_but_changed_evidence_is_rejected (test_agent_loop_recovery.CompletionRecoveryTests.test_completed_resume_is_idempotent_but_changed_evidence_is_rejected)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_recovery.py", line 33, in test_completed_resume_is_idempotent_but_changed_evidence_is_rejected
+    root=project(tmp);first=agent_loop.run(root,config(),runtime(),approved=True)
+                            ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_recovery_rejects_a_different_checkout_and_modified_scope (test_agent_loop_recovery.RecoveryTests.test_recovery_rejects_a_different_checkout_and_modified_scope)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_recovery.py", line 17, in test_recovery_rejects_a_different_checkout_and_modified_scope
+    root=project(tmp);first=m.run(root,{**config(),'max_iterations':1},runtime('claim'),approved=True)
+                            ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_unfinished_effect_is_not_replayed_on_resume (test_agent_loop_recovery.RecoveryTests.test_unfinished_effect_is_not_replayed_on_resume)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_recovery.py", line 11, in test_unfinished_effect_is_not_replayed_on_resume
+    root=project(tmp);first=m.run(root,config(),runtime('pending'),approved=True)
+                            ~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_loop_never_completes_a_task_with_an_oversized_candidate (test_code_quality.QualityTests.test_loop_never_completes_a_task_with_an_oversized_candidate)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_code_quality.py", line 55, in test_loop_never_completes_a_task_with_an_oversized_candidate
+    result=agent_loop.run(root,config(),runtime('no_write'),approved=True)
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_exhausted_model_budget_still_keeps_local_validation_evidence (test_loop_budgets.BudgetBoundaryTests.test_exhausted_model_budget_still_keeps_local_validation_evidence)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_loop_budgets.py", line 66, in test_exhausted_model_budget_still_keeps_local_validation_evidence
+    value=run(root,{**config(),'max_total_turns':3},CountedRuntime(),approved=True)
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_review_is_capped_and_completed_resume_keeps_consumption (test_loop_budgets.DurableBudgetIntegration.test_review_is_capped_and_completed_resume_keeps_consumption)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_loop_budgets.py", line 42, in test_review_is_capped_and_completed_resume_keeps_consumption
+    value=run(root,raw,CountedRuntime(),approved=True)
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_crash_and_unknown_usage_leave_receipts_without_automatic_retries (test_memory_extraction.ExtractionTests.test_crash_and_unknown_usage_leave_receipts_without_automatic_retries) (mode='crash')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_memory_extraction.py", line 48, in test_crash_and_unknown_usage_leave_receipts_without_automatic_retries
+    root=project(tmp);report=module.extract(root,config(),runtime(mode),approved=True)
+                             ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/memory/extraction.py", line 46, in extract
+    root=Path(root).absolute();config=validated(root,raw);settings_approved(root,config)
+                                                          ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_crash_and_unknown_usage_leave_receipts_without_automatic_retries (test_memory_extraction.ExtractionTests.test_crash_and_unknown_usage_leave_receipts_without_automatic_retries) (mode='unknown_usage')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_memory_extraction.py", line 48, in test_crash_and_unknown_usage_leave_receipts_without_automatic_retries
+    root=project(tmp);report=module.extract(root,config(),runtime(mode),approved=True)
+                             ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/memory/extraction.py", line 46, in extract
+    root=Path(root).absolute();config=validated(root,raw);settings_approved(root,config)
+                                                          ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_extraction_requires_approval_and_only_creates_pending_candidates (test_memory_extraction.ExtractionTests.test_extraction_requires_approval_and_only_creates_pending_candidates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_memory_extraction.py", line 25, in test_extraction_requires_approval_and_only_creates_pending_candidates
+    report=module.extract(root,config(),runtime('extract'),approved=True)
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/memory/extraction.py", line 46, in extract
+    root=Path(root).absolute();config=validated(root,raw);settings_approved(root,config)
+                                                          ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_invalid_candidates_and_changed_sources_cannot_be_published (test_memory_extraction.ExtractionTests.test_invalid_candidates_and_changed_sources_cannot_be_published) (mode='extract_many')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_memory_extraction.py", line 39, in test_invalid_candidates_and_changed_sources_cannot_be_published
+    root=project(tmp);report=module.extract(root,config(),runtime(mode),approved=True)
+                             ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/memory/extraction.py", line 46, in extract
+    root=Path(root).absolute();config=validated(root,raw);settings_approved(root,config)
+                                                          ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_invalid_candidates_and_changed_sources_cannot_be_published (test_memory_extraction.ExtractionTests.test_invalid_candidates_and_changed_sources_cannot_be_published) (mode='extract_escape')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_memory_extraction.py", line 39, in test_invalid_candidates_and_changed_sources_cannot_be_published
+    root=project(tmp);report=module.extract(root,config(),runtime(mode),approved=True)
+                             ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/memory/extraction.py", line 46, in extract
+    root=Path(root).absolute();config=validated(root,raw);settings_approved(root,config)
+                                                          ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_invalid_candidates_and_changed_sources_cannot_be_published (test_memory_extraction.ExtractionTests.test_invalid_candidates_and_changed_sources_cannot_be_published) (mode='extract_stale')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_memory_extraction.py", line 39, in test_invalid_candidates_and_changed_sources_cannot_be_published
+    root=project(tmp);report=module.extract(root,config(),runtime(mode),approved=True)
+                             ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/memory/extraction.py", line 46, in extract
+    root=Path(root).absolute();config=validated(root,raw);settings_approved(root,config)
+                                                          ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_private_extraction_keeps_proposals_and_receipts_outside_project_docs (test_memory_extraction.ExtractionTests.test_private_extraction_keeps_proposals_and_receipts_outside_project_docs)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_memory_extraction.py", line 80, in test_private_extraction_keeps_proposals_and_receipts_outside_project_docs
+    report=module.extract(root,settings,runtime('extract'),approved=True,private_root=private)
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/memory/extraction.py", line 46, in extract
+    root=Path(root).absolute();config=validated(root,raw);settings_approved(root,config)
+                                                          ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_runtime_timeout_keeps_unknown_cost_and_no_candidates (test_memory_extraction.ExtractionTests.test_runtime_timeout_keeps_unknown_cost_and_no_candidates)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_memory_extraction.py", line 72, in test_runtime_timeout_keeps_unknown_cost_and_no_candidates
+    root=project(tmp);result=module.extract(root,{**config(),'timeout_seconds':1},runtime('hang'),approved=True)
+                             ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/memory/extraction.py", line 46, in extract
+    root=Path(root).absolute();config=validated(root,raw);settings_approved(root,config)
+                                                          ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_source_change_between_reading_and_runtime_start_is_not_accepted (test_memory_extraction.ExtractionTests.test_source_change_between_reading_and_runtime_start_is_not_accepted)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_memory_extraction.py", line 65, in test_source_change_between_reading_and_runtime_start_is_not_accepted
+    result=module.extract(root,config(),runtime('extract'),approved=True)
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/memory/extraction.py", line 46, in extract
+    root=Path(root).absolute();config=validated(root,raw);settings_approved(root,config)
+                                                          ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_loop_context_uses_index_only_inside_its_approved_files (test_memory_integration.MemoryIntegrationTests.test_loop_context_uses_index_only_inside_its_approved_files)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_memory_integration.py", line 134, in test_loop_context_uses_index_only_inside_its_approved_files
+    result = run(root, config(), ObservedRuntime(), approved=True)
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/loop.py", line 134, in run
+    method,task,packet,work_path=work(root,config,allow_done=bool(run_id));settings_approved(root,config)
+                                                                           ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/core/permissions.py", line 46, in settings_approved
+    if value.get('hooks') and not config['hooks_approved']:raise ValueError('Configured hooks require explicit review with hooks_approved=true')
+                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+ValueError: Configured hooks require explicit review with hooks_approved=true
+
+======================================================================
+ERROR: test_authorized_snapshot_uses_latest_complete_publication (test_memory_live.MemoryLiveTests.test_authorized_snapshot_uses_latest_complete_publication)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_memory_live.py", line 25, in setUp
+    self.server = serve_live(self.root, stop_event=self.stop)
+                  ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/memory/viewer/live.py", line 77, in serve_live
+    server = LoopbackHTTPServer(('127.0.0.1', 0), Handler)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.18/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socketserver.py", line 457, in __init__
+    self.server_bind()
+    ~~~~~~~~~~~~~~~~^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/memory/viewer/live.py", line 20, in server_bind
+    TCPServer.server_bind(self)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.18/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socketserver.py", line 478, in server_bind
+    self.socket.bind(self.server_address)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_custom_html_or_torn_report_is_not_served_as_current (test_memory_live.MemoryLiveTests.test_custom_html_or_torn_report_is_not_served_as_current)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_memory_live.py", line 25, in setUp
+    self.server = serve_live(self.root, stop_event=self.stop)
+                  ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/memory/viewer/live.py", line 77, in serve_live
+    server = LoopbackHTTPServer(('127.0.0.1', 0), Handler)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.18/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socketserver.py", line 457, in __init__
+    self.server_bind()
+    ~~~~~~~~~~~~~~~~^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/memory/viewer/live.py", line 20, in server_bind
+    TCPServer.server_bind(self)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.18/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socketserver.py", line 478, in server_bind
+    self.socket.bind(self.server_address)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_loopback_startup_does_not_require_hostname_resolution (test_memory_live.MemoryLiveTests.test_loopback_startup_does_not_require_hostname_resolution)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_memory_live.py", line 25, in setUp
+    self.server = serve_live(self.root, stop_event=self.stop)
+                  ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/memory/viewer/live.py", line 77, in serve_live
+    server = LoopbackHTTPServer(('127.0.0.1', 0), Handler)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.18/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socketserver.py", line 457, in __init__
+    self.server_bind()
+    ~~~~~~~~~~~~~~~~^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/memory/viewer/live.py", line 20, in server_bind
+    TCPServer.server_bind(self)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.18/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socketserver.py", line 478, in server_bind
+    self.socket.bind(self.server_address)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+ERROR: test_no_arbitrary_paths_foreign_host_origin_or_missing_capability (test_memory_live.MemoryLiveTests.test_no_arbitrary_paths_foreign_host_origin_or_missing_capability)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_memory_live.py", line 25, in setUp
+    self.server = serve_live(self.root, stop_event=self.stop)
+                  ~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/memory/viewer/live.py", line 77, in serve_live
+    server = LoopbackHTTPServer(('127.0.0.1', 0), Handler)
+  File "/opt/homebrew/Cellar/python@3.13/3.13.18/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socketserver.py", line 457, in __init__
+    self.server_bind()
+    ~~~~~~~~~~~~~~~~^^
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/src/aikya/memory/viewer/live.py", line 20, in server_bind
+    TCPServer.server_bind(self)
+    ~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "/opt/homebrew/Cellar/python@3.13/3.13.18/Frameworks/Python.framework/Versions/3.13/lib/python3.13/socketserver.py", line 478, in server_bind
+    self.socket.bind(self.server_address)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^
+PermissionError: [Errno 1] Operation not permitted
+
+======================================================================
+FAIL: test_two_callers_cannot_complete_the_same_candidate_concurrently (test_agent_loop_adversarial.ConcurrentAndBudgetTests.test_two_callers_cannot_complete_the_same_candidate_concurrently)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_adversarial.py", line 111, in test_two_callers_cannot_complete_the_same_candidate_concurrently
+    self.assertEqual(1,sum(v.get('status')=='completed' for v in out));self.assertEqual(1,sum('error' in v for v in out))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 != 0
+
+======================================================================
+FAIL: test_cli_routes_feature_loop_only_when_explicit_and_reports_optional_sdk_unavailable (test_agent_loop_installation.LoopInstallationTests.test_cli_routes_feature_loop_only_when_explicit_and_reports_optional_sdk_unavailable)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_agent_loop_installation.py", line 42, in test_cli_routes_feature_loop_only_when_explicit_and_reports_optional_sdk_unavailable
+    self.assertEqual(4,p.returncode,p.stderr);self.assertEqual('optional_sdk_missing',json.loads(p.stdout)['reason']);self.assertFalse((root/'aikya/docs/loops').exists())
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 4 != 2 : ERROR: Configured hooks require explicit review with hooks_approved=true
+
+
+======================================================================
+FAIL: test_live_client_reuses_session_observer_and_releases_only_its_lease (test_memory_integration.MemoryIntegrationTests.test_live_client_reuses_session_observer_and_releases_only_its_lease)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_memory_integration.py", line 239, in test_live_client_reuses_session_observer_and_releases_only_its_lease
+    self.assertIsNone(client.poll(), 'Live client stopped instead of reusing the running observer')
+    ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 2 is not None : Live client stopped instead of reusing the running observer
+
+======================================================================
+FAIL: test_three_types_and_two_locales_match_pre_refactor_documents_and_results (test_sdd_lifecycle_contract.SddLifecycleContractTests.test_three_types_and_two_locales_match_pre_refactor_documents_and_results) (kind='development', language='en')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_sdd_lifecycle_contract.py", line 61, in test_three_types_and_two_locales_match_pre_refactor_documents_and_results
+    self.assertEqual(expected[kind + '-' + language], lifecycle_fingerprints(Path(temporary), kind, language))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'new': 'e426fc934ba09e766e2faa66699a701a156d50766[992 chars]088'} != {'new': 'c45110124564bc5fc83078df31ac33096704bf263[992 chars]585'}
+Diff is 2172 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_three_types_and_two_locales_match_pre_refactor_documents_and_results (test_sdd_lifecycle_contract.SddLifecycleContractTests.test_three_types_and_two_locales_match_pre_refactor_documents_and_results) (kind='development', language='es')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_sdd_lifecycle_contract.py", line 61, in test_three_types_and_two_locales_match_pre_refactor_documents_and_results
+    self.assertEqual(expected[kind + '-' + language], lifecycle_fingerprints(Path(temporary), kind, language))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'new': '6af3e843fc32b6383f3971a984cc9de6c175f2cb2[992 chars]9c3'} != {'new': '257e35cfd58f15cc91348586a72987bc3334223b0[992 chars]5ba'}
+Diff is 2172 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_three_types_and_two_locales_match_pre_refactor_documents_and_results (test_sdd_lifecycle_contract.SddLifecycleContractTests.test_three_types_and_two_locales_match_pre_refactor_documents_and_results) (kind='infrastructure', language='en')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_sdd_lifecycle_contract.py", line 61, in test_three_types_and_two_locales_match_pre_refactor_documents_and_results
+    self.assertEqual(expected[kind + '-' + language], lifecycle_fingerprints(Path(temporary), kind, language))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'new': '6c77707a114eebc9ec7d1499c51a47c680f9837d9[992 chars]092'} != {'new': '84fca0dcebfb6561c7bddbb9afa086e85cd10b4be[992 chars]9f6'}
+Diff is 2172 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_three_types_and_two_locales_match_pre_refactor_documents_and_results (test_sdd_lifecycle_contract.SddLifecycleContractTests.test_three_types_and_two_locales_match_pre_refactor_documents_and_results) (kind='infrastructure', language='es')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_sdd_lifecycle_contract.py", line 61, in test_three_types_and_two_locales_match_pre_refactor_documents_and_results
+    self.assertEqual(expected[kind + '-' + language], lifecycle_fingerprints(Path(temporary), kind, language))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'new': 'abbf6074034d8bb3ec5182584e9a46cfcc191e1b6[992 chars]064'} != {'new': '91e62cd3e3a9bfdc052507a6b208565714fbe2b19[992 chars]aa6'}
+Diff is 2172 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_three_types_and_two_locales_match_pre_refactor_documents_and_results (test_sdd_lifecycle_contract.SddLifecycleContractTests.test_three_types_and_two_locales_match_pre_refactor_documents_and_results) (kind='devops', language='en')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_sdd_lifecycle_contract.py", line 61, in test_three_types_and_two_locales_match_pre_refactor_documents_and_results
+    self.assertEqual(expected[kind + '-' + language], lifecycle_fingerprints(Path(temporary), kind, language))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'new': '36c765a3a1a344750dce225175f8fa92f8c15f3b3[992 chars]a55'} != {'new': 'f7ee9ae4979db9e4d1705c7be1f5accd36db29c30[992 chars]3cb'}
+Diff is 2172 characters long. Set self.maxDiff to None to see it.
+
+======================================================================
+FAIL: test_three_types_and_two_locales_match_pre_refactor_documents_and_results (test_sdd_lifecycle_contract.SddLifecycleContractTests.test_three_types_and_two_locales_match_pre_refactor_documents_and_results) (kind='devops', language='es')
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/jlema/11-Project-aikya-harness/git/aikya-forge/tests/test_sdd_lifecycle_contract.py", line 61, in test_three_types_and_two_locales_match_pre_refactor_documents_and_results
+    self.assertEqual(expected[kind + '-' + language], lifecycle_fingerprints(Path(temporary), kind, language))
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'new': 'a9516aa6c952abc0e473c1b022be6fed9b8448d4f[992 chars]743'} != {'new': '7458cfdaceac6327a837a168c25129ad13168de41[992 chars]3b8'}
+Diff is 2172 characters long. Set self.maxDiff to None to see it.
+
+----------------------------------------------------------------------
+Ran 1230 tests in 1270.166s
+
+FAILED (failures=9, errors=49, skipped=7)
+

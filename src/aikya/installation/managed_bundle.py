@@ -63,7 +63,7 @@ def build(source,destination,version,*,assets=None,target=None,fetch_components=
     if not purelib.is_relative_to(payload/'python') or not state.safe(purelib).is_dir():raise ValueError('Interpreter site-packages escaped the staged payload')
     managed_archives.extract(core['wheel'],purelib,core['sha256'],'.',merge=True)
     links=managed_node.install(payload/'runtime',node,destination/'npm-home',destination/'npm-ci.log')
-    installed=_run([str(python),'-I','-B','-c','from importlib.metadata import version;import aikya;print(version("aikya-harness"))'],payload,environment,destination/'core-import.log')
+    installed=_run([str(python),'-I','-B','-c','from importlib.metadata import version;import aikya;print(version("aikya-forge"))'],payload,environment,destination/'core-import.log')
     if installed!=core['python_version']:raise ValueError('Installed core identity differs from private wheel metadata')
     _run([str(python),'-I','-B','-m','aikya','--help'],payload,environment,destination/'core-help.log')
     _run([str(node),'--experimental-strip-types',str(payload/'runtime/src/launcher.ts'),'--help'],payload,environment,destination/'terminal-help.log')

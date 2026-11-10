@@ -1,0 +1,17 @@
+{
+  "status": "passed",
+  "version": "0.1.0",
+  "platform": "darwin-arm64",
+  "steps": [
+    "preview",
+    "install",
+    "help",
+    "doctor",
+    "reinstall",
+    "uninstall"
+  ],
+  "target": "/private/tmp/aikya-forge-native-final-smoke",
+  "installer": "aikya-forge-0.1.0-darwin-arm64-installer.zip",
+  "installer_sha256": "323f7ac5717096208bafd33f304c7d21e7b01d1b4a727a3b6c3fa6bb361937fb",
+  "installer_bytes": 125661965
+}

@@ -19,10 +19,10 @@ class PrivateWheelTests(unittest.TestCase):
     def test_real_private_wheel_has_coherent_metadata_and_preserves_stable_version(self):
         before=(ROOT/'VERSION').read_bytes();destination=self.base/'private core áikya'
         value=self.builder.build(ROOT,destination,'8.0.0-alpha.0')
-        wheel=Path(value['wheel']);self.assertEqual(wheel.name,'aikya_harness-8.0.0a0-py3-none-any.whl')
+        wheel=Path(value['wheel']);self.assertEqual(wheel.name,'aikya_forge-8.0.0a0-py3-none-any.whl')
         with zipfile.ZipFile(wheel) as archive:
-            metadata=archive.read('aikya_harness-8.0.0a0.dist-info/METADATA').decode()
-            self.assertIn('\nName: aikya-harness\n',metadata);self.assertIn('\nVersion: 8.0.0a0\n',metadata)
+            metadata=archive.read('aikya_forge-8.0.0a0.dist-info/METADATA').decode()
+            self.assertIn('\nName: aikya-forge\n',metadata);self.assertIn('\nVersion: 8.0.0a0\n',metadata)
             self.assertEqual(archive.read('aikya/resources/distribution/VERSION'),b'8.0.0a0\n')
             self.assertIn('aikya/installation/managed_runtime.py',archive.namelist())
         self.assertEqual((ROOT/'VERSION').read_bytes(),before)

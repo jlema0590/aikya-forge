@@ -97,7 +97,7 @@ def _main(argv=None):
     if lifecycle:
         lifecycle.done('explore','New-project answers and toolchain availability inspected')
         lifecycle.done('plan','Explicit methodology and installation scope confirmed')
-        if not args.dry_run:lifecycle.event('implement','running','Creating approved Aikya harness files')
+        if not args.dry_run:lifecycle.event('implement','running','Creating approved Aikya Forge files')
     result=installer.main(flags)
     if lifecycle:
         if result==0:

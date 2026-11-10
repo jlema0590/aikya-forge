@@ -22,7 +22,9 @@ def check(assets, python=sys.executable):
         settings.write_text(json.dumps({'custom_setting': 'preserve', 'env': {'ANTHROPIC_AUTH_TOKEN': 'synthetic-do-not-copy'}}))
         document = project / 'owner.md'; document.write_text('# Owner document\n')
         payload = assets / 'aikya-bootstrap.pyz'
-        version = next(assets.glob('aikya_harness-*-py3-none-any.whl')).name.removeprefix('aikya_harness-').removesuffix('-py3-none-any.whl')
+        wheels = list(assets.glob('aikya_forge-*-py3-none-any.whl')) or list(assets.glob('aikya_harness-*-py3-none-any.whl'))
+        if len(wheels) != 1:raise ValueError('Expected one Aikya core wheel')
+        version = wheels[0].name.split('-', 1)[1].removesuffix('-py3-none-any.whl')
         def run(argv, expected=0, input=None):
             process = subprocess.run([str(x) for x in argv], cwd=base, env=env, capture_output=True, text=True, timeout=240, input=input)
             if process.returncode != expected:

@@ -24,5 +24,5 @@ try:
             'y comprueba de nuevo. Si es trabajo sólo informativo, no edites código.'},ensure_ascii=False))
 except Exception as exc:
     # Fallo visible, sin bloquear infinitamente: CI seguirá validando la documentación.
-    print('Harness docs: no se pudo validar Stop: '+str(exc),file=sys.stderr)
+    print('Forge docs: no se pudo validar Stop: '+str(exc),file=sys.stderr)
     sys.exit(2)

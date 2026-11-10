@@ -138,7 +138,7 @@ def main(argv: list[str]|None=None) -> int:
             return 2
     print('\n=== RESUMEN DE DECISIONES ===')
     print(json.dumps(profile,indent=2,ensure_ascii=False))
-    if not args.answers and not args.dry_run and not yesno('Install the harness with this profile?',True):
+    if not args.answers and not args.dry_run and not yesno('Install Forge with this profile?',True):
         print('Installation canceled. No files were created.')
         return 0
     try:

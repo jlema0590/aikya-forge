@@ -84,7 +84,7 @@ def specialized_interview(target: Path, detected: dict[str, Any], kind: str, mod
 
 
 def interview(target: Path, detected: dict[str, Any]) -> dict[str, Any]:
-    print('\n=== AIKYA HARNESS TECHNICAL INTERVIEW ===')
+    print('\n=== AIKYA FORGE TECHNICAL INTERVIEW ===')
     print('Initial observations (not verified builds or tests):')
     for finding in detected['findings']:
         print(' -', finding)

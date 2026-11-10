@@ -31,7 +31,7 @@ def plan_infrastructure(plan:InstallationPlan,actions:list[str])->None:
                 missing=[x for x in extras if x not in old.splitlines()]
                 if missing:
                     with ignore.open('a',encoding='utf8') as handle:
-                        handle.write('\n# Claude Dev Harness v3 (estado local y secretos)\n'+'\n'.join(missing)+'\n')
+                        handle.write('\n# Claude Dev Forge v3 (estado local y secretos)\n'+'\n'.join(missing)+'\n')
                     actions.append('AMPLIADO (gitignore) '+str(ignore))
                 else:
                     actions.append('SIN CAMBIOS '+str(ignore))

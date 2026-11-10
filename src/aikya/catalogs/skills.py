@@ -84,7 +84,7 @@ def render(root: Path, profile: dict|None=None, language: str|None=None) -> str:
         pass
     rows='\n'.join(rows) or '| — | — | Sin skills locales inventariadas | — | — |'
     return stamp(f'''{MARKER}
-# Skills utilizadas y disponibles — Aikya Harness
+# Skills utilizadas y disponibles — Aikya Forge
 
 Este inventario describe las **skills registradas en el proyecto** y su disponibilidad para Claude Code. **No es un histórico de invocaciones**: una skill instalada puede no haberse ejecutado nunca. La selección contextual evita cargar skills no pertinentes.
 

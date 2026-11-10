@@ -75,10 +75,10 @@ jobs:
           set -euo pipefail
           mkdir -p dist
           python scripts/ci/release_contract.py notes --output dist/RELEASE_NOTES.md
-          git archive --format=zip --prefix=aikya-harness/ \
-            --output="dist/aikya-harness-$RELEASE_TAG.zip" "$GITHUB_SHA"
+          git archive --format=zip --prefix=aikya-forge/ \
+            --output="dist/aikya-forge-$RELEASE_TAG.zip" "$GITHUB_SHA"
           python -m build --no-isolation
-          python scripts/ci/package_smoke.py --wheel "dist/aikya_harness-${RELEASE_TAG#v}-py3-none-any.whl"
+          python scripts/ci/package_smoke.py --wheel "dist/aikya_forge-${RELEASE_TAG#v}-py3-none-any.whl"
           python scripts/ci/parser_wheels.py --output dist
           python scripts/ci/build_installers.py --version "${RELEASE_TAG#v}" --output dist
           python scripts/ci/release_assets.py --directory dist --version "${RELEASE_TAG#v}"
@@ -125,7 +125,7 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          test -s "dist/aikya-harness-$RELEASE_TAG.zip"
+          test -s "dist/aikya-forge-$RELEASE_TAG.zip"
           test -s dist/SHA256SUMS
           test -s dist/RELEASE_NOTES.md
           (cd dist && sha256sum --check SHA256SUMS)
@@ -167,10 +167,10 @@ jobs:
             for ASSET in "${ASSETS[@]}"; do FILES+=("dist/$ASSET"); done
             if [[ "$TAG_STATUS" == "match" ]]; then
               gh release create "$RELEASE_TAG" "${FILES[@]}" --verify-tag \
-                --title "Aikya Harness $RELEASE_TAG" --notes-file dist/RELEASE_NOTES.md --latest
+                --title "Aikya Forge $RELEASE_TAG" --notes-file dist/RELEASE_NOTES.md --latest
             elif [[ "$TAG_STATUS" == "missing" ]]; then
               gh release create "$RELEASE_TAG" "${FILES[@]}" --target "$GITHUB_SHA" \
-                --title "Aikya Harness $RELEASE_TAG" --notes-file dist/RELEASE_NOTES.md --latest
+                --title "Aikya Forge $RELEASE_TAG" --notes-file dist/RELEASE_NOTES.md --latest
             else
               echo "::error::Unexpected tag state"; exit 1
             fi

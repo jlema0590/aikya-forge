@@ -103,13 +103,13 @@ def check_owned_tree(root: Path) -> None:
     for top in (".aikya", ".harness", ".claude", "aikya"):
         current = root / top
         if current.is_symlink():
-            raise ValueError("symlinked harness path: " + top)
+            raise ValueError("symlinked Forge path: " + top)
         if not current.is_dir():
             continue
         for base, dirs, files in __import__("os").walk(current, followlinks=False):
             for name in dirs + files:
                 if (Path(base) / name).is_symlink():
-                    raise ValueError("symlink found within harness-owned directory")
+                    raise ValueError("symlink found within Forge-owned directory")
     for name in ("CLAUDE.md", "harness.json", ".gitignore"):
         if (root / name).is_symlink():
             raise ValueError("symlinked project configuration: " + name)

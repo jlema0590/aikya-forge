@@ -1,0 +1,35 @@
+{
+  "files": 96,
+  "errors": [],
+  "warnings": [
+    {
+      "path": "src/aikya/core/loop.py",
+      "line": 129,
+      "function": "run",
+      "code": "long_function",
+      "message": "160 lines: review cohesion and extract focused helpers where justified."
+    },
+    {
+      "path": "src/aikya/discovery/analyze.py",
+      "line": 86,
+      "function": "installation_preview",
+      "code": "long_function",
+      "message": "137 lines: review cohesion and extract focused helpers where justified."
+    },
+    {
+      "path": "src/aikya/documentation/bootstrap.py",
+      "line": 30,
+      "function": "_infra_files",
+      "code": "long_function",
+      "message": "134 lines: review cohesion and extract focused helpers where justified."
+    },
+    {
+      "path": "src/aikya/documentation/pages_es.py",
+      "line": 8,
+      "function": "pages",
+      "code": "long_function",
+      "message": "337 lines: review cohesion and extract focused helpers where justified."
+    }
+  ],
+  "duplicates": []
+}

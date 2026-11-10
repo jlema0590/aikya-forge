@@ -41,7 +41,7 @@ class Lifecycle:
             self.event('plan','blocked',reason='Analysis requires resolution: '+str(status));self.finish('blocked','Analysis is not ready');return
         self.done('plan','Requested methodology and file plan resolved')
         if result.get('writes'):
-            self.done('implement','Approved Aikya harness installation returned successfully')
+            self.done('implement','Approved Aikya Forge installation returned successfully')
             self.verify_install()
         else:
             self.done('validate','Read-only discovery and file plan were generated',True);self.finish('completed')

@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Safe, interview-free onboarding of existing projects into Aikya Harness."""
+"""Safe, interview-free onboarding of existing projects into Aikya Forge."""
 from __future__ import annotations
 from aikya.resource_paths import source_path
 import json

@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Validador básico sin dependencias de la estructura Agent Skills.
 
-No sustituye `skills-ref validate` oficial; chequea el subset usado por el harness.
+No sustituye `skills-ref validate` oficial; chequea el subset usado por Forge.
 """
 from __future__ import annotations
 from aikya.resource_paths import project_root

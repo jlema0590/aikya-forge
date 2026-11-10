@@ -10,7 +10,7 @@ from aikya.installation.bootstrap.options import MIN_UNIFIED_VERSION
 def build(version, assets, output):
     version=download.validate_version(version)
     if tuple(map(int,version.split('.'))) < MIN_UNIFIED_VERSION:
-        raise ValueError('Unified installation pages require Harness 7.1.0 or newer')
+        raise ValueError('Unified installation pages require Forge 7.1.0 or newer')
     hashes=download.parse_checksums((assets/'SHA256SUMS').read_bytes())
     scripts={}
     for name in ('install.sh','install.ps1'):
@@ -28,10 +28,10 @@ def build(version, assets, output):
                 'sha256':{name:hashes[name] for name in scripts}}
     (output/'provenance.json').write_text(json.dumps(provenance,indent=2)+'\n',encoding='utf8')
     (output/'index.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><title>Aikya installation</title>'
-        '<h1>Aikya Harness</h1><p>Requires Python 3.10–3.13 with venv/pip and Claude Code 2.1.308+ for Mods.</p>'
+        '<h1>Aikya Forge</h1><p>Requires Python 3.10–3.13 with venv/pip and Claude Code 2.1.308+ for Mods.</p>'
         '<h2>Linux / macOS</h2><pre>curl -fsSL https://jlema0590.github.io/aikya-forge/install.sh | sh</pre>'
         '<h2>Windows PowerShell</h2><pre>irm https://jlema0590.github.io/aikya-forge/install.ps1.txt | iex</pre>'
-        '<p>Default: global Harness + Flow + Usage. BoxBot: --mods all. Restart your terminal and Claude.</p>'
+        '<p>Default: global Forge + Flow + Usage. BoxBot: --mods all. Restart your terminal and Claude.</p>'
         '<p><a href="install.sh">Inspect shell installer</a> · <a href="install.ps1.txt">Inspect PowerShell installer</a> · '
         '<a href="provenance.json">Release provenance</a> · '
         '<a href="https://github.com/jlema0590/aikya-forge#1-quick-start">Options and updates</a></p></html>\n',encoding='utf8')

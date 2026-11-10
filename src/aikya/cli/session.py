@@ -46,7 +46,7 @@ def banner(root: Path) -> str:
         spec.loader.exec_module(mod)
         return mod.build_message(root)
     except (OSError,ValueError,AttributeError,TypeError):
-        return 'Welcome to Aikya Harness · '+root.name
+        return 'Welcome to Aikya Forge · '+root.name
 
 def main() -> int:
     try:data=json.load(sys.stdin)

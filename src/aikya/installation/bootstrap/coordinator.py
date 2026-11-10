@@ -63,7 +63,7 @@ def execute(args, root, receipt_file):
         with state.installation_lock(root):
             current = json.loads(component_file.read_text(encoding='utf8')) if component_file.exists() else None
             current_harness=json.loads(receipt_file.read_text()) if receipt_file.exists() else None
-            if current_harness != previous_harness:raise ValueError('Harness parser selection changed during preparation; retry')
+            if current_harness != previous_harness:raise ValueError('Forge parser selection changed during preparation; retry')
             if current != previous:
                 raise ValueError('Component selection changed during preparation; retry')
             if bundle:
@@ -84,7 +84,7 @@ def execute(args, root, receipt_file):
 
 def remove(args,root,receipt_file,component_file,previous):
     if args.dry_run:
-        print('PLAN: remove unchanged owned Harness assets; preserve user files and unowned plugins')
+        print('PLAN: remove unchanged owned Forge assets; preserve user files and unowned plugins')
         return 0
     adapter = None
     if previous and (previous.get('plugins') or previous.get('marketplace_owned')) and not args.keep_mods:

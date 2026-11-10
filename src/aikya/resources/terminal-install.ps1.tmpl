@@ -65,5 +65,9 @@ try {
     if ($Action -eq 'install') { $options+=@('--payload',$payload,'--version',$Version,'--channel',$Channel); if ($NoPath) {$options+='--no-path'} }
     & $python -I -B -m aikya.installation.managed_cli @options
     if ($LASTEXITCODE -ne 0) { throw "Aikya native operation failed with exit $LASTEXITCODE" }
+    if ($Action -eq 'install') {
+        [Console]::Error.WriteLine('Aikya Forge is installed. Open a new terminal and run: aikya')
+        [Console]::Error.WriteLine('Manage the installation with: aikya-manage doctor')
+    }
 } finally { if (Test-Path -LiteralPath $stage) { Remove-Item -LiteralPath $stage -Recurse -Force } }
 } finally { $ErrorActionPreference=$callerPreference }

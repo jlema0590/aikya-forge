@@ -20,6 +20,32 @@ class NativeBootstrapEntryTests(unittest.TestCase):
         self.name='aikya-terminal-8.0.0-alpha.0-'+host_platform()+('.zip' if os.name=='nt' else '.tar.gz');self.raw=b'Transport fixture, never executed';(self.assets/self.name).write_bytes(self.raw)
         (self.assets/'SHA256SUMS').write_text(hashlib.sha256(self.raw).hexdigest()+'  '+self.name+'\n')
 
+    @unittest.skipIf(os.name=='nt','macOS launcher behavior runs on POSIX')
+    def test_mac_launcher_uses_its_own_directory_and_preserves_arguments_and_failure(self):
+        name='aikya-terminal-0.1.0-darwin-arm64.tar.gz'
+        (self.assets/name).write_bytes(self.raw)
+        (self.assets/'SHA256SUMS').write_text(hashlib.sha256(self.raw).hexdigest()+'  '+name+'\n')
+        output=self.root/'installer Forge á with spaces'
+        self.entries.build('0.1.0',self.assets,output)
+        launcher=output/'install.command'
+        self.assertTrue(launcher.is_file(),'Double-click macOS entry is absent')
+        (output/'install.sh').write_text('#!/bin/sh\nprintf "%s\\n" "$@"\nexit 17\n')
+        result=subprocess.run(['/bin/sh',str(launcher),'--dry-run','--no-path'],cwd=self.root,capture_output=True,text=True)
+        self.assertEqual(result.returncode,17,result.stderr)
+        self.assertEqual(result.stdout.splitlines(),['--offline-dir',str(output),'--dry-run','--no-path'])
+
+    @unittest.skipUnless(os.name=='nt','Windows launcher behavior requires native cmd.exe')
+    def test_windows_launcher_propagates_failure_from_a_path_with_spaces(self):
+        name='aikya-terminal-0.1.0-win32-x64.zip'
+        (self.assets/name).write_bytes(self.raw)
+        (self.assets/'SHA256SUMS').write_text(hashlib.sha256(self.raw).hexdigest()+'  '+name+'\n')
+        output=self.root/'installer Forge á with spaces'
+        self.entries.build('0.1.0',self.assets,output)
+        (output/'install.ps1').write_text('param([string]$OfflineDir,[switch]$DryRun)\n[Console]::OutputEncoding=[Text.UTF8Encoding]::new()\nWrite-Output $OfflineDir\nWrite-Output $DryRun\nexit 17\n')
+        result=subprocess.run(['cmd.exe','/d','/c',str(output/'install.cmd'),'-DryRun'],cwd=self.root,capture_output=True,text=True,encoding='utf8')
+        self.assertEqual(result.returncode,17,result.stderr)
+        self.assertEqual(result.stdout.splitlines(),[str(output),'True'])
+
     @unittest.skipIf(os.name=='nt','Shell entry acceptance runs on POSIX')
     def test_shell_preview_needs_no_python_node_git_or_application_files(self):
         output=self.root/'entries';self.entries.build('8.0.0-alpha.0',self.assets,output)

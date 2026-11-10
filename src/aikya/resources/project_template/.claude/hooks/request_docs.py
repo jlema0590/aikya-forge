@@ -20,5 +20,5 @@ try:
              'Comprueba el estado documental antes de finalizar.')
     print(json.dumps({'hookSpecificOutput':{'hookEventName':'UserPromptSubmit','additionalContext':message}},ensure_ascii=False))
 except Exception as exc:
-    print(f'Harness docs: error al registrar petición: {exc}',file=sys.stderr)
+    print(f'Forge docs: error al registrar petición: {exc}',file=sys.stderr)
     sys.exit(2)

@@ -7,11 +7,31 @@ from pathlib import Path
 import subprocess
 import tempfile
 import unittest
+import zipfile
 from aikya.installation.bootstrap.download import parse_checksums
 from managed_terminal_support import payload
 
 
 class ManagedDistributionTests(unittest.TestCase):
+    def test_single_download_contains_local_installer_and_verified_offline_payload(self):
+        from aikya.installation import managed_distribution
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary).resolve();source=root/'payload';payload(source,version='0.1.0')
+            output=root/'release';output.mkdir()
+            result=managed_distribution.finish(source,output,'0.1.0','darwin-arm64')
+            self.assertIn('installer',result,'Single-download installer is absent')
+            package=Path(result['installer'])
+            self.assertEqual(package.name,'aikya-forge-0.1.0-darwin-arm64-installer.zip')
+            with zipfile.ZipFile(package) as archive:
+                names=set(archive.namelist())
+                self.assertEqual(names,{'install.sh','install.command','terminal-bootstrap.json','SHA256SUMS','aikya-terminal-0.1.0-darwin-arm64.tar.gz'})
+                self.assertTrue(archive.getinfo('install.command').external_attr>>16 & 0o100)
+                hashes=parse_checksums(archive.read('SHA256SUMS'))
+                self.assertEqual(set(hashes),names-{'SHA256SUMS'})
+                for name,checksum in hashes.items():self.assertEqual(hashlib.sha256(archive.read(name)).hexdigest(),checksum)
+                self.assertIn('install.command',json.loads(archive.read('terminal-bootstrap.json'))['entries'])
+            self.assertEqual(parse_checksums((output/'SHA256SUMS').read_bytes())[package.name],hashlib.sha256(package.read_bytes()).hexdigest())
+
     def test_native_assets_are_covered_by_one_manifest_and_matching_preview_entry(self):
         self.assertIsNotNone(importlib.util.find_spec('aikya.installation.managed_distribution'),'Native release asset assembly is absent')
         builder=importlib.import_module('aikya.installation.managed_distribution')

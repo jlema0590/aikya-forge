@@ -347,7 +347,7 @@ def setup(source:Path,target:Path,scope:str,home:Path|None=None,dry_run:bool=Fal
 
 
 def main(argv=None):
-    p=argparse.ArgumentParser(description='Aikya Harness registration within Claude Code')
+    p=argparse.ArgumentParser(description='Aikya Forge registration within Claude Code')
     p.add_argument('--scope',choices=['global','project'],required=True)
     p.add_argument('--target',type=Path,default=Path.cwd(),help='Directorio de trabajo actual, cuando scope=project')
     p.add_argument('--subagent-statusline',action='store_true',help='Enable only on a client supporting subagentStatusLine')

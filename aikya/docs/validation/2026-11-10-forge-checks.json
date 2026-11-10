@@ -1,0 +1,67 @@
+{
+  "python": {
+    "command": "python scripts/ci/run_isolated_tests.py",
+    "tests": 1230,
+    "skipped": 7,
+    "failures": 0,
+    "errors": 0,
+    "elapsed_seconds": 1171.013,
+    "environment": "Python 3.13.18; temporary child settings; approved loopback access",
+    "skipped_cases": [
+      [
+        "test_local_function_scope_is_not_invented_as_a_class_method (test_code_index_dart.DartNestedScopeTests.test_local_function_scope_is_not_invented_as_a_class_method)",
+        "'Optional Dart binary is not installed'"
+      ],
+      [
+        "test_declarations_ranges_and_imports (test_code_index_dart.DartTests.test_declarations_ranges_and_imports)",
+        "'Optional Dart binary is not installed'"
+      ],
+      [
+        "test_invalid_syntax_does_not_publish_symbols (test_code_index_dart.DartTests.test_invalid_syntax_does_not_publish_symbols)",
+        "'Optional Dart binary is not installed'"
+      ],
+      [
+        "test_language_declarations_and_positions (test_code_index_languages.LanguageIndexTests.test_language_declarations_and_positions)",
+        "'Optional parser extras not installed'"
+      ],
+      [
+        "test_syntax_errors_do_not_export_partial_classes_as_current (test_code_index_languages.LanguageIndexTests.test_syntax_errors_do_not_export_partial_classes_as_current)",
+        "'Optional parser extras not installed'"
+      ],
+      [
+        "test_powershell_verifies_bootstrap_without_get_filehash_and_rejects_corruption (test_latest_installer.LatestEntryScripts.test_powershell_verifies_bootstrap_without_get_filehash_and_rejects_corruption)",
+        "'PowerShell is required'"
+      ],
+      [
+        "test_windows_launcher_propagates_failure_from_a_path_with_spaces (test_managed_bootstrap_entries.NativeBootstrapEntryTests.test_windows_launcher_propagates_failure_from_a_path_with_spaces)",
+        "'Windows launcher behavior requires native cmd.exe'"
+      ]
+    ]
+  },
+  "pi": {
+    "typecheck": "passed",
+    "tests": 92,
+    "failures": 0,
+    "node": "26.12.1"
+  },
+  "wheel": {
+    "build": "passed",
+    "installed_scenarios": 11,
+    "optional_sdk_installed": false
+  },
+  "native": {
+    "platform": "darwin-arm64",
+    "version": "0.1.0",
+    "extracted_installer_lifecycle": "passed",
+    "mac_launcher_preview": "passed"
+  },
+  "other_native_platforms": {
+    "status": "not_executed",
+    "targets": [
+      "darwin-x64",
+      "win32-x64",
+      "linux-x64-gnu"
+    ]
+  },
+  "publication": "not_performed"
+}

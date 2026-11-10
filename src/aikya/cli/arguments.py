@@ -16,7 +16,7 @@ def _default_terminal_arguments(arguments):
 
 
 def support_parser():
-    parser=argparse.ArgumentParser(description='Aikya Harness project and runtime support commands',
+    parser=argparse.ArgumentParser(description='Aikya Forge project and runtime support commands',
         epilog='Run aikya without a subcommand to open the installed terminal; use aikya terminal --help for session and model options.')
     parser.add_argument('command',choices=['probe','requirements','init','answers','status','analyze','feature','bugfix','implement','memory','context','context-policy','review','terminal'])
     parser.add_argument('--target',type=Path,default=Path.cwd())

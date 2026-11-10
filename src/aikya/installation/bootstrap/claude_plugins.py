@@ -11,7 +11,7 @@ class Claude:
         self.cwd = Path(target or Path.cwd()).resolve()
         self.executable = shutil.which('claude')
         if not self.executable:
-            raise ValueError('Claude Code with native plugin support is required; use --mods none for Harness only')
+            raise ValueError('Claude Code with native plugin support is required; use --mods none for Forge only')
         if Path(self.executable).suffix.lower() in ('.cmd', '.bat'):
             raise ValueError('Use the native Claude executable on Windows, not a shell wrapper')
 

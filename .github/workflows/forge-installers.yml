@@ -1,0 +1,90 @@
+name: Aikya Forge | Native installers
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  native:
+    name: Build and exercise ${{ matrix.target }}
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - os: macos-15
+            target: darwin-arm64
+          - os: macos-15-intel
+            target: darwin-x64
+          - os: windows-2025
+            target: win32-x64
+          - os: ubuntu-24.04
+            target: linux-x64-gnu
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 35
+    defaults:
+      run:
+        shell: bash
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '26.13.0'
+      - name: Prepare contributor tools
+        run: |
+          python -m pip install 'setuptools>=77' wheel build
+          python -m pip install --no-build-isolation --no-deps -e .
+          npm --prefix packages/aikya-pi ci --ignore-scripts --no-audit --no-fund
+      - name: Verify the native host and installation contracts
+        env:
+          AIKYA_EXPECTED_PLATFORM: ${{ matrix.target }}
+        run: |
+          python -c 'import os; from aikya.installation.managed_runtime import host_platform; assert host_platform() == os.environ["AIKYA_EXPECTED_PLATFORM"]'
+          python -m unittest discover -s tests -p 'test_managed_*.py' -v
+          python -m unittest discover -s tests -p test_forge_identity.py -v
+          python -m unittest discover -s tests -p test_terminal_installer_smoke.py -v
+          npm --prefix packages/aikya-pi run typecheck
+          npm --prefix packages/aikya-pi test
+      - name: Build the self-contained native installer
+        run: python -B scripts/ci/build_terminal_bundle.py --version "$(cat VERSION)" --output forge-native --fetch-components
+      - name: Exercise installation, reinstall and uninstall in isolation
+        run: python -B scripts/ci/terminal_installer_smoke.py --assets forge-native --target "$RUNNER_TEMP/forge smoke" --output forge-smoke.json
+      - name: Upload the verified installer
+        uses: actions/upload-artifact@v4
+        with:
+          name: aikya-forge-${{ matrix.target }}-${{ github.sha }}
+          if-no-files-found: error
+          path: |
+            forge-native/*-installer.zip
+            forge-native/SHA256SUMS
+            forge-native/terminal-bootstrap.json
+            forge-native/result.json
+            forge-smoke.json
+      - name: Retain native build and smoke evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: aikya-forge-evidence-${{ matrix.target }}-${{ github.sha }}
+          if-no-files-found: warn
+          path: |
+            forge-native/*.log
+            forge-native/core/build.log
+            forge-smoke.json
+            ${{ runner.temp }}/forge smoke/logs/
+
+  acceptance:
+    name: Require every native platform
+    needs: native
+    if: always()
+    runs-on: ubuntu-24.04
+    steps:
+      - name: Check the complete matrix result
+        env:
+          AIKYA_MATRIX_RESULT: ${{ needs.native.result }}
+        run: test "$AIKYA_MATRIX_RESULT" = success

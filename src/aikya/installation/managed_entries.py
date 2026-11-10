@@ -31,8 +31,12 @@ def build(version,assets,destination):
         text=text.replace('@@VERSION@@',version).replace('@@CHANNEL@@',channel).replace('@@PLATFORMS@@','\n'.join(rows))
         if '@@' in text:raise ValueError('Unresolved native bootstrap placeholder')
         rendered['install.'+extension]=text.encode()
+    for extension,available in (('command',any(target.startswith('darwin') for target in selected)),('cmd',bool(powershell))):
+        if not available:continue
+        text=(files('aikya')/('resources/terminal-install.'+extension+'.tmpl')).read_text(encoding='utf8')
+        rendered['install.'+extension]=text.replace('@@VERSION@@',version).encode()
     destination.mkdir(parents=True)
-    for name,raw in rendered.items():write_new(destination/name,raw,mode=0o700 if name.endswith('.sh') else 0o600)
+    for name,raw in rendered.items():write_new(destination/name,raw,mode=0o700 if name.endswith(('.sh','.command')) else 0o600)
     record=dict(schema=1,version=version,channel=channel,platforms=selected,entries={name:hashlib.sha256(raw).hexdigest() for name,raw in rendered.items()})
     write_new(destination/'terminal-bootstrap.json',encoded(record)+'\n',mode=0o600)
     return record

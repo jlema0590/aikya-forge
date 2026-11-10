@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Aikya Harness version and release-note contract.
+"""Aikya Forge version and release-note contract.
 
 Only validates local files and Git tags; never changes repositories or publishes.
 Tests and packaging run outside this module.
@@ -59,7 +59,7 @@ def notes_from_changelog(changelog: str, version: str) -> str:
         raise ReleaseError("Release notes must contain at least one list item describing a change.")
     if FILLER_RE.search(body):
         raise ReleaseError("Release notes still contain unresolved placeholder text.")
-    return stamp("# Aikya Harness v" + version + "\n\n" + body)
+    return stamp("# Aikya Forge v" + version + "\n\n" + body)
 
 
 def run_git(root: Path, *args: str, allow_missing: bool = False) -> str | None:

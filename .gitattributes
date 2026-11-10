@@ -3,3 +3,6 @@
 src/aikya/resources/** -text
 # Historical command fixtures must retain their pinned migration hashes.
 tests/fixtures/command-renames/** -text
+# Captured test output retains its exact bytes and terminal spacing as evidence.
+aikya/docs/validation/2026-11-10-forge-python-initial.log -text -whitespace
+aikya/docs/validation/2026-11-10-forge-python-final.log -text -whitespace

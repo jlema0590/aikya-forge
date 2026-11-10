@@ -114,7 +114,7 @@ MYSQL_ROOT_PASSWORD=REPLACE_LOCALLY
 MONGO_USERNAME=app
 MONGO_PASSWORD=REPLACE_LOCALLY
 '''
-    outputs['.gitignore']='''# Harness and local work state
+    outputs['.gitignore']='''# Forge and local work state
 .harness/state/
 .harness/welcome.json
 # Environments and credentials
@@ -133,7 +133,7 @@ target/
 .dart_tool/
 '''
     if p['ci']=='github-actions':
-        outputs['.github/workflows/harness.yml']='''name: Harness quality gates
+        outputs['.github/workflows/harness.yml']='''name: Forge quality gates
 on:
   pull_request:
   push:

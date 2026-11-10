@@ -57,7 +57,7 @@ Producto **{name}**. Objetivos de negocio y usuarios finales por definir con el 
 
 ## Estado de implementación
 
-{'Proyecto existente: confirmar el comportamiento inspeccionando el código antes de describirlo como operativo.' if is_existing else 'Proyecto nuevo: solo harness e infraestructura inicial. El código de negocio se genera o desarrolla posteriormente.'}
+{'Proyecto existente: confirmar el comportamiento inspeccionando el código antes de describirlo como operativo.' if is_existing else 'Proyecto nuevo: solo Forge e infraestructura inicial. El código de negocio se genera o desarrolla posteriormente.'}
 
 {installed}
 
@@ -88,7 +88,7 @@ Registra nuevas historias/fechas sólo después de confirmar su alcance; cada fe
 
 ## Estado inicial
 
-Aún no se ha documentado ninguna funcionalidad implementada por este harness. En proyectos existentes, inventariar el código antes de describir prestaciones.
+Aún no se ha documentado ninguna funcionalidad implementada por Forge. En proyectos existentes, inventariar el código antes de describir prestaciones.
 
 ## Convención
 
@@ -214,7 +214,7 @@ Formato: contexto, decisión, opciones descartadas, consecuencias, riesgos, esta
     'aikya/docs/decisions/0001-entrevista-stack.md': f'''# ADR-0001 — Perfil inicial de stack
 
 - Estado: **Propuesto** (pendiente de revisar y aceptar por responsables).
-- Contexto: decisiones registradas durante instalación del harness.
+- Contexto: decisiones registradas durante instalación de Forge.
 - Propuesta: {tech}
 - Arquitectura propuesta: {flat(profile['architecture'])}.
 - Criterio: mantener módulos independientes y tests reproducibles.
@@ -266,14 +266,14 @@ El Stop hook bloquea tareas con código modificado pero sin trazabilidad documen
 Actualizar este documento cuando cambien el sistema visual, tokens, patrones de interacción o navegación; incluir resultados verificables de pruebas visuales y de accesibilidad.
 '''
         pages['aikya/docs/README.md'] += '\n- [Sistema de diseño y UI/UX](design/design-system.md)\n'
-    pages['aikya/docs/harness/skills-comparison.md'] = '''# Auditoría Agent Skills — Harness v4
+    pages['aikya/docs/harness/skills-comparison.md'] = '''# Auditoría Agent Skills — Forge v4
 
 Estándar: https://agentskills.io/specification
 Repositorio de referencia: https://github.com/agentskills/agentskills
 
-## Evaluación del harness original
+## Evaluación de Forge original
 
-Las 8 skills del harness v3 contienen `SKILL.md`, `name` y `description` en YAML, en carpetas con igual nombre, siguiendo los campos requeridos por Agent Skills. `disable-model-invocation: true` es una **extensión de Claude Code**, no requisito de la especificación portable. Las skills se mantienen ligeras y se invocan selectivamente.
+Las 8 skills de Forge v3 contienen `SKILL.md`, `name` y `description` en YAML, en carpetas con igual nombre, siguiendo los campos requeridos por Agent Skills. `disable-model-invocation: true` es una **extensión de Claude Code**, no requisito de la especificación portable. Las skills se mantienen ligeras y se invocan selectivamente.
 
 ## Integraciones
 

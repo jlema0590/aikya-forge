@@ -23,7 +23,7 @@ def load_profile(root: Path=ROOT) -> dict:
     path=root/'.harness/project-profile.json'
     profile=json.loads(path.read_text(encoding='utf8'))
     if not isinstance(profile,dict) or not isinstance(profile.get('decisions'),dict):
-        raise ValueError('Perfil inválido: instala el harness antes de hacer scaffolding')
+        raise ValueError('Perfil inválido: instala Forge antes de hacer scaffolding')
     return profile['decisions']
 
 
