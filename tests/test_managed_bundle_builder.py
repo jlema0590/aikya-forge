@@ -4,6 +4,7 @@ import importlib.util
 from pathlib import Path
 import tempfile
 import unittest
+from unittest.mock import patch
 from aikya.installation.managed_inputs import load
 from aikya.installation.managed_runtime import host_platform
 
@@ -14,6 +15,15 @@ class BundleBuilderTests(unittest.TestCase):
     def setUp(self):
         self.assertIsNotNone(importlib.util.find_spec('aikya.installation.managed_bundle'),'Self-contained bundle builder is absent')
         self.builder=importlib.import_module('aikya.installation.managed_bundle');self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup);self.root=Path(self.tmp.name).resolve()
+
+    def test_corrupt_parser_assets_fail_before_creating_build_output(self):
+        from aikya.installation import managed_parsers
+        assets=self.root/'assets';assets.mkdir()
+        for item in managed_parsers.load(host_platform())['wheels'].values():(assets/item['file']).write_bytes(b'Corrupt parser wheel')
+        output=self.root/'output'
+        with patch.object(self.builder,'_components',return_value={'python':b'Not executed','node':b'Not executed'}):
+            with self.assertRaises(ValueError):self.builder.build(ROOT,output,'0.2.0',assets=assets)
+        self.assertFalse(output.exists())
 
     def test_corrupt_official_assets_are_preserved_and_never_executed(self):
         assets=self.root/'assets';assets.mkdir();recipe=load()

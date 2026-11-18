@@ -2,7 +2,7 @@
 from importlib import import_module
 from .arguments import _default_terminal_arguments
 
-ROUTES={'terminal':'aikya.cli.terminal','review':'aikya.review.cli',
+ROUTES={'acceptance':'aikya.services.acceptance','skills':'aikya.cli.skills','terminal':'aikya.cli.terminal','review':'aikya.review.cli',
         'context-policy':'aikya.middleware.compaction','context':'aikya.context.cli','memory':'aikya.cli.memory'}
 
 

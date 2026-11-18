@@ -1,3 +1,4 @@
+import {registerSkillRemoval} from './skill-removal.ts';
 import {runtimeVersion} from './identity.ts';
 import {registerTaskRun} from "./task-run.ts";
 import type {ReviewRuntimeFactory} from "./task-run-policy.ts";
@@ -26,10 +27,11 @@ const version=runtimeVersion();
 /** Pi host commands are separate from the model tool allowlist. */
 export function aikyaExtension(root: string, python?: string, controlled = false, reviewer = false, phase={value:"explore"},modelRuntime?:ModelRuntime,skills:SelectedSkill[]=[],activeSkills=new Set<string>(),taskControl={blocked:false},reviewRuntime?:ReviewRuntimeFactory) {
   return (pi: ExtensionAPI) => {
-    const administrative=new Set(['aikya-task-run','aikya-source-batch','aikya-arc-review','aikya-bugfix','aikya-mobile-feature','aikya-project','aikya-infra','aikya-scaffold','aikya-models','aikya-answers','aikya-docs','aikya-docs-sync','aikya-doctor','aikya-quality','aikya-tokens','aikya-theme','aikya-phase','aikya-migrate','aikya-skills-status','aikya-skills-plan','aikya-install-skill','aikya-skill-unavailable']);
+    const administrative=new Set(['aikya-task-run','aikya-source-batch','aikya-arc-review','aikya-bugfix','aikya-mobile-feature','aikya-project','aikya-infra','aikya-scaffold','aikya-models','aikya-answers','aikya-docs','aikya-docs-sync','aikya-doctor','aikya-quality','aikya-tokens','aikya-theme','aikya-phase','aikya-migrate','aikya-skills-status','aikya-skills-plan','aikya-install-skill','aikya-uninstall-skills','aikya-skill-unavailable']);
     pi.on('context',event=>({messages:event.messages.filter(message=>
       message.role!=='custom'||!administrative.has(message.customType))}));
     registerSelectedSkills(pi,root,python,skills,reviewer);
+    if(!reviewer)registerSkillRemoval(pi,root,python);
     registerModelCatalog(pi,modelRuntime);
     if(!reviewer) {registerDiagnostics(pi,root,python,modelRuntime,controlled);registerDocumentation(pi,root,python);registerProjectBootstrap(pi,root,python,phase);registerEngineeringWorkflows(pi,root,python);}
     registerMemoryLifecycle(pi,root,python);

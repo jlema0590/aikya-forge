@@ -5,8 +5,8 @@ from pathlib import Path
 import shlex
 from . import environment, state
 
-START = '# >>> Aikya managed PATH >>>\n'
-END = '# <<< Aikya managed PATH <<<\n'
+START = '# >>> Aikya Forge managed PATH >>>\n'
+END = '# <<< Aikya Forge managed PATH <<<\n'
 
 
 def ensure_user_path(bin_dir, enabled=True, root=None):
@@ -58,7 +58,7 @@ def ensure_windows_path(entry, marker):
         if entry.casefold() in [x.casefold() for x in before.split(';')]:return {'changed':False}
         record={'platform':'windows','entry':entry,'kind':kind}
         state.write_json(marker,record)
-        winreg.SetValueEx(key,'Path',0,kind,before+(';' if before else '')+entry)
+        winreg.SetValueEx(key,'Path',0,kind,entry+(';' if before else '')+before)
     notify_environment_change()
     return record
 

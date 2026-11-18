@@ -1,0 +1,320 @@
+{
+  "schema": 1,
+  "version": "0.2.0",
+  "base_commit": "43a71eac0f01ca1517644a7ae523344870996729",
+  "python": {
+    "version": "3.13.18",
+    "tests": 1270,
+    "failures": 0,
+    "errors": 0,
+    "skips": [
+      [
+        "test_latest_installer.LatestEntryScripts.test_powershell_verifies_bootstrap_without_get_filehash_and_rejects_corruption",
+        "PowerShell is required"
+      ],
+      [
+        "test_code_index_languages.LanguageIndexTests.test_missing_optional_packages_fall_back_without_invented_symbols",
+        "Run fallback check in the dependency-free environment"
+      ]
+    ],
+    "frozen_input_count": 1516,
+    "frozen_inputs_sha256": "4b5cedaef848aef7c09306e69ca86e1693a4a78834311457a39c812448091113",
+    "input_drift_during_regression": [],
+    "later_acceptance_extension": [
+      "scripts/ci/native_terminal_acceptance.py"
+    ],
+    "dependency_free_fallback": "one installed-wheel regression passed separately"
+  },
+  "pi": {
+    "node22": {
+      "version": "22.19.0",
+      "tests": 93,
+      "passed": 93
+    },
+    "node26": {
+      "version": "26.12.1",
+      "tests": 93,
+      "passed": 93
+    },
+    "typecheck": "passed",
+    "transport": "real SDK; provider transport fixtures, not real inference"
+  },
+  "browser": {
+    "engine": "Playwright 1.62.1 Chromium",
+    "checks": {
+      "viewer-en": 21,
+      "viewer-es": 21,
+      "interactions": 48,
+      "density": 20
+    },
+    "errors": [],
+    "data": "synthetic offline fixtures and mocked local live snapshot transport"
+  },
+  "native": {
+    "platform": "darwin-arm64",
+    "version": "0.2.0",
+    "next_version": "0.2.1",
+    "manifest_hash": "2c4630f91cd06dcda5d2fa523914386005e02754e5abe2aaa997d77c7fb9e695",
+    "successor_manifest_hash": "a35c6d5a2beafece388d4095c6a2c620882162b8dbb30370373cf182a1aa92c6",
+    "runtime_fingerprint": "2c5d929948b5a19241e483fa637d5732535d67c2e7303c4880ddc8c5707bbe84",
+    "provider_calls": 0,
+    "command_count": 29,
+    "profile_count": 24,
+    "coverage": {
+      ".c": {
+        "status": "file_only",
+        "parser": "inventory",
+        "symbols": 0
+      },
+      ".cc": {
+        "status": "file_only",
+        "parser": "inventory",
+        "symbols": 0
+      },
+      ".cjs": {
+        "status": "indexed",
+        "parser": "treesitter-javascript",
+        "symbols": 2
+      },
+      ".cpp": {
+        "status": "file_only",
+        "parser": "inventory",
+        "symbols": 0
+      },
+      ".cs": {
+        "status": "indexed",
+        "parser": "treesitter-c_sharp",
+        "symbols": 2
+      },
+      ".dart": {
+        "status": "indexed",
+        "parser": "treesitter-dart",
+        "symbols": 2
+      },
+      ".go": {
+        "status": "indexed",
+        "parser": "treesitter-go",
+        "symbols": 2
+      },
+      ".h": {
+        "status": "file_only",
+        "parser": "inventory",
+        "symbols": 0
+      },
+      ".hpp": {
+        "status": "file_only",
+        "parser": "inventory",
+        "symbols": 0
+      },
+      ".java": {
+        "status": "indexed",
+        "parser": "treesitter-java",
+        "symbols": 2
+      },
+      ".js": {
+        "status": "indexed",
+        "parser": "treesitter-javascript",
+        "symbols": 2
+      },
+      ".jsx": {
+        "status": "indexed",
+        "parser": "treesitter-javascript",
+        "symbols": 2
+      },
+      ".kt": {
+        "status": "file_only",
+        "parser": "inventory",
+        "symbols": 0
+      },
+      ".kts": {
+        "status": "file_only",
+        "parser": "inventory",
+        "symbols": 0
+      },
+      ".mjs": {
+        "status": "indexed",
+        "parser": "treesitter-javascript",
+        "symbols": 2
+      },
+      ".php": {
+        "status": "file_only",
+        "parser": "inventory",
+        "symbols": 0
+      },
+      ".ps1": {
+        "status": "file_only",
+        "parser": "inventory",
+        "symbols": 0
+      },
+      ".py": {
+        "status": "indexed",
+        "parser": "python-ast",
+        "symbols": 1
+      },
+      ".pyi": {
+        "status": "indexed",
+        "parser": "python-ast",
+        "symbols": 1
+      },
+      ".rb": {
+        "status": "file_only",
+        "parser": "inventory",
+        "symbols": 0
+      },
+      ".rs": {
+        "status": "file_only",
+        "parser": "inventory",
+        "symbols": 0
+      },
+      ".sh": {
+        "status": "file_only",
+        "parser": "inventory",
+        "symbols": 0
+      },
+      ".sql": {
+        "status": "file_only",
+        "parser": "inventory",
+        "symbols": 0
+      },
+      ".svelte": {
+        "status": "file_only",
+        "parser": "inventory",
+        "symbols": 0
+      },
+      ".swift": {
+        "status": "file_only",
+        "parser": "inventory",
+        "symbols": 0
+      },
+      ".tf": {
+        "status": "file_only",
+        "parser": "inventory",
+        "symbols": 0
+      },
+      ".ts": {
+        "status": "indexed",
+        "parser": "treesitter-typescript",
+        "symbols": 2
+      },
+      ".tsx": {
+        "status": "indexed",
+        "parser": "treesitter-typescript-tsx",
+        "symbols": 2
+      },
+      ".vue": {
+        "status": "file_only",
+        "parser": "inventory",
+        "symbols": 0
+      }
+    },
+    "session": {
+      "provider_calls": 0,
+      "observations": [
+        "external-create",
+        "external-edit",
+        "external-rename",
+        "external-delete"
+      ],
+      "theme": "light",
+      "runtime": "actual-installed-Pi",
+      "ui": "headless SDK; not visual terminal acceptance"
+    },
+    "steps": [
+      {
+        "name": "install",
+        "exit_code": 0
+      },
+      {
+        "name": "doctor",
+        "exit_code": 0
+      },
+      {
+        "name": "seed",
+        "exit_code": 0
+      },
+      {
+        "name": "installed-launcher",
+        "exit_code": 0
+      },
+      {
+        "name": "skill-withdraw-preview",
+        "exit_code": 0
+      },
+      {
+        "name": "skill-withdraw",
+        "exit_code": 0
+      },
+      {
+        "name": "skill-restore-preview",
+        "exit_code": 0
+      },
+      {
+        "name": "skill-restore",
+        "exit_code": 0
+      },
+      {
+        "name": "installed-session",
+        "exit_code": 0
+      },
+      {
+        "name": "export-observation",
+        "exit_code": 0
+      },
+      {
+        "name": "reinstall",
+        "exit_code": 0
+      },
+      {
+        "name": "update",
+        "exit_code": 0
+      },
+      {
+        "name": "doctor-updated",
+        "exit_code": 0
+      },
+      {
+        "name": "manager-core-updated",
+        "exit_code": 0
+      },
+      {
+        "name": "rollback",
+        "exit_code": 0
+      },
+      {
+        "name": "doctor-rollback",
+        "exit_code": 0
+      },
+      {
+        "name": "retained-data",
+        "exit_code": 0
+      },
+      {
+        "name": "uninstall",
+        "exit_code": 0
+      },
+      {
+        "name": "retained-after-uninstall",
+        "exit_code": 0
+      }
+    ],
+    "archive_sha256": "229419485f98b9805b584d01b141ff32288425143d4f6cf02780aa2a6289dee3",
+    "source_commit": null,
+    "source_identity": "runtime_fingerprint binds packaged source; built before branch commit"
+  },
+  "quality": {
+    "files": 58,
+    "errors": [],
+    "warnings": [],
+    "duplicates": [],
+    "workflows": "actionlint 1.7.12 passed"
+  },
+  "external": {
+    "provider": "pending separate environment",
+    "visual_terminal": "not established by headless SDK",
+    "windows_linux_native": "pending remote CI",
+    "legacy_user_migration": "excluded",
+    "release_published": false,
+    "pages_published": false,
+    "quota_savings": null
+  }
+}

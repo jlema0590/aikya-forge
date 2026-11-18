@@ -4,6 +4,27 @@ Aikya Forge uses independent semantic versioning, beginning at `0.1.0`.
 The inherited Harness v7/v8 changelog remains in
 [aikya/docs/history/harness-CHANGELOG.md](aikya/docs/history/harness-CHANGELOG.md).
 
+## v0.2.0 — 2026-11-18
+
+- Isolate reviewed .NET 8+ check artifacts per execution without hiding bin/obj source.
+- Add confirmed native project/global skill withdrawal, retained exact backups,
+  restoration, interruption recovery and `/aikya-uninstall-skills` / `aikya skills`.
+- Bundle reviewed compatible binary parsers with platform/ABI/integrity validation,
+  actual declaration probes and explicit unavailable capabilities.
+- Separate Forge application/PATH ownership from Harness; refuse legacy adoption.
+  No real migration from v7 is part of this new product.
+- Prepare native installation/update/rollback/memory/theme acceptance on seven targets
+  and run administrative code from the verified active Windows payload. Windows
+  uninstall uses the external verified PowerShell installer to avoid a locked EXE.
+- Add bounded anonymized usage exports, a separately reviewed provider-evidence gate,
+  same-commit seven-target release assembly and exact published-entry Pages preparation.
+  Publication remains explicit and disabled while external acceptance is pending.
+- Correct Windows fixture byte hashing and prepare all private-build tools in Pi CI.
+- Validate 1,270 Python tests (two declared environment skips), 93 Pi tests on each
+  Node 22/26, 110 browser checks, fresh installed wheel and the macOS ARM native
+  install/skill withdrawal/update/rollback/uninstall cycle with zero inference.
+  Remote native CI and real-provider acceptance remain separate publication gates.
+
 ## v0.1.0 — 2026-11-10
 
 - Import the current Aikya implementation, including its Python core, Pi terminal,

@@ -119,6 +119,8 @@ class Battery:
         self.run('aikya-skills-status', self.helper('odd', 'external_skills.py'), ['status', '--target', odd])
         self.run('aikya-skills-plan', self.helper('odd', 'external_skills.py'), ['plan', '--target', odd])
         self.run('aikya-install-skill', self.helper('odd', 'external_skills.py'), ['install', '--target', odd, '--record-comparison'], expected=2, contains='approval')
+        self.run('aikya-uninstall-skills', ('-m','aikya'), ['skills','uninstall','--target',odd,'--all'], contains='no_op')
+        self.run('aikya-uninstall-skills', ('-m','aikya'), ['skills','uninstall','--target',odd,'--name','aikya-init'], expected=2, contains='protected')
         if (odd / 'aikya/docs/tools/skill-comparison.md').exists():
             raise AssertionError('Denied installation created a comparison report')
         self.run('aikya-quality', self.helper('odd', 'skills_lint.py'))

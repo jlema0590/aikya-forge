@@ -20,7 +20,8 @@ def host_platform():
     architecture={'arm64':'arm64','aarch64':'arm64','amd64':'x64','x86_64':'x64'}.get(platform.machine().lower())
     if not system or not architecture:raise ValueError('No managed terminal payload for this host')
     if system=='linux':
-        libc=platform.libc_ver()[0].lower()
+        from .native_platform import linux_runtime
+        libc=linux_runtime()
         if libc not in ('glibc','musl'):raise ValueError('Linux C runtime is unknown; select a verified compatible distribution')
         return system+'-'+architecture+('-gnu' if libc=='glibc' else '-musl')
     return system+'-'+architecture

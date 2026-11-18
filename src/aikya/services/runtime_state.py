@@ -8,7 +8,7 @@ from aikya.routing import pi_usage
 from aikya.installation import migration_v8
 from . import review,workflows,task_binding,sdd,maintenance,checks,check_cancel,odd_workflow,selected_skills,diagnostics,documentation,project_bootstrap,scaffold_generation,infra_validation,engineering_workflows
 from . import documentation_recovery
-from . import batch_recovery,task_runs,skill_management,skill_fetch
+from . import batch_recovery,task_runs,skill_management,skill_fetch,skill_removal
 from aikya.review.contracts import parse
 
 
@@ -46,6 +46,8 @@ def main(argv=None):
                            'checks.iteration-preview':checks.iteration_preview,'checks.iteration':checks.execute_iteration,
                            'checks.status':checks.status,'checks.refresh-preview':checks.refresh_preview,'checks.recovery-preview':checks.recovery_preview,
                            'checks.recover':checks.recover,'checks.review-preview':checks.review_preview})
+        operations.update({'skills.remove-preview':skill_removal.preview,'skills.remove':skill_removal.apply,
+                           'skills.remove-recovery-preview':skill_removal.recovery_preview,'skills.remove-recover':skill_removal.recover})
         operations.update({'skills.manage-preview':skill_management.preview,'skills.manage-apply':skill_management.apply,
                            'skills.manage-status':skill_management.status,'skills.source-resolve':skill_management.resolve,
                            'skills.fetch-preview':skill_fetch.preview,'skills.fetch':skill_fetch.apply,

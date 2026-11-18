@@ -25,7 +25,8 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: npm
           cache-dependency-path: packages/aikya-pi/package-lock.json
-      - run: python -m pip install .
+      - run: python -m pip install 'setuptools>=77' wheel build
+      - run: python -m pip install --no-build-isolation .
       - run: python -B -m unittest discover -s tests -p test_service_bridge.py -v
       - run: python -B -m unittest discover -s tests -p test_service_authorization.py -v
       - run: python -B -m unittest discover -s tests -p 'test_pi_*.py' -v

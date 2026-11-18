@@ -1,0 +1,149 @@
+name: Forge | Prepare or publish verified native release
+on:
+  workflow_dispatch:
+    inputs:
+      publish:
+        description: Publish reviewed stable release and update Pages (main only)
+        type: boolean
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: forge-release
+  cancel-in-progress: false
+jobs:
+  verify:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '26.13.0'
+      - run: |
+          python -m pip install 'setuptools>=77' wheel build
+          python -m pip install --no-build-isolation --no-deps .
+          python scripts/ci/release_contract.py check
+          python -B -m unittest discover -s tests -p 'test_*.py' -q
+          python scripts/ci/check_assets.py
+          python scripts/ci/smoke_profiles.py
+      - run: |
+          npm --prefix packages/aikya-pi ci --ignore-scripts --no-audit --no-fund
+          npm --prefix packages/aikya-pi run typecheck
+          npm --prefix packages/aikya-pi test
+        env:
+          AIKYA_TEST_PYTHON: python
+      - name: Require main and separately reviewed real-provider evidence before publication
+        if: inputs.publish
+        shell: bash
+        run: |
+          set -euo pipefail
+          test "$GITHUB_REF" = refs/heads/main
+          python scripts/ci/forge_release_gate.py --version "$(cat VERSION)" \
+            --report "$GITHUB_WORKSPACE/aikya/docs/validation/forge-provider-acceptance.json"
+  native:
+    needs: verify
+    uses: ./.github/workflows/forge-native.yml
+  assemble:
+    needs: [verify, native]
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install --no-deps .
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: forge-native-*
+          path: native-inputs
+      - name: Verify complete same-commit archives and assemble universal entries
+        shell: bash
+        run: |
+          set -euo pipefail
+          python scripts/ci/assemble_terminal_release.py --inputs native-inputs --output release \
+            --version "$(cat VERSION)" --commit "$GITHUB_SHA"
+          (cd release && sha256sum --check SHA256SUMS)
+          python scripts/ci/release_contract.py notes --output release/RELEASE_NOTES.md
+          python -c 'from pathlib import Path; p=Path("release/RELEASE_NOTES.md"); p.write_text(p.read_text().replace("# Aikya Harness v", "# Aikya Forge v", 1))'
+      - uses: actions/upload-artifact@v4
+        with:
+          name: forge-reviewed-release
+          path: release/
+          retention-days: 30
+          if-no-files-found: error
+  publish:
+    if: inputs.publish && github.ref == 'refs/heads/main' && github.repository == 'jlema0590/aikya-forge'
+    needs: [verify, native, assemble]
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: write
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install --no-deps .
+      - uses: actions/download-artifact@v4
+        with:
+          name: forge-reviewed-release
+          path: release
+      - name: Recheck evidence and create a new release without replacing existing assets
+        shell: bash
+        run: |
+          set -euo pipefail
+          VERSION="$(cat VERSION)"
+          python scripts/ci/forge_release_gate.py --version "$VERSION" \
+            --report "$GITHUB_WORKSPACE/aikya/docs/validation/forge-provider-acceptance.json"
+          (cd release && sha256sum --check SHA256SUMS)
+          python scripts/ci/github_tag.py --repository "$GITHUB_REPOSITORY" \
+            --tag "v$VERSION" --sha "$GITHUB_SHA"
+          mapfile -t ASSETS < <(python -c 'from pathlib import Path; from aikya.installation.bootstrap.download import parse_checksums; print("\n".join("release/"+n for n in parse_checksums(Path("release/SHA256SUMS").read_bytes())))')
+          gh release create "v$VERSION" "${ASSETS[@]}" release/SHA256SUMS \
+            --target "$GITHUB_SHA" --title "Aikya Forge v$VERSION" --notes-file release/RELEASE_NOTES.md --latest
+  pages:
+    needs: publish
+    runs-on: ubuntu-24.04
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deploy.outputs.page_url }}
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install --no-deps .
+      - name: Build Pages from exact published entry bytes
+        shell: bash
+        run: |
+          set -euo pipefail
+          gh release download "v$(cat VERSION)" --dir published \
+            --pattern install.sh --pattern install.ps1 --pattern terminal-bootstrap.json \
+            --pattern release.json --pattern SHA256SUMS
+          python scripts/ci/forge_install_pages.py --version "$(cat VERSION)" \
+            --assets published --output site --commit "$GITHUB_SHA"
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: site
+      - uses: actions/deploy-pages@v4
+        id: deploy
