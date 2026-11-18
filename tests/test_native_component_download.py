@@ -2,6 +2,7 @@
 import importlib
 import importlib.util
 import ssl
+import hashlib
 import unittest
 from unittest.mock import patch,call
 from urllib.error import HTTPError,URLError
@@ -32,6 +33,14 @@ class NativeComponentDownloadTests(unittest.TestCase):
         with patch.object(self.module.download,'https_bytes',side_effect=URLError('unavailable')) as transport,patch.object(self.module.time,'sleep') as delay:
             with self.assertRaises(URLError):self.fetch()
             self.assertEqual(transport.call_count,3);self.assertEqual(delay.call_args_list,[call(1),call(2)])
+
+    def test_builder_fetch_selection_reaches_the_bounded_transport(self):
+        from aikya.installation import managed_bundle
+        raw=b'Pinned component';identity=hashlib.sha256(raw).hexdigest()
+        recipe={name:dict(url=self.url,sha256=identity) for name in ('python','node')}
+        with patch.object(self.module.download,'https_bytes',return_value=raw) as transport:
+            self.assertEqual(managed_bundle._components(recipe,None,True),dict(python=raw,node=raw))
+            self.assertEqual(transport.call_count,2)
 
 
 if __name__=='__main__':unittest.main()

@@ -6,7 +6,7 @@ from aikya.review.contracts import encoded,parse
 from aikya.storage import write_new
 from . import build_sources,managed_archives,managed_inputs,managed_node,managed_payload,managed_distribution,managed_runtime,managed_versions,managed_wheel,managed_parsers
 from .bootstrap import download,state
-from .component_download import fetch
+from . import component_download
 
 
 def _components(recipe,assets,fetch):
@@ -17,7 +17,7 @@ def _components(recipe,assets,fetch):
             path=state.safe(Path(assets)/item['file'])
             raw=managed_runtime._read(path,256000000)
         elif fetch:
-            raw=fetch(item['url'],256000000,hosts=frozenset(download.HOSTS)|{'nodejs.org'})
+            raw=component_download.fetch(item['url'],256000000,hosts=frozenset(download.HOSTS)|{'nodejs.org'})
         else:raise ValueError('Provide verified component assets or explicitly select --fetch-components')
         if hashlib.sha256(raw).hexdigest()!=item['sha256']:raise ValueError('Official component integrity checksum mismatch')
         result[name]=raw
