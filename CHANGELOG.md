@@ -19,6 +19,8 @@ The inherited Harness v7/v8 changelog remains in
 - Add bounded anonymized usage exports, a separately reviewed provider-evidence gate,
   same-commit seven-target release assembly and exact published-entry Pages preparation.
   Publication remains explicit and disabled while external acceptance is pending.
+- Preserve Linux terminfo case distinctions without relaxing generic package guards;
+  bound immutable component-read retries and emit canonical SDD bytes on Windows.
 - Correct Windows fixture byte hashing and prepare all private-build tools in Pi CI.
 - Validate 1,270 Python tests (two declared environment skips), 93 Pi tests on each
   Node 22/26, 110 browser checks, fresh installed wheel and the macOS ARM native

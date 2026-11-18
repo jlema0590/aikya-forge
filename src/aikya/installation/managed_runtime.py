@@ -61,7 +61,8 @@ def _manifest(value,receipt):
             or not 1<=len(value['files'])<=50000):raise ValueError('Unknown managed terminal manifest')
     versions=value['versions']
     if not (3,10,0)<=_version(versions['python'])<(3,14,0) or _version(versions['node'])<(22,19,0) or versions['pi']!='1.5.0':raise ValueError('Unsupported managed component versions')
-    portable_paths(value['files'],max_files=50000,max_nodes=75000,max_length=512)
+    portable_paths(value['files'],max_files=50000,max_nodes=75000,max_length=512,
+                   case_sensitive=isinstance(value['platform'],str) and value['platform'].startswith('linux-'))
     total=0
     for name,entry in value['files'].items():
         if not isinstance(entry,dict) or set(entry)!={'sha256','size','executable'}:raise ValueError('Invalid managed file record')

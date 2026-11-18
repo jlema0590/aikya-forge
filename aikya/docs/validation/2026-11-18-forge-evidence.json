@@ -311,10 +311,11 @@
   "external": {
     "provider": "pending separate environment",
     "visual_terminal": "not established by headless SDK",
-    "windows_linux_native": "pending remote CI",
+    "windows_linux_native": "first PR run failed; corrected rerun pending",
     "legacy_user_migration": "excluded",
     "release_published": false,
     "pages_published": false,
     "quota_savings": null
-  }
+  },
+  "snapshot": "6de7008 runtime; current native CI corrections require new acceptance"
 }

@@ -85,7 +85,8 @@ def main(argv=None):
         raw=managed_releases.artifact(version,managed_runtime.host_platform(),offline_dir=args.offline_dir)
         with tempfile.TemporaryDirectory(prefix='aikya-native-') as temporary:
             stage=Path(temporary).resolve();archive=stage/'terminal.zip';write_new(archive,raw,mode=0o600)
-            managed_archives.extract(archive,stage/'payload',hashlib.sha256(raw).hexdigest(),'.')
+            managed_archives.extract(archive,stage/'payload',hashlib.sha256(raw).hexdigest(),'.',
+                                     case_sensitive=managed_runtime.host_platform().startswith('linux-'))
             return _execute(args,root,stage/'payload')
     except (ValueError,OSError,subprocess.SubprocessError) as error:
         print('ERROR: '+str(error),file=sys.stderr);return 2

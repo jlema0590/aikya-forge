@@ -11,13 +11,13 @@ class LibraryChangeTests(unittest.TestCase):
     def setUp(self):
         self.tmp=tempfile.TemporaryDirectory();self.addCleanup(self.tmp.cleanup);self.base=Path(self.tmp.name).resolve()
         self.source=self.base/'example-skill';self.source.mkdir();self.original='---\nname: example-skill\ndescription: Selected conventions\n---\nOriginal conventions.\n'
-        (self.source/'SKILL.md').write_text(self.original)
+        (self.source/'SKILL.md').write_text(self.original, encoding='utf8', newline='\n')
         self.app=self.base/'application';env=patch.dict('os.environ',{'AIKYA_INSTALL_ROOT':str(self.app)});env.start();self.addCleanup(env.stop)
         value=library.preview(str(self.source));self.first=library.apply(value['plan'],approved=True)['source_hash']
         self.assertTrue(callable(getattr(library,'change_preview',None)),'Reviewed library version changes are absent')
 
     def update(self):
-        (self.source/'SKILL.md').write_text(self.original+'Updated conventions.\n')
+        (self.source/'SKILL.md').write_text(self.original+'Updated conventions.\n', encoding='utf8', newline='\n')
         value=library.change_preview(action='update',source=str(self.source))
         return value,library.apply(value['plan'],approved=True)
 
@@ -37,15 +37,15 @@ class LibraryChangeTests(unittest.TestCase):
         with self.assertRaises(ValueError):library.change_preview(action='rollback',name='example-skill',source_hash='f'*64)
 
     def test_stale_preview_and_customized_old_version_never_promote(self):
-        (self.source/'SKILL.md').write_text(self.original+'New\n');value=library.change_preview(action='update',source=str(self.source))
-        (self.source/'SKILL.md').write_text(self.original+'Changed after review\n')
+        (self.source/'SKILL.md').write_text(self.original+'New\n', encoding='utf8', newline='\n');value=library.change_preview(action='update',source=str(self.source))
+        (self.source/'SKILL.md').write_text(self.original+'Changed after review\n', encoding='utf8', newline='\n')
         with self.assertRaises(ValueError):library.apply(value['plan'],approved=True)
-        target=self.app/'skills/packages'/self.first/'example-skill/files/SKILL.md';target.write_text('Customized original')
+        target=self.app/'skills/packages'/self.first/'example-skill/files/SKILL.md';target.write_text('Customized original', encoding='utf8', newline='\n')
         with self.assertRaises(ValueError):library.change_preview(action='update',source=str(self.source))
-        self.assertEqual(target.read_text(),'Customized original')
+        self.assertEqual(target.read_text(encoding='utf8'),'Customized original')
 
     def test_complete_copy_can_be_promoted_after_interruption_without_copying_again(self):
-        (self.source/'SKILL.md').write_text(self.original+'New\n');value=library.change_preview(action='update',source=str(self.source))
+        (self.source/'SKILL.md').write_text(self.original+'New\n', encoding='utf8', newline='\n');value=library.change_preview(action='update',source=str(self.source))
         def interrupt(target,*a,**kw):
             if target.name=='registry.json':raise OSError('Interrupted before registry promotion')
             return atomic_write(target,*a,**kw)
@@ -62,7 +62,7 @@ class LibraryChangeTests(unittest.TestCase):
 
     def test_partial_package_remains_pending_and_is_not_replayed(self):
         from aikya.services import skill_packages
-        (self.source/'SKILL.md').write_text(self.original+'New\n');value=library.change_preview(action='update',source=str(self.source))
+        (self.source/'SKILL.md').write_text(self.original+'New\n', encoding='utf8', newline='\n');value=library.change_preview(action='update',source=str(self.source))
         with patch.object(skill_packages,'manifest',side_effect=OSError('Interrupted partial capture')):
             with self.assertRaises(OSError):library.apply(value['plan'],approved=True)
         with self.assertRaises(ValueError):library.recovery_preview()

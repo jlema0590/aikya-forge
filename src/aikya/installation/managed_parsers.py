@@ -61,10 +61,11 @@ def load(target,source=None):
 
 
 def prepare(target,assets=None,*,fetch=False):
+    from . import component_download
     recipe=load(target);result={};total=0
     for name,item in recipe['wheels'].items():
         if assets is not None:raw=_read(state.safe(Path(assets)/item['file']),10000000)
-        elif fetch:raw=download.https_bytes(item['url'],10000000,hosts=frozenset({'files.pythonhosted.org'}))
+        elif fetch:raw=component_download.fetch(item['url'],10000000,hosts=frozenset({'files.pythonhosted.org'}))
         else:raise ValueError('Provide pinned parser wheel assets or explicitly fetch components')
         total+=len(raw)
         if total>70000000 or hashlib.sha256(raw).hexdigest()!=item['sha256']:raise ValueError('Binary parser integrity/bounds failed')

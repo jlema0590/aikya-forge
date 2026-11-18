@@ -26,7 +26,7 @@ def main():
     for wheel in (first/'parser-downloads').glob('*.whl'):shutil.copy2(wheel,first/'downloads'/wheel.name)
     build(source,second,next_version,assets=first/'downloads')
     output=work/'publish';output.mkdir()
-    evidence=run(first,work/'acceptance.json',second)
+    evidence=run(first,work/'acceptance.json',second,work=work)
     assert evidence['passed'] and evidence['next_version']==next_version
     for artifact in sorted({result[key] for key in ('archive','bootstrap_archive') if key in result}):
         shutil.copy2(artifact,output/Path(artifact).name)

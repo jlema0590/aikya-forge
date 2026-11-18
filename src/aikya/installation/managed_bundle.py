@@ -6,6 +6,7 @@ from aikya.review.contracts import encoded,parse
 from aikya.storage import write_new
 from . import build_sources,managed_archives,managed_inputs,managed_node,managed_payload,managed_distribution,managed_runtime,managed_versions,managed_wheel,managed_parsers
 from .bootstrap import download,state
+from .component_download import fetch
 
 
 def _components(recipe,assets,fetch):
@@ -16,7 +17,7 @@ def _components(recipe,assets,fetch):
             path=state.safe(Path(assets)/item['file'])
             raw=managed_runtime._read(path,256000000)
         elif fetch:
-            raw=download.https_bytes(item['url'],256000000,hosts=frozenset(download.HOSTS)|{'nodejs.org'})
+            raw=fetch(item['url'],256000000,hosts=frozenset(download.HOSTS)|{'nodejs.org'})
         else:raise ValueError('Provide verified component assets or explicitly select --fetch-components')
         if hashlib.sha256(raw).hexdigest()!=item['sha256']:raise ValueError('Official component integrity checksum mismatch')
         result[name]=raw
@@ -57,7 +58,7 @@ def build(source,destination,version,*,assets=None,target=None,fetch_components=
     destination.mkdir(parents=True);payload=destination/'payload';payload.mkdir();downloads=destination/'downloads';downloads.mkdir()
     for name,raw in components.items():
         path=downloads/recipe[name]['file'];write_new(path,raw,mode=0o600)
-        managed_archives.extract(path,payload/name,recipe[name]['sha256'],recipe[name]['prefix'])
+        managed_archives.extract(path,payload/name,recipe[name]['sha256'],recipe[name]['prefix'],case_sensitive=target.startswith('linux-'))
     core=managed_wheel.build(source,destination/'core',version)
     snapshot=managed_node.prepare(source/'packages/aikya-pi',payload/'runtime',version)
     python=payload/'python'/recipe['python']['executable'];node=payload/'node'/recipe['node']['executable']

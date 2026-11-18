@@ -68,7 +68,7 @@ def save(root,folder,data,files,*,verification_invalidated=False):
         temp=target.with_name(target.name+".aikya-tmp")
         require(not temp.exists() and not temp.is_symlink(),"Temporary file already exists: "+str(temp))
         try:
-            temp.write_text(body,encoding="utf-8")
+            temp.write_text(body,encoding="utf-8",newline="\n")
             temp.replace(target)
         finally:
             if temp.exists():temp.unlink()
