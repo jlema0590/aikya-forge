@@ -20,10 +20,12 @@ class TerminalPtyCapture(unittest.TestCase):
         return self.module.ConsoleCapture([sys.executable,'-I','-u','-c',code],self.root,dict(os.environ),**kwargs)
 
     def test_real_terminal_input_and_resize_are_observed(self):
-        code='import os,sys;assert sys.stdin.isatty() and sys.stdout.isatty();print("READY",flush=True);input();print("SIZE",os.get_terminal_size(0).columns,flush=True)'
+        code='import os,sys;assert sys.stdin.isatty() and sys.stdout.isatty();print("READY",flush=True);input();print("SIZE",os.get_terminal_size(1).columns,flush=True)'
         with self.child(code) as terminal:
-            terminal.expect('READY',timeout=3)
-            terminal.resize(100,32);terminal.send('size\r');terminal.expect('SIZE 100',timeout=3)
+            try:
+                terminal.expect('READY',timeout=3)
+                terminal.resize(100,32);terminal.send('size\r');terminal.expect('SIZE 100',timeout=3)
+            except (ValueError,TimeoutError):self.fail('Actual console fixture did not reach its expected state: '+self.module.plain(terminal.raw)[-2000:])
             self.assertEqual(terminal.finish(timeout=3),0)
         self.assertIsNone(terminal.pid)
 
