@@ -42,7 +42,7 @@ class TerminalReleaseAssemblyTests(unittest.TestCase):
         (folder/'SHA256SUMS').write_text(''.join(value+'  '+name+'\n' for name,value in hashes.items()))
         (folder/'result.json').write_text(json.dumps(dict(version=self.version,platform=target,sha256=hashes[name],manifest_hash=hashlib.sha256(manifest).hexdigest())))
         (folder/'acceptance.json').write_text(json.dumps(dict(passed=True,version=self.version,platform=target,
-            manifest_hash=hashlib.sha256(manifest).hexdigest(),next_version='0.2.1',provider_calls=0)))
+            manifest_hash=hashlib.sha256(manifest).hexdigest(),next_version='0.2.1',provider_calls=0,runtime_fingerprint='f'*64)))
         (folder/'build-origin.json').write_text(json.dumps(dict(version=self.version,platform=target,source_commit=self.commit)))
 
     def test_complete_native_set_builds_version_pinned_universal_entries(self):
@@ -72,6 +72,15 @@ class TerminalReleaseAssemblyTests(unittest.TestCase):
         existing=self.root/'existing';existing.mkdir();(existing/'custom').write_bytes(b'Keep')
         with self.assertRaises(ValueError):self.module.assemble(self.inputs,existing,self.version,self.commit)
         self.assertEqual((existing/'custom').read_bytes(),b'Keep')
+
+    def test_different_or_missing_source_fingerprints_cannot_create_release(self):
+        path=self.inputs/'forge-native-win32-arm64'/'acceptance.json'
+        original=json.loads(path.read_bytes())
+        for fingerprint in ('e'*64,None,'invalid'):
+            item=dict(original,runtime_fingerprint=fingerprint);path.write_text(json.dumps(item))
+            with self.subTest(fingerprint=fingerprint),self.assertRaises(ValueError):
+                self.module.assemble(self.inputs,self.root/'release',self.version,self.commit)
+            self.assertFalse((self.root/'release').exists())
 
 
 if __name__=='__main__':unittest.main()

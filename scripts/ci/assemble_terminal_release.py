@@ -74,7 +74,8 @@ def native_inputs(folder,version,target,commit):
     if result.get('sha256')!=hashes[names[0]] or zip_manifest(folder/names[0],version,target)!=result['manifest_hash']:
         raise ValueError('Native archive manifest differs from execution evidence')
     if len(names)>1:tar_manifest(folder/names[1],result['manifest_hash'])
-    return dict(archives={name:hashes[name] for name in names},manifest_hash=result['manifest_hash'],next_version=accepted['next_version'])
+    return dict(archives={name:hashes[name] for name in names},manifest_hash=result['manifest_hash'],next_version=accepted['next_version'],
+                runtime_fingerprint=hash_id(accepted.get('runtime_fingerprint')))
 
 
 def assemble(inputs,output,version,commit):
@@ -85,6 +86,8 @@ def assemble(inputs,output,version,commit):
     wanted={'forge-native-'+target for target in TARGETS}
     if set(p.name for p in inputs.iterdir())!=wanted:raise ValueError('A complete unique seven-target native set is required')
     checked={target:native_inputs(inputs/('forge-native-'+target),version,target,commit) for target in TARGETS}
+    if len({record['runtime_fingerprint'] for record in checked.values()})!=1:
+        raise ValueError('Native packaged source fingerprints differ across platforms')
     output.mkdir(parents=True);hashes={}
     for target,record in checked.items():
         for name,expected in record['archives'].items():
