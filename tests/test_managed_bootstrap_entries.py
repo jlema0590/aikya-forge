@@ -59,9 +59,15 @@ class NativeBootstrapEntryTests(unittest.TestCase):
         command=[shell,'-NoProfile','-NonInteractive','-File',str(output/'install.ps1'),'-OfflineDir',str(self.assets),'-NoPath']
         missing=subprocess.run(command,env=environment,capture_output=True,text=True,encoding='utf8',timeout=30)
         self.assertNotEqual(missing.returncode,0,missing.stderr)
-        self.assertIn('architecture',missing.stderr.lower());self.assertFalse((self.root/'app').exists())
-        (self.assets/name).write_bytes(b'Corrupt transport')
-        invalid=subprocess.run(command,env={**environment,'PROCESSOR_ARCHITECTURE':'AMD64'},capture_output=True,text=True,encoding='utf8',timeout=30)
+        self.assertIn('architecture',missing.stderr.lower())
+        self.assertFalse((self.root/'app').exists())
+        preview=subprocess.run(command+['-DryRun'],env=environment,capture_output=True,text=True,encoding='utf8',timeout=30)
+        self.assertEqual(preview.returncode,0,preview.stderr)
+        value=json.loads(preview.stdout);self.assertFalse(value['writes']);self.assertFalse(value['network'])
+        target=host_platform() if os.name=='nt' else 'win32-x64'
+        selected=self.assets/('aikya-terminal-8.0.0-alpha.0-'+target+'.zip');selected.write_bytes(b'Corrupt transport')
+        arch='ARM64' if target=='win32-arm64' else 'AMD64'
+        invalid=subprocess.run(command,env={**environment,'PROCESSOR_ARCHITECTURE':arch},capture_output=True,text=True,encoding='utf8',timeout=30)
         self.assertNotEqual(invalid.returncode,0,invalid.stderr)
         self.assertIn('checksum',invalid.stderr.lower());self.assertFalse((self.root/'app').exists())
 

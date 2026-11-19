@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { mkdtempSync,writeFileSync,readFileSync,existsSync,rmSync } from 'node:fs';
+import {removeProject} from './project-cleanup.ts';
+import { mkdtempSync,writeFileSync,readFileSync,existsSync } from 'node:fs';
 import { execFileSync } from 'node:child_process';
 import { join } from 'node:path';
 import { tmpdir } from 'node:os';
@@ -8,8 +9,12 @@ import { createReadOnlyRuntime,createReadOnlySession } from '../src/runtime.ts';
 
 async function until(check:()=>boolean) {
   const deadline=Date.now()+12000;
-  while(Date.now()<deadline) {if(check()) return;await new Promise(resolve=>setTimeout(resolve,75));}
-  assert.ok(check(),'Project memory observer did not reach its expected state');
+  while(Date.now()<deadline) {
+    try {if(check())return;}
+    catch(error) {if(!['ENOENT','EPERM','EACCES'].includes((error as NodeJS.ErrnoException).code??''))throw error;}
+    await new Promise(resolve=>setTimeout(resolve,75));
+  }
+  assert.fail('Project memory observer did not reach its expected state');
 }
 
 for(const mode of ['interactive-runtime','headless-session']) test('real Pi '+mode+' observes external edits and releases its watcher',async()=>{
@@ -27,7 +32,7 @@ for(const mode of ['interactive-runtime','headless-session']) test('real Pi '+mo
       await until(()=>readFileSync(html,'utf8').includes('ExternallyChangedPiEntity'));
     } finally {if('close' in runtime)await runtime.close();else await runtime.dispose();}
     await until(()=>existsSync(state)&&JSON.parse(readFileSync(state,'utf8')).state==='Stopped');
-  } finally {rmSync(root,{recursive:true,force:true});}
+  } finally {await removeProject(root);}
 });
 
 test('the session lease renews locally during idle time and stops renewal before releasing ownership',async()=>{
@@ -47,5 +52,5 @@ test('the session lease renews locally during idle time and stops renewal before
     assert.deepEqual(JSON.parse(readFileSync(leases,'utf8')),{});
     const state=join(root,'.harness/state/memory-view/status.json');
     await until(()=>existsSync(state)&&JSON.parse(readFileSync(state,'utf8')).state==='Stopped');
-  } finally {rmSync(root,{recursive:true,force:true});}
+  } finally {await removeProject(root);}
 });
