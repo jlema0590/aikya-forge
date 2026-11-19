@@ -1,9 +1,9 @@
-import { openSync, closeSync, readFileSync, fstatSync, constants, realpathSync, lstatSync,
+import { openSync, closeSync, readFileSync, fstatSync, constants,  lstatSync,
   writeFileSync, renameSync, rmSync } from "node:fs";
 import { join } from "node:path";
 import { randomUUID } from "node:crypto";
 import { colorToRgb, parseColor } from "@earendil-works/pi-tui";
-import { projectDirectory } from "./project.ts";
+import { projectDirectory, canonicalPath } from "./project.ts";
 
 const validName = (name: string) => /^[a-zA-Z0-9][a-zA-Z0-9_-]{0,63}$/.test(name);
 function bounded(path: string, max: number) {
@@ -44,7 +44,7 @@ export function previewTheme(name: string, path: string) {
 
 export class ThemePreferences {
   #project: string;
-  constructor(root: string) { this.#project = realpathSync(root); }
+  constructor(root: string) { this.#project = canonicalPath(root); }
   #path() {
     let path = this.#project;
     for (const part of [".aikya", "pi", "theme.json"]) {

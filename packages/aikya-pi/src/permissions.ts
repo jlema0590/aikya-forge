@@ -1,5 +1,5 @@
+import { canonicalPath } from "./project.ts";
 import { createHmac, randomBytes, randomUUID } from "node:crypto";
-import { realpathSync } from "node:fs";
 import { callBridge } from "./bridge.ts";
 
 export type WriteIntent = {path: string; content: string};
@@ -12,7 +12,7 @@ export class WriteAuthority {
   #session: string;
   #python?: string;
   constructor(root: string, session: string, python?: string) {
-    this.#project = realpathSync(root); this.#session = session; this.#python = python;
+    this.#project = canonicalPath(root); this.#session = session; this.#python = python;
   }
 
   #grant(checked:{intent_hash:string;workflow_revision:string|null},source:string|null,operation:'file.write'|'file.batch') {

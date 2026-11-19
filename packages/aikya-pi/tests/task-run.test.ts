@@ -63,7 +63,8 @@ test('the real SDK completes selected ODD and SDD tasks with confirmed source ch
           if(['recorded','stopped'].includes(String(status.status)))break;
           await new Promise(resolve=>setTimeout(resolve,50));
         }
-        assert.deepEqual(errors,[]);assert.equal(status.status,'recorded',JSON.stringify(status));
+        assert.deepEqual(errors,[]);assert.equal(status.status,'recorded',JSON.stringify({status,
+          evidence:runtime.session.messages.filter(m=>m.role==='custom').slice(-8).map(m=>({type:m.customType,content:String(m.content).slice(0,1500)}))}));
         assert.equal(status.delivery_authorized,false);assert.equal(authorCalls,2);assert.equal(reviewCalls,1);
         assert.equal(readFileSync(join(root,'value.py'),'utf8'),'VALUE=1\n');
         const state=await hostOperation(root,'task.status',{session_id:manager.getSessionId(),run_id:status.run_id},python);

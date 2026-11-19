@@ -1,5 +1,5 @@
+import { canonicalPath } from "./project.ts";
 import { execFile } from "node:child_process";
-import { realpathSync } from "node:fs";
 import { randomUUID } from "node:crypto";
 
 type Operation = "status" | "capabilities" | "context" | "write-preview" | "write" | "batch-preview" | "batch" | "memory-status" | "memory-search";
@@ -20,7 +20,7 @@ export async function callBridge(
     arguments?: Record<string, unknown>; hostKey?: string } = {},
 ): Promise<unknown> {
   if (!["status", "capabilities", "context", "write-preview", "write", "batch-preview", "batch", "memory-status", "memory-search"].includes(operation)) throw new Error("Unknown operation");
-  const project = realpathSync(root);
+  const project = canonicalPath(root);
   const id = randomUUID();
   const raw = await new Promise<string>((resolve, reject) => {
     const child = execFile(options.python ?? "python3", ["-I", "-B", "-m", "aikya.services.bridge", "--root", project],

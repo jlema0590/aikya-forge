@@ -1,13 +1,13 @@
 import type {ReviewRuntimeFactory} from "./task-run-policy.ts";
 import { hostOperation } from "./host.ts";
 import { approvedSkills,verifyCurrentSkillMessages } from "./selected-skills.ts";
-import { existsSync, realpathSync } from "node:fs";
+import { existsSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { createAgentSessionRuntime, createAgentSessionServices, createAgentSessionFromServices,
   ModelRuntime, SettingsManager, type SessionManager, type SessionStartEvent } from "@earendil-works/pi-coding-agent";
 import { aikyaExtension } from "./extension.ts";
 import { projectSession } from "./session.ts";
-import { projectDirectory, ownedSessionFile } from "./project.ts";
+import { projectDirectory, ownedSessionFile, canonicalPath } from "./project.ts";
 import { closeSession } from "./memory-lifecycle.ts";
 import { claimSessionRole } from "./session-roles.ts";
 import { lockInference } from "./inference.ts";
@@ -17,11 +17,11 @@ import { installBudgetedInference } from "./budgeted-inference.ts";
 type Options = {python?: string; resume?: boolean; provider?: string; model?: string; modelRuntime?: ModelRuntime;
   role?:"author"|"reviewer";reviewCandidate?:string;reviewChange?:string;sessionManager?:SessionManager;onCall?:(id:string)=>void;reviewRuntimeFactory?:ReviewRuntimeFactory};
 async function createLocal(root: string, sessionManager: SessionManager, options: Options, sessionStartEvent?: SessionStartEvent) {
-  const cwd = realpathSync(root);
+  const cwd = canonicalPath(root);
   const agentDir = projectDirectory(cwd, [".aikya", "pi", "agent"]);
   const sessions = projectDirectory(cwd, [".aikya", "pi", "sessions"]);
   const file = sessionManager.getSessionFile();
-  if (realpathSync(sessionManager.getCwd()) !== cwd || !file || dirname(file) !== sessions
+  if (canonicalPath(sessionManager.getCwd()) !== cwd || !file || dirname(file) !== sessions
       || (existsSync(file) && !ownedSessionFile(cwd, file))) throw new Error("Foreign project session refused");
   const settingsManager = SettingsManager.inMemory({quietStartup:true,retry: {enabled: false}, compaction: {enabled: false}, cacheWarming: "off"});
   const controlled = Boolean(options.provider && options.model);
@@ -74,7 +74,7 @@ async function createLocal(root: string, sessionManager: SessionManager, options
 
 export async function createReadOnlySession(root: string, options: Options = {}) {
   if (options.provider || options.model || options.modelRuntime) throw new Error("Read-only session does not accept inference configuration");
-  const cwd = realpathSync(root);
+  const cwd = canonicalPath(root);
   const result = await createLocal(cwd, options.sessionManager ?? projectSession(cwd, options.resume ?? false,options.role??"author"), options);
   try {
     await result.session.bindExtensions({});
@@ -84,7 +84,7 @@ export async function createReadOnlySession(root: string, options: Options = {})
 }
 
 export async function createControlledSession(root: string, options: Options & {provider: string; model: string}) {
-  const cwd = realpathSync(root);
+  const cwd = canonicalPath(root);
   const result = await createLocal(cwd, options.sessionManager ?? projectSession(cwd, options.resume ?? false,options.role??"author"), options);
   try { await result.session.bindExtensions({}); return {...result,close:()=>closeSession(result.session)}; }
   catch (error) { await closeSession(result.session); throw error; }
@@ -100,9 +100,9 @@ export async function createControlledRuntime(root: string, options: Options & {
 }
 
 async function createRuntime(root: string, options: Options) {
-  const cwd = realpathSync(root);
+  const cwd = canonicalPath(root);
   return createAgentSessionRuntime(async (input) => {
-    if (realpathSync(input.cwd) !== cwd) throw new Error("Cross-project runtime replacement refused");
+    if (canonicalPath(input.cwd) !== cwd) throw new Error("Cross-project runtime replacement refused");
     return createLocal(cwd, input.sessionManager, options, input.sessionStartEvent);
   }, {cwd, agentDir: projectDirectory(cwd, [".aikya", "pi", "agent"]),
     sessionManager: projectSession(cwd, options.resume ?? false,options.role??"author")});

@@ -1,9 +1,9 @@
-import { lstatSync, readFileSync, writeFileSync, renameSync, rmSync, realpathSync } from "node:fs";
+import { lstatSync, readFileSync, writeFileSync, renameSync, rmSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { randomUUID } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import { devNull } from "node:os";
-import { projectDirectory } from "./project.ts";
+import { projectDirectory, canonicalPath } from "./project.ts";
 
 function inspect(path: string) {
   try { return lstatSync(path); }
@@ -33,7 +33,7 @@ function repositoryMarker(project: string): boolean {
 }
 
 export function prepareTerminalState(root: string) {
-  const project = realpathSync(root);
+  const project = canonicalPath(root);
   const repository = repositoryMarker(project) ? git(project, ["rev-parse", "--is-inside-work-tree"]) : undefined;
   const inGit = repository?.status === 0 && repository.stdout.trim() === "true";
   if (repository && !inGit) throw new Error("Cannot inspect Git repository");
