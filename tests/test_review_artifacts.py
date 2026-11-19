@@ -83,6 +83,18 @@ class ArtifactChecks(unittest.TestCase):
             with patch.dict(os.environ,dict(LOCALAPPDATA=str(self.root/'Different'))):
                 self.assertNotEqual(executor.check_binding(self.root,definition),before)
 
+    def test_windows_machine_sdk_directories_are_preserved_and_bound(self):
+        from aikya.review.definitions import selected_environment
+        values={key:str(self.root/key) for key in ('PROGRAMFILES','PROGRAMFILES(X86)','PROGRAMDATA','ALLUSERSPROFILE')}
+        definition=self.definition('pass')
+        with patch.dict(os.environ,values):
+            selected=selected_environment()
+            for key,value in values.items():self.assertEqual(selected.get(key),value,key)
+            before=executor.check_binding(self.root,definition)
+            for key in values:
+                with self.subTest(key=key),patch.dict(os.environ,{key:str(self.root/'Different')}):
+                    self.assertNotEqual(executor.check_binding(self.root,definition),before)
+
     def test_placeholder_suffix_cannot_escape_the_private_directory(self):
         definition=self.definition('pass',['{artifacts}/../../outside'])
         with self.assertRaisesRegex(ValueError,'artifacts'):executor.check_binding(self.root,definition)
