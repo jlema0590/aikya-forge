@@ -57,6 +57,12 @@ def run(bundle,output,next_bundle=None,work=None):
         launcher=app/'bin'/('aikya.exe' if os.name=='nt' else 'aikya')
         launch=json.loads(execute('installed-launcher',[launcher,'--target',project,'--print-command']))
         assert launch['command'][0]==node and launch['command'][-1]==python
+        import importlib.util
+        spec=importlib.util.spec_from_file_location('forge_installed_pty',SCRIPTS/'terminal_pty_acceptance.py')
+        pty=importlib.util.module_from_spec(spec);spec.loader.exec_module(pty)
+        started=time.monotonic();interactive=pty.run(base/'interactive',application=app)
+        steps.append(dict(name='installed-interactive',exit_code=interactive['exit_code'],seconds=time.monotonic()-started))
+        assert interactive['status']=='passed' and interactive['launcher_supplies_tools'] and interactive['file_completion']
         selection=[python,'-I','-B','-m','aikya','skills','uninstall','--target',project,'--scope','project','--name','acceptance-skill']
         assert json.loads(execute('skill-withdraw-preview',selection))['status']=='preview'
         removed=json.loads(execute('skill-withdraw',selection+['--yes']))
@@ -93,7 +99,7 @@ def run(bundle,output,next_bundle=None,work=None):
         evidence=dict(schema=1,version=result['version'],platform=result['platform'],manifest_hash=result['manifest_hash'],
             passed=True,steps=steps,provider_calls=session['provider_calls'],session=session,coverage=data['coverage'],profiles=data['profiles'],
             command_count=len(data['commands']),next_version=following['version'] if next_bundle is not None else None,
-            runtime_fingerprint=exported['runtime_fingerprint'],
+            runtime_fingerprint=exported['runtime_fingerprint'],interactive=interactive,
             work=str(base),legacy_migration='excluded by product scope',windows_uninstall='verified external installer, not a running locked executable')
         output.parent.mkdir(parents=True,exist_ok=True);output.write_text(json.dumps(evidence,indent=2)+'\n');return evidence
     except Exception:

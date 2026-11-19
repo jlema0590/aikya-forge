@@ -23,7 +23,7 @@ class ConsoleCapture:
     def __init__(self,command,cwd,environment,*,max_bytes=2000000):
         if not 256<=max_bytes<=4000000:raise ValueError('Invalid PTY byte bound')
         self.command=command;self.cwd=cwd;self.environment=environment;self.max_bytes=max_bytes
-        self.raw=bytearray();self.pid=None;self.fd=None;self.exit_code=None;self.columns=120;self.rows=38;self.windows=None
+        self.raw=bytearray();self.pid=None;self.group=None;self.fd=None;self.exit_code=None;self.columns=120;self.rows=38;self.windows=None
 
     def __enter__(self):
         self.started=time.monotonic()
@@ -38,7 +38,7 @@ class ConsoleCapture:
         if pid==0:
             try:os.chdir(self.cwd);os.execvpe(self.command[0],self.command,self.environment)
             except OSError:os.write(2,b'PTY process unavailable\n');os._exit(127)
-        self.pid=pid;self.fd=fd;self.resize(self.columns,self.rows);return self
+        self.pid=pid;self.group=pid;self.fd=fd;self.resize(self.columns,self.rows);return self
 
     def _reap(self):
         if self.pid is None:return
@@ -48,8 +48,10 @@ class ConsoleCapture:
                 self.exit_code=code;self.pid=None
                 while chunk:=self.windows.read(0):self._append(chunk)
             return
-        pid,status=os.waitpid(self.pid,os.WNOHANG)
-        if pid:self.exit_code=os.waitstatus_to_exitcode(status);self.pid=None
+        # Keep the leader waitable until group cleanup so its ID cannot be reused.
+        observed=os.waitid(os.P_PID,self.pid,os.WEXITED|os.WNOHANG|os.WNOWAIT)
+        if observed and observed.si_pid:
+            self.exit_code=observed.si_status if observed.si_code==os.CLD_EXITED else -observed.si_status;self.pid=None
 
     def pump(self,wait=.05):
         if time.monotonic()-self.started>120:raise TimeoutError('Overall PTY deadline exceeded')
@@ -104,21 +106,27 @@ class ConsoleCapture:
             self.pump()
         return self.exit_code
 
+    def _signal_group(self,value):
+        try:os.killpg(self.group,value)
+        except ProcessLookupError:pass
+        except PermissionError:
+            # Darwin can report EPERM for an anchored group containing only its
+            # exited leader. A live owned leader still requires a hard failure.
+            self._reap()
+            if self.pid is not None:raise
+
     def __exit__(self,*ignored):
         if self.windows:
             self.windows.close();self.pid=None;return
         try:
             self._reap()
-            if self.pid is not None:
-                try:os.killpg(self.pid,signal.SIGTERM)
-                except (ProcessLookupError,PermissionError):
-                    self._reap()
-                    if self.pid is not None:raise
+            if self.group is not None:
+                self._signal_group(signal.SIGTERM)
                 deadline=time.monotonic()+3
                 while self.pid is not None and time.monotonic()<deadline:self._reap();time.sleep(.02)
-                if self.pid is not None:
-                    os.killpg(self.pid,signal.SIGKILL);_,status=os.waitpid(self.pid,0)
-                    self.exit_code=os.waitstatus_to_exitcode(status);self.pid=None
+                self._signal_group(signal.SIGKILL)
+                _,status=os.waitpid(self.group,0)
+                self.exit_code=os.waitstatus_to_exitcode(status);self.pid=None;self.group=None
         finally:
             if self.fd is not None:os.close(self.fd);self.fd=None
 
@@ -140,8 +148,8 @@ def run(output,*,application=None,source=None,assets=None,fetch=False):
         for key in ('APPDATA','LOCALAPPDATA'):Path(env[key]).mkdir(parents=True)
     if application:
         runtime=managed_runtime.resolve(application);python=runtime['python'];version=runtime['version']
-        env=managed_tools.environment(runtime,env);env['AIKYA_INSTALL_ROOT']=str(Path(application).resolve())
-        command=[python,'-I','-B','-m','aikya','terminal','--target',str(project)]
+        env['PATH']='';env['AIKYA_INSTALL_ROOT']=str(Path(application).resolve())
+        command=[str(Path(application)/'bin'/('aikya.exe' if os.name=='nt' else 'aikya')),'--target',str(project)]
     else:
         import sys
         source=Path(source).resolve(strict=True);node=shutil.which('node')
@@ -154,12 +162,18 @@ def run(output,*,application=None,source=None,assets=None,fetch=False):
         command=[python,'-I','-B','-m','aikya','terminal','--runtime-dir',str(source/'packages/aikya-pi'),'--target',str(project)]
     terminal=None;result=dict(status='failed',mode='managed' if application else 'source',version=version,platform=managed_runtime.host_platform(),
         provider_calls=0,visual_acceptance=False,ui=('Actual Windows ConPTY' if os.name=='nt' else 'Actual POSIX PTY')+'; no human visual/device or provider acceptance')
+    fixture=project/'verified/nested/SearchFixture.java';fixture.parent.mkdir(parents=True);write_new(fixture,'class SearchFixture {}\n')
+    if os.name=='nt':
+        for name in ('fd.exe','rg.exe'):write_new(project/name,b'Inert invalid executable, never runnable')
     try:
         with ConsoleCapture(command,project,env) as terminal:
             terminal.expect('AIKYA v'+version,timeout=45)
             offset=terminal.send('/aikya-tokens\r');terminal.expect('Provider quota: unavailable',timeout=30,after=offset)
             assert 'not found. Offline mode' not in plain(terminal.raw)
             assert 'Downloading...' not in plain(terminal.raw)
+            offset=terminal.send('@SearchFix');terminal.expect('verified/nested/SearchFixture.java',timeout=20,after=offset)
+            terminal.send('\x1b');terminal.pump(.2)
+            terminal.send('\x15');terminal.pump(.2)
             write_new(output/'startup.ansi',bytes(terminal.raw))
             offset=terminal.send('/aikya-theme light\r');terminal.expect('Apply this theme?',timeout=20,after=offset)
             terminal.send('\x1b[A');terminal.send('\r');terminal.until(lambda:_theme(project)=='light',timeout=20)
@@ -176,7 +190,8 @@ def run(output,*,application=None,source=None,assets=None,fetch=False):
             if denied.finish()!=2:raise ValueError('Project cache did not block native startup')
         assert marker.read_bytes()==b'Unreviewed data; never executable'
         result.update(status='passed',theme='light',resize=dict(columns=100,rows=32),cache_refused=True,
-            usage_status=usage['status'],bytes=len(terminal.raw),exit_code=terminal.exit_code)
+            usage_status=usage['status'],bytes=len(terminal.raw),exit_code=terminal.exit_code,file_completion=True,
+            launcher_supplies_tools=bool(application))
         return result
     finally:
         if terminal is not None:write_new(output/'terminal.log',bytes(terminal.raw))

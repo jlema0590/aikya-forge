@@ -82,7 +82,10 @@ def environment(runtime,base=None):
     for name in PINS:
         folder=state.safe(payload/'tools'/name);binary=state.safe(folder/(name+('.exe' if os.name=='nt' else '')))
         if not binary.is_file():raise ValueError('Managed terminal tools are absent; install a current Forge payload')
+        if os.pathsep in str(folder):raise ValueError('Managed installation path contains a PATH separator; choose a different installation root')
         directories.append(str(folder))
     result=dict(os.environ if base is None else base);previous=result.get('PATH','')
     result['PATH']=os.pathsep.join(directories+([previous] if previous else []))
+    # Windows Node consults its own environment before resolving bare executables.
+    result['NoDefaultCurrentDirectoryInExePath']='1'
     return result

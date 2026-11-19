@@ -85,8 +85,16 @@ class ManagedToolInputs(unittest.TestCase):
         before={'PATH':'','SENTINEL':'retained'};result=self.tools.environment({'runtime':str(runtime)},before)
         self.assertEqual(result['PATH'].split(os.pathsep),[str(payload/'tools/fd'),str(payload/'tools/rg')])
         self.assertEqual(before,{'PATH':'','SENTINEL':'retained'});self.assertEqual(result['SENTINEL'],'retained')
+        self.assertEqual(result.get('NoDefaultCurrentDirectoryInExePath'),'1')
         (payload/'tools/fd'/('fd'+ext)).unlink()
         with self.assertRaises(ValueError):self.tools.environment({'runtime':str(runtime)},before)
+
+    def test_path_delimiters_cannot_turn_verified_directories_into_other_search_entries(self):
+        payload=self.root/('unsafe'+os.pathsep+'root');runtime=payload/'runtime';runtime.mkdir(parents=True)
+        for name in ('fd','rg'):
+            p=payload/'tools'/name/(name+('.exe' if os.name=='nt' else ''));p.parent.mkdir(parents=True);p.write_bytes(b'Preserved inert tool')
+        with self.assertRaisesRegex(ValueError,'separator'):self.tools.environment({'runtime':str(runtime)},{'PATH':''})
+        self.assertEqual(p.read_bytes(),b'Preserved inert tool')
 
     def test_corrupt_tool_input_stops_builder_before_output_creation(self):
         from aikya.installation import managed_bundle,managed_runtime

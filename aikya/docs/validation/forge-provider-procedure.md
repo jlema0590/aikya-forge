@@ -13,6 +13,10 @@ Changing packaged source invalidates the observations. Keep provider/model/effor
 project/task, tools, expected output and cache conditions fixed for each controlled
 comparison. State warm/cold cache conditions and record at least three independent
 trials. Use an isolated disposable project and explicit finite call/token/time caps.
+Every counted trial requires a separate pristine copy of the same fixture project,
+with its own new project-local ledger and session. Export once per copy. Different
+export filenames from a reused project contain cumulative totals and do not establish
+independent trials; review independence explicitly before accepting the dossier.
 Do not reset budget or silently enable automatic compaction while resuming.
 
 ## Required scenarios

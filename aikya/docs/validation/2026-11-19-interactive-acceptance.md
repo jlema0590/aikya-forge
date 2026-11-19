@@ -1,6 +1,13 @@
 # Forge 0.2.0 interactive acceptance follow-up
 
 Status: implementation and native acceptance in progress, November 19, 2026.
+The 24fb92b frozen local regression ran 1,306 Python tests without failures/errors;
+its one optional-dependency fallback skip passed separately against the freshly
+installed dependency-free wheel. That wheel passed all 11 isolated acceptance cases.
+Independent review then required additional Windows search, ambiguous-path,
+dual-host-failure, owned-process-group and installed-terminal coverage. Those
+corrections change packaged source and require a fresh full/native run. The old
+50bf7294 fingerprint and its prepared packet are superseded, not current evidence.
 The [active Spanish plan](../plan/2026-11-19-forge-interactive-release.es.md)
 implements the six remaining items requested by the user. Historical 40d7d8e
 native assembly and 1,288-test evidence remains in the

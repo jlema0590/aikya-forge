@@ -2,7 +2,7 @@ import { parseArgs } from "node:util";
 import { callBridge } from "./bridge.ts";
 import { prepareTerminalState } from "./terminal-state.ts";
 import {runtimeVersion} from './identity.ts';
-import {refuseProjectToolCache} from './startup.ts';
+import {prepareToolSearch} from './startup.ts';
 
 async function main() {
   const {values} = parseArgs({options: {target: {type: "string"}, python: {type: "string"},
@@ -15,7 +15,7 @@ async function main() {
   if (!process.stdin.isTTY || !process.stdout.isTTY) throw new Error("An interactive terminal is required");
   if (Boolean(values.provider) !== Boolean(values.model)) throw new Error("Select provider and model together");
   const root = values.target ?? process.cwd();
-  refuseProjectToolCache(root);
+  prepareToolSearch(root);
   await callBridge(root, "capabilities", {python: values.python});
   const {project, agentDir} = prepareTerminalState(root);
   // Configure Pi before importing it: its native UI must not use personal global state.

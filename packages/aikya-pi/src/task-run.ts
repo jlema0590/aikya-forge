@@ -13,7 +13,13 @@ export function registerTaskRun(pi:ExtensionAPI,root:string,python:string|undefi
   async function stop(ctx:ExtensionContext,reason='needs_host_action',abortAgent=true,error?:unknown) {
     const run=current;if(!run)return;
     current=undefined;clearTimeout(run.timer);run.abort.abort();control.blocked=true;if(abortAgent)ctx.abort();
-    const result={...await hostOperation(root,'task.stop',{run_id:run.state.run_id,session_id:run.session,reason},python),...hostFailure(error)};
+    let result:Input;
+    try {result={...await hostOperation(root,'task.stop',{run_id:run.state.run_id,session_id:run.session,reason},python),...hostFailure(error)};}
+    catch(stopError) {
+      result={status:'needs_host_action',run_id:run.state.run_id,action:'run-status',stop_confirmed:false,
+        delivery_authorized:false,...hostFailure(error)};
+      const failure=hostFailure(stopError);if(failure.host_failure)result.stop_failure=failure.host_failure;
+    }
     if(abortAgent)publish(result);return result;
   }
   async function advance(ctx:ExtensionContext,value:string) {

@@ -21,6 +21,12 @@ startup remains offline and rejects existing project tool caches without changin
 or executing them. Both launcher and SDK interactive-runtime entry enforce this.
 Window title/help use the installed Forge package version.
 
+Independent review identified Windows' implicit current-directory executable
+lookup before PATH and delimiter-containing installation roots. Native entry now
+disables the former in the parent Node environment; preflight refuses the latter
+before activation. A persistent refusal of task.stop cannot hide the original
+diagnostic or claim the host confirmed a stop.
+
 The host protocol now returns only a static failure category and bounded first-party
 module/function stage. Node distinguishes timeout/cancellation/unavailable/refusal;
 task failure messages retain those safe fields without automatic replay. Exception

@@ -98,6 +98,9 @@ class WindowsPty:
         self.attributes_ready=True
         self._check(self.api.UpdateProcThreadAttribute(self.attributes,0,0x00020016,self.console,C.sizeof(HANDLE),None,None))
         startup=ExtendedStartup();startup.startup.cb=C.sizeof(ExtendedStartup)
+        # Explicit NULL handles prevent the redirected CI streams being duplicated
+        # into the child instead of its pseudoconsole (microsoft/terminal #15814).
+        startup.startup.flags=0x100
         startup.attributes=C.cast(self.attributes,C.c_void_p)
         job=self.api.CreateJobObjectW(None,None);self._check(job);self.handles['job']=job
         limits=ExtendedJobLimits();limits.basic.flags=0x2000

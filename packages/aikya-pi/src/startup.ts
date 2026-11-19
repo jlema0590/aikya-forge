@@ -2,6 +2,12 @@ import {lstatSync} from 'node:fs';
 import {join} from 'node:path';
 import {canonicalPath} from './project.ts';
 
+/** libuv otherwise checks cwd before PATH on Windows, including redirected CI. */
+export function prepareToolSearch(root:string) {
+ refuseProjectToolCache(root);
+ process.env.NoDefaultCurrentDirectoryInExePath='1';
+}
+
 /** Pi prefers this cache over PATH; repository files never authorize executables. */
 export function refuseProjectToolCache(root:string) {
  let current=canonicalPath(root);

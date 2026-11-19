@@ -10,6 +10,33 @@ import {createReadOnlySession} from '../src/runtime.ts';
 const controller=await import('../src/task-run.ts').catch(()=>null);
 const python=process.env.AIKYA_TEST_PYTHON??'python3';
 
+test('a persistent checkpoint refusal preserves the initiating diagnostic when stopping also fails',async()=>{
+ const {readFileSync,writeFileSync}=await import('node:fs');
+ const {approvingUI}=await import('./task-run-fixture.ts');
+ const root=mkdtempSync(join(tmpdir(),'aikya-stop-failure-'));const messages:Record<string,unknown>[]=[];
+ try {
+  execFileSync(python,['-B','-c','import sys;from pathlib import Path;sys.path.insert(0,sys.argv[1]);from pi_task_run_fixture import prepare;prepare(Path(sys.argv[2]),"odd","author")',
+   fileURLToPath(new URL('../../../tests',import.meta.url)),root],{encoding:'utf8'});
+  const control={blocked:false};let aborted=0;let changed:string|undefined;
+  const ui=approvingUI();ui.setStatus=(_key,text)=>{
+   if(text?.startsWith('explore')&&!changed) {
+    changed=join(root,'.aikya/pi/task-runs',String(messages[0].run_id)+'.json');writeFileSync(changed,'Preserved corrupt checkpoint');
+   }
+  };
+  const pi={on:()=>{},sendMessage:(m:{content:string})=>messages.push(JSON.parse(m.content)),
+   sendUserMessage:()=>{throw new Error('Inference must not follow a refused checkpoint');}};
+  const handle=controller!.registerTaskRun(pi as never,root,python,true,{value:'explore'},control);
+  const ctx={hasUI:true,ui,model:{provider:'fixture',id:'fixture'},sessionManager:{getSessionId:()=> 'author'},abort:()=>{aborted++;}};
+  await handle({action:'run',change_id:'task-proof',security:{checks:[],not_applicable:'No security behavior changes in this bounded local constant.'}},ctx as never);
+  const last=messages.at(-1)!;
+  assert.equal(last.status,'needs_host_action');assert.equal(last.stop_confirmed,false);assert.equal(last.delivery_authorized,false);
+  assert.equal((last.host_failure as Record<string,unknown>).operation,'task.phase');
+  assert.equal((last.stop_failure as Record<string,unknown>).operation,'task.stop');
+  assert.equal(control.blocked,true);assert.equal(aborted,1);
+  assert.equal(readFileSync(changed!,'utf8'),'Preserved corrupt checkpoint');assert.ok(!JSON.stringify(last).includes(root));
+ }finally {await removeProject(root);}
+});
+
 test('native ODD and SDD task-run actions are discoverable and cannot infer or start without interactive approval',async()=>{
   assert.ok(controller,'Native bounded task cycle is absent');
   for(const method of ['odd','sdd']) {

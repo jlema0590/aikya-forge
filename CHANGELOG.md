@@ -12,6 +12,10 @@ The inherited Harness v7/v8 changelog remains in
   and show the current Forge version in the terminal title and help.
 - Add safe bounded host failure categories/stages and task recording diagnostics
   without exposing exception contents or replaying uncertain effects.
+- Disable implicit Windows project executable lookup, reject ambiguous PATH roots,
+  and retain original diagnostics when a second stop operation fails. Exercise the
+  installed launcher with an empty PATH, real recursive file completion and native
+  console input/resize; bound process-tree cleanup and independent external trials.
 
 - Isolate reviewed .NET 8+ check artifacts per execution without hiding bin/obj source.
 - Add confirmed native project/global skill withdrawal, retained exact backups,
