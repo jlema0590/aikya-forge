@@ -38,14 +38,19 @@ def command_for(root, runtime_dir, node=None, resume=False, provider=None, model
 
 
 def managed_command(root,resume=False,provider=None,model=None):
+    return _managed_launch(root,resume,provider,model)[0]
+
+
+def _managed_launch(root,resume=False,provider=None,model=None):
     _selection(provider,model)
     root=Path(root).resolve(strict=True)
     if not root.is_dir():raise ValueError('Choose an existing project directory')
     from aikya.installation.managed_runtime import resolve
+    from aikya.installation.managed_tools import environment
     runtime=resolve()
     command=[runtime['node'],'--experimental-strip-types',str(Path(runtime['runtime'])/'src/launcher.ts'),
              '--target',str(root),'--python',runtime['python']]
-    return command+(['--resume'] if resume else [])+(['--provider',provider,'--model',model] if provider else [])
+    return command+(['--resume'] if resume else [])+(['--provider',provider,'--model',model] if provider else []),environment(runtime)
 
 
 def main(argv=None):
@@ -60,12 +65,13 @@ def main(argv=None):
     args = parser.parse_args(argv)
     try:
         selection=dict(resume=args.resume,provider=args.provider,model=args.model)
-        command=command_for(args.target,args.runtime_dir,**selection) if args.runtime_dir is not None else managed_command(args.target,**selection)
+        if args.runtime_dir is not None:command,environment=command_for(args.target,args.runtime_dir,**selection),None
+        else:command,environment=_managed_launch(args.target,**selection)
         if args.print_command:
             print(json.dumps({'command': command})); return 0
         if not sys.stdin.isatty() or not sys.stdout.isatty():
             raise ValueError('An interactive terminal is required')
-        child = subprocess.Popen(command, cwd=args.target.resolve())
+        child = subprocess.Popen(command, cwd=args.target.resolve(),env=environment)
         previous = signal.getsignal(signal.SIGINT)
         try:
             # The foreground Node child receives Ctrl+C and restores its own TUI.

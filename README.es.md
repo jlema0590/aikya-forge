@@ -9,7 +9,7 @@ Incorpora los comandos, las plantillas y los controles de Aikya en un repositori
 con versionado independiente. Su versión de desarrollo actual es **0.2.0**.
 
 La aceptación de la instalación y la terminal se registra por plataforma en el
-[informe de validación](aikya/docs/validation/2026-11-18-forge-completion.md). Las pruebas
+[informe de validación](aikya/docs/validation/2026-11-19-interactive-acceptance.md). Las pruebas
 con proveedores reales constituyen una condición separada de publicación. El código
 disponible no implica una release ni un instalador corto publicado.
 
@@ -77,6 +77,8 @@ consumo no inventa porcentajes de la cuota de suscripción del proveedor.
 ## Distribución nativa administrada
 
 El constructor para desarrolladores reúne Python, Node y Pi fijados y verificados.
+Incluye fd/ripgrep revisados para autocompletado y búsqueda offline; al arrancar
+no descarga herramientas ni ejecuta binarios de la caché del proyecto.
 Genera instaladores shell/PowerShell vinculados a sumas de comprobación y permite
 instalación/actualización explícitas, rollback conservado y desinstalación conservadora.
 

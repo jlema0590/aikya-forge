@@ -248,7 +248,9 @@ test('resuming a declined final record reuses only the same current run review w
       await runtime.session.prompt('/aikya-feature '+JSON.stringify({action:'resume-run',run_id:state.run_id}));
       await runtime.session.waitForIdle();
       const finished=runtime.session.messages.findLast(m=>m.role==='custom'&&m.customType==='aikya-task-run');assert.ok(finished);assert.equal(finished.role,'custom');
-      assert.equal(JSON.parse(finished.content as string).status,'recorded');assert.equal(authorCalls,2);assert.equal(reviewCalls,1);
+      assert.equal(JSON.parse(finished.content as string).status,'recorded',JSON.stringify({result:JSON.parse(finished.content as string),
+        evidence:runtime.session.messages.filter(m=>m.role==='custom').slice(-8).map(m=>({type:m.customType,content:String(m.content).slice(0,1500)}))}));
+      assert.equal(authorCalls,2);assert.equal(reviewCalls,1);
       const current=await hostOperation(root,'task.status',{session_id:manager.getSessionId(),run_id:state.run_id},python);
       assert.equal(current.calls_spent,3);assert.deepEqual(readFileSync(source),bytes);assert.equal(statSync(source).mtimeMs,mtime);
     } finally {await runtime.close();}

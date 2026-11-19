@@ -6,6 +6,13 @@ The inherited Harness v7/v8 changelog remains in
 
 ## v0.2.0 — 2026-11-18
 
+- Include reviewed fd 10.5.2/ripgrep 15.2.0 binaries and licenses for offline native
+  autocomplete/search; verify their origin, architecture, hashes and real versions.
+- Bind managed startup to verified tools, preserve/refuse project executable caches,
+  and show the current Forge version in the terminal title and help.
+- Add safe bounded host failure categories/stages and task recording diagnostics
+  without exposing exception contents or replaying uncertain effects.
+
 - Isolate reviewed .NET 8+ check artifacts per execution without hiding bin/obj source.
 - Add confirmed native project/global skill withdrawal, retained exact backups,
   restoration, interruption recovery and `/aikya-uninstall-skills` / `aikya skills`.

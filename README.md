@@ -9,7 +9,7 @@ Aikya's command adapters, templates and engineering controls into an independent
 versioned repository. The current development version is **0.2.0**.
 
 Native installation and terminal acceptance are tracked per platform in the
-[validation report](aikya/docs/validation/2026-11-18-forge-completion.md). Real-provider
+[validation report](aikya/docs/validation/2026-11-19-interactive-acceptance.md). Real-provider
 acceptance is a separate release gate. Source availability does not mean a public
 release or short installer is published.
 
@@ -77,7 +77,9 @@ accounting is local and does not invent a provider's subscription quota.
 ## Managed native distribution
 
 The contributor builder assembles pinned Python, Node and Pi components into one
-verified payload. It generates checksum-bound shell/PowerShell entry scripts and
+verified payload. Reviewed fd/ripgrep binaries are included for offline file
+autocomplete and search; startup does not download tools from project caches.
+It generates checksum-bound shell/PowerShell entry scripts and
 supports explicit install/update, retained rollback and conservative uninstall.
 
 ```sh

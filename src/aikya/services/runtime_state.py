@@ -62,8 +62,9 @@ def main(argv=None):
         # This process belongs to the trusted host. Repository metadata is never consent.
         result = operations[request['action']](root, **request['arguments'])
         reply = dict(ok=True, project=str(root), result=result)
-    except (ValueError, TypeError, OSError, RecursionError):
-        reply = dict(ok=False, project=str(root), error='runtime_state_unavailable')
+    except (ValueError, TypeError, OSError, RecursionError) as error:
+        from .host_diagnostics import describe
+        reply = dict(ok=False, project=str(root), error='runtime_state_unavailable',diagnostic=describe(error))
     output=json.dumps(reply,ensure_ascii=True)
     if len(output.encode('utf8'))>65535:
         output=json.dumps(dict(ok=False,project=str(root),error='runtime_response_too_large'))

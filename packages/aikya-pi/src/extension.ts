@@ -55,7 +55,7 @@ export function aikyaExtension(root: string, python?: string, controlled = false
     pi.on("session_start", (_event, ctx) => {
       if (!ctx.hasUI) return;
       ctx.ui.setEditorComponent((...args) => controlled ? new ControlledEditor(...args).permitSkills(skills.map(s=>s.name)) : new ReadOnlyEditor(...args));
-      ctx.ui.setTitle("Aikya v8 · " + (controlled ? "Controlled preview" : "Local preview · model disabled"));
+      ctx.ui.setTitle("Aikya Forge v"+version+" · " + (controlled ? "Controlled preview" : "Local preview · model disabled"));
       ctx.ui.setStatus("aikya", controlled ? phase.value+" · "+(ctx.model?.id??"model unavailable") : "Local preview · model disabled");
       ctx.ui.setHeader((_tui, theme) => ({
         render: (width: number) => [theme.fg("accent", "AIKYA v"+version),

@@ -8,6 +8,7 @@ import { createAgentSessionRuntime, createAgentSessionServices, createAgentSessi
 import { aikyaExtension } from "./extension.ts";
 import { projectSession } from "./session.ts";
 import { projectDirectory, ownedSessionFile, canonicalPath } from "./project.ts";
+import {refuseProjectToolCache} from './startup.ts';
 import { closeSession } from "./memory-lifecycle.ts";
 import { claimSessionRole } from "./session-roles.ts";
 import { lockInference } from "./inference.ts";
@@ -101,6 +102,7 @@ export async function createControlledRuntime(root: string, options: Options & {
 
 async function createRuntime(root: string, options: Options) {
   const cwd = canonicalPath(root);
+  refuseProjectToolCache(cwd);
   return createAgentSessionRuntime(async (input) => {
     if (canonicalPath(input.cwd) !== cwd) throw new Error("Cross-project runtime replacement refused");
     return createLocal(cwd, input.sessionManager, options, input.sessionStartEvent);
