@@ -1,4 +1,5 @@
-import {readFileSync,rmSync} from 'node:fs';
+import {readFileSync} from 'node:fs';
+import {rm} from 'node:fs/promises';
 import {join} from 'node:path';
 
 /** Wait only for the observer owned by this disposable SDK fixture. */
@@ -15,5 +16,5 @@ export async function removeProject(root:string) {
     if(Date.now()>=deadline)throw new Error('The fixture observer did not stop after its final lease closed');
     await new Promise(resolve=>setTimeout(resolve,50));
   }
-  rmSync(root,{recursive:true,force:true,maxRetries:10,retryDelay:100});
+  await rm(root,{recursive:true,force:true,maxRetries:10,retryDelay:100});
 }

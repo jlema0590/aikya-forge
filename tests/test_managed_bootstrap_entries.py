@@ -53,21 +53,30 @@ class NativeBootstrapEntryTests(unittest.TestCase):
             (self.assets/name).write_bytes(self.raw)
             with (self.assets/'SHA256SUMS').open('a') as stream:stream.write(hashlib.sha256(self.raw).hexdigest()+'  '+name+'\n')
         output=self.root/'entries';self.entries.build('8.0.0-alpha.0',self.assets,output)
-        environment={key:value for key,value in os.environ.items() if key not in ('PROCESSOR_ARCHITECTURE','PROCESSOR_ARCHITEW6432')}
-        environment['AIKYA_INSTALL_ROOT']=str(self.root/'app')
+        environment={**os.environ,'AIKYA_INSTALL_ROOT':str(self.root/'app')}
         shell=shutil.which('pwsh') or shutil.which('powershell')
         command=[shell,'-NoProfile','-NonInteractive','-File',str(output/'install.ps1'),'-OfflineDir',str(self.assets),'-NoPath']
-        missing=subprocess.run(command,env=environment,capture_output=True,text=True,encoding='utf8',timeout=30)
+        wrapper=self.root/'without-architecture.ps1'
+        wrapper.write_text('''param([string]$Installer,[string]$Assets,[switch]$Preview)
+Remove-Item -LiteralPath Env:PROCESSOR_ARCHITECTURE -ErrorAction SilentlyContinue
+Remove-Item -LiteralPath Env:PROCESSOR_ARCHITEW6432 -ErrorAction SilentlyContinue
+if ((Test-Path Env:PROCESSOR_ARCHITECTURE) -or (Test-Path Env:PROCESSOR_ARCHITEW6432)) { exit 17 }
+& $Installer -OfflineDir $Assets -NoPath -DryRun:$Preview
+''',encoding='utf8')
+        missing_command=[shell,'-NoProfile','-NonInteractive','-File',str(wrapper),'-Installer',str(output/'install.ps1'),'-Assets',str(self.assets)]
+        missing=subprocess.run(missing_command,env=environment,capture_output=True,text=True,encoding='utf8',timeout=30)
+        self.assertNotEqual(missing.returncode,17,'Fixture did not clear architecture descriptors')
         self.assertNotEqual(missing.returncode,0,missing.stderr)
         self.assertIn('architecture',missing.stderr.lower())
         self.assertFalse((self.root/'app').exists())
-        preview=subprocess.run(command+['-DryRun'],env=environment,capture_output=True,text=True,encoding='utf8',timeout=30)
+        preview=subprocess.run(missing_command+['-Preview'],env=environment,capture_output=True,text=True,encoding='utf8',timeout=30)
         self.assertEqual(preview.returncode,0,preview.stderr)
         value=json.loads(preview.stdout);self.assertFalse(value['writes']);self.assertFalse(value['network'])
         target=host_platform() if os.name=='nt' else 'win32-x64'
         selected=self.assets/('aikya-terminal-8.0.0-alpha.0-'+target+'.zip');selected.write_bytes(b'Corrupt transport')
         arch='ARM64' if target=='win32-arm64' else 'AMD64'
-        invalid=subprocess.run(command,env={**environment,'PROCESSOR_ARCHITECTURE':arch},capture_output=True,text=True,encoding='utf8',timeout=30)
+        invalid_environment=environment if os.name=='nt' else {**environment,'PROCESSOR_ARCHITECTURE':arch}
+        invalid=subprocess.run(command,env=invalid_environment,capture_output=True,text=True,encoding='utf8',timeout=30)
         self.assertNotEqual(invalid.returncode,0,invalid.stderr)
         self.assertIn('checksum',invalid.stderr.lower());self.assertFalse((self.root/'app').exists())
 
