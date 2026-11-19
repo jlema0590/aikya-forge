@@ -14,7 +14,7 @@ function git(project: string, args: string[]) {
   const env = Object.fromEntries(Object.entries(process.env).filter(([key]) => !key.startsWith("GIT_")));
   const result = spawnSync("git", ["-c", "core.fsmonitor=false", ...args], {
     cwd: project, encoding: "utf8", timeout: 3000, maxBuffer: 16384, windowsHide: true,
-    env: {...env, GIT_CONFIG_GLOBAL: devNull, GIT_CONFIG_NOSYSTEM: "1", GIT_OPTIONAL_LOCKS: "0"},
+    env: {...env, GIT_CONFIG_GLOBAL: process.platform === "win32" ? "NUL" : devNull, GIT_CONFIG_NOSYSTEM: "1", GIT_OPTIONAL_LOCKS: "0"},
   });
   if (result.error) throw new Error("Cannot inspect Git protection", {cause: result.error});
   return result;

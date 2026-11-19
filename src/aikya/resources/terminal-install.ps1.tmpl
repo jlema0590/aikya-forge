@@ -67,4 +67,7 @@ try {
     & $python -I -B -m aikya.installation.managed_cli @options
     if ($LASTEXITCODE -ne 0) { throw "Aikya native operation failed with exit $LASTEXITCODE" }
 } finally { if (Test-Path -LiteralPath $stage) { Remove-Item -LiteralPath $stage -Recurse -Force } }
+} catch {
+    [Console]::Error.WriteLine($_.Exception.Message)
+    throw
 } finally { $ErrorActionPreference=$callerPreference }
