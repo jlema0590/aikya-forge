@@ -80,7 +80,8 @@ comandos, presupuesto, confirmación de tema y resize sin invocar modelos.
 
 - [ ] Probar recolector, límite de bytes/tiempo y cierre de sus procesos propios.
 - [ ] Ejecutar PTY real en macOS/Linux; en Windows comprobar contratos nativos y
-  documentar revisión visual/ConPTY pendiente hasta contar con evidencia real.
+  ejecutar ConPTY con colas acotadas y cierre de los procesos propios; mantener
+  revisión visual y éxito de ConPTY pendientes hasta contar con evidencia real.
 - [ ] Conservar capturas sin ocultar avisos; no convertir headless en revisión visual.
 - [ ] Revisar teclado, tema, cancelación y estado retenido donde el host lo permita.
 

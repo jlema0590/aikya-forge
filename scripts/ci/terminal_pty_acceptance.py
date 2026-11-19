@@ -1,4 +1,4 @@
-"""Bounded actual PTY checks without providers; Windows visual acceptance stays explicit."""
+"""Bounded actual POSIX/ConPTY checks without providers or human visual acceptance."""
 import argparse
 import errno
 import json
@@ -21,14 +21,20 @@ def plain(raw):
 
 class ConsoleCapture:
     def __init__(self,command,cwd,environment,*,max_bytes=2000000):
-        if os.name=='nt':raise ValueError('Windows requires separately observed ConPTY/visual acceptance')
         if not 256<=max_bytes<=4000000:raise ValueError('Invalid PTY byte bound')
         self.command=command;self.cwd=cwd;self.environment=environment;self.max_bytes=max_bytes
-        self.raw=bytearray();self.pid=None;self.fd=None;self.exit_code=None;self.columns=120;self.rows=38
+        self.raw=bytearray();self.pid=None;self.fd=None;self.exit_code=None;self.columns=120;self.rows=38;self.windows=None
 
     def __enter__(self):
+        self.started=time.monotonic()
+        if os.name=='nt':
+            import importlib.util
+            spec=importlib.util.spec_from_file_location('forge_windows_pty',Path(__file__).with_name('windows_pty.py'))
+            module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
+            self.windows=module.WindowsPty(self.command,self.cwd,self.environment,self.columns,self.rows)
+            self.pid=self.windows.process.pid;return self
         import pty
-        self.started=time.monotonic();pid,fd=pty.fork()
+        pid,fd=pty.fork()
         if pid==0:
             try:os.chdir(self.cwd);os.execvpe(self.command[0],self.command,self.environment)
             except OSError:os.write(2,b'PTY process unavailable\n');os._exit(127)
@@ -36,23 +42,39 @@ class ConsoleCapture:
 
     def _reap(self):
         if self.pid is None:return
+        if self.windows:
+            code=self.windows.poll()
+            if code is not None:
+                self.exit_code=code;self.pid=None
+                while chunk:=self.windows.read(0):self._append(chunk)
+            return
         pid,status=os.waitpid(self.pid,os.WNOHANG)
         if pid:self.exit_code=os.waitstatus_to_exitcode(status);self.pid=None
 
     def pump(self,wait=.05):
         if time.monotonic()-self.started>120:raise TimeoutError('Overall PTY deadline exceeded')
+        if self.windows:
+            self._append(self.windows.read(wait));self._reap();return
         ready,_,_=select.select([self.fd],[],[],wait)
         if ready:
             try:chunk=os.read(self.fd,65536)
             except OSError as error:
                 if error.errno!=errno.EIO:raise
                 chunk=b''
-            previous=len(self.raw)
-            if previous+len(chunk)>self.max_bytes:raise ValueError('PTY output exceeds its byte bound')
-            self.raw.extend(chunk)
-            for query,reply in [(b'\x1b[6n',b'\x1b[1;1R'),(b'\x1b]11;?',b'\x1b]11;rgb:1111/1111/1111\x1b\\')]:
-                if query in self.raw[max(0,previous-len(query)+1):]:os.write(self.fd,reply)
+            self._append(chunk)
         self._reap()
+
+    def _append(self,chunk):
+        previous=len(self.raw)
+        if previous+len(chunk)>self.max_bytes:raise ValueError('PTY output exceeds its byte bound')
+        self.raw.extend(chunk)
+        if self.pid is None:return
+        for query,reply in [(b'\x1b[6n',b'\x1b[1;1R'),(b'\x1b]11;?',b'\x1b]11;rgb:1111/1111/1111\x1b\\')]:
+            if query in self.raw[max(0,previous-len(query)+1):]:self._write(reply)
+
+    def _write(self,value):
+        if self.windows:self.windows.write(value)
+        else:os.write(self.fd,value)
 
     def until(self,predicate,timeout=20):
         deadline=time.monotonic()+timeout
@@ -65,12 +87,14 @@ class ConsoleCapture:
         self.until(lambda:text in plain(self.raw[after:]),timeout)
 
     def send(self,text):
-        offset=len(self.raw);os.write(self.fd,text.encode('utf8'));return offset
+        offset=len(self.raw);self._write(text.encode('utf8'));return offset
 
     def resize(self,columns,rows):
-        import fcntl,struct,termios
         if not 40<=columns<=200 or not 20<=rows<=80:raise ValueError('Invalid terminal size')
-        fcntl.ioctl(self.fd,termios.TIOCSWINSZ,struct.pack('HHHH',rows,columns,0,0))
+        if self.windows:self.windows.resize(columns,rows)
+        else:
+            import fcntl,struct,termios
+            fcntl.ioctl(self.fd,termios.TIOCSWINSZ,struct.pack('HHHH',rows,columns,0,0))
         self.columns=columns;self.rows=rows
 
     def finish(self,timeout=10):
@@ -81,6 +105,8 @@ class ConsoleCapture:
         return self.exit_code
 
     def __exit__(self,*ignored):
+        if self.windows:
+            self.windows.close();self.pid=None;return
         try:
             self._reap()
             if self.pid is not None:
@@ -103,13 +129,15 @@ def _theme(project):
 
 
 def run(output,*,application=None,source=None,assets=None,fetch=False):
-    if os.name=='nt':raise ValueError('Windows visual/ConPTY acceptance is not established by this POSIX collector')
     if bool(application)==bool(source):raise ValueError('Choose exactly one installed application or source runtime')
     output=state.safe(Path(output).absolute()).resolve(strict=False)
     if output.exists():raise ValueError('Existing PTY evidence is preserved')
     if source and output.is_relative_to(Path(source).resolve()):raise ValueError('PTY evidence must be outside the source checkout')
     output.mkdir(parents=True);project=output/'project';project.mkdir();env=build_sources.environment(output/'home')
     env.update(TERM='xterm-256color',COLORTERM='truecolor',COLUMNS='120',LINES='38')
+    if os.name=='nt':
+        env.update(APPDATA=str(output/'home/AppData/Roaming'),LOCALAPPDATA=str(output/'home/AppData/Local'))
+        for key in ('APPDATA','LOCALAPPDATA'):Path(env[key]).mkdir(parents=True)
     if application:
         runtime=managed_runtime.resolve(application);python=runtime['python'];version=runtime['version']
         env=managed_tools.environment(runtime,env);env['AIKYA_INSTALL_ROOT']=str(Path(application).resolve())
@@ -125,7 +153,7 @@ def run(output,*,application=None,source=None,assets=None,fetch=False):
         version=(source/'VERSION').read_text().strip();python=sys.executable
         command=[python,'-I','-B','-m','aikya','terminal','--runtime-dir',str(source/'packages/aikya-pi'),'--target',str(project)]
     terminal=None;result=dict(status='failed',mode='managed' if application else 'source',version=version,platform=managed_runtime.host_platform(),
-        provider_calls=0,visual_acceptance=False,ui='Actual POSIX PTY; no human visual/device or provider acceptance')
+        provider_calls=0,visual_acceptance=False,ui=('Actual Windows ConPTY' if os.name=='nt' else 'Actual POSIX PTY')+'; no human visual/device or provider acceptance')
     try:
         with ConsoleCapture(command,project,env) as terminal:
             terminal.expect('AIKYA v'+version,timeout=45)

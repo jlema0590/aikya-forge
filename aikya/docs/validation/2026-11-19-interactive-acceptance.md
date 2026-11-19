@@ -35,6 +35,12 @@ confirmed light theme, resize to 100x32, graceful exit and cache refusal. Three
 collector tests cover actual I/O, size, output/deadline limits and owned-child cleanup.
 Pi CI now adds real POSIX PTY checks and three focused Windows resumption trials per
 Node version. Windows ConPTY/visual acceptance remains explicit until observed.
+The first current-runtime Pi run (44541993000, 97daaf8) passed all six OS/Node
+combinations; Windows Node 26.13.0 reports 99 SDK tests and successful final-record
+resumption. This does not identify the previous intermittent failure's cause.
+The next Windows collector tests (44544627024, 84ce171) fail at the explicit POSIX
+restriction. A native ConPTY backend now replaces that restriction; its remote
+execution is pending, rather than being inferred from the passing POSIX tests.
 The external preparation tool creates a source-bound, pending nine-scenario packet
 for the agreed other environment, without keys, trials or publication authority.
 Actual authenticated provider observations and reviewed comparisons are not present.

@@ -48,11 +48,10 @@ jobs:
         env:
           AIKYA_TEST_PYTHON: python
       - name: Exercise the actual offline terminal, theme confirmation and resize
-        if: runner.os != 'Windows'
         shell: bash
         run: python scripts/ci/terminal_pty_acceptance.py --source . --fetch-tools --output "$RUNNER_TEMP/forge-interactive"
       - name: Retain bounded PTY evidence, never project or authentication state
-        if: always() && runner.os != 'Windows'
+        if: always()
         uses: actions/upload-artifact@v4
         with:
           name: forge-pty-${{ runner.os }}-${{ matrix.node }}

@@ -1,5 +1,7 @@
 # Document index
 
+- [changes/REQ-20261119-f0900217.md](changes/REQ-20261119-f0900217.md)
+
 - [architecture/2026-11-07-pi-runtime.md](architecture/2026-11-07-pi-runtime.md)
 - [architecture/2026-11-07-rdd-contracts.md](architecture/2026-11-07-rdd-contracts.md)
 - [architecture/2026-11-08-executor-terminal.md](architecture/2026-11-08-executor-terminal.md)
