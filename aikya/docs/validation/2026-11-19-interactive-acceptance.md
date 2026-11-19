@@ -30,8 +30,11 @@ pending; exact final counts will replace this progress record after execution.
 
 ## Remaining gates
 
-Real PTY startup, theme confirmation and resize checks are being added to native
-acceptance; Windows visual acceptance must remain explicit until actually observed.
+The actual macOS ARM source-mode PTY passed clean-PATH offline startup, tokens,
+confirmed light theme, resize to 100x32, graceful exit and cache refusal. Three
+collector tests cover actual I/O, size, output/deadline limits and owned-child cleanup.
+Pi CI now adds real POSIX PTY checks and three focused Windows resumption trials per
+Node version. Windows ConPTY/visual acceptance remains explicit until observed.
 The external preparation tool creates a source-bound, pending nine-scenario packet
 for the agreed other environment, without keys, trials or publication authority.
 Actual authenticated provider observations and reviewed comparisons are not present.

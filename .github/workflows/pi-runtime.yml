@@ -31,10 +31,37 @@ jobs:
         working-directory: packages/aikya-pi
       - run: npm run typecheck
         working-directory: packages/aikya-pi
+      - name: Verify bounded native terminal input, resize and process cleanup
+        run: python -B -m unittest discover -s tests -p test_terminal_pty_capture.py -v
       - run: npm test
         working-directory: packages/aikya-pi
         env:
           AIKYA_TEST_PYTHON: python
+      - name: Repeat the Windows final-record resumption without changing its limits
+        if: runner.os == 'Windows'
+        shell: pwsh
+        run: |
+          for ($trial = 1; $trial -le 3; $trial++) {
+            node --test --test-name-pattern="resuming a declined final record" packages/aikya-pi/tests/task-run.test.ts
+            if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+          }
+        env:
+          AIKYA_TEST_PYTHON: python
+      - name: Exercise the actual offline terminal, theme confirmation and resize
+        if: runner.os != 'Windows'
+        shell: bash
+        run: python scripts/ci/terminal_pty_acceptance.py --source . --fetch-tools --output "$RUNNER_TEMP/forge-interactive"
+      - name: Retain bounded PTY evidence, never project or authentication state
+        if: always() && runner.os != 'Windows'
+        uses: actions/upload-artifact@v4
+        with:
+          name: forge-pty-${{ runner.os }}-${{ matrix.node }}
+          path: |
+            ${{ runner.temp }}/forge-interactive/*.ansi
+            ${{ runner.temp }}/forge-interactive/terminal.log
+            ${{ runner.temp }}/forge-interactive/pty-result.json
+          if-no-files-found: ignore
+          retention-days: 7
       - run: python -B -m unittest discover -s tests -p test_service_bridge.py -v
       - run: python -B -m unittest discover -s tests -p test_service_authorization.py -v
       - run: python -B -m unittest discover -s tests -p 'test_pi_*.py' -v
