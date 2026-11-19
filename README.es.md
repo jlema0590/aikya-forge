@@ -8,9 +8,10 @@ Aikya Forge combina un núcleo Python y una terminal interactiva basada en Pi.
 Incorpora los comandos, las plantillas y los controles de Aikya en un repositorio
 con versionado independiente. Su versión de desarrollo actual es **0.2.0**.
 
-Es una base de desarrollo. Existen pruebas nativas en macOS de la implementación
-heredada; quedan abiertas las pruebas nativas en Windows/Linux y con proveedores
-reales. El código disponible no implica una release ni un instalador corto publicado.
+La aceptación de la instalación y la terminal se registra por plataforma en el
+[informe de validación](aikya/docs/validation/2026-11-18-forge-completion.md). Las pruebas
+con proveedores reales constituyen una condición separada de publicación. El código
+disponible no implica una release ni un instalador corto publicado.
 
 ## Inicio rápido desde el código
 

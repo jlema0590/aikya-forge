@@ -1,10 +1,27 @@
 name: Forge | Native distribution acceptance
 on:
   push:
-    branches: [develop, 'feat/**', 'fix/**']
-    paths: ['src/**', 'packages/aikya-pi/**', 'scripts/ci/native*', 'VERSION', 'pyproject.toml', '.github/workflows/forge-native.yml']
+    branches: [develop]
+    paths: &native-inputs
+      - 'src/**'
+      - 'packages/aikya-pi/**'
+      - 'scripts/ci/**'
+      - VERSION
+      - pyproject.toml
+      - setup.py
+      - MANIFEST.in
+      - README.md
+      - README.es.md
+      - LICENSE
+      - THIRD_PARTY_LICENSES.md
+      - requirements-agent-loop.txt
+      - docs/AGENT_LOOP.md
+      - docs/SECURITY_CONTROLS.md
+      - .gitattributes
+      - .github/workflows/forge-native.yml
   pull_request:
     branches: [develop, main]
+    paths: *native-inputs
   workflow_dispatch:
   workflow_call:
 permissions:

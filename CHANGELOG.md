@@ -23,6 +23,8 @@ The inherited Harness v7/v8 changelog remains in
   bound immutable component-read retries and emit canonical SDD bytes on Windows.
 - Parse valid distant ELF loader strings, handle the Darwin exited-child race, share
   verified payload traversal and retain bounded Windows installer timeout diagnostics.
+- Preserve and bind Windows AppData SDK cache locations so NuGet migration state
+  does not fall back into project source; keep source drift detection intact.
 - Correct Windows fixture byte hashing and prepare all private-build tools in Pi CI.
 - Validate 1,270 Python tests (two declared environment skips), 93 Pi tests on each
   Node 22/26, 110 browser checks, fresh installed wheel and the macOS ARM native

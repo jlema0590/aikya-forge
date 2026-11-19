@@ -9,7 +9,7 @@ from aikya.code_index.policy import project_root, excluded
 from aikya.core.checkpoints import identity, safe_file
 from .contracts import identifier, digest
 
-ENVIRONMENT_KEYS = ('PATH', 'HOME', 'USERPROFILE', 'SYSTEMROOT', 'WINDIR', 'TEMP', 'TMP',
+ENVIRONMENT_KEYS = ('PATH', 'HOME', 'USERPROFILE', 'APPDATA', 'LOCALAPPDATA', 'SYSTEMROOT', 'WINDIR', 'TEMP', 'TMP',
                     'TMPDIR', 'LANG', 'LC_ALL', 'COMSPEC', 'PATHEXT', 'JAVA_HOME', 'DOTNET_ROOT', 'VIRTUAL_ENV')
 
 

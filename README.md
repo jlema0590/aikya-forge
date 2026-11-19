@@ -8,9 +8,10 @@ Aikya Forge combines a Python core with an interactive Pi terminal. It carries f
 Aikya's command adapters, templates and engineering controls into an independently
 versioned repository. The current development version is **0.2.0**.
 
-This is a development baseline. Native macOS acceptance exists for the inherited
-implementation; Windows/Linux native execution and real-provider acceptance remain
-open. Source availability does not mean a public release or short installer is published.
+Native installation and terminal acceptance are tracked per platform in the
+[validation report](aikya/docs/validation/2026-11-18-forge-completion.md). Real-provider
+acceptance is a separate release gate. Source availability does not mean a public
+release or short installer is published.
 
 ## Quick start from source
 

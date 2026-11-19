@@ -73,6 +73,16 @@ class ArtifactChecks(unittest.TestCase):
         with patch('aikya.review.definitions.shutil.which',return_value=sys.executable):
             with self.assertRaisesRegex(ValueError,'artifacts'):executor.check_binding(self.root,definition)
 
+    def test_windows_sdk_cache_directories_are_preserved_and_bound(self):
+        from aikya.review.definitions import selected_environment
+        values=dict(APPDATA=str(self.root/'Roaming'),LOCALAPPDATA=str(self.root/'Local'))
+        definition=self.definition('pass')
+        with patch.dict(os.environ,values):
+            for name,value in values.items():self.assertEqual(selected_environment().get(name),value)
+            before=executor.check_binding(self.root,definition)
+            with patch.dict(os.environ,dict(LOCALAPPDATA=str(self.root/'Different'))):
+                self.assertNotEqual(executor.check_binding(self.root,definition),before)
+
     def test_placeholder_suffix_cannot_escape_the_private_directory(self):
         definition=self.definition('pass',['{artifacts}/../../outside'])
         with self.assertRaisesRegex(ValueError,'artifacts'):executor.check_binding(self.root,definition)
@@ -81,7 +91,9 @@ class ArtifactChecks(unittest.TestCase):
     @unittest.skipUnless(shutil.which('dotnet'),'A native .NET SDK is required')
     def test_actual_dotnet_build_preserves_the_source_candidate(self):
         dotnet=shutil.which('dotnet');home=self.root.parent/(self.root.name+'-sdk-home');home.mkdir();self.addCleanup(shutil.rmtree,home)
-        environment=dict(HOME=str(home),USERPROFILE=str(home),DOTNET_CLI_HOME=str(home),DOTNET_CLI_TELEMETRY_OPTOUT='1',
+        local=home/'AppData/Local';roaming=home/'AppData/Roaming'
+        local.mkdir(parents=True);roaming.mkdir(parents=True)
+        environment=dict(HOME=str(home),USERPROFILE=str(home),LOCALAPPDATA=str(local),APPDATA=str(roaming),DOTNET_CLI_HOME=str(home),DOTNET_CLI_TELEMETRY_OPTOUT='1',
             DOTNET_SKIP_FIRST_TIME_EXPERIENCE='1',DOTNET_GENERATE_ASPNET_CERTIFICATE='false',DOTNET_NOLOGO='1',
             NUGET_PACKAGES=str(home/'packages'),MSBUILDDISABLENODEREUSE='1')
         sdks=subprocess.run([dotnet,'--list-sdks'],env={**os.environ,**environment},capture_output=True,text=True,timeout=15,check=True).stdout.splitlines()
