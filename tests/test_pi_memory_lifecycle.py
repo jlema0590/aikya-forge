@@ -30,17 +30,23 @@ class PiMemoryLifecycleTests(unittest.TestCase):
                 self.assertTrue(path.exists())
                 maintenance.session_event(root,'pi-author','end')
                 (root/'entity.py').write_text('class ExternallyEditedEntity: pass\n')
-                deadline=time.monotonic()+10
-                while 'ExternallyEditedEntity' not in path.read_text() and time.monotonic()<deadline:time.sleep(.05)
-                self.assertIn('ExternallyEditedEntity',path.read_text())
+                deadline=time.monotonic()+10;html=''
+                while time.monotonic()<deadline:
+                    try:html=path.read_text(encoding='utf8')
+                    except (PermissionError,FileNotFoundError):pass
+                    if 'ExternallyEditedEntity' in html:break
+                    time.sleep(.05)
+                self.assertIn('ExternallyEditedEntity',html)
             finally:
                 maintenance.session_event(root,'pi-author','end')
                 maintenance.session_event(root,'pi-second','end')
-                status=root/'.harness/state/memory-view/status.json';deadline=time.monotonic()+10
+                status=root/'.harness/state/memory-view/status.json';deadline=time.monotonic()+10;observed={}
                 while time.monotonic()<deadline:
-                    if status.exists() and json.loads(status.read_text()).get('state')=='Stopped':break
+                    try:observed=json.loads(status.read_text(encoding='utf8'))
+                    except (PermissionError,FileNotFoundError):pass
+                    if observed.get('state')=='Stopped':break
                     time.sleep(.05)
-                self.assertEqual(json.loads(status.read_text())['state'],'Stopped')
+                self.assertEqual(observed.get('state'),'Stopped')
 
 
 if __name__=='__main__':unittest.main()

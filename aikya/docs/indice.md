@@ -47,6 +47,7 @@
 - [changes/REQ-20261119-f0900203.md](changes/REQ-20261119-f0900203.md)
 - [changes/REQ-20261119-f0900204.md](changes/REQ-20261119-f0900204.md)
 - [changes/REQ-20261119-f0900205.md](changes/REQ-20261119-f0900205.md)
+- [changes/REQ-20261119-f0900206.md](changes/REQ-20261119-f0900206.md)
 - [deployment/forge-0.2.0.md](deployment/forge-0.2.0.md)
 - [deployment/pi-controlled-preview.md](deployment/pi-controlled-preview.md)
 - [deployment/pi-managed-terminal.md](deployment/pi-managed-terminal.md)

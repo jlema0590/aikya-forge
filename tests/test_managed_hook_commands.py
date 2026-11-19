@@ -16,6 +16,7 @@ class ManagedHookCommands(unittest.TestCase):
         except ModuleNotFoundError:
             self.fail('Managed cross-platform hook invocation is not implemented')
 
+    @unittest.skipIf(os.name=='nt','Requires native POSIX shell and path semantics')
     def test_posix_hook_runs_without_python_on_path_with_quoted_paths(self):
         module = self.renderer()
         with tempfile.TemporaryDirectory() as temporary:
@@ -28,7 +29,7 @@ class ManagedHookCommands(unittest.TestCase):
 
     def test_powershell_uses_literal_arguments_and_explicit_shell(self):
         module = self.renderer()
-        record = module.render_managed_hook(Path(sys.executable), Path('/project/aikya_session.py'), ("a'b", '$literal'), 'powershell')
+        record = module.render_managed_hook(Path(sys.executable), Path(tempfile.gettempdir()).resolve()/'project/aikya_session.py', ("a'b", '$literal'), 'powershell')
         self.assertEqual('powershell', record['shell'])
         self.assertIn("'a''b'", record['command'])
         self.assertIn("'$literal'", record['command'])
