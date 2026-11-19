@@ -4,40 +4,122 @@
   "base_commit": "43a71eac0f01ca1517644a7ae523344870996729",
   "python": {
     "version": "3.13.18",
-    "tests": 1270,
+    "tests": 1288,
     "failures": 0,
     "errors": 0,
     "skips": [
-      [
-        "test_latest_installer.LatestEntryScripts.test_powershell_verifies_bootstrap_without_get_filehash_and_rejects_corruption",
-        "PowerShell is required"
-      ],
       [
         "test_code_index_languages.LanguageIndexTests.test_missing_optional_packages_fall_back_without_invented_symbols",
         "Run fallback check in the dependency-free environment"
       ]
     ],
-    "frozen_input_count": 1516,
-    "frozen_inputs_sha256": "4b5cedaef848aef7c09306e69ca86e1693a4a78834311457a39c812448091113",
+    "seconds": 476.54928398132324,
+    "source_commit": "40d7d8e672d18638bf8d096cb2d1659b75729f67",
+    "frozen_input_count": 1538,
+    "frozen_inputs_sha256": "d4d2779176beba206b0dddc881ed0e5cc772d0190a0c65c25451cdf9da6668b5",
     "input_drift_during_regression": [],
-    "later_acceptance_extension": [
-      "scripts/ci/native_terminal_acceptance.py"
+    "dependency_free_fallback": "one regression passed separately against the current installed wheel without parser dependencies",
+    "powershell": "actual private PowerShell 7.7.0 executed; no PowerShell skip",
+    "current_checkout_and_assembly_regressions": {
+      "tests": 5,
+      "result": "passed; both new negative cases failed before correction"
+    },
+    "shards": [
+      {
+        "index": 0,
+        "tests": 374,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "index": 1,
+        "tests": 255,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "index": 2,
+        "tests": 364,
+        "failures": 0,
+        "errors": 0
+      },
+      {
+        "index": 3,
+        "tests": 295,
+        "failures": 0,
+        "errors": 0
+      }
     ],
-    "dependency_free_fallback": "one installed-wheel regression passed separately"
+    "frozen_input_note": "Runtime/test checkout plus then-current local documentation; exact working-tree file hashes were frozen separately"
   },
   "pi": {
-    "node22": {
-      "version": "22.19.0",
-      "tests": 93,
-      "passed": 93
-    },
-    "node26": {
-      "version": "26.12.1",
-      "tests": 93,
-      "passed": 93
-    },
     "typecheck": "passed",
-    "transport": "real SDK; provider transport fixtures, not real inference"
+    "transport": "actual Pi SDK with fixture transports; zero real inference",
+    "ci": {
+      "run": "https://github.com/jlema0590/aikya-forge/actions/runs/44499312994",
+      "head_commit": "4000e3a30519829a1dc8655408e803ad0f3b9e72",
+      "matrix": [
+        {
+          "os": "macos",
+          "node": "22.19.0",
+          "tests": 94,
+          "passed": 94,
+          "failures": 0,
+          "skipped": 0
+        },
+        {
+          "os": "macos",
+          "node": "26.13.0",
+          "tests": 94,
+          "passed": 94,
+          "failures": 0,
+          "skipped": 0
+        },
+        {
+          "os": "linux",
+          "node": "22.19.0",
+          "tests": 94,
+          "passed": 94,
+          "failures": 0,
+          "skipped": 0
+        },
+        {
+          "os": "linux",
+          "node": "26.13.0",
+          "tests": 94,
+          "passed": 94,
+          "failures": 0,
+          "skipped": 0
+        },
+        {
+          "os": "windows",
+          "node": "22.19.0",
+          "tests": 94,
+          "passed": 94,
+          "failures": 0,
+          "skipped": 0
+        },
+        {
+          "os": "windows",
+          "node": "26.13.0",
+          "tests": 94,
+          "passed": 94,
+          "failures": 0,
+          "skipped": 0
+        }
+      ],
+      "python_contracts": "passed; platform-specific skips remain explicit in job logs"
+    },
+    "current_follow_up": {
+      "run": "https://github.com/jlema0590/aikya-forge/actions/runs/44525961694",
+      "source_commit": "40d7d8e672d18638bf8d096cb2d1659b75729f67",
+      "first_attempt": "Windows Node 26 SDK 93/94: declined final-record resumption returned needs_host_action instead of recorded",
+      "focused_local": "passed without changes",
+      "windows_node22": "passed",
+      "windows_node26_retry": "all SDK and Python host contracts passed in attempt 2 without source or limit changes",
+      "cause": "not established; no fix claimed",
+      "result": "six latest OS/Node jobs passed; original failed attempt retained"
+    }
   },
   "browser": {
     "engine": "Playwright 1.62.1 Chromium",
@@ -48,274 +130,699 @@
       "density": 20
     },
     "errors": [],
-    "data": "synthetic offline fixtures and mocked local live snapshot transport"
-  },
-  "native": {
-    "platform": "darwin-arm64",
-    "version": "0.2.0",
-    "next_version": "0.2.1",
-    "manifest_hash": "2c4630f91cd06dcda5d2fa523914386005e02754e5abe2aaa997d77c7fb9e695",
-    "successor_manifest_hash": "a35c6d5a2beafece388d4095c6a2c620882162b8dbb30370373cf182a1aa92c6",
-    "runtime_fingerprint": "2c5d929948b5a19241e483fa637d5732535d67c2e7303c4880ddc8c5707bbe84",
-    "provider_calls": 0,
-    "command_count": 29,
-    "profile_count": 24,
-    "coverage": {
-      ".c": {
-        "status": "file_only",
-        "parser": "inventory",
-        "symbols": 0
-      },
-      ".cc": {
-        "status": "file_only",
-        "parser": "inventory",
-        "symbols": 0
-      },
-      ".cjs": {
-        "status": "indexed",
-        "parser": "treesitter-javascript",
-        "symbols": 2
-      },
-      ".cpp": {
-        "status": "file_only",
-        "parser": "inventory",
-        "symbols": 0
-      },
-      ".cs": {
-        "status": "indexed",
-        "parser": "treesitter-c_sharp",
-        "symbols": 2
-      },
-      ".dart": {
-        "status": "indexed",
-        "parser": "treesitter-dart",
-        "symbols": 2
-      },
-      ".go": {
-        "status": "indexed",
-        "parser": "treesitter-go",
-        "symbols": 2
-      },
-      ".h": {
-        "status": "file_only",
-        "parser": "inventory",
-        "symbols": 0
-      },
-      ".hpp": {
-        "status": "file_only",
-        "parser": "inventory",
-        "symbols": 0
-      },
-      ".java": {
-        "status": "indexed",
-        "parser": "treesitter-java",
-        "symbols": 2
-      },
-      ".js": {
-        "status": "indexed",
-        "parser": "treesitter-javascript",
-        "symbols": 2
-      },
-      ".jsx": {
-        "status": "indexed",
-        "parser": "treesitter-javascript",
-        "symbols": 2
-      },
-      ".kt": {
-        "status": "file_only",
-        "parser": "inventory",
-        "symbols": 0
-      },
-      ".kts": {
-        "status": "file_only",
-        "parser": "inventory",
-        "symbols": 0
-      },
-      ".mjs": {
-        "status": "indexed",
-        "parser": "treesitter-javascript",
-        "symbols": 2
-      },
-      ".php": {
-        "status": "file_only",
-        "parser": "inventory",
-        "symbols": 0
-      },
-      ".ps1": {
-        "status": "file_only",
-        "parser": "inventory",
-        "symbols": 0
-      },
-      ".py": {
-        "status": "indexed",
-        "parser": "python-ast",
-        "symbols": 1
-      },
-      ".pyi": {
-        "status": "indexed",
-        "parser": "python-ast",
-        "symbols": 1
-      },
-      ".rb": {
-        "status": "file_only",
-        "parser": "inventory",
-        "symbols": 0
-      },
-      ".rs": {
-        "status": "file_only",
-        "parser": "inventory",
-        "symbols": 0
-      },
-      ".sh": {
-        "status": "file_only",
-        "parser": "inventory",
-        "symbols": 0
-      },
-      ".sql": {
-        "status": "file_only",
-        "parser": "inventory",
-        "symbols": 0
-      },
-      ".svelte": {
-        "status": "file_only",
-        "parser": "inventory",
-        "symbols": 0
-      },
-      ".swift": {
-        "status": "file_only",
-        "parser": "inventory",
-        "symbols": 0
-      },
-      ".tf": {
-        "status": "file_only",
-        "parser": "inventory",
-        "symbols": 0
-      },
-      ".ts": {
-        "status": "indexed",
-        "parser": "treesitter-typescript",
-        "symbols": 2
-      },
-      ".tsx": {
-        "status": "indexed",
-        "parser": "treesitter-typescript-tsx",
-        "symbols": 2
-      },
-      ".vue": {
-        "status": "file_only",
-        "parser": "inventory",
-        "symbols": 0
-      }
-    },
-    "session": {
-      "provider_calls": 0,
-      "observations": [
-        "external-create",
-        "external-edit",
-        "external-rename",
-        "external-delete"
-      ],
-      "theme": "light",
-      "runtime": "actual-installed-Pi",
-      "ui": "headless SDK; not visual terminal acceptance"
-    },
-    "steps": [
-      {
-        "name": "install",
-        "exit_code": 0
-      },
-      {
-        "name": "doctor",
-        "exit_code": 0
-      },
-      {
-        "name": "seed",
-        "exit_code": 0
-      },
-      {
-        "name": "installed-launcher",
-        "exit_code": 0
-      },
-      {
-        "name": "skill-withdraw-preview",
-        "exit_code": 0
-      },
-      {
-        "name": "skill-withdraw",
-        "exit_code": 0
-      },
-      {
-        "name": "skill-restore-preview",
-        "exit_code": 0
-      },
-      {
-        "name": "skill-restore",
-        "exit_code": 0
-      },
-      {
-        "name": "installed-session",
-        "exit_code": 0
-      },
-      {
-        "name": "export-observation",
-        "exit_code": 0
-      },
-      {
-        "name": "reinstall",
-        "exit_code": 0
-      },
-      {
-        "name": "update",
-        "exit_code": 0
-      },
-      {
-        "name": "doctor-updated",
-        "exit_code": 0
-      },
-      {
-        "name": "manager-core-updated",
-        "exit_code": 0
-      },
-      {
-        "name": "rollback",
-        "exit_code": 0
-      },
-      {
-        "name": "doctor-rollback",
-        "exit_code": 0
-      },
-      {
-        "name": "retained-data",
-        "exit_code": 0
-      },
-      {
-        "name": "uninstall",
-        "exit_code": 0
-      },
-      {
-        "name": "retained-after-uninstall",
-        "exit_code": 0
-      }
-    ],
-    "archive_sha256": "229419485f98b9805b584d01b141ff32288425143d4f6cf02780aa2a6289dee3",
-    "source_commit": null,
-    "source_identity": "runtime_fingerprint binds packaged source; built before branch commit"
+    "data": "synthetic offline fixtures and mocked local live snapshot transport",
+    "verified_on": "2026-11-19",
+    "runtime_fingerprint": "fc4ff9faaf96e2ce26708133cda129ec66137288a744c537192bae54819f1590"
   },
   "quality": {
-    "files": 58,
+    "files": 104,
     "errors": [],
     "warnings": [],
     "duplicates": [],
-    "workflows": "actionlint 1.7.12 passed"
+    "workflows": "actionlint 1.7.12 passed: native, release, Pi"
   },
   "external": {
     "provider": "pending separate environment",
     "visual_terminal": "not established by headless SDK",
-    "windows_linux_native": "first PR run failed; corrected rerun pending",
     "legacy_user_migration": "excluded",
     "release_published": false,
     "pages_published": false,
-    "quota_savings": null
+    "quota_savings": null,
+    "provider_gate": "pending external dossier must be rejected"
   },
-  "snapshot": "6de7008 runtime; current native CI corrections require new acceptance"
+  "snapshot": "Runtime source unchanged since 97c9304; 40d7d8e fixes Git checkout policy and rejects cross-platform identity drift during assembly",
+  "runtime_commit": "97c9304257abf7894127bccb110e23fa6d0f09eb",
+  "runtime_fingerprint": "fc4ff9faaf96e2ce26708133cda129ec66137288a744c537192bae54819f1590",
+  "wheel": {
+    "version": "0.2.0",
+    "runtime_fingerprint": "fc4ff9faaf96e2ce26708133cda129ec66137288a744c537192bae54819f1590",
+    "source_commit": "97c9304257abf7894127bccb110e23fa6d0f09eb",
+    "sha256": "db5d16c3246e5e8bb842c7b274741f600832e05013b9e722cdf55a20459a1156",
+    "build": "passed",
+    "installed_smoke": "passed",
+    "source_imports": false
+  },
+  "failed_regressions": [
+    {
+      "snapshot": "89ca004",
+      "tests": 1278,
+      "failures": 0,
+      "errors": 1,
+      "reason": "Darwin exited-process signalling race; fixed before the passing whole-suite reruns"
+    },
+    {
+      "snapshot": "40d7d8e restricted local attempt",
+      "tests": 1288,
+      "failures": 1,
+      "errors": 4,
+      "reason": "Four loopback bind PermissionError exceptions and the live-client integration failure; unchanged inputs passed with the required local-server permission"
+    }
+  ],
+  "windows_offline_sdk": {
+    "source_commit": "4000e3a30519829a1dc8655408e803ad0f3b9e72",
+    "node": [
+      "22.19.0",
+      "26.13.0"
+    ],
+    "actual_build": "passed in Windows Pi CI",
+    "review_tests": 79,
+    "platform_specific_skips": 3,
+    "run": "https://github.com/jlema0590/aikya-forge/actions/runs/44499312994"
+  },
+  "native_ci": {
+    "status": "all seven jobs passed; downloaded artifacts and assembled release verified",
+    "head_commit": "40d7d8e672d18638bf8d096cb2d1659b75729f67",
+    "expected_runtime_fingerprint": "fc4ff9faaf96e2ce26708133cda129ec66137288a744c537192bae54819f1590",
+    "run": "https://github.com/jlema0590/aikya-forge/actions/runs/44525961641",
+    "build_commit": "9385e2c2c4bb7f3ded62ea4614c505bddb4f82ac",
+    "accepted_targets": [
+      "darwin-arm64",
+      "darwin-x64",
+      "linux-arm64-gnu",
+      "linux-x64-gnu",
+      "linux-x64-musl",
+      "win32-arm64",
+      "win32-x64"
+    ],
+    "pending_targets": [],
+    "locally_verified_targets": [
+      "darwin-arm64",
+      "darwin-x64",
+      "linux-arm64-gnu",
+      "linux-x64-gnu",
+      "linux-x64-musl",
+      "win32-arm64",
+      "win32-x64"
+    ],
+    "platforms": [
+      {
+        "platform": "darwin-arm64",
+        "source_commit": "9385e2c2c4bb7f3ded62ea4614c505bddb4f82ac",
+        "runtime_fingerprint": "fc4ff9faaf96e2ce26708133cda129ec66137288a744c537192bae54819f1590",
+        "manifest_hash": "845a517ae4f4a515a45cbf65992d599ed3151d6b46403c96eed419ed7f792c25",
+        "archive_sha256": "5e25015e3211a98e6dd9747f6c10a61fc3c288628aab781547b674c3f7eba41e",
+        "steps_passed": 19,
+        "commands": 29,
+        "profiles": 24,
+        "provider_calls": 0,
+        "coverage_counts": {
+          "indexed": 12,
+          "file_only": 17
+        },
+        "memory_observations": [
+          "external-create",
+          "external-edit",
+          "external-rename",
+          "external-delete"
+        ],
+        "theme": "light"
+      },
+      {
+        "platform": "darwin-x64",
+        "source_commit": "9385e2c2c4bb7f3ded62ea4614c505bddb4f82ac",
+        "runtime_fingerprint": "fc4ff9faaf96e2ce26708133cda129ec66137288a744c537192bae54819f1590",
+        "manifest_hash": "ce132972ae1a89d1c3e449f76327c6b75f0695d9f52e6f61d9e0b61233601639",
+        "archive_sha256": "16a590eaf7144d0816853f0e89289d9670a9d327b5cb4b06bde4c2f98e89c477",
+        "steps_passed": 19,
+        "commands": 29,
+        "profiles": 24,
+        "provider_calls": 0,
+        "coverage_counts": {
+          "indexed": 12,
+          "file_only": 17
+        },
+        "memory_observations": [
+          "external-create",
+          "external-edit",
+          "external-rename",
+          "external-delete"
+        ],
+        "theme": "light"
+      },
+      {
+        "platform": "linux-arm64-gnu",
+        "source_commit": "9385e2c2c4bb7f3ded62ea4614c505bddb4f82ac",
+        "runtime_fingerprint": "fc4ff9faaf96e2ce26708133cda129ec66137288a744c537192bae54819f1590",
+        "manifest_hash": "2ea307df46a8a610d43e7ebfbecadd6a24a56655ed97dad6f553ed8d172ecbf0",
+        "archive_sha256": "35cd246c89d6d37f22d4d3a169685049386dfad1043935ebe76033e2055b48d0",
+        "steps_passed": 19,
+        "commands": 29,
+        "profiles": 24,
+        "provider_calls": 0,
+        "coverage_counts": {
+          "indexed": 12,
+          "file_only": 17
+        },
+        "memory_observations": [
+          "external-create",
+          "external-edit",
+          "external-rename",
+          "external-delete"
+        ],
+        "theme": "light"
+      },
+      {
+        "platform": "linux-x64-gnu",
+        "source_commit": "9385e2c2c4bb7f3ded62ea4614c505bddb4f82ac",
+        "runtime_fingerprint": "fc4ff9faaf96e2ce26708133cda129ec66137288a744c537192bae54819f1590",
+        "manifest_hash": "287551887a60a5f767ef04b0d3e9217c9cbad1a766370eca2a5ce0adfd8eb751",
+        "archive_sha256": "bcab3dda397135220ab625c3b6d326db5dc21dc2616e3be942e5fdc5d9fde840",
+        "steps_passed": 19,
+        "commands": 29,
+        "profiles": 24,
+        "provider_calls": 0,
+        "coverage_counts": {
+          "indexed": 12,
+          "file_only": 17
+        },
+        "memory_observations": [
+          "external-create",
+          "external-edit",
+          "external-rename",
+          "external-delete"
+        ],
+        "theme": "light"
+      },
+      {
+        "platform": "linux-x64-musl",
+        "source_commit": "9385e2c2c4bb7f3ded62ea4614c505bddb4f82ac",
+        "runtime_fingerprint": "fc4ff9faaf96e2ce26708133cda129ec66137288a744c537192bae54819f1590",
+        "manifest_hash": "ae2b819631b82c6c8c6e11ba3838f0f398b8e4ef8f64c6624048c1d65145fb63",
+        "archive_sha256": "cd2578f6f1d31f5169e13d4c1171ac6644540f6bee828c3320599857f512d7ff",
+        "steps_passed": 19,
+        "commands": 29,
+        "profiles": 24,
+        "provider_calls": 0,
+        "coverage_counts": {
+          "indexed": 12,
+          "file_only": 17
+        },
+        "memory_observations": [
+          "external-create",
+          "external-edit",
+          "external-rename",
+          "external-delete"
+        ],
+        "theme": "light"
+      },
+      {
+        "platform": "win32-arm64",
+        "source_commit": "9385e2c2c4bb7f3ded62ea4614c505bddb4f82ac",
+        "runtime_fingerprint": "fc4ff9faaf96e2ce26708133cda129ec66137288a744c537192bae54819f1590",
+        "manifest_hash": "b3946f5f733ae22dd4b57f6375a113b73ab6b9dcc3c6f75090f6216d2ddb252c",
+        "archive_sha256": "24527a5e509bb65f0a86295d967a85fe8aa3453fd9b25c337194cc42c448a17c",
+        "steps_passed": 19,
+        "commands": 29,
+        "profiles": 24,
+        "provider_calls": 0,
+        "coverage_counts": {
+          "indexed": 11,
+          "file_only": 18
+        },
+        "memory_observations": [
+          "external-create",
+          "external-edit",
+          "external-rename",
+          "external-delete"
+        ],
+        "theme": "light"
+      },
+      {
+        "platform": "win32-x64",
+        "source_commit": "9385e2c2c4bb7f3ded62ea4614c505bddb4f82ac",
+        "runtime_fingerprint": "fc4ff9faaf96e2ce26708133cda129ec66137288a744c537192bae54819f1590",
+        "manifest_hash": "173e29ee25bb8b2b746671c1bf1547990fbc2c64398247e812b2b3c1f9ae298e",
+        "archive_sha256": "d0a5fa6d2ab04764a4fc42821fe085a83dafd600f5cefc2653481deb7bb1b181",
+        "steps_passed": 19,
+        "commands": 29,
+        "profiles": 24,
+        "provider_calls": 0,
+        "coverage_counts": {
+          "indexed": 12,
+          "file_only": 17
+        },
+        "memory_observations": [
+          "external-create",
+          "external-edit",
+          "external-rename",
+          "external-delete"
+        ],
+        "theme": "light"
+      }
+    ],
+    "assembly": {
+      "version": "0.2.0",
+      "source_commit": "9385e2c2c4bb7f3ded62ea4614c505bddb4f82ac",
+      "assets": 16,
+      "checksums": "all passed",
+      "published": false,
+      "release_manifest_sha256": "b45a65d41e9b8a768b67fd4f769bb9e950a67b4e0dc4b1fcbba52cbb5cf807c9"
+    }
+  },
+  "native_previous_snapshot": {
+    "run": "https://github.com/jlema0590/aikya-forge/actions/runs/44499313000",
+    "head_commit": "4000e3a30519829a1dc8655408e803ad0f3b9e72",
+    "all_seven_functional_jobs": "passed",
+    "release_assembly": "rejected by corrected assembler before output creation: Windows CRLF fingerprint differs",
+    "platforms": [
+      {
+        "platform": "darwin-arm64",
+        "manifest_hash": "33f45ad60636e3f39b3628861331b65d57f9fe1c652194bcd5325bb6532aec57",
+        "archive_sha256": "8235e74c43aa9af79df3fd936266a58c17bc557ea0f91ccf7f5a6e7eeb4b067f",
+        "runtime_fingerprint": "fc4ff9faaf96e2ce26708133cda129ec66137288a744c537192bae54819f1590",
+        "source_commit": "50245b7086bb2c46ce1134bae115c8e95cd931c7",
+        "version": "0.2.0",
+        "next_version": "0.2.1",
+        "steps_passed": 19,
+        "commands": 29,
+        "profiles": 24,
+        "provider_calls": 0,
+        "indexed_suffixes": [
+          ".cjs",
+          ".cs",
+          ".dart",
+          ".go",
+          ".java",
+          ".js",
+          ".jsx",
+          ".mjs",
+          ".py",
+          ".pyi",
+          ".ts",
+          ".tsx"
+        ],
+        "file_only_suffixes": [
+          ".c",
+          ".cc",
+          ".cpp",
+          ".h",
+          ".hpp",
+          ".kt",
+          ".kts",
+          ".php",
+          ".ps1",
+          ".rb",
+          ".rs",
+          ".sh",
+          ".sql",
+          ".svelte",
+          ".swift",
+          ".tf",
+          ".vue"
+        ],
+        "memory_observations": [
+          "external-create",
+          "external-edit",
+          "external-rename",
+          "external-delete"
+        ],
+        "theme": "light"
+      },
+      {
+        "platform": "darwin-x64",
+        "manifest_hash": "fe3b06440b27fe7ce02a1c3454dedb37af7f981a0bd405f5b271e32dded44f5b",
+        "archive_sha256": "5d83a0cb4265c92b279ac95d201852f21bc63576fb2464a86423038e6c3b1927",
+        "runtime_fingerprint": "fc4ff9faaf96e2ce26708133cda129ec66137288a744c537192bae54819f1590",
+        "source_commit": "50245b7086bb2c46ce1134bae115c8e95cd931c7",
+        "version": "0.2.0",
+        "next_version": "0.2.1",
+        "steps_passed": 19,
+        "commands": 29,
+        "profiles": 24,
+        "provider_calls": 0,
+        "indexed_suffixes": [
+          ".cjs",
+          ".cs",
+          ".dart",
+          ".go",
+          ".java",
+          ".js",
+          ".jsx",
+          ".mjs",
+          ".py",
+          ".pyi",
+          ".ts",
+          ".tsx"
+        ],
+        "file_only_suffixes": [
+          ".c",
+          ".cc",
+          ".cpp",
+          ".h",
+          ".hpp",
+          ".kt",
+          ".kts",
+          ".php",
+          ".ps1",
+          ".rb",
+          ".rs",
+          ".sh",
+          ".sql",
+          ".svelte",
+          ".swift",
+          ".tf",
+          ".vue"
+        ],
+        "memory_observations": [
+          "external-create",
+          "external-edit",
+          "external-rename",
+          "external-delete"
+        ],
+        "theme": "light"
+      },
+      {
+        "platform": "linux-arm64-gnu",
+        "manifest_hash": "4b1fd96c5847436d63cfc5fb61ea52b91721e0fe5b31cf3380fbe38287daf700",
+        "archive_sha256": "3b379f20f90e2417672fff881e0cbd3d55f99e54aea94cd6572e73a1f093cd32",
+        "runtime_fingerprint": "fc4ff9faaf96e2ce26708133cda129ec66137288a744c537192bae54819f1590",
+        "source_commit": "50245b7086bb2c46ce1134bae115c8e95cd931c7",
+        "version": "0.2.0",
+        "next_version": "0.2.1",
+        "steps_passed": 19,
+        "commands": 29,
+        "profiles": 24,
+        "provider_calls": 0,
+        "indexed_suffixes": [
+          ".cjs",
+          ".cs",
+          ".dart",
+          ".go",
+          ".java",
+          ".js",
+          ".jsx",
+          ".mjs",
+          ".py",
+          ".pyi",
+          ".ts",
+          ".tsx"
+        ],
+        "file_only_suffixes": [
+          ".c",
+          ".cc",
+          ".cpp",
+          ".h",
+          ".hpp",
+          ".kt",
+          ".kts",
+          ".php",
+          ".ps1",
+          ".rb",
+          ".rs",
+          ".sh",
+          ".sql",
+          ".svelte",
+          ".swift",
+          ".tf",
+          ".vue"
+        ],
+        "memory_observations": [
+          "external-create",
+          "external-edit",
+          "external-rename",
+          "external-delete"
+        ],
+        "theme": "light"
+      },
+      {
+        "platform": "linux-x64-gnu",
+        "manifest_hash": "ab45c5035f992d70f4f893d0aec32d1d4e26e1f9a4018731034e7538321c2c68",
+        "archive_sha256": "557ac8449ee0a1099f413ea917ebfa7ab775be9f53b0e5398dac3fa6e7a9603f",
+        "runtime_fingerprint": "fc4ff9faaf96e2ce26708133cda129ec66137288a744c537192bae54819f1590",
+        "source_commit": "50245b7086bb2c46ce1134bae115c8e95cd931c7",
+        "version": "0.2.0",
+        "next_version": "0.2.1",
+        "steps_passed": 19,
+        "commands": 29,
+        "profiles": 24,
+        "provider_calls": 0,
+        "indexed_suffixes": [
+          ".cjs",
+          ".cs",
+          ".dart",
+          ".go",
+          ".java",
+          ".js",
+          ".jsx",
+          ".mjs",
+          ".py",
+          ".pyi",
+          ".ts",
+          ".tsx"
+        ],
+        "file_only_suffixes": [
+          ".c",
+          ".cc",
+          ".cpp",
+          ".h",
+          ".hpp",
+          ".kt",
+          ".kts",
+          ".php",
+          ".ps1",
+          ".rb",
+          ".rs",
+          ".sh",
+          ".sql",
+          ".svelte",
+          ".swift",
+          ".tf",
+          ".vue"
+        ],
+        "memory_observations": [
+          "external-create",
+          "external-edit",
+          "external-rename",
+          "external-delete"
+        ],
+        "theme": "light"
+      },
+      {
+        "platform": "linux-x64-musl",
+        "manifest_hash": "0c40364da5a28e34aafa02644f576ddd9e778db7b111972eb76eb086f61675ab",
+        "archive_sha256": "208031aaf4f57e3f7077e75b44128ff3fad70347c3b8420f0cf3d469c6fbbf66",
+        "runtime_fingerprint": "fc4ff9faaf96e2ce26708133cda129ec66137288a744c537192bae54819f1590",
+        "source_commit": "50245b7086bb2c46ce1134bae115c8e95cd931c7",
+        "version": "0.2.0",
+        "next_version": "0.2.1",
+        "steps_passed": 19,
+        "commands": 29,
+        "profiles": 24,
+        "provider_calls": 0,
+        "indexed_suffixes": [
+          ".cjs",
+          ".cs",
+          ".dart",
+          ".go",
+          ".java",
+          ".js",
+          ".jsx",
+          ".mjs",
+          ".py",
+          ".pyi",
+          ".ts",
+          ".tsx"
+        ],
+        "file_only_suffixes": [
+          ".c",
+          ".cc",
+          ".cpp",
+          ".h",
+          ".hpp",
+          ".kt",
+          ".kts",
+          ".php",
+          ".ps1",
+          ".rb",
+          ".rs",
+          ".sh",
+          ".sql",
+          ".svelte",
+          ".swift",
+          ".tf",
+          ".vue"
+        ],
+        "memory_observations": [
+          "external-create",
+          "external-edit",
+          "external-rename",
+          "external-delete"
+        ],
+        "theme": "light"
+      },
+      {
+        "platform": "win32-arm64",
+        "manifest_hash": "72a9bb0984fd7e77ee1d818ba5684204e41b9ce58562406114fd6a1a15c56d64",
+        "archive_sha256": "8ed580ca8c3af86393f9d291bc136f8c8061877b80651b27a3f85ed5510427ec",
+        "runtime_fingerprint": "1582a9553b8a4339abd4247b0b2fbedae741149a74023a55144aac5ae24951e5",
+        "source_commit": "50245b7086bb2c46ce1134bae115c8e95cd931c7",
+        "version": "0.2.0",
+        "next_version": "0.2.1",
+        "steps_passed": 19,
+        "commands": 29,
+        "profiles": 24,
+        "provider_calls": 0,
+        "indexed_suffixes": [
+          ".cjs",
+          ".cs",
+          ".go",
+          ".java",
+          ".js",
+          ".jsx",
+          ".mjs",
+          ".py",
+          ".pyi",
+          ".ts",
+          ".tsx"
+        ],
+        "file_only_suffixes": [
+          ".c",
+          ".cc",
+          ".cpp",
+          ".dart",
+          ".h",
+          ".hpp",
+          ".kt",
+          ".kts",
+          ".php",
+          ".ps1",
+          ".rb",
+          ".rs",
+          ".sh",
+          ".sql",
+          ".svelte",
+          ".swift",
+          ".tf",
+          ".vue"
+        ],
+        "memory_observations": [
+          "external-create",
+          "external-edit",
+          "external-rename",
+          "external-delete"
+        ],
+        "theme": "light"
+      },
+      {
+        "platform": "win32-x64",
+        "manifest_hash": "f8d473e4381bef5b9e87106728f1e95df00218e7d99173e2bb99ad3dd3391a95",
+        "archive_sha256": "c0169339e841c909ece599b3614c9976e1a40293ee256b13b4197390bb515d4c",
+        "runtime_fingerprint": "1582a9553b8a4339abd4247b0b2fbedae741149a74023a55144aac5ae24951e5",
+        "source_commit": "50245b7086bb2c46ce1134bae115c8e95cd931c7",
+        "version": "0.2.0",
+        "next_version": "0.2.1",
+        "steps_passed": 19,
+        "commands": 29,
+        "profiles": 24,
+        "provider_calls": 0,
+        "indexed_suffixes": [
+          ".cjs",
+          ".cs",
+          ".dart",
+          ".go",
+          ".java",
+          ".js",
+          ".jsx",
+          ".mjs",
+          ".py",
+          ".pyi",
+          ".ts",
+          ".tsx"
+        ],
+        "file_only_suffixes": [
+          ".c",
+          ".cc",
+          ".cpp",
+          ".h",
+          ".hpp",
+          ".kt",
+          ".kts",
+          ".php",
+          ".ps1",
+          ".rb",
+          ".rs",
+          ".sh",
+          ".sql",
+          ".svelte",
+          ".swift",
+          ".tf",
+          ".vue"
+        ],
+        "memory_observations": [
+          "external-create",
+          "external-edit",
+          "external-rename",
+          "external-delete"
+        ],
+        "theme": "light"
+      }
+    ]
+  },
+  "python_ci": {
+    "run": "https://github.com/jlema0590/aikya-forge/actions/runs/44525961433",
+    "result": "all 11 jobs passed",
+    "versions": [
+      "3.10",
+      "3.11",
+      "3.12",
+      "3.13"
+    ],
+    "memory_platforms": [
+      "macos",
+      "linux",
+      "windows"
+    ],
+    "note": "CI dependency/platform skips differ from the local parser-enabled run; see job logs",
+    "source_commit": "40d7d8e672d18638bf8d096cb2d1659b75729f67"
+  },
+  "clean_installers_ci": {
+    "run": "https://github.com/jlema0590/aikya-forge/actions/runs/44525961508",
+    "result": "all 16 jobs passed",
+    "platforms": [
+      "macos",
+      "linux",
+      "windows",
+      "Debian",
+      "Alpine",
+      "Fedora"
+    ],
+    "note": "Inherited Python-based installer checks are separate from Forge native payload acceptance",
+    "source_commit": "40d7d8e672d18638bf8d096cb2d1659b75729f67"
+  },
+  "windows_source_byte_diagnosis": {
+    "counts": {
+      "lf_to_crlf_only": 323,
+      "exact_bytes": 308
+    },
+    "unexplained": [],
+    "source_identity": "4000e3a Windows archive compared to unchanged current runtime inputs"
+  },
+  "interactive_preview": {
+    "platform": "darwin-arm64",
+    "version": "0.2.0",
+    "method": "actual installed native CLI in a private PTY, replayed in a read-only xterm viewport; not a macOS Terminal screenshot",
+    "provider_calls": 0,
+    "model": "disabled",
+    "project": "temporary fixture",
+    "views": [
+      "startup",
+      "command autocomplete",
+      "aikya-tokens"
+    ],
+    "observed_budget": "unconfigured; recorded tokens unknown, calls 0, provider quota unavailable",
+    "limitations": [
+      "fd startup warning in offline mode",
+      "inherited Aikya v8 terminal title in source; banner correctly shows 0.2.0",
+      "not full visual acceptance of all platforms or authenticated sessions"
+    ],
+    "screenshots": {}
+  },
+  "open_acceptance": [
+    "real-provider trials and measured comparisons in the separate environment",
+    "visual terminal and input/theme/resize acceptance per supported OS",
+    "review fd/rg clean-host availability and offline autocomplete; preserve pinned/no-unreviewed-download policy",
+    "replace inherited v8 terminal title",
+    "diagnose non-reproduced Windows Node 26 final-record resumption failure",
+    "human PR/release review and explicit publication after acceptance"
+  ]
 }

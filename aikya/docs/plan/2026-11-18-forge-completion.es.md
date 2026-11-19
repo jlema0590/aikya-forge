@@ -71,7 +71,7 @@ Archivos: `installation/managed_*`, scripts CI y workflows de Forge; builder de 
   de migración real v7 del criterio de aceptación del producto nuevo.
 - [x] Incluir parsers binarios compatibles fijados con hashes; fallback explícito si
   un objetivo carece de rueda compatible, sin compilar fuentes ni cambiar ABIs.
-- [ ] Construcción y ciclo nativos en CI macOS/Linux/Windows; contrastar resultados
+- [x] Construcción y ciclo nativos en CI macOS/Linux/Windows; contrastar resultados
   remotos disponibles, incluyendo permisos, rutas Unicode y datos conservados.
 - [x] Preparar publicación revisada, checksum/manifest y Pages del nuevo repositorio;
   mantener entrega/publicación condicionada a sus comprobaciones reales.
@@ -84,7 +84,7 @@ Archivos: motores existentes y pruebas de integración/navegador; informe nuevo.
 - [x] Notas, aislamiento, corrupción, reinicio/update/rollback y preferencias persistentes.
 - [x] Cobertura derivada del catálogo y capacidades realmente instaladas; no confundir
   extensión inventariada con símbolos analizados o build ejecutado.
-- [ ] Registrar recorridos en macOS y CI nativa restante, sin extrapolar resultados.
+- [x] Registrar recorridos nativos en los siete objetivos, sin extrapolar aceptación visual.
 
 ### 5. Uso y aceptación de proveedor en entorno externo
 
@@ -100,27 +100,43 @@ Archivos: servicios/terminal de uso y sesiones existentes; nuevo dossier de acep
 
 - [x] Derivar comandos/extensiones/runners de los catálogos y verificar denegaciones,
   ODD/SDD, en/es y perfiles nuevos/existentes en entornos temporales.
-- [ ] Ejecutar regresión Python/Pi, wheel instalado, navegador y calidad del diff.
+- [x] Ejecutar regresión local Python/Pi, wheel instalado, navegador y calidad del diff;
+  conservar por separado los resultados nativos y los ajustes de fixtures Windows.
 - [x] Actualizar README en/es, changelog, versión propia 0.2.0 e índice; sustituir
   el plan activo v8 por este plan, preservando historia y pendientes externos.
 - [x] Registrar fuentes congeladas, resultados/omisiones y commits revisables.
 
-## Resultado local y pendientes externos
+## Resultado verificado
 
-La evidencia de cierre local está en
-[el informe](../validation/2026-11-18-forge-completion.md). Se han observado 1.270 pruebas
-Python sin fallos (dos omisiones declaradas), 93 pruebas Pi en cada Node 22/26,
-110 comprobaciones de navegador, wheel instalado y ciclo nativo macOS ARM con
-instalación, skills, actualización y rollback. No se midió ahorro de cuota/tokens.
-La ampliación final de la prueba instalada no modifica el runtime empaquetado.
+[El informe](../validation/2026-11-18-forge-completion.md) registra 1.288 pruebas
+Python sin fallos (una omisión comprobada aparte), 94/94 contratos SDK en las seis
+combinaciones de sistema/Node, 110 comprobaciones de navegador y wheel instalado.
+Las matrices de Python, instalación limpia y los siete ciclos nativos pasaron en
+40d7d8e. Cada ciclo comprobó 29 comandos y 24 perfiles sin llamadas a proveedores.
 
-El código y la preparación están implementados. Quedan la ejecución/resultado de la
-matriz remota, aceptación visual por host y los ensayos de proveedor en el otro entorno.
-Preparar una release no equivale a aprobarla ni publicarla. El JSON externo continúa
-pending y el workflow no puede publicar con él.
+Los siete artefactos descargados comparten commit de construcción y huella. El
+ensamblado local pasó y sus 16 checksums se verificaron. La diferencia CRLF de
+Windows del pase anterior está corregida; ese conjunto antiguo sigue rechazado.
+Un intento local restringido falló por permisos de puertos; la repetición completa
+con ese permiso pasó sin cambios. El informe conserva ambos resultados.
 
-Los controles que dependan de sistemas o proveedores no disponibles quedan abiertos
-con la evidencia y el procedimiento concreto; no equivalen a trabajo implementado
-ni a una aprobación de release. No se estiman ahorros de tokens sin medición real.
+## Pendientes de aceptación y salida pública
+
+- [ ] Ejecutar los ensayos reales de proveedor y comparación de consumo en el otro
+  entorno, manteniendo modelo/caché y evidencia de procedencia. No inventar ahorros.
+- [ ] Completar revisión visual, teclado, redimensionado, temas y sesiones reales en
+  macOS/Windows/Linux. Las capturas locales actuales son salida PTY de macOS ARM,
+  en modo sin modelo; no equivalen a esa aceptación completa.
+- [ ] Resolver el aviso de fd ausente en modo offline y comprobar fd/rg en equipos
+  limpios: autocompletado y fallback, con entradas revisadas y hashes si se empaquetan.
+  Conservar el bloqueo de descargas no revisadas al arrancar.
+- [ ] Sustituir el título heredado Aikya v8 por la identidad/versionado actual de Forge.
+- [ ] Identificar la causa intermitente de la reanudación final de Windows Node 26:
+  falló una vez y pasó al repetir sin cambios; no se declara corregida por ello.
+- [ ] Revisar/aprobar la PR y publicar release/instalador corto/Pages solo cuando
+  corresponda, superadas las validaciones. La preparación actual no publica nada.
+
+El dossier externo sigue pending y bloquea publicación. La migración real desde v7
+permanece fuera del alcance. El producto es nuevo y usa versionado propio 0.2.0.
 
 GENERATED BY AIKYA HARNESS

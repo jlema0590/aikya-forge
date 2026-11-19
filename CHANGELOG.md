@@ -26,10 +26,20 @@ The inherited Harness v7/v8 changelog remains in
 - Preserve and bind Windows AppData SDK cache locations so NuGet migration state
   does not fall back into project source; keep source drift detection intact.
 - Correct Windows fixture byte hashing and prepare all private-build tools in Pi CI.
-- Validate 1,270 Python tests (two declared environment skips), 93 Pi tests on each
-  Node 22/26, 110 browser checks, fresh installed wheel and the macOS ARM native
-  install/skill withdrawal/update/rollback/uninstall cycle with zero inference.
-  Remote native CI and real-provider acceptance remain separate publication gates.
+- Canonicalize Windows project identity using native real paths; use Git's NUL
+  device on Windows and preserve bound machine/AppData SDK resolver locations.
+- Establish bootstrap architecture preconditions inside child PowerShell processes;
+  fail explicitly on missing native metadata and yield during owned SDK fixture cleanup.
+- Preserve canonical LF source across Git checkouts while retaining byte-pinned
+  assets; reject mixed or missing source fingerprints during seven-target assembly.
+- Validate 1,288 local Python tests (one separately exercised dependency fallback),
+  94/94 SDK contracts across six OS/Node combinations, 110 browser checks, a fresh
+  installed wheel and all seven native lifecycle targets. Verify one source identity
+  across downloaded archives and all 16 assembled output checksums; do not publish.
+- Record real macOS ARM PTY preview captures, the offline fd startup warning and
+  inherited v8 window title as interactive follow-up. Retain the non-reproduced
+  Windows Node 26 final-record test failure separately from its passing rerun.
+  Visual-terminal and real-provider acceptance remain explicit publication gates.
 
 ## v0.1.0 — 2026-11-10
 
