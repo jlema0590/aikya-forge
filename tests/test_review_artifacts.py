@@ -106,10 +106,15 @@ class ArtifactChecks(unittest.TestCase):
         definition=self.definition('pass');definition.update(argv=[dotnet,'build','Evidence.csproj','--artifacts-path','{artifacts}',
             '--disable-build-servers','--nologo','-p:UseSharedCompilation=false','-p:NuGetAudit=false',
             '-p:ImportDirectoryBuildProps=false','-p:ImportDirectoryBuildTargets=false'],timeout_seconds=90)
-        candidate=self.freeze(definition,environment);result=self.run_definition(definition,environment=environment)
+        candidate=self.freeze(definition,environment);captured=[];capture=executor.capture_process
+        def observe(*args,**kwargs):
+            observed,stdout=capture(*args,**kwargs);captured.append(dict(observed,stdout=stdout[:8192].decode('utf8',errors='replace')))
+            return observed,stdout
+        with patch.object(executor,'capture_process',side_effect=observe):
+            result=self.run_definition(definition,environment=environment)
         fresh=freeze_candidate(self.root,'artifact-check',candidate['scope'],session_id='author',policy=candidate['policy'],parent=candidate['parent'])
         drift=sorted(p for p in candidate['files'].keys()|fresh['files'].keys() if candidate['files'].get(p)!=fresh['files'].get(p))
-        self.assertEqual(result['status'],'completed',dict(result,changed_paths=drift));self.assertIsNone(result['counts'])
+        self.assertEqual(result['status'],'completed',dict(result,changed_paths=drift,process=captured));self.assertIsNone(result['counts'])
         self.assertFalse((self.root/'bin').exists());self.assertFalse((self.root/'obj').exists())
         self.assertTrue(is_current(self.root,candidate))
         outputs=self.root/'.aikya/pi/check-artifacts/artifact-check/run-1'
