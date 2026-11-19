@@ -88,6 +88,13 @@ class ConsoleCapture:
     def expect(self,text,timeout=20,after=0):
         self.until(lambda:text in plain(self.raw[after:]),timeout)
 
+    def settle(self,duration):
+        if not 0<=duration<=1:raise ValueError('Invalid terminal input gap')
+        deadline=time.monotonic()+duration
+        while time.monotonic()<deadline:
+            if self.pid is None:raise ValueError('PTY exited during input settling')
+            self.pump(min(.02,max(0,deadline-time.monotonic())))
+
     def send(self,text):
         offset=len(self.raw);self._write(text.encode('utf8'));return offset
 
@@ -172,11 +179,11 @@ def run(output,*,application=None,source=None,assets=None,fetch=False):
             assert 'not found. Offline mode' not in plain(terminal.raw)
             assert 'Downloading...' not in plain(terminal.raw)
             offset=terminal.send('@SearchFix');terminal.expect('verified/nested/SearchFixture.java',timeout=20,after=offset)
-            terminal.send('\x1b');terminal.pump(.2)
-            terminal.send('\x15');terminal.pump(.2)
+            terminal.send('\x1b');terminal.settle(.2)
+            terminal.send('\x15');terminal.settle(.2)
             write_new(output/'startup.ansi',bytes(terminal.raw))
             offset=terminal.send('/aikya-theme light\r');terminal.expect('Apply this theme?',timeout=20,after=offset)
-            terminal.send('\x1b[A');terminal.send('\r');terminal.until(lambda:_theme(project)=='light',timeout=20)
+            terminal.send('\x1b[A');terminal.settle(.1);terminal.send('\r');terminal.until(lambda:_theme(project)=='light',timeout=20)
             write_new(output/'light-theme.ansi',bytes(terminal.raw))
             terminal.resize(100,32);offset=terminal.send('/aikya-tokens\r')
             terminal.expect('Provider quota: unavailable',timeout=20,after=offset)

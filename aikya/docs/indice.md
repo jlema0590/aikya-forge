@@ -1,5 +1,7 @@
 # Document index
 
+- [changes/REQ-20261120-f0900220.md](changes/REQ-20261120-f0900220.md)
+
 - [changes/REQ-20261120-f0900219.md](changes/REQ-20261120-f0900219.md)
 
 - [changes/REQ-20261119-f0900218.md](changes/REQ-20261119-f0900218.md)

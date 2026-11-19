@@ -67,6 +67,14 @@ screen buffer and preserves all assertions and limits. Current native acceptance
 [run 44633078517](https://github.com/jlema0590/aikya-forge/actions/runs/44633078517).
 The earlier 97daaf8 seven-target lifecycle passed with fingerprint 50bf7294; it does
 not validate the later Windows lookup correction. Do not mix these artifact sets.
+ae453a7's Windows jobs both passed all 102 SDK tests and three additional final-record
+resumptions each. The old intermittent cause remains unknown. Real console captures
+then exposed joined editor input: pump(0.2) returned immediately on ready output.
+The follow-up uses a monotonic, output-draining input gap without extending any
+application/command deadline. Five collector tests and the installed macOS flow
+pass locally. Runs 44633078517 (five native successes, two unfinished Windows jobs)
+and 44634629161 (queued duplicate) were cancelled as obsolete collector executions.
+Neither is accepted as a complete release set; new native evidence remains required.
 The external preparation tool creates a source-bound, pending nine-scenario packet
 for the agreed other environment, without keys, trials or publication authority.
 Actual authenticated provider observations and reviewed comparisons are not present.

@@ -40,6 +40,13 @@ class TerminalPtyCapture(unittest.TestCase):
         raw=b'\x1b]0;private title\x07\x1b[31mREADY\x1b[0m\r\n'
         self.assertEqual(self.module.plain(raw),'READY\r\n')
 
+    def test_settling_keeps_a_real_input_gap_even_when_output_is_already_ready(self):
+        code='import time;print("READY",flush=True);input();started=time.monotonic();print("FRAME"*100,flush=True);input();print("GAP_OK" if time.monotonic()-started>=.15 else "EARLY",flush=True)'
+        with self.child(code) as terminal:
+            terminal.expect('READY',timeout=3);terminal.send('first\r');terminal.expect('FRAME',timeout=3)
+            terminal.settle(.2);terminal.send('second\r');terminal.expect('GAP_OK',timeout=3)
+            self.assertEqual(terminal.finish(timeout=3),0)
+
     @unittest.skipIf(os.name=='nt','POSIX process-group cleanup; Windows uses a kill-on-close job')
     def test_a_descendant_ignoring_term_cannot_survive_its_exited_leader(self):
         marker=self.root/'survived.txt'
