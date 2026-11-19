@@ -4,6 +4,7 @@ import importlib
 import importlib.util
 import json
 import os
+import shutil
 from pathlib import Path
 import subprocess
 import tempfile
@@ -44,6 +45,25 @@ class NativeBootstrapEntryTests(unittest.TestCase):
         physical=self.root/'physical temporary';physical.mkdir();alias=self.root/'alias';alias.symlink_to(physical,target_is_directory=True)
         result=subprocess.run(['/bin/sh',str(output/'install.sh'),'--offline-dir',str(self.assets),'--no-path'],env={**os.environ,'TMPDIR':str(alias)},capture_output=True,text=True)
         self.assertEqual(result.returncode,0,result.stderr);self.assertTrue(result.stdout.startswith(str(physical)),result.stdout);self.assertEqual(list(physical.iterdir()),[])
+
+    @unittest.skipUnless(shutil.which('pwsh') or shutil.which('powershell'),'PowerShell is required')
+    def test_windows_architecture_and_integrity_errors_return_unsuccessful_status(self):
+        name='aikya-terminal-8.0.0-alpha.0-win32-x64.zip'
+        if not (self.assets/name).exists():
+            (self.assets/name).write_bytes(self.raw)
+            with (self.assets/'SHA256SUMS').open('a') as stream:stream.write(hashlib.sha256(self.raw).hexdigest()+'  '+name+'\n')
+        output=self.root/'entries';self.entries.build('8.0.0-alpha.0',self.assets,output)
+        environment={key:value for key,value in os.environ.items() if key not in ('PROCESSOR_ARCHITECTURE','PROCESSOR_ARCHITEW6432')}
+        environment['AIKYA_INSTALL_ROOT']=str(self.root/'app')
+        shell=shutil.which('pwsh') or shutil.which('powershell')
+        command=[shell,'-NoProfile','-NonInteractive','-File',str(output/'install.ps1'),'-OfflineDir',str(self.assets),'-NoPath']
+        missing=subprocess.run(command,env=environment,capture_output=True,text=True,encoding='utf8',timeout=30)
+        self.assertNotEqual(missing.returncode,0,missing.stderr)
+        self.assertIn('architecture',missing.stderr.lower());self.assertFalse((self.root/'app').exists())
+        (self.assets/name).write_bytes(b'Corrupt transport')
+        invalid=subprocess.run(command,env={**environment,'PROCESSOR_ARCHITECTURE':'AMD64'},capture_output=True,text=True,encoding='utf8',timeout=30)
+        self.assertNotEqual(invalid.returncode,0,invalid.stderr)
+        self.assertIn('checksum',invalid.stderr.lower());self.assertFalse((self.root/'app').exists())
 
     def test_modified_assets_or_custom_entry_output_are_preserved(self):
         output=self.root/'entries';(self.assets/self.name).write_bytes(b'Changed')

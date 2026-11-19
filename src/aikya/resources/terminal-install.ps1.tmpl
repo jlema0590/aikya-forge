@@ -17,6 +17,7 @@ if ($Version -ne '@@VERSION@@' -or $Channel -ne '@@CHANNEL@@') { throw 'Use the 
 if ($DryRun) { @{action=$Action;version=$Version;channel=$Channel;writes=$false;network=$false} | ConvertTo-Json -Compress; return }
 $arch=$env:PROCESSOR_ARCHITEW6432
 if (-not $arch) { $arch=$env:PROCESSOR_ARCHITECTURE }
+if (-not $arch) { throw 'Native Windows architecture is unavailable.' }
 switch ($arch.ToUpperInvariant()) { 'AMD64' {$target='win32-x64'} 'ARM64' {$target='win32-arm64'} default {throw 'Unsupported native Windows architecture.'} }
 $platforms=@{
 @@PLATFORMS@@

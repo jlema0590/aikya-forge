@@ -28,7 +28,7 @@ test("session files remain in each project and resume the same local lineage", a
     first.appendMessage({role: "user", content: "Local test conversation", timestamp: 1});
     first.appendCustomEntry("aikya-test", { observed: true });
     const filename = first.getSessionFile();
-    assert.ok(filename?.startsWith(join(realpathSync(root), ".aikya", "pi", "sessions")));
+    assert.ok(filename?.startsWith(join(realpathSync.native(root), ".aikya", "pi", "sessions")));
     const resumed = runtime.projectSession(root, true);
     assert.equal(resumed.getSessionId(), first.getSessionId());
     const otherRoot = join(root, "other");

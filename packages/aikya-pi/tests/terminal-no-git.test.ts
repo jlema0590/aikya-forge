@@ -6,7 +6,7 @@ import {test} from 'node:test';
 import {prepareTerminalState} from '../src/terminal-state.ts';
 
 test('an unversioned project initializes local private state without a Git executable',()=>{
- const root=realpathSync(mkdtempSync(join(tmpdir(),'aikya-unversioned-'))),previous=process.env.PATH;
+ const root=realpathSync.native(mkdtempSync(join(tmpdir(),'aikya-unversioned-'))),previous=process.env.PATH;
  try {
   process.env.PATH=join(root,'no-executables');const value=prepareTerminalState(root);
   assert.equal(value.project,root);assert.ok(existsSync(join(root,'.aikya/pi/agent')));assert.ok(existsSync(join(root,'.gitignore')));
@@ -14,7 +14,7 @@ test('an unversioned project initializes local private state without a Git execu
 });
 
 test('a nested Git worktree or gitfile still requires real tracked/ignore validation before writes',()=>{
- const root=realpathSync(mkdtempSync(join(tmpdir(),'aikya-with-git-marker-'))),previous=process.env.PATH;
+ const root=realpathSync.native(mkdtempSync(join(tmpdir(),'aikya-with-git-marker-'))),previous=process.env.PATH;
  try {
   const nested=join(root,'nested');mkdirSync(nested);process.env.PATH=join(root,'no-executables');
   for (const kind of ['directory','gitfile']) {
@@ -26,7 +26,7 @@ test('a nested Git worktree or gitfile still requires real tracked/ignore valida
 });
 
 test('bare repository metadata cannot be mistaken for an unversioned project',()=>{
- const root=realpathSync(mkdtempSync(join(tmpdir(),'aikya-bare-marker-'))),previous=process.env.PATH;
+ const root=realpathSync.native(mkdtempSync(join(tmpdir(),'aikya-bare-marker-'))),previous=process.env.PATH;
  try {
   writeFileSync(join(root,'HEAD'),'ref: refs/heads/main\n');mkdirSync(join(root,'objects'));mkdirSync(join(root,'refs'));process.env.PATH=join(root,'no-executables');
   assert.throws(()=>prepareTerminalState(root),/Git/);assert.equal(existsSync(join(root,'.aikya')),false);

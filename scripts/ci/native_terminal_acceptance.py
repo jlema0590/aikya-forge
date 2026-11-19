@@ -25,7 +25,7 @@ def run(bundle,output,next_bundle=None,work=None):
         managed_runtime.inspect(next_bundle/'payload',version=following['version'],target=result['platform'])
     base=Path(tempfile.mkdtemp(prefix='forge-native-acceptance-',dir=work)).resolve()
     home=base/'home';home.mkdir();app=base/'Forge application áikya & tools';project=base/'Existing project áikya';project.mkdir()
-    allowed=('PATH','SYSTEMROOT','WINDIR','COMSPEC','PATHEXT','TEMP','TMP','TMPDIR','LANG','LC_ALL','SSL_CERT_FILE','SSL_CERT_DIR')
+    allowed=('PROCESSOR_ARCHITECTURE','PROCESSOR_ARCHITEW6432','PATH','SYSTEMROOT','WINDIR','COMSPEC','PATHEXT','TEMP','TMP','TMPDIR','LANG','LC_ALL','SSL_CERT_FILE','SSL_CERT_DIR')
     env={k:v for k,v in os.environ.items() if k in allowed}
     env.update(HOME=str(home),USERPROFILE=str(home),LOCALAPPDATA=str(home/'AppData/Local'),APPDATA=str(home/'AppData/Roaming'),
         XDG_CONFIG_HOME=str(home/'.config'),XDG_CACHE_HOME=str(home/'.cache'),XDG_STATE_HOME=str(home/'.state'),

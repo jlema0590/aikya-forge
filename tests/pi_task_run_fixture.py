@@ -9,8 +9,8 @@ from aikya.routing import pi_usage
 def prepare(root,methodology='odd',session='author'):
     profile=dict(backend='python',methodology=methodology,repository_layout='singlerepo',mode='new')
     portable.apply(root,portable.preview(root,profile,language='en'),approved=True)
-    (root/'value.py').write_text('VALUE=0\n')
-    (root/'test.py').write_text('from pathlib import Path\nok="VALUE=1" in Path("value.py").read_text()\nprint("TAP version 13\\n1..1")\nprint(("ok" if ok else "not ok")+" 1 - value")\nraise SystemExit(0 if ok else 1)\n')
+    (root/'value.py').write_text('VALUE=0\n',encoding='utf8',newline='\n')
+    (root/'test.py').write_text('from pathlib import Path\nok="VALUE=1" in Path("value.py").read_text()\nprint("TAP version 13\\n1..1")\nprint(("ok" if ok else "not ok")+" 1 - value")\nraise SystemExit(0 if ok else 1)\n',encoding='utf8',newline='\n')
     if methodology=='odd':
         raw=dict(title='Expected value',objective='Return the expected value',acceptance=['The value is one'],
             facts=dict(understood=False,contained_risk=True,resumable_from_request_diff=True),tasks=[dict(id='TASK-001',
@@ -42,7 +42,7 @@ def reviewed(root,decision='accept'):
     from aikya.review.candidates import load_candidate
     red=checks.execute_iteration(root,checks.iteration_preview(root,'task-proof','tests','author','red'),approved=True)
     assert red['status']=='failed',red
-    (root/'value.py').write_text('VALUE=1\n')
+    (root/'value.py').write_text('VALUE=1\n',encoding='utf8',newline='\n')
     green=checks.execute_iteration(root,checks.iteration_preview(root,'task-proof','tests','author','green'),approved=True)
     assert green['assessment']['status']=='review_required',green
     candidate=load_candidate(root,'task-proof');ticket=admission.request_review(root,'task-proof','reviewer',approved=True)
