@@ -76,8 +76,9 @@ def _manifest(value,receipt):
     if any(value['files'][name]['executable'] is not True for name in roles[:2]):raise ValueError('Managed interpreters are not executable roles')
 
 
-def _inventory(folder,files):
-    pending=[folder];actual=set();examined=0
+def walk_files(folder):
+    """One bounded no-link directory walk, shared by sealing and verification."""
+    pending=[folder];examined=0
     while pending:
         current=pending.pop();state.safe(current)
         with os.scandir(current) as children:
@@ -88,12 +89,18 @@ def _inventory(folder,files):
                 if child.is_symlink() or (os.name=='nt' and hasattr(path,'is_junction') and path.is_junction()):raise ValueError('Linked managed payload object')
                 if child.is_dir(follow_symlinks=False):pending.append(path);continue
                 if not child.is_file(follow_symlinks=False):raise ValueError('Unknown managed payload object')
-                if name=='manifest.json':continue
-                if name not in files:raise ValueError('Unlisted managed payload data is preserved')
-                entry=files[name];record=child.stat(follow_symlinks=False)
-                if record.st_size!=entry['size'] or (os.name!='nt' and bool(record.st_mode&stat.S_IXUSR)!=entry['executable']):raise ValueError('Managed terminal size/permissions changed')
-                if hashlib.sha256(_read(path,entry['size'])).hexdigest()!=entry['sha256']:raise ValueError('Managed terminal bytes changed')
-                actual.add(name)
+                yield path,name,child.stat(follow_symlinks=False)
+
+
+def _inventory(folder,files):
+    actual=set()
+    for path,name,record in walk_files(folder):
+        if name=='manifest.json':continue
+        if name not in files:raise ValueError('Unlisted managed payload data is preserved')
+        entry=files[name]
+        if record.st_size!=entry['size'] or (os.name!='nt' and bool(record.st_mode&stat.S_IXUSR)!=entry['executable']):raise ValueError('Managed terminal size/permissions changed')
+        if hashlib.sha256(_read(path,entry['size'])).hexdigest()!=entry['sha256']:raise ValueError('Managed terminal bytes changed')
+        actual.add(name)
     if actual!=set(files):raise ValueError('Managed terminal files are missing')
 
 

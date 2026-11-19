@@ -95,7 +95,9 @@ class ArtifactChecks(unittest.TestCase):
             '--disable-build-servers','--nologo','-p:UseSharedCompilation=false','-p:NuGetAudit=false',
             '-p:ImportDirectoryBuildProps=false','-p:ImportDirectoryBuildTargets=false'],timeout_seconds=90)
         candidate=self.freeze(definition,environment);result=self.run_definition(definition,environment=environment)
-        self.assertEqual(result['status'],'completed',result);self.assertIsNone(result['counts'])
+        fresh=freeze_candidate(self.root,'artifact-check',candidate['scope'],session_id='author',policy=candidate['policy'],parent=candidate['parent'])
+        drift=sorted(p for p in candidate['files'].keys()|fresh['files'].keys() if candidate['files'].get(p)!=fresh['files'].get(p))
+        self.assertEqual(result['status'],'completed',dict(result,changed_paths=drift));self.assertIsNone(result['counts'])
         self.assertFalse((self.root/'bin').exists());self.assertFalse((self.root/'obj').exists())
         self.assertTrue(is_current(self.root,candidate))
         outputs=self.root/'.aikya/pi/check-artifacts/artifact-check/run-1'

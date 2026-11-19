@@ -100,7 +100,7 @@ Archivos: servicios/terminal de uso y sesiones existentes; nuevo dossier de acep
 
 - [x] Derivar comandos/extensiones/runners de los catálogos y verificar denegaciones,
   ODD/SDD, en/es y perfiles nuevos/existentes en entornos temporales.
-- [x] Ejecutar regresión Python/Pi, wheel instalado, navegador y calidad del diff.
+- [ ] Ejecutar regresión Python/Pi, wheel instalado, navegador y calidad del diff.
 - [x] Actualizar README en/es, changelog, versión propia 0.2.0 e índice; sustituir
   el plan activo v8 por este plan, preservando historia y pendientes externos.
 - [x] Registrar fuentes congeladas, resultados/omisiones y commits revisables.

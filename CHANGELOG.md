@@ -21,6 +21,8 @@ The inherited Harness v7/v8 changelog remains in
   Publication remains explicit and disabled while external acceptance is pending.
 - Preserve Linux terminfo case distinctions without relaxing generic package guards;
   bound immutable component-read retries and emit canonical SDD bytes on Windows.
+- Parse valid distant ELF loader strings, handle the Darwin exited-child race, share
+  verified payload traversal and retain bounded Windows installer timeout diagnostics.
 - Correct Windows fixture byte hashing and prepare all private-build tools in Pi CI.
 - Validate 1,270 Python tests (two declared environment skips), 93 Pi tests on each
   Node 22/26, 110 browser checks, fresh installed wheel and the macOS ARM native

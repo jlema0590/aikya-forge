@@ -47,5 +47,16 @@ class NativeLibcTests(unittest.TestCase):
         with patch.object(self.native.platform,'libc_ver',return_value=('glibc','2.28')):
             self.assertEqual(self.native.linux_runtime(),'glibc')
 
+    def test_realistic_musl_loader_string_can_live_beyond_the_first_64k(self):
+        with tempfile.TemporaryDirectory() as tmp:
+            python=Path(tmp)/'python';value=elf('/lib/ignored')
+            location=70000;loader=b'/lib/ld-musl-x86_64.so.1\0';value.extend(b'\0'*(location+len(loader)-len(value)))
+            struct.pack_into('<Q',value,72,location);struct.pack_into('<Q',value,96,len(loader));value[location:]=loader;python.write_bytes(value)
+            with patch.object(self.native.platform,'libc_ver',return_value=('libc','')),patch.object(self.native.sys,'executable',str(python)):
+                self.assertEqual(self.native.linux_runtime(),'musl')
+            struct.pack_into('<Q',value,72,len(value)+1000);python.write_bytes(value)
+            with patch.object(self.native.platform,'libc_ver',return_value=('libc','')),patch.object(self.native.sys,'executable',str(python)):
+                self.assertEqual(self.native.linux_runtime(),'unknown')
+
 
 if __name__=='__main__':unittest.main()

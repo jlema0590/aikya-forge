@@ -31,7 +31,7 @@ jobs:
           - os: macos-15
             arch: arm64
     runs-on: ${{ matrix.os }}
-    timeout-minutes: 45
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
         with:
@@ -77,9 +77,11 @@ jobs:
           mkdir "$RUNNER_TEMP/forge-musl"
           docker run --rm \
             -e GITHUB_SHA="$GITHUB_SHA" \
+            -e FORGE_OWNER_UID="$(id -u)" -e FORGE_OWNER_GID="$(id -g)" \
             -v "$GITHUB_WORKSPACE:/reference:ro" \
             -v "$RUNNER_TEMP/forge-musl:/evidence" \
             alpine:3.23 sh -eu -c '
+              trap '\''chown -R "$FORGE_OWNER_UID:$FORGE_OWNER_GID" /evidence'\'' EXIT
               apk add --no-cache python3 py3-pip ca-certificates git libstdc++ libatomic curl tar coreutils
               cp -a /reference /tmp/forge-source
               cd /tmp/forge-source

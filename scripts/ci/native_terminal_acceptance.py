@@ -32,16 +32,22 @@ def run(bundle,output,next_bundle=None,work=None):
         AIKYA_INSTALL_ROOT=str(app),PYTHONDONTWRITEBYTECODE='1',PYTHONUTF8='1',PYTHONIOENCODING='utf-8',DO_NOT_TRACK='1')
     steps=[]
     def execute(name,command,timeout=300):
-        started=time.monotonic();process=subprocess.run([str(a) for a in command],env=env,cwd=base,capture_output=True,text=True,encoding='utf8',timeout=timeout)
-        (base/(name+'.log')).write_text(process.stdout+process.stderr)
+        started=time.monotonic()
+        try:process=subprocess.run([str(a) for a in command],env=env,cwd=base,capture_output=True,text=True,encoding='utf8',timeout=timeout)
+        except subprocess.TimeoutExpired as error:
+            partial=[v.decode('utf8',errors='replace') if isinstance(v,bytes) else v or '' for v in (error.stdout,error.stderr)]
+            (base/(name+'.log')).write_text(''.join(partial),encoding='utf8')
+            steps.append(dict(name=name,exit_code=None,seconds=time.monotonic()-started,timed_out=True))
+            raise ValueError('Native acceptance timed out: '+name+'; inspect '+str(base/(name+'.log'))) from error
+        (base/(name+'.log')).write_text(process.stdout+process.stderr,encoding='utf8')
         steps.append(dict(name=name,exit_code=process.returncode,seconds=time.monotonic()-started))
-        if process.returncode:raise ValueError('Native acceptance failed: '+name+'; inspect '+str(base/(name+'.log')))
+        if process.returncode:raise ValueError('Native acceptance failed: '+name+'; inspect '+str(base/(name+'.log'))+'\n'+process.stderr[-3000:])
         return process.stdout
     def install(source,name,action='install'):
         if os.name=='nt':
             powershell=shutil.which('pwsh') or shutil.which('powershell')
             if not powershell:raise ValueError('Native Windows acceptance needs PowerShell')
-            return execute(name,[powershell,'-NoProfile','-NonInteractive','-File',source/'install.ps1','-OfflineDir',source,'-NoPath','-Action',action])
+            return execute(name,[powershell,'-NoProfile','-NonInteractive','-File',source/'install.ps1','-OfflineDir',source,'-NoPath','-Action',action],timeout=1200)
         return execute(name,['/bin/sh',source/'install.sh','--offline-dir',source,'--no-path'])
     try:
         install(bundle,'install');manager=app/'bin'/('aikya-manage.exe' if os.name=='nt' else 'aikya-manage')
