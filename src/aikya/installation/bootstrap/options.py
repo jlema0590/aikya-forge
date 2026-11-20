@@ -67,11 +67,11 @@ def app_root():
         return Path(override).expanduser().absolute()
     home = Path.home().resolve()
     if sys.platform == 'win32':
-        return Path((os.environ.get('LOCALAPPDATA') or str(home / 'AppData/Local'))) / 'Aikya'
+        return Path((os.environ.get('LOCALAPPDATA') or str(home / 'AppData/Local'))) / 'AikyaForge'
     if sys.platform == 'darwin':
-        return home / 'Library/Application Support/Aikya'
+        return home / 'Library/Application Support/AikyaForge'
     if sys.platform.startswith('linux'):
-        return Path((os.environ.get('XDG_DATA_HOME') or str(home / '.local/share'))) / 'aikya'
+        return Path((os.environ.get('XDG_DATA_HOME') or str(home / '.local/share'))) / 'aikya-forge'
     raise ValueError('Supported installation hosts: Windows, Linux and macOS')
 
 

@@ -6,11 +6,12 @@
 
 Aikya Forge combines a Python core with an interactive Pi terminal. It carries forward
 Aikya's command adapters, templates and engineering controls into an independently
-versioned repository. The initial development baseline is **0.1.0**.
+versioned repository. The current development version is **0.2.0**.
 
-This is a development baseline. Native macOS acceptance exists for the inherited
-implementation; Windows/Linux native execution and real-provider acceptance remain
-open. Source availability does not mean a public release or short installer is published.
+Native installation and terminal acceptance are tracked per platform in the
+[validation report](aikya/docs/validation/2026-11-19-interactive-acceptance.md). Real-provider
+acceptance is a separate release gate. Source availability does not mean a public
+release or short installer is published.
 
 ## Quick start from source
 
@@ -52,7 +53,7 @@ positive local budget; opening the terminal does not imply a model call.
 |---|---|
 | Python core (`src/aikya/`) | Onboarding, methodology, checks, memory, installation and durable evidence. |
 | Pi terminal (`packages/aikya-pi/`) | Interactive commands, confirmations, themes, model selection and bounded sessions. |
-| Command adapters | 28 canonical workflows with their documented native coverage and limits. |
+| Command adapters | 29 canonical workflows with their documented native coverage and limits. |
 | Local memory | Incremental code inventory, supported-language symbols, reviewed notes, observation and HTML visualization. |
 | Documentation templates | Bundled templates selected by workflow and project type. |
 | Skills | Explicitly chosen, pinned inert packages with project/global administration. |
@@ -76,11 +77,13 @@ accounting is local and does not invent a provider's subscription quota.
 ## Managed native distribution
 
 The contributor builder assembles pinned Python, Node and Pi components into one
-verified payload. It generates checksum-bound shell/PowerShell entry scripts and
+verified payload. Reviewed fd/ripgrep binaries are included for offline file
+autocomplete and search; startup does not download tools from project caches.
+It generates checksum-bound shell/PowerShell entry scripts and
 supports explicit install/update, retained rollback and conservative uninstall.
 
 ```sh
-python scripts/ci/build_terminal_bundle.py --version 0.1.0 --output ../forge-native-0.1.0 --fetch-components
+python scripts/ci/build_terminal_bundle.py --version 0.2.0 --output ../forge-native-0.2.0 --fetch-components
 ```
 
 The output directory must be new. Building downloads pinned public components and
@@ -115,7 +118,7 @@ examples/             Example profiles and generated documentation
 
 ## Versioning and compatibility
 
-`VERSION` and the Pi package start at **0.1.0**. Future Forge releases use independent
+`VERSION` and the Pi package are **0.2.0**, following the initial 0.1.0 import. Future Forge releases use independent
 semantic versioning. The [changelog](CHANGELOG.md) records Forge changes; the
 [inherited changelog](aikya/docs/history/harness-CHANGELOG.md) preserves Harness history.
 
@@ -124,14 +127,48 @@ remain compatible in this first import. Operational update URLs point to this
 repository. Older v8 payload identities remain readable for explicit compatibility;
 they do not change Forge's version sequence.
 
-Inherited release/Pages publication workflows remain scoped to the original Harness
-repository. Tests run here; publication requires a separately reviewed Forge release
-pipeline. The [documentation index](aikya/docs/indice.md) preserves previous plans
+Inherited publication workflows remain scoped to the original Harness repository.
+Forge has its own seven-target build/acceptance workflow and manual release preparation.
+Publication is disabled by default and requires main, all native checks and separately
+reviewed real-provider evidence. No stable release or Pages URL is published by this change. The [documentation index](aikya/docs/indice.md) preserves previous plans
 and evidence; references to v7/v8 inside historical records describe their original
 snapshots, not Forge's current version.
 
 ## License
 
 MIT. See [LICENSE](LICENSE) and [third-party notices](THIRD_PARTY_LICENSES.md).
+
+## Forge administration and acceptance
+
+`/aikya-uninstall-skills` previews confirmed withdrawal of Forge-owned skill selections.
+It retains exact packages for restoration; it does not erase external plugins or other
+projects. Use `aikya skills --help` for project/local/global scope, preview, restore and
+interrupted-operation recovery. Restart the author session after a selection change.
+
+```sh
+aikya skills uninstall --target /absolute/project --scope project --name example-skill
+# Add --yes only after reviewing the preview.
+aikya skills restore --target /absolute/project --scope project --all --operation OPERATION_ID
+```
+
+Native Forge uses an independent application root (AikyaForge on macOS/Windows,
+aikya-forge on Linux), preserving older Harness installations. No v7 migration is
+included. Windows uninstall runs through the verified external PowerShell installer
+with `-Action uninstall`; a running manager EXE cannot safely remove itself.
+
+Native builds bundle hash-pinned compatible binary parsers by default. Windows ARM64
+currently has no reviewed Dart wheel and reports file inventory for Dart. Use
+`--code-index none` only for an explicitly reduced bundle. Contributor source installs
+still need the optional code-index extra for these parsers.
+
+Reviewed .NET 8+ build/test/restore/publish/pack checks require
+`--artifacts-path {artifacts}`. Forge allocates a unique private output per run while
+continuing to inventory real source files in bin/obj. Each run must build its own
+inputs; a later `--no-build` check cannot assume another run's private outputs.
+
+The [Forge completion guide](aikya/docs/deployment/forge-0.2.0.md) documents installation,
+release gates and the [external acceptance procedure](aikya/docs/validation/forge-provider-procedure.md).
+Local memory, HTML updates and skill administration perform no inference. Measured
+model tokens do not establish subscription quota percentages or token savings.
 
 GENERATED BY AIKYA HARNESS

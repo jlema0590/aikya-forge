@@ -1,6 +1,6 @@
 """Managed launch previews bind both interpreters; support commands remain usable."""
 from contextlib import redirect_stdout,redirect_stderr
-import io,json
+import io,json,hashlib,os
 from pathlib import Path
 from unittest.mock import patch
 import unittest
@@ -11,6 +11,11 @@ from aikya.cli import main as cli,terminal
 class ManagedCliTests(unittest.TestCase):
     def setUp(self):
         self.fixture=fixtures.ManagedResolutionTests();self.fixture.setUp();self.addCleanup(self.fixture.doCleanups)
+        for name in ('fd','rg'):
+            path='tools/'+name+'/'+name+('.exe' if os.name=='nt' else '');raw=b'NOT EXECUTED TOOL FIXTURE'
+            self.fixture.data[path]=raw
+            self.fixture.manifest['files'][path]=dict(sha256=hashlib.sha256(raw).hexdigest(),size=len(raw),executable=True)
+        self.fixture.publish()
         self.project=self.fixture.root.parent/'project';self.project.mkdir()
         env=patch.dict('os.environ',{'AIKYA_INSTALL_ROOT':str(self.fixture.root)});env.start();self.addCleanup(env.stop)
 
@@ -60,6 +65,12 @@ class ManagedCliTests(unittest.TestCase):
     def test_partial_provider_selection_is_refused_before_project_effects(self):
         code,out,err=self.invoke(terminal.main,['--provider','fixture','--target',str(self.project),'--print-command'])
         self.assertEqual(code,2);self.assertNotIn('Traceback',err);self.assertEqual(list(self.project.iterdir()),[])
+
+    def test_managed_launch_binds_only_verified_tool_directories_before_system_path(self):
+        command,environment=terminal._managed_launch(self.project)
+        payload=self.fixture.payload
+        self.assertEqual(environment['PATH'].split(os.pathsep)[:2],[str(payload/'tools/fd'),str(payload/'tools/rg')])
+        self.assertEqual(command[0],str(payload/'node/bin/node'));self.assertEqual(list(self.project.iterdir()),[])
 
 
 if __name__=='__main__':unittest.main()

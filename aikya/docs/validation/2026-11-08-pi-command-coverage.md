@@ -1,5 +1,10 @@
 # Pi command coverage and remaining parity work
 
+> Forge 0.2.0 adds the 29th canonical command, `/aikya-uninstall-skills`, with native
+> confirmed project/global withdrawal, exact restoration and recovery. See
+> [Forge operations](../deployment/forge-0.2.0.md). The 28-command matrix below
+> preserves its original snapshot and limits; it is not a new full-parity claim.
+
 Scope: private 8.0.0-alpha.0 branch, November 9. The canonical registry still contains
 28 engineering commands. All 28 have a native Pi adapter in this snapshot; this is not
 full parity with the stable Claude workflow. A generic model prompt is not counted

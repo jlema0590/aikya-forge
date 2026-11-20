@@ -1,5 +1,5 @@
+import { canonicalPath } from "./project.ts";
 import { execFile } from "node:child_process";
-import { realpathSync } from "node:fs";
 import { randomUUID } from "node:crypto";
 
 export type UsageCounts = {input: number; output: number; cacheRead: number; cacheWrite: number};
@@ -10,7 +10,7 @@ export type BudgetStatus = {status: string; recorded_tokens: number | null; call
 export class RuntimeBudget {
   #project: string;
   #python: string;
-  constructor(root: string, python = "python3") { this.#project = realpathSync(root); this.#python = python; }
+  constructor(root: string, python = "python3") { this.#project = canonicalPath(root); this.#python = python; }
   async #invoke(action: string, args: Record<string, unknown>): Promise<Record<string, unknown>> {
     const raw = await new Promise<string>((resolve, reject) => {
       const child = execFile(this.#python, ["-I", "-B", "-m", "aikya.services.runtime_state", "--root", this.#project],

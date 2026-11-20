@@ -56,7 +56,7 @@ def _zip_rows(archive):
     return rows
 
 
-def _plan(rows,prefix):
+def _plan(rows,prefix,*,case_sensitive=False):
     table={};directories=[]
     for row in rows:
         relative=_selected(row['name'],prefix,row['kind'])
@@ -66,7 +66,7 @@ def _plan(rows,prefix):
         if row['kind']=='directory':directories.append(relative)
         elif not 0<=row['size']<=MAX_FILE:raise ValueError('Component member exceeds its size bound')
     files=[name for name,row in table.items() if row['kind']!='directory']
-    validate(files,directories=directories,max_files=50000,max_nodes=MAX_MEMBERS,max_length=512)
+    validate(files,directories=directories,max_files=50000,max_nodes=MAX_MEMBERS,max_length=512,case_sensitive=case_sensitive)
     def resolve(name,seen=()):
         if name not in table or name in seen or len(seen)>16:raise ValueError('Unknown or cyclic component link')
         row=table[name]
@@ -99,10 +99,11 @@ def _materialize(archive,destination,table,resolved,is_zip):
     return dict(files=count,bytes=sum(table[original]['size'] for original in resolved.values()),links_flattened=sum(name!=original for name,original in resolved.items()))
 
 
-def extract(archive,destination,expected_hash,prefix,*,merge=False):
+def extract(archive,destination,expected_hash,prefix,*,merge=False,case_sensitive=False):
     hash_id(expected_hash)
     if prefix!='.':_name(prefix)
     if type(merge) is not bool:raise ValueError('Invalid component staging merge selection')
+    if type(case_sensitive) is not bool:raise ValueError('Explicit component filesystem case policy required')
     destination=safe(Path(destination).absolute())
     if destination.exists() and (not merge or not destination.is_dir()):raise ValueError('Existing component output is preserved')
     raw=_read(safe(Path(archive)),MAX_FILE)
@@ -112,7 +113,7 @@ def extract(archive,destination,expected_hash,prefix,*,merge=False):
         container=zipfile.ZipFile(io.BytesIO(raw)) if is_zip else tarfile.open(fileobj=io.BytesIO(raw),mode='r:*')
         with container:
             rows=_zip_rows(container) if is_zip else _tar_rows(container)
-            table,resolved=_plan(rows,prefix)
+            table,resolved=_plan(rows,prefix,case_sensitive=case_sensitive)
             for name in resolved:
                 target=safe(destination/name)
                 if target.exists():raise ValueError('Existing component file is preserved')

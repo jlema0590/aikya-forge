@@ -1,9 +1,9 @@
-import { lstatSync, readFileSync, writeFileSync, renameSync, rmSync, realpathSync } from "node:fs";
+import { lstatSync, readFileSync, writeFileSync, renameSync, rmSync } from "node:fs";
 import { dirname, join } from "node:path";
 import { randomUUID } from "node:crypto";
 import { spawnSync } from "node:child_process";
 import { devNull } from "node:os";
-import { projectDirectory } from "./project.ts";
+import { projectDirectory, canonicalPath } from "./project.ts";
 
 function inspect(path: string) {
   try { return lstatSync(path); }
@@ -14,7 +14,7 @@ function git(project: string, args: string[]) {
   const env = Object.fromEntries(Object.entries(process.env).filter(([key]) => !key.startsWith("GIT_")));
   const result = spawnSync("git", ["-c", "core.fsmonitor=false", ...args], {
     cwd: project, encoding: "utf8", timeout: 3000, maxBuffer: 16384, windowsHide: true,
-    env: {...env, GIT_CONFIG_GLOBAL: devNull, GIT_CONFIG_NOSYSTEM: "1", GIT_OPTIONAL_LOCKS: "0"},
+    env: {...env, GIT_CONFIG_GLOBAL: process.platform === "win32" ? "NUL" : devNull, GIT_CONFIG_NOSYSTEM: "1", GIT_OPTIONAL_LOCKS: "0"},
   });
   if (result.error) throw new Error("Cannot inspect Git protection", {cause: result.error});
   return result;
@@ -33,7 +33,7 @@ function repositoryMarker(project: string): boolean {
 }
 
 export function prepareTerminalState(root: string) {
-  const project = realpathSync(root);
+  const project = canonicalPath(root);
   const repository = repositoryMarker(project) ? git(project, ["rev-parse", "--is-inside-work-tree"]) : undefined;
   const inGit = repository?.status === 0 && repository.stdout.trim() === "true";
   if (repository && !inGit) throw new Error("Cannot inspect Git repository");

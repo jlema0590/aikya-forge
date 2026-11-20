@@ -322,4 +322,127 @@ rollback → uninstall, retained global skills and unchanged project files. Arch
 availability/Windows executable containers are distinct from native OS execution.
 Record each failed attempt and its regression before repeating installed acceptance.
 
+## Forge 0.2.0 acceptance additions
+
+Run artifact, skill-removal, parser-input, Forge-root, manager-entry, native-platform,
+release-assembly, Pages and provider-gate regressions before full-suite verification.
+Test current-cache comparison drift, global/project isolation, interruption recovery,
+restore collisions, malformed names, no-op all and concurrent removal. Verify real Pi
+SDK confirmation/decline/headless behavior with zero inference for administration.
+
+Use the current seven-target native job to build two versions and exercise Unicode/
+space paths, installed parsers, all portable profiles, command uniqueness, external
+memory edits, themes, update/rollback and conservative uninstall. Native Windows must
+prove active-core forwarding and external PowerShell uninstall. Local ELF/wheel
+fixtures cannot establish a native OS pass. Browser checks cover inventory/graph
+separation, grouping, drag/zoom, flow animation bounds, reduced motion and responsive
+English/Spanish HTML. Real-provider/visual-terminal acceptance stays separate.
+
+Freeze all source/test inputs for the complete Python and Pi regression; record exact
+counts, skips, native source identity and any repeated failed attempts in the current
+Forge validation report. Missing external observations must keep release gated.
+
+## Cross-platform CI regressions
+
+Keep native Linux case variants while still rejecting portable/default aliases,
+Unicode-normalization collisions, duplicate paths, traversal and file/parent conflicts.
+Test same-origin transient reads, permanent HTTP/TLS/validation failure and exhausted
+retry bounds. Simulate Windows newline defaults in actual approved SDD task completion.
+Fixture text must specify UTF-8/LF, fault paths must normalize separators and synthetic
+CMD tools must return the true exit status. Re-run real native CI; mock/fixture passes
+alone cannot close the platform gate.
+
+## Loader offsets and exit-race regression
+
+Exercise a real-layout ELF loader string beyond 64 KB and reject pointers beyond EOF;
+read both through one regular descriptor with bounded offsets/lengths. Simulate a
+Darwin group-signal denial followed by child exit, and separately a child which remains
+live. A native test timeout must retain its step/partial output and remain failed.
+Measure sealing ancestry work for many sibling files while keeping symlink/junction,
+inventory, reproducibility and changed-byte refusal tests. Report Windows .NET source
+drift by relative paths; never hide it with a blanket bin/obj exclusion.
+
+## Windows SDK cache regression
+
+Preserve and bind APPDATA/LOCALAPPDATA through the actual selected environment;
+changing either must change the definition. Run the real offline .NET SDK with private
+existing AppData locations and report all changed relative paths if the candidate
+drifts. NuGet/Migrations is not a permitted source exclusion. Repeat actual Windows
+execution before closing the native SDK gate.
+
+The offline SDK regression includes bounded synthetic-process diagnostics on failure.
+It never publishes project source, personal environment values or provider output.
+
+Approved check environments preserve and bind Windows Program Files and machine-data
+roots in addition to AppData. NuGet requires these standard paths even for offline
+builds with cleared package sources; other ambient environment values remain filtered.
+
+Windows staging fixtures use native path semantics and email metadata parsing.
+Only the POSIX-only shell execution is skipped on Windows. Memory observer tests
+poll a successful snapshot within their existing deadline; they do not demand that
+a concurrent atomic publication never briefly denies opening its destination.
+Keep an active native CI matrix running while a new PR revision queues. PR path
+filters are cumulative and cannot by themselves prevent documentation-update runs.
+
+Run SDK contracts before the long Python matrix so cross-language failures surface
+early. The Windows job exhausted ten minutes after reaching SDK tests; its CI-only
+limit is twenty minutes. Synthetic identity diagnostics compare Node default/native
+canonicalization with Python, retaining strict reply-project validation and exposing
+only equality booleans on failure. No provider timeout or permission is expanded.
+
+The synthetic project-identity regression observed Windows default/native path
+mismatch on both supported Node versions. It calls the actual Python bridge, host
+service and budget through the same project and Windows case variants. Current SDK
+runs must also retain cross-project, permission and role denials; path comparison is
+not relaxed. Task-cycle failures include bounded custom messages from their generated
+fixture so a stop can be diagnosed without reading a real user's project.
+
+Native CI validates bootstrap error exits before payload construction. PowerShell
+contracts require missing architecture and corrupt payloads to return nonzero without
+creating an application. SDK disposable-project cleanup waits for its own observer
+and retries only bounded transient removal errors; it never kills unrelated workers.
+Canonical LF task-fixture bytes keep Python/Node source assertions portable.
+
+The Windows SDK Git diagnostic distinguished invalid null-device syntax from
+ownership failure: NUL succeeded without a safe.directory override. Preserve
+tracked-state and later-negation checks with both global/system configs excluded.
+Bootstrap error contracts also require actionable stderr across PowerShell hosts.
+
+A Stopped snapshot precedes final observer process exit. Disposable SDK cleanup
+therefore waits for the owned status and uses bounded filesystem retries before
+removing its directory. PowerShell corruption tests select the actual Windows
+architecture; missing-architecture checks include both nonzero failure and a
+successful read-only preview. Script-owned fallback errors cover empty ARM records.
+
+Establish an absent-architecture test condition inside the PowerShell child, then
+verify the condition before invoking the installer. Keep actual machine descriptors
+for integrity tests. Disposable-project removal uses asynchronous bounded retries;
+blocking the SDK event loop must not prevent its pending teardown from completing.
+
+## Cross-platform packaged source identity
+
+Passing native behavior is necessary but does not prove identical source inputs.
+The release assembler requires one valid runtime fingerprint across all seven
+platforms before creating output. A real private Git checkout with autocrlf enabled
+checks fingerprint stability and exact preservation of byte-pinned resources.
+The 4000e3a native/Pi workflows passed, but downloaded Windows source had CRLF and
+a different fingerprint; the stricter assembler rejects that set. Corrected native
+archives require their own recorded same-commit acceptance.
+
+## Interactive startup follow-up
+
+The offline tool catalog covers seven native targets, exact upstream archive hashes,
+complete licenses, version parsing (including the legitimate ripgrep revision),
+missing/corrupt/linked data, and no staging effects before input verification.
+Actual SDK tests check the installed Forge title, refusal of a project tool cache,
+and safe host failure categories. Native UI acceptance must exercise real startup
+with a clean PATH, theme confirmation and resize; headless tests do not prove these.
+The Windows final-record failure requires current bounded diagnostic evidence before
+claiming a cause or production fix. Do not increase timeouts to conceal it.
+The installed native lifecycle must start its actual launcher with an empty PATH,
+require recursive completion of a known nested file and preserve inert Windows
+project executable markers. POSIX process-group cleanup includes descendants that
+ignore TERM/HUP; Windows uses an owned kill-on-close job. A second host failure
+must preserve the original diagnostic without falsely confirming a stopped task.
+
 GENERATED BY AIKYA HARNESS

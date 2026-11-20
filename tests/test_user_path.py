@@ -61,7 +61,7 @@ class UserPath(unittest.TestCase):
             base=Path(t).resolve();marker=base/'path.json'
             self.assertTrue(hasattr(module,'ensure_windows_path'),'Managed Windows PATH helper missing')
             module.ensure_windows_path('C:\\Aikya\\bin',marker)
-            self.assertEqual('C:\\owner;C:\\Aikya\\bin',registry.value)
+            self.assertEqual('C:\\Aikya\\bin;C:\\owner',registry.value)
             registry.value+=';C:\\later'
             module.remove_windows_path(__import__('json').loads(marker.read_text()))
             self.assertEqual('C:\\owner;C:\\later',registry.value)
@@ -91,6 +91,6 @@ class UserPath(unittest.TestCase):
         with tempfile.TemporaryDirectory() as t,patch.dict('sys.modules',{'winreg':registry}),patch.object(ctypes,'WinDLL',return_value=User32(),create=True):
             marker=Path(t).resolve()/'path.json'
             user_path.ensure_windows_path('C:\\Aikya\\bin',marker)
-            self.assertEqual([(65535,26,'Environment','C:\\owner;C:\\Aikya\\bin')],send.messages)
+            self.assertEqual([(65535,26,'Environment','C:\\Aikya\\bin;C:\\owner')],send.messages)
             user_path.remove_windows_path({'entry':'C:\\Aikya\\bin'})
             self.assertEqual((65535,26,'Environment','C:\\owner'),send.messages[-1])

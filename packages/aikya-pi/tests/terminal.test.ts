@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { mkdtempSync, rmSync, writeFileSync, readFileSync, symlinkSync, existsSync, realpathSync, lstatSync } from "node:fs";
 import { spawnSync } from "node:child_process";
-import { tmpdir } from "node:os";
+import { tmpdir, devNull } from "node:os";
 import { join } from "node:path";
 import { fileURLToPath } from "node:url";
 import { test } from "node:test";
@@ -16,7 +16,7 @@ test("terminal startup protects project-local state without replacing ignore rul
     const before = "# Team rules\ncustom/\n";
     writeFileSync(join(root, ".gitignore"), before);
     const first = state.prepareTerminalState(root);
-    assert.equal(first.agentDir, join(realpathSync(root), ".aikya", "pi", "agent"));
+    assert.equal(first.agentDir, join(realpathSync.native(root), ".aikya", "pi", "agent"));
     const value = readFileSync(join(root, ".gitignore"), "utf8");
     assert.ok(value.startsWith(before));
     assert.equal(value.split("\n").filter((line) => line === ".aikya/pi/").length, 1);
@@ -49,7 +49,17 @@ test("tracked terminal state is refused and later negations cannot expose new st
   try {
     git("init", "-q");
     writeFileSync(join(root, ".gitignore"), ".aikya/pi/\n!.aikya/pi/\n");
-    state.prepareTerminalState(root);
+    try {state.prepareTerminalState(root);} catch(error) {
+      const env=Object.fromEntries(Object.entries(process.env).filter(([key])=>!key.startsWith('GIT_')));
+      const probes=[devNull,'NUL'].map(nullPath=>{
+        const result=spawnSync('git',['-c','core.fsmonitor=false','rev-parse','--is-inside-work-tree'],
+          {cwd:realpathSync.native(root),encoding:'utf8',env:{...env,GIT_CONFIG_GLOBAL:nullPath,GIT_CONFIG_NOSYSTEM:'1',GIT_OPTIONAL_LOCKS:'0'}});
+        const selected=spawnSync('git',['-c','core.fsmonitor=false','-c','safe.directory='+realpathSync.native(root),'rev-parse','--is-inside-work-tree'],
+          {cwd:realpathSync.native(root),encoding:'utf8',env:{...env,GIT_CONFIG_GLOBAL:nullPath,GIT_CONFIG_NOSYSTEM:'1',GIT_OPTIONAL_LOCKS:'0'}});
+        return {nullPath,status:result.status,selectedStatus:selected.status,error:result.stderr.slice(0,500)};
+      });
+      assert.fail('Synthetic Git protection diagnostic: '+JSON.stringify(probes));
+    }
     git("check-ignore", ".aikya/pi/agent/auth.json");
     git("add", "-f", ".aikya/pi"); // Empty directories are not tracked.
     writeFileSync(join(root, ".aikya/pi/agent/auth.json"), "{}\n");

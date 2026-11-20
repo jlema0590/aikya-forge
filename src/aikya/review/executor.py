@@ -47,13 +47,21 @@ def run_check(root, change_id, definition, *, session_id, run_id, approved=False
         _guard_incomplete(root, target.parent.parent, definition['name'])
         if target.parent.exists():
             raise ValueError('Run identity already exists; reconcile without re-executing')
+        from .artifacts import location, TOKEN
+        artifacts = location(root, change_id, run_id, definition['argv'])
         target.parent.mkdir(parents=True)
         metadata = dict(schema=1, generated_by='aikya-check-executor', project=candidate['project'],
             candidate=candidate['id'], session_id=session_id, run_id=run_id, check=definition['name'],
             definition_hash=binding, argv_hash=digest(definition['argv']), status='pending')
         atomic_write(target, encoded(metadata) + '\n')
+        if artifacts is not None:
+            artifacts.mkdir(mode=0o700, parents=True, exist_ok=False)
+            safe_file(root, artifacts.relative_to(root).as_posix() + '/.probe')
     report = target.parent / 'report.xml'
     argv = [executable, *(a.replace('{report}', str(report)) for a in definition['argv'][1:])]
+    if artifacts is not None:
+        argv = [a.replace(TOKEN, str(artifacts)) for a in argv]
+        env['AIKYA_CHECK_ARTIFACTS'] = str(artifacts)
     env['AIKYA_TEST_REPORT'] = str(report)
     observed, stdout = capture_process(argv, cwd, env, definition['timeout_seconds'], definition['max_output_bytes'], cancel)
     metadata.update(observed, counts=None, report_sha256=None, report_format=definition['report_format'])

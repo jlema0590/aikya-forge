@@ -1,13 +1,13 @@
-import { lstatSync,readdirSync,realpathSync,openSync,closeSync,readSync } from 'node:fs';
+import { lstatSync,readdirSync,openSync,closeSync,readSync } from 'node:fs';
 import { join } from 'node:path';
 import { SessionManager } from '@earendil-works/pi-coding-agent';
-import { projectDirectory } from './project.ts';
+import { projectDirectory, canonicalPath } from './project.ts';
 import { claimSessionRole,readSessionRole,type SessionRole } from './session-roles.ts';
 export { projectDirectory } from './project.ts';
 
 export function projectSession(root:string,resume:boolean,role:SessionRole='author'):SessionManager {
   if(!['author','reviewer'].includes(role))throw new Error('Unsupported session role');
-  const project=realpathSync(root),directory=projectDirectory(project,['.aikya','pi','sessions']);
+  const project=canonicalPath(root),directory=projectDirectory(project,['.aikya','pi','sessions']);
   if(!resume) {const manager=SessionManager.create(project,directory);claimSessionRole(project,manager,role);return manager;}
   const candidates:{file:string;mtime:number;size:number}[]=[];
   for(const name of readdirSync(directory)) {

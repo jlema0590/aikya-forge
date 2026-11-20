@@ -15,7 +15,7 @@ REQUIRED={
     'aikya-infra', 'aikya-scaffold', 'aikya-feature',
     'aikya-bugfix', 'aikya-arc-review', 'aikya-mobile-feature',
     'aikya-skills-status','aikya-skills-plan', 'aikya-quality', 'aikya-docs', 'aikya-tests',
-    'aikya-docs-sync', 'aikya-verify', 'aikya-models', 'aikya-tokens', 'aikya-install-skill',
+    'aikya-docs-sync', 'aikya-verify', 'aikya-models', 'aikya-tokens', 'aikya-install-skill', 'aikya-uninstall-skills',
     'aikya-specify', 'aikya-clarify', 'aikya-plan', 'aikya-tasks', 'aikya-implement', 'aikya-sdd-status', 'aikya-memory',
 }
 

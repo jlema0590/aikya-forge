@@ -1,5 +1,15 @@
 # Document index
 
+- [changes/REQ-20261120-f0900221.md](changes/REQ-20261120-f0900221.md)
+
+- [changes/REQ-20261120-f0900220.md](changes/REQ-20261120-f0900220.md)
+
+- [changes/REQ-20261120-f0900219.md](changes/REQ-20261120-f0900219.md)
+
+- [changes/REQ-20261119-f0900218.md](changes/REQ-20261119-f0900218.md)
+
+- [changes/REQ-20261119-f0900217.md](changes/REQ-20261119-f0900217.md)
+
 - [architecture/2026-11-07-pi-runtime.md](architecture/2026-11-07-pi-runtime.md)
 - [architecture/2026-11-07-rdd-contracts.md](architecture/2026-11-07-rdd-contracts.md)
 - [architecture/2026-11-08-executor-terminal.md](architecture/2026-11-08-executor-terminal.md)
@@ -14,6 +24,8 @@
 - [bugs/2026-11-09-native-distribution-boundaries.md](bugs/2026-11-09-native-distribution-boundaries.md)
 - [bugs/2026-11-09-native-index-and-run-continuity.md](bugs/2026-11-09-native-index-and-run-continuity.md)
 - [bugs/2026-11-09-native-skill-version-ownership.md](bugs/2026-11-09-native-skill-version-ownership.md)
+- [bugs/2026-11-18-forge-check-artifacts.md](bugs/2026-11-18-forge-check-artifacts.md)
+- [bugs/2026-11-18-native-ci.md](bugs/2026-11-18-native-ci.md)
 - [bugs/bugs.md](bugs/bugs.md)
 - [changes/REQ-20261029-efff7200.md](changes/REQ-20261029-efff7200.md)
 - [changes/REQ-20261105-c0de7220.md](changes/REQ-20261105-c0de7220.md)
@@ -38,12 +50,28 @@
 - [changes/REQ-20261109-a1800016.md](changes/REQ-20261109-a1800016.md)
 - [changes/REQ-20261109-a1800017.md](changes/REQ-20261109-a1800017.md)
 - [changes/REQ-20261109-a1800018.md](changes/REQ-20261109-a1800018.md)
+- [changes/REQ-20261110-f0900100.md](changes/REQ-20261110-f0900100.md)
+- [changes/REQ-20261118-f0900200.md](changes/REQ-20261118-f0900200.md)
+- [changes/REQ-20261118-f0900201.md](changes/REQ-20261118-f0900201.md)
+- [changes/REQ-20261119-f0900202.md](changes/REQ-20261119-f0900202.md)
+- [changes/REQ-20261119-f0900203.md](changes/REQ-20261119-f0900203.md)
+- [changes/REQ-20261119-f0900204.md](changes/REQ-20261119-f0900204.md)
+- [changes/REQ-20261119-f0900205.md](changes/REQ-20261119-f0900205.md)
+- [changes/REQ-20261119-f0900206.md](changes/REQ-20261119-f0900206.md)
+- [changes/REQ-20261119-f0900207.md](changes/REQ-20261119-f0900207.md)
+- [changes/REQ-20261119-f0900208.md](changes/REQ-20261119-f0900208.md)
+- [changes/REQ-20261119-f0900209.md](changes/REQ-20261119-f0900209.md)
+- [changes/REQ-20261119-f0900210.md](changes/REQ-20261119-f0900210.md)
+- [changes/REQ-20261119-f0900211.md](changes/REQ-20261119-f0900211.md)
+- [changes/REQ-20261119-f0900212.md](changes/REQ-20261119-f0900212.md)
+- [deployment/forge-0.2.0.md](deployment/forge-0.2.0.md)
 - [deployment/pi-controlled-preview.md](deployment/pi-controlled-preview.md)
 - [deployment/pi-managed-terminal.md](deployment/pi-managed-terminal.md)
 - [design/design-system.md](design/design-system.md)
 - [design/harness/2026-10-23-odd-observabilidad.es.md](design/harness/2026-10-23-odd-observabilidad.es.md)
 - [examples/2026-10-23-onboarding-odd-sdd.es.md](examples/2026-10-23-onboarding-odd-sdd.es.md)
 - [features/python-package-structure/spec.md](features/python-package-structure/spec.md)
+- [history/harness-CHANGELOG.md](history/harness-CHANGELOG.md)
 - [indice.md](indice.md)
 - [operations/deployment.md](operations/deployment.md)
 - [operations/observability.md](operations/observability.md)
@@ -84,6 +112,7 @@
 - [plan/2026-11-09-pi-managed-distribution.es.md](plan/2026-11-09-pi-managed-distribution.es.md)
 - [plan/2026-11-09-pi-multifile-operations.es.md](plan/2026-11-09-pi-multifile-operations.es.md)
 - [plan/2026-11-09-pi-skill-lifecycle.es.md](plan/2026-11-09-pi-skill-lifecycle.es.md)
+- [plan/2026-11-18-forge-completion.es.md](plan/2026-11-18-forge-completion.es.md)
 - [plan/archive/docs-plans/2026-10-22-claude-project-templates.md](plan/archive/docs-plans/2026-10-22-claude-project-templates.md)
 - [plan/archive/docs-plans/2026-10-22-document-template-catalog.md](plan/archive/docs-plans/2026-10-22-document-template-catalog.md)
 - [plan/archive/docs-plans/2026-10-22-documentation-layout.md](plan/archive/docs-plans/2026-10-22-documentation-layout.md)
@@ -109,6 +138,7 @@
 - [research/2026-11-07-gentle-shell-4.7.0-vs-aikya.es.md](research/2026-11-07-gentle-shell-4.7.0-vs-aikya.es.md)
 - [research/2026-11-09-pi-portable-runtime-probe.md](research/2026-11-09-pi-portable-runtime-probe.md)
 - [security/security.md](security/security.md)
+- [skills.md](skills.md)
 - [tools/token-policy.md](tools/token-policy.md)
 - [validation/2026-10-26-unified-installation.md](validation/2026-10-26-unified-installation.md)
 - [validation/2026-10-29-flow-runtime-compatibility.md](validation/2026-10-29-flow-runtime-compatibility.md)
@@ -134,6 +164,8 @@
 - [validation/2026-11-09-pi-managed-distribution.md](validation/2026-11-09-pi-managed-distribution.md)
 - [validation/2026-11-09-pi-skill-lifecycle.md](validation/2026-11-09-pi-skill-lifecycle.md)
 - [validation/2026-11-09-pi-source-batches.md](validation/2026-11-09-pi-source-batches.md)
+- [validation/2026-11-10-forge-import.md](validation/2026-11-10-forge-import.md)
+- [validation/2026-11-18-forge-completion.md](validation/2026-11-18-forge-completion.md)
 - [validation/AGENT_LOOP_MEMORY_ACTIVATION.md](validation/AGENT_LOOP_MEMORY_ACTIVATION.md)
 - [validation/AGENT_WORKER_STARTUP_FIX.md](validation/AGENT_WORKER_STARTUP_FIX.md)
 - [validation/COMMAND_ACCEPTANCE.md](validation/COMMAND_ACCEPTANCE.md)
@@ -156,9 +188,19 @@
 - [validation/archive/2026-10-22/OPENHARNESS_ADOPTION.es.md](validation/archive/2026-10-22/OPENHARNESS_ADOPTION.es.md)
 - [validation/archive/2026-10-22/SDD_6_1_1.md](validation/archive/2026-10-22/SDD_6_1_1.md)
 - [validation/archive/2026-10-22/SPEC_CODING_TEMPLATES.md](validation/archive/2026-10-22/SPEC_CODING_TEMPLATES.md)
+- [validation/forge-provider-procedure.md](validation/forge-provider-procedure.md)
 
-- [changes/REQ-20261110-f0900100.md](changes/REQ-20261110-f0900100.md)
-- [history/harness-CHANGELOG.md](history/harness-CHANGELOG.md)
-- [validation/2026-11-10-forge-import.md](validation/2026-11-10-forge-import.md)
+- [Preserve packaged source identity](changes/REQ-20261119-f0900213.md)
+
+- [Native assembly validation and interactive follow-up](changes/REQ-20261119-f0900214.md)
+
+- [Interactive acceptance and release plan](plan/2026-11-19-forge-interactive-release.es.md)
+
+- [Offline startup and safe diagnostics](bugs/2026-11-19-forge-offline-startup.md)
+- [Offline tools and startup change](changes/REQ-20261119-f0900215.md)
+
+- [Interactive acceptance progress](validation/2026-11-19-interactive-acceptance.md)
+
+- [Interactive harness and external packet validation](changes/REQ-20261119-f0900216.md)
 
 GENERATED BY AIKYA HARNESS

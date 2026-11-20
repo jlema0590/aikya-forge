@@ -11,10 +11,13 @@ def _stop(proc):
     if os.name != 'nt':
         try: os.killpg(proc.pid, signal.SIGKILL)
         except ProcessLookupError: pass
-        except PermissionError:
+        except PermissionError as error:
             # Darwin may deny signalling an exited, unreaped process group.
             # Reap that child; never hide denial while the child is still running.
-            if proc.poll() is None:raise
+            if proc.poll() is None:
+                try:proc.wait(timeout=.2)
+                except subprocess.TimeoutExpired:raise error
+                if proc.poll() is None:raise error
     elif proc.poll() is None:
         try:
             subprocess.run(['taskkill', '/PID', str(proc.pid), '/T', '/F'],

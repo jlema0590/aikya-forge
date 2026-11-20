@@ -1,5 +1,5 @@
 import type {ExtensionAPI,ExtensionContext,ExtensionCommandContext} from '@earendil-works/pi-coding-agent';
-import {hostOperation} from './host.ts';
+import {hostOperation,hostFailure} from './host.ts';
 import {confirmOperation} from './confirmation.ts';
 import {runApprovedCheck} from './native-checks.ts';
 import {taskActions,taskPrompt,type TaskState,type TaskControl,type ReviewRuntimeFactory} from './task-run-policy.ts';
@@ -10,10 +10,16 @@ export function registerTaskRun(pi:ExtensionAPI,root:string,python:string|undefi
   phase:{value:string},control:TaskControl,reviewRuntime?:ReviewRuntimeFactory) {
   let current:{state:TaskState;change:string;session:string;abort:AbortController;timer:ReturnType<typeof setTimeout>}|undefined;
   const publish=(value:unknown)=>pi.sendMessage({customType:'aikya-task-run',content:JSON.stringify(value),display:true});
-  async function stop(ctx:ExtensionContext,reason='needs_host_action',abortAgent=true) {
+  async function stop(ctx:ExtensionContext,reason='needs_host_action',abortAgent=true,error?:unknown) {
     const run=current;if(!run)return;
     current=undefined;clearTimeout(run.timer);run.abort.abort();control.blocked=true;if(abortAgent)ctx.abort();
-    const result=await hostOperation(root,'task.stop',{run_id:run.state.run_id,session_id:run.session,reason},python);
+    let result:Input;
+    try {result={...await hostOperation(root,'task.stop',{run_id:run.state.run_id,session_id:run.session,reason},python),...hostFailure(error)};}
+    catch(stopError) {
+      result={status:'needs_host_action',run_id:run.state.run_id,action:'run-status',stop_confirmed:false,
+        delivery_authorized:false,...hostFailure(error)};
+      const failure=hostFailure(stopError);if(failure.host_failure)result.stop_failure=failure.host_failure;
+    }
     if(abortAgent)publish(result);return result;
   }
   async function advance(ctx:ExtensionContext,value:string) {
@@ -28,9 +34,9 @@ export function registerTaskRun(pi:ExtensionAPI,root:string,python:string|undefi
     try {
       const completed=await hostOperation(root,'task.complete',{plan,approved:true},python);
       clearTimeout(run.timer);current=undefined;return completed;
-    } catch {
+    } catch(error) {
       clearTimeout(run.timer);current=undefined;run.abort.abort();control.blocked=true;
-      return {status:'needs_host_action',run_id:run.state.run_id,action:'recover-run',delivery_authorized:false};
+      return {status:'needs_host_action',run_id:run.state.run_id,action:'recover-run',delivery_authorized:false,...hostFailure(error)};
     }
   }
   async function arm(ctx:ExtensionCommandContext,result:Input,change:string) {
@@ -50,7 +56,7 @@ export function registerTaskRun(pi:ExtensionAPI,root:string,python:string|undefi
       }
       await advance(ctx,'implement');
       pi.sendUserMessage(taskPrompt(state),{deliverAs:'followUp',expandPromptTemplates:false});
-    } catch {await stop(ctx);}
+    } catch(error) {await stop(ctx,'needs_host_action',true,error);}
   }
   pi.on('agent_before_settle',async(event,ctx)=>{
     const run=current;if(!run)return;
@@ -68,7 +74,7 @@ export function registerTaskRun(pi:ExtensionAPI,root:string,python:string|undefi
       if(result.status!=='reviewed'||result.can_close!==true)throw new Error('Task review did not independently accept');
       await hostOperation(root,'task.review-checkpoint',{run_id:run.state.run_id,session_id:run.session},python);
       return report(await record(ctx));
-    } catch {return report(await stop(ctx,'needs_host_action',false));}
+    } catch(error) {return report(await stop(ctx,'needs_host_action',false,error));}
   });
   pi.on('agent_settled',async(event,ctx)=>{if(event.aborted&&current)await stop(ctx,'user_stop');});
   pi.on('tool_call',async(event,ctx)=>{

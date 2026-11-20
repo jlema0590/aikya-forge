@@ -125,6 +125,8 @@ def preview_run(root,change_id,check,session_id,run_id):
     from aikya.review.observations import path_for
     if safe_file(root,path_for(change_id,run_id)).exists():raise ValueError('Host observation exists; reconcile without replay')
     _guard_incomplete(root,folder.parent,check)
+    from aikya.review.artifacts import location
+    location(root,change_id,run_id,definition['argv'])
     return dict(schema=1,project=identity(root),change_id=change_id,check=check,session_id=session_id,
                 run_id=run_id,candidate=candidate['id'],definition=definition)
 

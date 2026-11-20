@@ -59,6 +59,7 @@ def windows_contents(root,python,target):
     if not stub.startswith(b'MZ') or len(stub)>256000:raise ValueError('Unsupported native launcher template')
     result={}
     for name,module in MODULES.items():
+        if name=='aikya-manage':module='aikya.installation.manager_entry'
         script=('import os,runpy\nos.environ["AIKYA_INSTALL_ROOT"]='+repr(str(root))+'\nrunpy.run_module('+repr(module)+',run_name="__main__")\n').encode()
         stream=io.BytesIO()
         with zipfile.ZipFile(stream,'w') as container:

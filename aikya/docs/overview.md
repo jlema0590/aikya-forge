@@ -1,13 +1,13 @@
 # Aikya Forge project overview
 
-Forge starts at version **0.1.0** in `jlema0590/aikya-forge`. It imports the current
+Forge is currently at development version **0.2.0** in `jlema0590/aikya-forge`. It imports the current
 Harness implementation and preserves its v7/v8 records as historical evidence.
 See [the Forge change record](changes/REQ-20261110-f0900100.md) for versioning,
 compatibility and outstanding acceptance boundaries.
 
 Aikya is a Python harness package that installs project workflows, Claude Code
 instructions and local execution tools. The distributed command catalog contains
-28 Harness commands. New and existing projects select ODD or SDD through their
+29 canonical commands. New and existing projects select ODD or SDD through their
 onboarding workflow; methodology approvals remain explicit.
 
 The authoritative implementation is under `src/aikya/`. Installation provisions

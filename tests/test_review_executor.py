@@ -134,6 +134,27 @@ class ExecutorTests(unittest.TestCase):
         finally:
             process.wait(timeout=3);process.stdout.close();process.stderr.close()
 
+    @unittest.skipIf(sys.platform=='win32','POSIX process-group lifecycle')
+    def test_signal_denial_can_reap_a_child_exiting_during_the_poll_race(self):
+        from unittest.mock import Mock,patch
+        from aikya.review.process import _stop
+        process=Mock(pid=12345,returncode=None);process.poll.side_effect=lambda:process.returncode
+        def reaped(**kwargs):process.returncode=0;return 0
+        process.wait.side_effect=reaped
+        with patch('aikya.review.process.os.killpg',side_effect=PermissionError('exiting child')):
+            _stop(process)
+        self.assertEqual(process.returncode,0);process.kill.assert_not_called()
+
+    @unittest.skipIf(sys.platform=='win32','POSIX process-group lifecycle')
+    def test_signal_denial_never_hides_a_still_running_child(self):
+        from unittest.mock import Mock,patch
+        from aikya.review.process import _stop
+        process=Mock(pid=12345,returncode=None);process.poll.return_value=None
+        process.wait.side_effect=subprocess.TimeoutExpired('child',.2)
+        with patch('aikya.review.process.os.killpg',side_effect=PermissionError('live child')):
+            with self.assertRaises(PermissionError):_stop(process)
+        process.kill.assert_not_called()
+
     def test_process_definition_cannot_launch_under_an_implicit_test_policy(self):
         definition={**self.definition('from pathlib import Path;Path("SIDE_EFFECT").write_text("bad")'),
                     'report_format':'process'}

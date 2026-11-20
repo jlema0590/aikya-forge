@@ -33,12 +33,12 @@ class NodeStagingTests(unittest.TestCase):
 
     def test_only_contained_bin_file_links_are_flattened_as_exact_regular_files(self):
         runtime=self.root/'runtime';binary=runtime/'node_modules/package/tool.js';binary.parent.mkdir(parents=True);binary.write_bytes(b'#!/usr/bin/env node\n// verified fixture\n');binary.chmod(0o700)
-        alias=runtime/'node_modules/.bin/tool';alias.parent.mkdir();alias.symlink_to('../package/tool.js')
+        alias=runtime/'node_modules/.bin/tool';alias.parent.mkdir();alias.symlink_to(Path('..')/'package/tool.js')
         self.assertEqual(self.builder.flatten(runtime),1);self.assertFalse(alias.is_symlink());self.assertEqual(alias.read_bytes(),binary.read_bytes())
 
     def test_one_escaping_link_blocks_all_link_rewrites(self):
         runtime=self.root/'runtime';binary=runtime/'node_modules/package/tool.js';binary.parent.mkdir(parents=True);binary.write_bytes(b'Fixture')
-        alias=runtime/'node_modules/.bin/tool';alias.parent.mkdir();alias.symlink_to('../package/tool.js');outside=self.root/'private';outside.write_text('User data')
+        alias=runtime/'node_modules/.bin/tool';alias.parent.mkdir();alias.symlink_to(Path('..')/'package/tool.js');outside=self.root/'private';outside.write_text('User data')
         unsafe=alias.parent/'escape';unsafe.symlink_to(outside)
         with self.assertRaises(ValueError):self.builder.flatten(runtime)
         self.assertTrue(alias.is_symlink());self.assertTrue(unsafe.is_symlink());self.assertEqual(outside.read_text(),'User data')

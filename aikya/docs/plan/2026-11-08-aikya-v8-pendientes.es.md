@@ -1,5 +1,8 @@
 # Plan vigente del trabajo pendiente para Aikya v8.0.0
 
+> Registro histórico de Harness v8. El plan activo del producto independiente es
+> [Forge 0.2.0](2026-11-18-forge-completion.es.md); no incluye migración real v7.
+
 Fecha de revisión: 9 de noviembre de 2026. Rama: `feat/aikya-v8-pi`.
 Base contrastada: `76b6d41` y snapshot B4 verificado. Estado: implementación secuencial en curso.
 

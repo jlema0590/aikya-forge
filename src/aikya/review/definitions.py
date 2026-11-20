@@ -9,7 +9,8 @@ from aikya.code_index.policy import project_root, excluded
 from aikya.core.checkpoints import identity, safe_file
 from .contracts import identifier, digest
 
-ENVIRONMENT_KEYS = ('PATH', 'HOME', 'USERPROFILE', 'SYSTEMROOT', 'WINDIR', 'TEMP', 'TMP',
+ENVIRONMENT_KEYS = ('PATH', 'HOME', 'USERPROFILE', 'APPDATA', 'LOCALAPPDATA',
+                    'PROGRAMFILES', 'PROGRAMFILES(X86)', 'PROGRAMDATA', 'ALLUSERSPROFILE', 'SYSTEMROOT', 'WINDIR', 'TEMP', 'TMP',
                     'TMPDIR', 'LANG', 'LC_ALL', 'COMSPEC', 'PATHEXT', 'JAVA_HOME', 'DOTNET_ROOT', 'VIRTUAL_ENV')
 
 
@@ -51,6 +52,8 @@ def prepare_definition(root, definition, environment=None):
     if (not isinstance(argv, list) or not 1 <= len(argv) <= 100
             or any(not isinstance(a, str) or not a or len(a) > 1000 or '\x00' in a for a in argv)):
         raise ValueError('A check command must be an argument list')
+    from .artifacts import validate as validate_outputs
+    validate_outputs(argv)
     if definition['report_format'] not in ('junit', 'tap', 'trx', 'go-json', 'process'):
         raise ValueError('Unknown execution-result format')
     timeout = definition['timeout_seconds']

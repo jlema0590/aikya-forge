@@ -67,4 +67,4 @@ class CleanInstaller(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             home = Path(temporary).resolve()
             with patch.dict(os.environ, {'HOME': str(home), 'USERPROFILE': str(home), 'XDG_DATA_HOME': '', 'AIKYA_INSTALL_ROOT': ''}), patch('sys.platform', 'linux'):
-                self.assertEqual(home / '.local/share/aikya', module.app_root())
+                self.assertEqual(home / '.local/share/aikya-forge', module.app_root())

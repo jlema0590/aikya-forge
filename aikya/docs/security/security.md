@@ -266,4 +266,85 @@ promotion. Launcher ownership is checked again after preparation. Partial effect
 remain pending without automatic replay; old payloads and user data are retained.
 The application signing key is administrative metadata, not global project memory.
 
+## Forge withdrawal, build and release boundaries
+
+Skill removal changes only verified owned selections; exact immutable packages remain
+for explicit restore. Customized bytes, name conflicts and unknown partial effects
+fail closed. Protected canonical commands and external client/plugin assets are not
+removed. Project/global operations share existing scope locks and durable journals.
+
+.NET private outputs do not sandbox approved build scripts; all relevant real source,
+including bin/obj, remains candidate-bound. Parser distribution uses reviewed exact
+binary versions, origin/ABI/platform and SHA checks, without source builds. Forge
+never adopts an old Harness app root implicitly. Windows administration resolves the
+verified current core and refuses unsafe running-executable self-uninstall.
+
+Anonymized usage exports are local observations, not remote-provider proof or
+publication consent. Release preparation is read-only by default; main, successful
+native/test gates, current reviewed external evidence and explicit publish=true are
+required for release/Pages. Existing tags/assets are not overwritten. The manifest
+and local ownership signatures protect integrity/ownership, not upstream authenticity
+beyond the reviewed transport/hash pins. No OS sandbox or account-quota saving is claimed.
+
+## Native Linux filename fidelity
+
+The Linux-only native naming mode retains real case distinctions in pinned Python
+terminfo data. Other path guards, exact inventory hashes and exclusive writes remain;
+no imported files are silently renamed or omitted. Generic skill/source packages and
+macOS/Windows native manifests still reject case aliases. A filesystem unable to
+preserve Linux names cannot produce a valid current inventory; partial data remains
+unactivated. Retry is limited to three immutable transport reads to the same allowed
+origin; missing files, invalid redirects/certificates and bad hashes do not pass.
+
+## Windows cache-location binding
+
+APPDATA and LOCALAPPDATA are selected host SDK locations, alongside HOME/USERPROFILE,
+and enter the frozen environment hash. No credential content is read or exported by
+this binding. Explicit approved commands keep normal host privileges and their normal
+SDK configuration. A location change invalidates the old definition. Source-side cache
+creation is still candidate drift; no extra project directory is silently excluded.
+
+Approved check environments preserve and bind Windows Program Files and machine-data
+roots in addition to AppData. NuGet requires these standard paths even for offline
+builds with cleared package sources; other ambient environment values remain filtered.
+
+Project identity across Node and Python uses the OS-resolved Windows pathname,
+including DOS aliases and original filesystem case. Exact response/grant/session
+matching stays strict; paths are not lowercased and failures do not fall back to an
+unverified spelling. POSIX resolution remains unchanged. Unknown pre-existing role
+records are preserved for review rather than silently rebound.
+
+A native PowerShell installer with unavailable architecture now fails explicitly
+before any download or payload execution. The isolated acceptance environment
+preserves only the two machine architecture descriptors needed by that selector.
+Bootstrap integrity/architecture failure contracts run before expensive native builds.
+
+The terminal's read-only Git probes use NUL for the empty global-config source on
+Windows and the standard null device on POSIX. System/global Git configuration
+remains excluded, filesystem monitors remain disabled and repository ownership
+checks are not bypassed. PowerShell emits its original error text and rethrows.
+
+Architecture/checksum guards retain a known static error message when a PowerShell
+host supplies an empty exception record. Failure still rethrows, retains nonzero
+status and restores the caller preference; no validation or download limit changes.
+
+## Offline terminal executable ownership
+
+Native payloads retain reviewed fd/ripgrep archives, versions, hashes and licenses.
+Managed launch uses their verified directories before the operator's PATH. Pi's
+project agent/bin cache is refused before mounting the interactive UI; repository
+files cannot grant executable authority. Existing cache data is preserved. Source
+runtime selection remains explicit and PI_OFFLINE stays enabled.
+Windows native entry disables implicit current-directory executable lookup in the
+parent Node process, before Pi probes bare tool names. Managed preflight rejects
+installation roots containing the platform PATH separator. Project executables
+and ambiguous paths therefore cannot silently replace reviewed tools.
+
+Host errors expose only bounded static categories and first-party stages. Raw
+exception messages, inputs, paths and process output are excluded. Diagnostic task
+messages remain administrative context, not model instructions or consent. A failed
+recording still requires explicit recovery; no automatic write replay is added.
+If host shutdown also fails, the UI retains both bounded diagnostics and explicitly
+reports an unconfirmed stop while keeping inference blocked.
+
 GENERATED BY AIKYA HARNESS

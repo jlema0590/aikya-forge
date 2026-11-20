@@ -1,5 +1,8 @@
 # Implementación Aikya v8.0.0: estado de la ruta B
 
+> Registro histórico de Harness v8. El plan activo del producto independiente es
+> [Forge 0.2.0](2026-11-18-forge-completion.es.md); no incluye migración real v7.
+
 Rama: `feat/aikya-v8-pi`. Base: `origin/develop`,
 `e7415238cbafa24f285d2fb3a006333d37be7ee6`, consultada el 7 de noviembre de 2026.
 Se conserva la investigación y los planes mediante un commit aplicado sobre esa

@@ -13,6 +13,6 @@ def write_tool(path,body):
     if os.name=='nt':
         script=path.with_suffix('.py');script.write_text(body,encoding='utf8')
         # The fixture wrapper changes with the script, preserving tool drift cases.
-        path.write_text('@echo off\n"'+sys.executable+'" -I -B "'+str(script)+'" %*\nrem '+hashlib.sha256(body.encode()).hexdigest()+'\n',encoding='utf8')
+        path.write_text('@echo off\nrem '+hashlib.sha256(body.encode()).hexdigest()+'\n"'+sys.executable+'" -I -B "'+str(script)+'" %*\nexit /b %errorlevel%\n',encoding='utf8')
     else:path.write_text('#!'+sys.executable+'\n'+body,encoding='utf8')
     path.chmod(path.stat().st_mode|stat.S_IXUSR)

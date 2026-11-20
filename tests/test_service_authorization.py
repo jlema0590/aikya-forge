@@ -19,7 +19,7 @@ class AuthorizationTests(unittest.TestCase):
         self.assertIsNotNone(auth, 'Host authorization boundary is absent')
         self.temp = tempfile.TemporaryDirectory(); self.addCleanup(self.temp.cleanup)
         self.root = Path(self.temp.name).resolve()
-        (self.root / 'value.py').write_text('VALUE = 1\n')
+        (self.root / 'value.py').write_bytes(b'VALUE = 1\n')
         self.key = os.urandom(32)
         self.args = dict(path='value.py', content='VALUE = 2\n')
 

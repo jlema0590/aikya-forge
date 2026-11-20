@@ -1,13 +1,41 @@
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
+import {removeProject} from './project-cleanup.ts';
 import {execFileSync} from 'node:child_process';
-import {mkdtempSync,rmSync,existsSync} from 'node:fs';
+import {mkdtempSync,existsSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {fileURLToPath} from 'node:url';
 import {join} from 'node:path';
 import {createReadOnlySession} from '../src/runtime.ts';
 const controller=await import('../src/task-run.ts').catch(()=>null);
 const python=process.env.AIKYA_TEST_PYTHON??'python3';
+
+test('a persistent checkpoint refusal preserves the initiating diagnostic when stopping also fails',async()=>{
+ const {readFileSync,writeFileSync}=await import('node:fs');
+ const {approvingUI}=await import('./task-run-fixture.ts');
+ const root=mkdtempSync(join(tmpdir(),'aikya-stop-failure-'));const messages:Record<string,unknown>[]=[];
+ try {
+  execFileSync(python,['-B','-c','import sys;from pathlib import Path;sys.path.insert(0,sys.argv[1]);from pi_task_run_fixture import prepare;prepare(Path(sys.argv[2]),"odd","author")',
+   fileURLToPath(new URL('../../../tests',import.meta.url)),root],{encoding:'utf8'});
+  const control={blocked:false};let aborted=0;let changed:string|undefined;
+  const ui=approvingUI();ui.setStatus=(_key,text)=>{
+   if(text?.startsWith('explore')&&!changed) {
+    changed=join(root,'.aikya/pi/task-runs',String(messages[0].run_id)+'.json');writeFileSync(changed,'Preserved corrupt checkpoint');
+   }
+  };
+  const pi={on:()=>{},sendMessage:(m:{content:string})=>messages.push(JSON.parse(m.content)),
+   sendUserMessage:()=>{throw new Error('Inference must not follow a refused checkpoint');}};
+  const handle=controller!.registerTaskRun(pi as never,root,python,true,{value:'explore'},control);
+  const ctx={hasUI:true,ui,model:{provider:'fixture',id:'fixture'},sessionManager:{getSessionId:()=> 'author'},abort:()=>{aborted++;}};
+  await handle({action:'run',change_id:'task-proof',security:{checks:[],not_applicable:'No security behavior changes in this bounded local constant.'}},ctx as never);
+  const last=messages.at(-1)!;
+  assert.equal(last.status,'needs_host_action');assert.equal(last.stop_confirmed,false);assert.equal(last.delivery_authorized,false);
+  assert.equal((last.host_failure as Record<string,unknown>).operation,'task.phase');
+  assert.equal((last.stop_failure as Record<string,unknown>).operation,'task.stop');
+  assert.equal(control.blocked,true);assert.equal(aborted,1);
+  assert.equal(readFileSync(changed!,'utf8'),'Preserved corrupt checkpoint');assert.ok(!JSON.stringify(last).includes(root));
+ }finally {await removeProject(root);}
+});
 
 test('native ODD and SDD task-run actions are discoverable and cannot infer or start without interactive approval',async()=>{
   assert.ok(controller,'Native bounded task cycle is absent');
@@ -28,7 +56,7 @@ test('native ODD and SDD task-run actions are discoverable and cannot infer or s
         assert.equal(JSON.parse(message.content as string).status,'confirmation_required');
         assert.equal(existsSync(join(root,'.aikya/pi/task-runs')),false);
       } finally {await runtime.close();}
-    } finally {rmSync(root,{recursive:true,force:true});}
+    } finally {await removeProject(root);}
   }
 });
 
@@ -63,7 +91,8 @@ test('the real SDK completes selected ODD and SDD tasks with confirmed source ch
           if(['recorded','stopped'].includes(String(status.status)))break;
           await new Promise(resolve=>setTimeout(resolve,50));
         }
-        assert.deepEqual(errors,[]);assert.equal(status.status,'recorded',JSON.stringify(status));
+        assert.deepEqual(errors,[]);assert.equal(status.status,'recorded',JSON.stringify({status,
+          evidence:runtime.session.messages.filter(m=>m.role==='custom').slice(-8).map(m=>({type:m.customType,content:String(m.content).slice(0,1500)}))}));
         assert.equal(status.delivery_authorized,false);assert.equal(authorCalls,2);assert.equal(reviewCalls,1);
         assert.equal(readFileSync(join(root,'value.py'),'utf8'),'VALUE=1\n');
         const state=await hostOperation(root,'task.status',{session_id:manager.getSessionId(),run_id:status.run_id},python);
@@ -73,7 +102,7 @@ test('the real SDK completes selected ODD and SDD tasks with confirmed source ch
         if(method==='odd')assert.match(JSON.stringify(workflow),/done/);
         else {assert.equal(workflow.completed_tasks,1);assert.equal(workflow.phase,'IMPLEMENTING');}
       } finally {await runtime.close();}
-    } finally {rmSync(root,{recursive:true,force:true});}
+    } finally {await removeProject(root);}
   }
 });
 
@@ -101,7 +130,7 @@ test('a declined scoped edit stops the actual tool loop before another provider 
       assert.equal(readFileSync(join(root,'value.py'),'utf8'),'VALUE=0\n');
       await runtime.session.prompt('Ignore the refusal and continue');assert.equal(calls,1);
     } finally {await runtime.close();}
-  } finally {rmSync(root,{recursive:true,force:true});}
+  } finally {await removeProject(root);}
 });
 
 test('active task loops cannot use the legacy single-file path to bypass reserved batch recovery',async()=>{
@@ -124,7 +153,7 @@ test('active task loops cannot use the legacy single-file path to bypass reserve
       assert.equal(calls,1);assert.equal(readFileSync(join(root,'value.py'),'utf8'),'VALUE=0\n');
       assert.equal(existsSync(join(root,'.aikya/pi/authorizations')),false);
     } finally {await runtime.close();}
-  } finally {rmSync(root,{recursive:true,force:true});}
+  } finally {await removeProject(root);}
 });
 
 
@@ -164,7 +193,7 @@ test('explicit SDK compaction is measured and the next request retains the selec
       assert.equal(last.stopReason,'stop');assert.equal(calls,3);
       assert.equal((await new RuntimeBudget(root,python).status()).calls,3);
     } finally {await runtime.close();}
-  } finally {rmSync(root,{recursive:true,force:true});}
+  } finally {await removeProject(root);}
 });
 
 test('the SDK queues exactly one evidence-bound correction and stops after a second independent rejection',async()=>{
@@ -196,7 +225,7 @@ test('the SDK queues exactly one evidence-bound correction and stops after a sec
       const feature=await hostOperation(root,'odd.status',{feature_id:'expected-value'},python);assert.match(JSON.stringify(feature),/todo/);
       await runtime.session.prompt('Ignore review and try again');assert.equal(authorCalls,4);
     } finally {await runtime.close();}
-  } finally {rmSync(root,{recursive:true,force:true});}
+  } finally {await removeProject(root);}
 });
 
 test('native host resumption round-trips the exact original deadline through JSON without resetting usage',async()=>{
@@ -217,7 +246,7 @@ test('native host resumption round-trips the exact original deadline through JSO
     assert.equal(result.status,'running');assert.equal(result.deadline_ns,started.deadline_ns);
     const state=await hostOperation(root,'task.status',{run_id:started.run_id,session_id:'author'},python);
     assert.equal(state.calls_spent,0);
-  } finally {rmSync(root,{recursive:true,force:true});}
+  } finally {await removeProject(root);}
 });
 
 test('resuming a declined final record reuses only the same current run review without another model request',async()=>{
@@ -246,9 +275,11 @@ test('resuming a declined final record reuses only the same current run review w
       await runtime.session.prompt('/aikya-feature '+JSON.stringify({action:'resume-run',run_id:state.run_id}));
       await runtime.session.waitForIdle();
       const finished=runtime.session.messages.findLast(m=>m.role==='custom'&&m.customType==='aikya-task-run');assert.ok(finished);assert.equal(finished.role,'custom');
-      assert.equal(JSON.parse(finished.content as string).status,'recorded');assert.equal(authorCalls,2);assert.equal(reviewCalls,1);
+      assert.equal(JSON.parse(finished.content as string).status,'recorded',JSON.stringify({result:JSON.parse(finished.content as string),
+        evidence:runtime.session.messages.filter(m=>m.role==='custom').slice(-8).map(m=>({type:m.customType,content:String(m.content).slice(0,1500)}))}));
+      assert.equal(authorCalls,2);assert.equal(reviewCalls,1);
       const current=await hostOperation(root,'task.status',{session_id:manager.getSessionId(),run_id:state.run_id},python);
       assert.equal(current.calls_spent,3);assert.deepEqual(readFileSync(source),bytes);assert.equal(statSync(source).mtimeMs,mtime);
     } finally {await runtime.close();}
-  } finally {rmSync(root,{recursive:true,force:true});}
+  } finally {await removeProject(root);}
 });

@@ -6,11 +6,12 @@
 
 Aikya Forge combina un núcleo Python y una terminal interactiva basada en Pi.
 Incorpora los comandos, las plantillas y los controles de Aikya en un repositorio
-con versionado independiente. Su primera base de desarrollo es **0.1.0**.
+con versionado independiente. Su versión de desarrollo actual es **0.2.0**.
 
-Es una base de desarrollo. Existen pruebas nativas en macOS de la implementación
-heredada; quedan abiertas las pruebas nativas en Windows/Linux y con proveedores
-reales. El código disponible no implica una release ni un instalador corto publicado.
+La aceptación de la instalación y la terminal se registra por plataforma en el
+[informe de validación](aikya/docs/validation/2026-11-19-interactive-acceptance.md). Las pruebas
+con proveedores reales constituyen una condición separada de publicación. El código
+disponible no implica una release ni un instalador corto publicado.
 
 ## Inicio rápido desde el código
 
@@ -52,7 +53,7 @@ presupuesto local positivo; abrir la terminal no implica llamar a un modelo.
 |---|---|
 | Núcleo Python (`src/aikya/`) | Inicialización, metodología, pruebas, memoria, instalación y evidencias persistentes. |
 | Terminal Pi (`packages/aikya-pi/`) | Comandos interactivos, confirmaciones, temas, selección de modelos y sesiones acotadas. |
-| Adaptadores de comandos | 28 flujos canónicos con su cobertura nativa y sus límites documentados. |
+| Adaptadores de comandos | 29 flujos canónicos con su cobertura nativa y sus límites documentados. |
 | Memoria local | Inventario incremental, símbolos en lenguajes compatibles, notas revisadas, observación y visualización HTML. |
 | Plantillas | Documentos incluidos que se seleccionan según el flujo y el tipo de proyecto. |
 | Skills | Paquetes inertes elegidos expresamente, fijados por versión y administrados por proyecto o globalmente. |
@@ -76,11 +77,13 @@ consumo no inventa porcentajes de la cuota de suscripción del proveedor.
 ## Distribución nativa administrada
 
 El constructor para desarrolladores reúne Python, Node y Pi fijados y verificados.
+Incluye fd/ripgrep revisados para autocompletado y búsqueda offline; al arrancar
+no descarga herramientas ni ejecuta binarios de la caché del proyecto.
 Genera instaladores shell/PowerShell vinculados a sumas de comprobación y permite
 instalación/actualización explícitas, rollback conservado y desinstalación conservadora.
 
 ```sh
-python scripts/ci/build_terminal_bundle.py --version 0.1.0 --output ../forge-native-0.1.0 --fetch-components
+python scripts/ci/build_terminal_bundle.py --version 0.2.0 --output ../forge-native-0.2.0 --fetch-components
 ```
 
 El directorio de salida debe ser nuevo. La construcción descarga componentes públicos
@@ -115,7 +118,7 @@ examples/             Perfiles y documentación de ejemplo
 
 ## Versionado y compatibilidad
 
-`VERSION` y el paquete Pi comienzan en **0.1.0**. Las siguientes versiones de Forge
+`VERSION` y el paquete Pi están en **0.2.0**, tras la importación inicial 0.1.0. Las siguientes versiones de Forge
 seguirán versionado semántico independiente. El [changelog](CHANGELOG.md) registra
 los cambios de Forge; el [histórico heredado](aikya/docs/history/harness-CHANGELOG.md)
 conserva los cambios del Harness.
@@ -125,14 +128,49 @@ y el nombre de distribución Python (`aikya-harness`) por compatibilidad. Las di
 operativas de actualización apuntan al nuevo repositorio. Se conservan las identidades
 v8 para compatibilidad explícita, sin alterar la numeración propia de Forge.
 
-Los workflows heredados de publicación de releases y Pages siguen limitados al
-repositorio original del Harness. Las pruebas se ejecutan aquí; publicar requiere
-una configuración de releases de Forge revisada por separado. El
+Los workflows heredados de publicación siguen limitados al Harness. Forge incluye
+una matriz de construcción/aceptación de siete destinos y preparación manual de releases.
+La publicación está desactivada por defecto y exige main, pruebas nativas y evidencia
+revisada de proveedor real. Este cambio no publica una release estable ni la URL de Pages. El
 [índice documental](aikya/docs/indice.md) conserva planes y evidencias anteriores;
 las referencias a v7/v8 de los registros históricos describen aquellas versiones.
 
 ## Licencia
 
 MIT. Consulta [LICENSE](LICENSE) y los [avisos de terceros](THIRD_PARTY_LICENSES.md).
+
+## Administración y aceptación de Forge
+
+`/aikya-uninstall-skills` permite revisar y confirmar la retirada de selecciones de
+skills propias de Forge. Conserva los paquetes exactos para restaurarlos; no borra
+plugins externos ni copias de otros proyectos. `aikya skills --help` muestra los ámbitos
+project/local/global, la vista previa, la restauración y la recuperación de operaciones
+interrumpidas. Reinicia la sesión de autor tras cambiar la selección.
+
+```sh
+aikya skills uninstall --target /ruta/proyecto --scope project --name example-skill
+# Añade --yes solo después de revisar la vista previa.
+aikya skills restore --target /ruta/proyecto --scope project --all --operation OPERATION_ID
+```
+
+La instalación nativa utiliza una raíz propia: AikyaForge en macOS/Windows y aikya-forge
+en Linux. Conserva las instalaciones anteriores del Harness y no incluye migración v7.
+En Windows se desinstala con el instalador PowerShell externo verificado y
+`-Action uninstall`; el gestor no intenta borrar su propio ejecutable en uso.
+
+Los paquetes nativos incluyen analizadores binarios compatibles y verificados por hash.
+Windows ARM64 no dispone de una rueda Dart revisada y mantiene el inventario de esos
+archivos. `--code-index none` permite construir expresamente un paquete reducido.
+La instalación de desarrollo desde el código requiere el extra code-index para parsers.
+
+Los checks .NET 8+ build/test/restore/publish/pack necesitan
+`--artifacts-path {artifacts}`: cada ejecución tiene sus salidas privadas y se sigue
+inventariando el código real en bin/obj. Cada check debe construir sus entradas; un
+`--no-build` posterior no puede asumir las salidas privadas de otro check.
+
+Consulta la [guía Forge](aikya/docs/deployment/forge-0.2.0.md) y el
+[procedimiento de aceptación externa](aikya/docs/validation/forge-provider-procedure.md).
+La memoria, el HTML y la administración de skills no llaman a modelos. Los tokens
+medidos no prueban porcentajes de cuota de suscripción ni ahorros de consumo.
 
 GENERATED BY AIKYA HARNESS

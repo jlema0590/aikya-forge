@@ -16,19 +16,12 @@ from .managed_versions import parts
 
 
 def seal(folder,*,version,target,versions,python,node,runtime):
-    parts(version);folder=safe(Path(folder).absolute());files={};pending=[folder];examined=0
+    parts(version);folder=safe(Path(folder).absolute());files={}
     manifest=safe(folder/'manifest.json')
     if manifest.exists():raise ValueError('Existing payload manifest is preserved')
-    while pending:
-        with os.scandir(pending.pop()) as children:
-            for child in children:
-                examined+=1
-                if examined>75000:raise ValueError('Payload discovery bound exceeded')
-                path=safe(Path(child.path));name=path.relative_to(folder).as_posix()
-                if child.is_dir(follow_symlinks=False):pending.append(path);continue
-                if not child.is_file(follow_symlinks=False):raise ValueError('Payload contains an unsupported object')
-                raw=managed_runtime._read(path,256000000);record=child.stat(follow_symlinks=False)
-                files[name]=dict(sha256=hashlib.sha256(raw).hexdigest(),size=len(raw),executable=name in (python,node) or bool(record.st_mode&stat.S_IXUSR))
+    for path,name,record in managed_runtime.walk_files(folder):
+        raw=managed_runtime._read(path,256000000)
+        files[name]=dict(sha256=hashlib.sha256(raw).hexdigest(),size=len(raw),executable=name in (python,node) or bool(record.st_mode&stat.S_IXUSR))
     value=dict(schema=1,version=version,platform=target,python=python,node=node,runtime=runtime,versions=versions,files=files)
     managed_runtime._manifest(value,dict(version=version,platform=target));managed_runtime._inventory(folder,files)
     # Identity is checked before creating the manifest, preserving unknown staging data.

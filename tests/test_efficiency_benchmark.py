@@ -1,3 +1,4 @@
+from aikya.cli.commands import BOOTSTRAP_COMMANDS
 import importlib.util
 from pathlib import Path
 import unittest
@@ -9,7 +10,7 @@ class BenchmarkTests(unittest.TestCase):
         spec=importlib.util.spec_from_file_location('efficiency_benchmark',path);module=importlib.util.module_from_spec(spec);spec.loader.exec_module(module)
         report=module.benchmark()
         self.assertFalse(report['live_model_execution']);self.assertIsNone(report['quota_savings'])
-        self.assertEqual(report['command_count'],28)
+        self.assertEqual(report['command_count'],len(BOOTSTRAP_COMMANDS))
         self.assertEqual(len(report['languages']),29)
         self.assertTrue(report['valid'])
         self.assertTrue(all(row['tokens'] is None for row in report['commands'].values()))

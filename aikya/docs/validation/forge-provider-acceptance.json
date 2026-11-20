@@ -1,0 +1,21 @@
+{
+  "schema": 1,
+  "version": "0.2.0",
+  "runtime_fingerprint": null,
+  "review_status": "pending",
+  "repetitions": 0,
+  "cache_conditions": "Not recorded: external environment has not executed controlled trials.",
+  "checks": {
+    "positive_budget": "not_run",
+    "exhaustion": "not_run",
+    "unknown_usage": "not_run",
+    "cancellation": "not_run",
+    "compaction": "not_run",
+    "resumption": "not_run",
+    "independent_review": "not_run",
+    "quota_provenance": "not_run",
+    "comparative_trials": "not_run"
+  },
+  "observations": [],
+  "review_note": "Pending real-provider acceptance in the separate agreed environment; local fixtures are not provider evidence."
+}

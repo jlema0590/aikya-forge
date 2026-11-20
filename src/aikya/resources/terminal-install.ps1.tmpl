@@ -10,6 +10,7 @@ param(
     [switch]$DryRun
 )
 $callerPreference=$ErrorActionPreference
+$failureContext='Native Windows bootstrap failed.'
 try {
 $ErrorActionPreference='Stop'
 if ($Scope -ne 'global') { throw 'Native binaries use global scope; project memory stays local.' }
@@ -17,6 +18,7 @@ if ($Version -ne '@@VERSION@@' -or $Channel -ne '@@CHANNEL@@') { throw 'Use the 
 if ($DryRun) { @{action=$Action;version=$Version;channel=$Channel;writes=$false;network=$false} | ConvertTo-Json -Compress; return }
 $arch=$env:PROCESSOR_ARCHITEW6432
 if (-not $arch) { $arch=$env:PROCESSOR_ARCHITECTURE }
+if (-not $arch) { $failureContext='Native Windows architecture is unavailable.'; throw $failureContext }
 switch ($arch.ToUpperInvariant()) { 'AMD64' {$target='win32-x64'} 'ARM64' {$target='win32-arm64'} default {throw 'Unsupported native Windows architecture.'} }
 $platforms=@{
 @@PLATFORMS@@
@@ -58,7 +60,7 @@ try {
     if ((Get-Item -LiteralPath $archive).Length -gt 256000000) { throw 'Native archive exceeds its download bound.' }
     $stream=[IO.File]::OpenRead($archive); $hasher=[Security.Cryptography.SHA256]::Create()
     try { $actual=[BitConverter]::ToString($hasher.ComputeHash($stream)).Replace('-','').ToLowerInvariant() } finally { $stream.Dispose(); $hasher.Dispose() }
-    if ($actual -ne $selected.sha256) { throw 'Native bundle integrity checksum mismatch.' }
+    if ($actual -ne $selected.sha256) { $failureContext='Native bundle integrity checksum mismatch.'; throw $failureContext }
     $payload=Join-Path $stage 'payload'; Expand-Archive -LiteralPath $archive -DestinationPath $payload
     $python=Join-Path $payload $selected.python
     $options=@($Action,'--yes')
@@ -66,4 +68,9 @@ try {
     & $python -I -B -m aikya.installation.managed_cli @options
     if ($LASTEXITCODE -ne 0) { throw "Aikya native operation failed with exit $LASTEXITCODE" }
 } finally { if (Test-Path -LiteralPath $stage) { Remove-Item -LiteralPath $stage -Recurse -Force } }
+} catch {
+    $message=$_.Exception.Message
+    if ([String]::IsNullOrWhiteSpace([string]$message)) { $message=$failureContext }
+    [Console]::Error.WriteLine($message)
+    throw
 } finally { $ErrorActionPreference=$callerPreference }

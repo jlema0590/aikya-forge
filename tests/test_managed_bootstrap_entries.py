@@ -4,6 +4,7 @@ import importlib
 import importlib.util
 import json
 import os
+import shutil
 from pathlib import Path
 import subprocess
 import tempfile
@@ -44,6 +45,40 @@ class NativeBootstrapEntryTests(unittest.TestCase):
         physical=self.root/'physical temporary';physical.mkdir();alias=self.root/'alias';alias.symlink_to(physical,target_is_directory=True)
         result=subprocess.run(['/bin/sh',str(output/'install.sh'),'--offline-dir',str(self.assets),'--no-path'],env={**os.environ,'TMPDIR':str(alias)},capture_output=True,text=True)
         self.assertEqual(result.returncode,0,result.stderr);self.assertTrue(result.stdout.startswith(str(physical)),result.stdout);self.assertEqual(list(physical.iterdir()),[])
+
+    @unittest.skipUnless(shutil.which('pwsh') or shutil.which('powershell'),'PowerShell is required')
+    def test_windows_architecture_and_integrity_errors_return_unsuccessful_status(self):
+        name='aikya-terminal-8.0.0-alpha.0-win32-x64.zip'
+        if not (self.assets/name).exists():
+            (self.assets/name).write_bytes(self.raw)
+            with (self.assets/'SHA256SUMS').open('a') as stream:stream.write(hashlib.sha256(self.raw).hexdigest()+'  '+name+'\n')
+        output=self.root/'entries';self.entries.build('8.0.0-alpha.0',self.assets,output)
+        environment={**os.environ,'AIKYA_INSTALL_ROOT':str(self.root/'app')}
+        shell=shutil.which('pwsh') or shutil.which('powershell')
+        command=[shell,'-NoProfile','-NonInteractive','-File',str(output/'install.ps1'),'-OfflineDir',str(self.assets),'-NoPath']
+        wrapper=self.root/'without-architecture.ps1'
+        wrapper.write_text('''param([string]$Installer,[string]$Assets,[switch]$Preview)
+Remove-Item -LiteralPath Env:PROCESSOR_ARCHITECTURE -ErrorAction SilentlyContinue
+Remove-Item -LiteralPath Env:PROCESSOR_ARCHITEW6432 -ErrorAction SilentlyContinue
+if ((Test-Path Env:PROCESSOR_ARCHITECTURE) -or (Test-Path Env:PROCESSOR_ARCHITEW6432)) { exit 17 }
+& $Installer -OfflineDir $Assets -NoPath -DryRun:$Preview
+''',encoding='utf8')
+        missing_command=[shell,'-NoProfile','-NonInteractive','-File',str(wrapper),'-Installer',str(output/'install.ps1'),'-Assets',str(self.assets)]
+        missing=subprocess.run(missing_command,env=environment,capture_output=True,text=True,encoding='utf8',timeout=30)
+        self.assertNotEqual(missing.returncode,17,'Fixture did not clear architecture descriptors')
+        self.assertNotEqual(missing.returncode,0,missing.stderr)
+        self.assertIn('architecture',missing.stderr.lower())
+        self.assertFalse((self.root/'app').exists())
+        preview=subprocess.run(missing_command+['-Preview'],env=environment,capture_output=True,text=True,encoding='utf8',timeout=30)
+        self.assertEqual(preview.returncode,0,preview.stderr)
+        value=json.loads(preview.stdout);self.assertFalse(value['writes']);self.assertFalse(value['network'])
+        target=host_platform() if os.name=='nt' else 'win32-x64'
+        selected=self.assets/('aikya-terminal-8.0.0-alpha.0-'+target+'.zip');selected.write_bytes(b'Corrupt transport')
+        arch='ARM64' if target=='win32-arm64' else 'AMD64'
+        invalid_environment=environment if os.name=='nt' else {**environment,'PROCESSOR_ARCHITECTURE':arch}
+        invalid=subprocess.run(command,env=invalid_environment,capture_output=True,text=True,encoding='utf8',timeout=30)
+        self.assertNotEqual(invalid.returncode,0,invalid.stderr)
+        self.assertIn('checksum',invalid.stderr.lower());self.assertFalse((self.root/'app').exists())
 
     def test_modified_assets_or_custom_entry_output_are_preserved(self):
         output=self.root/'entries';(self.assets/self.name).write_bytes(b'Changed')

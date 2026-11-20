@@ -1,4 +1,4 @@
-"""Native v8 administration; previews are inert and stable never selects an alpha."""
+"""Native Forge administration; previews are inert and stable never selects an alpha."""
 import argparse
 import hashlib
 import json
@@ -32,7 +32,10 @@ def _summary(plan):
 
 
 def _doctor(root):
-    result=dict(root=str(root),installed=False,pending=(root/managed_install.PENDING).exists(),errors=[])
+    from importlib.metadata import version,PackageNotFoundError
+    try:core=version('aikya-harness')
+    except PackageNotFoundError:core=None
+    result=dict(core_version=core,root=str(root),installed=False,pending=(root/managed_install.PENDING).exists(),errors=[])
     try:
         managed_ownership.root(root)
         if (root/managed_install.CURRENT).exists():result.update(installed=True,version=managed_runtime.resolve(root)['version'])
@@ -61,6 +64,8 @@ def main(argv=None):
     try:
         root=managed_ownership.root(options.app_root())
         if args.action=='doctor':return _doctor(root)
+        if (root/'current.json').exists():
+            raise ValueError('Forge is a new product: choose its independent application root; legacy installation adoption is disabled')
         if args.action=='install' and (root/managed_install.CURRENT).exists():args.action='update'
         if args.scope!='global':raise ValueError('Native installation has one user-wide command; initialize project-local memory inside each project')
         if args.action=='recover':
@@ -80,7 +85,8 @@ def main(argv=None):
         raw=managed_releases.artifact(version,managed_runtime.host_platform(),offline_dir=args.offline_dir)
         with tempfile.TemporaryDirectory(prefix='aikya-native-') as temporary:
             stage=Path(temporary).resolve();archive=stage/'terminal.zip';write_new(archive,raw,mode=0o600)
-            managed_archives.extract(archive,stage/'payload',hashlib.sha256(raw).hexdigest(),'.')
+            managed_archives.extract(archive,stage/'payload',hashlib.sha256(raw).hexdigest(),'.',
+                                     case_sensitive=managed_runtime.host_platform().startswith('linux-'))
             return _execute(args,root,stage/'payload')
     except (ValueError,OSError,subprocess.SubprocessError) as error:
         print('ERROR: '+str(error),file=sys.stderr);return 2

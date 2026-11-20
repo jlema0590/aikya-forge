@@ -70,5 +70,15 @@ class PayloadBuildTests(unittest.TestCase):
         moved=self.root/'tar extracted';extract(first['archive'],moved,first['sha256'],'.')
         self.assertEqual(managed_runtime.inspect(moved,version='8.0.0-alpha.0',target='darwin-arm64')['manifest_hash'],first['manifest_hash'])
 
+    def test_sealing_reuses_the_verified_directory_walk_for_large_file_sets(self):
+        from unittest.mock import patch
+        folder=self.folder/'data';folder.mkdir();count=200
+        for number in range(count):(folder/(str(number)+'.txt')).write_bytes(b'Captured bytes')
+        original=Path.is_symlink;inspected=[]
+        def observed(path):inspected.append(path);return original(path)
+        with patch.object(Path,'is_symlink',new=observed):result=self.payload.seal(self.folder,**self.arguments)
+        self.assertEqual(result['files'],count+4)
+        self.assertLess(len(inspected),count*6,'Full ancestry must be checked per directory, with every child still verified')
+
 
 if __name__=='__main__':unittest.main()

@@ -1,4 +1,5 @@
 """Private release staging must not version or execute an unselected source tree."""
+from email.parser import Parser
 import importlib
 import importlib.util
 from pathlib import Path
@@ -21,8 +22,8 @@ class PrivateWheelTests(unittest.TestCase):
         value=self.builder.build(ROOT,destination,'8.0.0-alpha.0')
         wheel=Path(value['wheel']);self.assertEqual(wheel.name,'aikya_harness-8.0.0a0-py3-none-any.whl')
         with zipfile.ZipFile(wheel) as archive:
-            metadata=archive.read('aikya_harness-8.0.0a0.dist-info/METADATA').decode()
-            self.assertIn('\nName: aikya-harness\n',metadata);self.assertIn('\nVersion: 8.0.0a0\n',metadata)
+            metadata=Parser().parsestr(archive.read('aikya_harness-8.0.0a0.dist-info/METADATA').decode('utf8'))
+            self.assertEqual(metadata['Name'],'aikya-harness');self.assertEqual(metadata['Version'],'8.0.0a0')
             self.assertEqual(archive.read('aikya/resources/distribution/VERSION'),b'8.0.0a0\n')
             self.assertIn('aikya/installation/managed_runtime.py',archive.namelist())
         self.assertEqual((ROOT/'VERSION').read_bytes(),before)

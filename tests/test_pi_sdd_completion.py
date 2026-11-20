@@ -44,6 +44,14 @@ class SddCompletionTests(unittest.TestCase):
         with self.assertRaises(ValueError):self.service().apply(self.root,plan,approved=True)
         self.assertEqual(engine.load(self.root,'SPEC-001')[1]['tasks'][0]['status'],'todo')
 
+    def test_recording_remains_current_with_windows_text_defaults(self):
+        reviewed(self.root);plan=self.preview();original=Path.write_text
+        def windows_text(path,data,*args,**kwargs):
+            kwargs.setdefault('newline','\r\n')
+            return original(path,data,*args,**kwargs)
+        with patch.object(Path,'write_text',new=windows_text):
+            self.assertEqual(self.service().apply(self.root,plan,approved=True)['status'],'task_recorded')
+
     def test_other_author_or_changed_selection_cannot_use_the_same_acceptance(self):
         reviewed(self.root)
         with self.assertRaises(ValueError):self.service().preview(self.root,'SPEC-001','TASK-001','task-proof','other')
