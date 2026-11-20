@@ -84,6 +84,42 @@ push and PR; final trigger cleanup retains PR, develop/main and manual runs whil
 removing that duplication. Final documentation/configuration checks are separate
 from this accepted code snapshot; the runtime fingerprint remains unchanged.
 
+## Final-head CI closure
+
+All seven PR workflows on 4c72fa72461100b6e802a9bb5481ffde764c5d48 have now
+completed successfully: 43/43 jobs, including six OS/Node contracts, eleven
+Python/memory/browser jobs, sixteen clean-installer jobs and seven native targets.
+The remaining three jobs check catalog, static context budget and example profiles.
+This closes the final-head CI item; it is no longer awaiting execution.
+
+- [Final native matrix](https://github.com/jlema0590/aikya-forge/actions/runs/44646326793)
+- [Final Pi contracts](https://github.com/jlema0590/aikya-forge/actions/runs/44646326731)
+- [Final Python/memory/browser](https://github.com/jlema0590/aikya-forge/actions/runs/44646326848)
+- [Final clean installers](https://github.com/jlema0590/aikya-forge/actions/runs/44646326782)
+
+The API lists seven unexpired native artifacts tied to that PR head. Their IDs and
+server archive digests are recorded separately from the previously downloaded and
+assembled candidate: these new archives have not been downloaded or byte-verified
+locally. The existing sixteen candidate asset hashes, SHA256SUMS hash and external
+packet hash were independently rechecked successfully. Its source remains 52fcd6c;
+the current runtime fingerprint still matches a6ce603f in full. No old and new native
+archives were mixed. PR #1 remains open, mergeable and draft; there are no submitted
+GitHub reviews or inline review threads. That absence is not reviewer approval.
+
+The actual pending provider dossier was checked again and rejected with
+"External provider review is absent, pending or stale" (exit 1). All four release
+gate regression tests passed. Publication has been requested, but this request
+does not supply the missing external observations or visual acceptance.
+
+To close those remaining items, the separate agreed environment must return the
+nine scenario outcomes, at least three pristine-project comparative exports, cache
+conditions and a human provider-provenance review. Visual acceptance must identify
+the actual macOS, Windows and Linux host/terminal and capture keyboard/completion,
+resize, light/dark themes, cancellation/restart and local memory/HTML behavior.
+Automated PTY/ConPTY and synthetic browser results remain separate evidence.
+Until those results exist, comparative token savings remain unknown and release,
+tag, main promotion, public Pages and URL-based installer acceptance remain pending.
+
 ## External handoff and publication
 
 The four-file packet aikya-forge-external-acceptance-0.2.0-a6ce603f.zip has SHA-256

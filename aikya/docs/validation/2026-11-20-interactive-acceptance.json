@@ -801,5 +801,414 @@
     "Real authenticated provider trials and reviewed comparisons in the separately agreed environment",
     "Human visual/device acceptance on intended hosts",
     "Approved main-branch publication after acceptance gates"
-  ]
+  ],
+  "final_head_ci": {
+    "head_sha": "4c72fa72461100b6e802a9bb5481ffde764c5d48",
+    "runs": [
+      {
+        "id": 44646326806,
+        "name": "Aikya | Catalog and skills contracts",
+        "status": "completed",
+        "conclusion": "success",
+        "jobs": [
+          {
+            "id": 135989740998,
+            "name": "Engineering catalog and Aikya commands",
+            "status": "completed",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "id": 44646326843,
+        "name": "Aikya | Token budget (v6)",
+        "status": "completed",
+        "conclusion": "success",
+        "jobs": [
+          {
+            "id": 135989740541,
+            "name": "static-context-budget",
+            "status": "completed",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "id": 44646326743,
+        "name": "Aikya | Example profiles smoke",
+        "status": "completed",
+        "conclusion": "success",
+        "jobs": [
+          {
+            "id": 135989740610,
+            "name": "Profiles | offline, no generation",
+            "status": "completed",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "id": 44646326731,
+        "name": "Pi runtime contracts",
+        "status": "completed",
+        "conclusion": "success",
+        "jobs": [
+          {
+            "id": 135989740390,
+            "name": "contracts (windows-latest, 26.13.0)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989740691,
+            "name": "contracts (macos-latest, 22.19.0)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989740695,
+            "name": "contracts (ubuntu-latest, 22.19.0)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989740752,
+            "name": "contracts (macos-latest, 26.13.0)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989740828,
+            "name": "contracts (ubuntu-latest, 26.13.0)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989740889,
+            "name": "contracts (windows-latest, 22.19.0)",
+            "status": "completed",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "id": 44646326848,
+        "name": "Aikya | Python tests",
+        "status": "completed",
+        "conclusion": "success",
+        "jobs": [
+          {
+            "id": 135989741028,
+            "name": "Unit tests | Python 3.13",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989741392,
+            "name": "Unit tests | Python 3.12",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989741447,
+            "name": "Local memory | windows-latest | Python 3.10",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989741459,
+            "name": "Local memory | macos-latest | Python 3.13",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989741460,
+            "name": "Local memory | windows-latest | Python 3.13",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989741464,
+            "name": "Local memory | ubuntu-latest | Python 3.10",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989741474,
+            "name": "Local memory | macos-latest | Python 3.10",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989741485,
+            "name": "Memory viewer | synthetic browser acceptance",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989741507,
+            "name": "Local memory | ubuntu-latest | Python 3.13",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989741509,
+            "name": "Unit tests | Python 3.11",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989741538,
+            "name": "Unit tests | Python 3.10",
+            "status": "completed",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "id": 44646326782,
+        "name": "Aikya | Clean installers",
+        "status": "completed",
+        "conclusion": "success",
+        "jobs": [
+          {
+            "id": 135989740506,
+            "name": "build",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989991141,
+            "name": "linux-distros (fedora:42, dnf install -y python3 python3-pip ca-certificates curl)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989991229,
+            "name": "linux-distros (debian:bookworm-slim, apt-get update && apt-get install -y python3 python3-venv ca...",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989991397,
+            "name": "linux-distros (alpine:3.21, apk add --no-cache python3 py3-pip ca-certificates curl)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989991846,
+            "name": "native (ubuntu-latest, 3.10)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989991854,
+            "name": "native (ubuntu-latest, 3.11)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989991893,
+            "name": "native (ubuntu-latest, 3.12)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989991898,
+            "name": "native (windows-latest, 3.11)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989991903,
+            "name": "native (ubuntu-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989991934,
+            "name": "native (macos-latest, 3.10)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989991935,
+            "name": "native (windows-latest, 3.10)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989991986,
+            "name": "native (windows-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989992006,
+            "name": "native (macos-latest, 3.12)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989992060,
+            "name": "native (windows-latest, 3.12)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989992091,
+            "name": "native (macos-latest, 3.11)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989992141,
+            "name": "native (macos-latest, 3.13)",
+            "status": "completed",
+            "conclusion": "success"
+          }
+        ]
+      },
+      {
+        "id": 44646326793,
+        "name": "Forge | Native distribution acceptance",
+        "status": "completed",
+        "conclusion": "success",
+        "jobs": [
+          {
+            "id": 135989741164,
+            "name": "musl",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989741228,
+            "name": "native (windows-latest, x64)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989741239,
+            "name": "native (ubuntu-24.04-arm, arm64)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989741295,
+            "name": "native (ubuntu-24.04, x64)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989741300,
+            "name": "native (macos-15, arm64)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989741369,
+            "name": "native (windows-11-arm, arm64)",
+            "status": "completed",
+            "conclusion": "success"
+          },
+          {
+            "id": 135989741472,
+            "name": "native (macos-15-intel, x64)",
+            "status": "completed",
+            "conclusion": "success"
+          }
+        ]
+      }
+    ],
+    "artifacts": [
+      {
+        "id": 14591623287,
+        "name": "forge-native-win32-arm64",
+        "size_in_bytes": 96072529,
+        "digest": "sha256:89c9c8f3194200c76f019773a84966ce95e5e0ed32695cefd74e1af1ce196bc6",
+        "head_sha": "4c72fa72461100b6e802a9bb5481ffde764c5d48",
+        "expired": false,
+        "archive_downloaded_and_rehashed": false
+      },
+      {
+        "id": 14591389210,
+        "name": "forge-native-win32-x64",
+        "size_in_bytes": 101799115,
+        "digest": "sha256:5f47fb32a6eada768129659bec9a5b3e4b08c35a861d45d053f363d57e2e36a4",
+        "head_sha": "4c72fa72461100b6e802a9bb5481ffde764c5d48",
+        "expired": false,
+        "archive_downloaded_and_rehashed": false
+      },
+      {
+        "id": 14589771440,
+        "name": "forge-native-darwin-arm64",
+        "size_in_bytes": 265852789,
+        "digest": "sha256:f9df4551b5d5613ebe80232a8d45dcf31da0e7934b87f384ecaa29a3838e75bb",
+        "head_sha": "4c72fa72461100b6e802a9bb5481ffde764c5d48",
+        "expired": false,
+        "archive_downloaded_and_rehashed": false
+      },
+      {
+        "id": 14589581695,
+        "name": "forge-native-linux-x64-musl",
+        "size_in_bytes": 300193606,
+        "digest": "sha256:ba7575e020eee531b2509bc1d9fde89a0a32bad99a07fd35006b1cc4b0f1291a",
+        "head_sha": "4c72fa72461100b6e802a9bb5481ffde764c5d48",
+        "expired": false,
+        "archive_downloaded_and_rehashed": false
+      },
+      {
+        "id": 14589246597,
+        "name": "forge-native-linux-x64-gnu",
+        "size_in_bytes": 339495238,
+        "digest": "sha256:5b43b6b26d59d04d44e956a10691e20fefacc25f018d679876a42ca03e70ba4b",
+        "head_sha": "4c72fa72461100b6e802a9bb5481ffde764c5d48",
+        "expired": false,
+        "archive_downloaded_and_rehashed": false
+      },
+      {
+        "id": 14588878788,
+        "name": "forge-native-darwin-x64",
+        "size_in_bytes": 268376990,
+        "digest": "sha256:e1c1b9e7301285de50550744ca30b931e637a543d877ddf1e0619e8fa7854bf8",
+        "head_sha": "4c72fa72461100b6e802a9bb5481ffde764c5d48",
+        "expired": false,
+        "archive_downloaded_and_rehashed": false
+      },
+      {
+        "id": 14588543035,
+        "name": "forge-native-linux-arm64-gnu",
+        "size_in_bytes": 308034061,
+        "digest": "sha256:e907e6e63c3772735665283b329db25c6d3d5f1aa67de47aa02868c8dc6f5015",
+        "head_sha": "4c72fa72461100b6e802a9bb5481ffde764c5d48",
+        "expired": false,
+        "archive_downloaded_and_rehashed": false
+      }
+    ],
+    "primary_job_count": 43,
+    "all_success": true,
+    "review_threads": 0,
+    "submitted_reviews": 0,
+    "review_state": "draft",
+    "observed_at": "2026-11-20T01:37:08.109492+00:00",
+    "runtime_fingerprint": "a6ce603f08d0a015fbc3c598da224038f2a1d5b7c0cc6e7d2aea946e0be540cb",
+    "candidate_asset_hashes_rechecked": 16,
+    "external_packet_hash_rechecked": true,
+    "pending_provider_gate": {
+      "exit_code": 1,
+      "error": "External provider review is absent, pending or stale",
+      "regression_tests_passed": 4
+    },
+    "publication_performed": false,
+    "remaining_external_evidence": {
+      "provider_scenarios": 9,
+      "minimum_independent_comparisons": 3,
+      "human_visual_hosts": [
+        "macOS",
+        "Windows",
+        "Linux"
+      ],
+      "results_received": false
+    }
+  }
 }
