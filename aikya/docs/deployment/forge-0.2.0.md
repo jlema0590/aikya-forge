@@ -18,6 +18,11 @@ PowerShell -OfflineDir /verified/bundle -NoPath for isolated acceptance. End use
 not need a Python/Node installation for these native bundles. Short Pages URLs are
 not advertised as available until an actual release and deployment are accepted.
 
+For isolated external trials, use the prepared native candidate folder and select
+a fresh AIKYA_INSTALL_ROOT. Run that candidate application's bin/aikya or
+bin/aikya.exe by its absolute path. This keeps the QA installation and project
+ledgers distinct; its exported fingerprint must match the external packet.
+
 Default application roots are ~/Library/Application Support/AikyaForge,
 %LOCALAPPDATA%/AikyaForge and $XDG_DATA_HOME/aikya-forge (or ~/.local/share/aikya-forge).
 AIKYA_INSTALL_ROOT can select a reviewed independent root. A v7 current.json is refused
@@ -74,7 +79,9 @@ isolation, not an operating-system sandbox for approved project build scripts.
 forge-native.yml builds two versions on macOS Intel/ARM, Windows x64/ARM, Linux GNU
 x64/ARM and Linux musl x64. Each host installs, runs all portable onboarding profiles,
 checks installed memory/HTML external edits, themes, update, rollback and uninstall.
-These are headless SDK acceptance checks, not visual-terminal/provider acceptance.
+Installed acceptance also exercises actual POSIX PTY/Windows ConPTY input, empty-PATH
+recursive completion, confirmed theme, resize and cache refusal. Human/device
+visual review and authenticated provider acceptance remain separate requirements.
 Archive downloads and a configured job are not proof that its host passed.
 
 forge-release.yml is manually dispatched with publish=false by default. It requires
@@ -90,7 +97,7 @@ PowerShell uses install.ps1.txt. The earlier Harness publication jobs remain sco
 to their original repository. No release/tag/Pages is created by local tests.
 
 See the [external procedure](../validation/forge-provider-procedure.md) and
-[current evidence](../validation/2026-11-18-forge-completion.md).
+[current evidence](../validation/2026-11-19-interactive-acceptance.md).
 
 ## Windows SDK environment
 

@@ -1,0 +1,805 @@
+{
+  "schema": 1,
+  "status": "technical_acceptance_passed_external_pending",
+  "version": "0.2.0",
+  "code_commit": "64f4a2e82b8f23b19403416dae2999b565d0de8f",
+  "acceptance_commit": "3238bc2335035c0b9df57bc23ccb3fd6663545d9",
+  "runtime_fingerprint": "a6ce603f08d0a015fbc3c598da224038f2a1d5b7c0cc6e7d2aea946e0be540cb",
+  "python": {
+    "shards": [
+      {
+        "index": 0,
+        "exit_code": 0,
+        "tests": 310,
+        "failures": 0,
+        "errors": 0,
+        "skipped": [
+          [
+            "test_code_index_languages.LanguageIndexTests.test_missing_optional_packages_fall_back_without_invented_symbols",
+            "Run fallback check in the dependency-free environment"
+          ]
+        ],
+        "seconds": 168.15495204925537,
+        "success": true
+      },
+      {
+        "index": 1,
+        "exit_code": 0,
+        "tests": 394,
+        "failures": 0,
+        "errors": 0,
+        "skipped": [],
+        "seconds": 416.0716049671173,
+        "success": true
+      },
+      {
+        "index": 2,
+        "exit_code": 0,
+        "tests": 308,
+        "failures": 0,
+        "errors": 0,
+        "skipped": [],
+        "seconds": 435.0402901172638,
+        "success": true
+      },
+      {
+        "index": 3,
+        "exit_code": 0,
+        "tests": 297,
+        "failures": 0,
+        "errors": 0,
+        "skipped": [],
+        "seconds": 226.97182416915894,
+        "success": true
+      }
+    ],
+    "tests": 1309,
+    "seconds": 435.4542191028595,
+    "changed_inputs": [],
+    "success": true
+  },
+  "frozen_input_count": 1562,
+  "frozen_input_sha256": "5c6caeb12c00070d7dfd22c1cb26611c2664973463a5ffd278b2c03f3ecd1270",
+  "local_sdk": {
+    "22": {
+      "tests": 102,
+      "pass": 101,
+      "fail": 0,
+      "skipped": 1
+    },
+    "26": {
+      "tests": 102,
+      "pass": 101,
+      "fail": 0,
+      "skipped": 1
+    }
+  },
+  "wheel": {
+    "sha256": "e8ea9f758f891b6106aae9d540e35b072fe2c6e42678fce63287ffa37380936f",
+    "cases": 11,
+    "source_imports": false,
+    "sdk_installed": false
+  },
+  "native": {
+    "run_id": 44636884909,
+    "source_commit": "52fcd6ccb570f276773c7ab2d09aa53c26422efa",
+    "platforms": {
+      "darwin-arm64": {
+        "manifest_hash": "3f25f61a9ef09f4b745ecc7ed1ee153421098a8a152d72c5e369ed6cc2ddfd12",
+        "steps": 20,
+        "commands": 29,
+        "profiles": 24,
+        "provider_calls": 0,
+        "interactive": {
+          "status": "passed",
+          "mode": "managed",
+          "version": "0.2.0",
+          "platform": "darwin-arm64",
+          "provider_calls": 0,
+          "visual_acceptance": false,
+          "ui": "Actual POSIX PTY; no human visual/device or provider acceptance",
+          "theme": "light",
+          "resize": {
+            "columns": 100,
+            "rows": 32
+          },
+          "cache_refused": true,
+          "usage_status": "unconfigured",
+          "bytes": 17375,
+          "exit_code": 0,
+          "file_completion": true,
+          "launcher_supplies_tools": true
+        },
+        "indexed_extensions": [
+          ".cjs",
+          ".cs",
+          ".dart",
+          ".go",
+          ".java",
+          ".js",
+          ".jsx",
+          ".mjs",
+          ".py",
+          ".pyi",
+          ".ts",
+          ".tsx"
+        ],
+        "file_only_extensions": [
+          ".c",
+          ".cc",
+          ".cpp",
+          ".h",
+          ".hpp",
+          ".kt",
+          ".kts",
+          ".php",
+          ".ps1",
+          ".rb",
+          ".rs",
+          ".sh",
+          ".sql",
+          ".svelte",
+          ".swift",
+          ".tf",
+          ".vue"
+        ]
+      },
+      "darwin-x64": {
+        "manifest_hash": "ae87709077766ee8feaba411e4b1115d78a7b3682bcb0be525ba7f089cc6e35b",
+        "steps": 20,
+        "commands": 29,
+        "profiles": 24,
+        "provider_calls": 0,
+        "interactive": {
+          "status": "passed",
+          "mode": "managed",
+          "version": "0.2.0",
+          "platform": "darwin-x64",
+          "provider_calls": 0,
+          "visual_acceptance": false,
+          "ui": "Actual POSIX PTY; no human visual/device or provider acceptance",
+          "theme": "light",
+          "resize": {
+            "columns": 100,
+            "rows": 32
+          },
+          "cache_refused": true,
+          "usage_status": "unconfigured",
+          "bytes": 17375,
+          "exit_code": 0,
+          "file_completion": true,
+          "launcher_supplies_tools": true
+        },
+        "indexed_extensions": [
+          ".cjs",
+          ".cs",
+          ".dart",
+          ".go",
+          ".java",
+          ".js",
+          ".jsx",
+          ".mjs",
+          ".py",
+          ".pyi",
+          ".ts",
+          ".tsx"
+        ],
+        "file_only_extensions": [
+          ".c",
+          ".cc",
+          ".cpp",
+          ".h",
+          ".hpp",
+          ".kt",
+          ".kts",
+          ".php",
+          ".ps1",
+          ".rb",
+          ".rs",
+          ".sh",
+          ".sql",
+          ".svelte",
+          ".swift",
+          ".tf",
+          ".vue"
+        ]
+      },
+      "linux-arm64-gnu": {
+        "manifest_hash": "3abff31e9eccd25345039add500206b218e499bea5f924564a8ee79a76635585",
+        "steps": 20,
+        "commands": 29,
+        "profiles": 24,
+        "provider_calls": 0,
+        "interactive": {
+          "status": "passed",
+          "mode": "managed",
+          "version": "0.2.0",
+          "platform": "linux-arm64-gnu",
+          "provider_calls": 0,
+          "visual_acceptance": false,
+          "ui": "Actual POSIX PTY; no human visual/device or provider acceptance",
+          "theme": "light",
+          "resize": {
+            "columns": 100,
+            "rows": 32
+          },
+          "cache_refused": true,
+          "usage_status": "unconfigured",
+          "bytes": 17402,
+          "exit_code": 0,
+          "file_completion": true,
+          "launcher_supplies_tools": true
+        },
+        "indexed_extensions": [
+          ".cjs",
+          ".cs",
+          ".dart",
+          ".go",
+          ".java",
+          ".js",
+          ".jsx",
+          ".mjs",
+          ".py",
+          ".pyi",
+          ".ts",
+          ".tsx"
+        ],
+        "file_only_extensions": [
+          ".c",
+          ".cc",
+          ".cpp",
+          ".h",
+          ".hpp",
+          ".kt",
+          ".kts",
+          ".php",
+          ".ps1",
+          ".rb",
+          ".rs",
+          ".sh",
+          ".sql",
+          ".svelte",
+          ".swift",
+          ".tf",
+          ".vue"
+        ]
+      },
+      "linux-x64-gnu": {
+        "manifest_hash": "bbfc8960bb976321f1e78cf85f2af2bf657a3b53b773ad1c3b0cfc918fd2803a",
+        "steps": 20,
+        "commands": 29,
+        "profiles": 24,
+        "provider_calls": 0,
+        "interactive": {
+          "status": "passed",
+          "mode": "managed",
+          "version": "0.2.0",
+          "platform": "linux-x64-gnu",
+          "provider_calls": 0,
+          "visual_acceptance": false,
+          "ui": "Actual POSIX PTY; no human visual/device or provider acceptance",
+          "theme": "light",
+          "resize": {
+            "columns": 100,
+            "rows": 32
+          },
+          "cache_refused": true,
+          "usage_status": "unconfigured",
+          "bytes": 17373,
+          "exit_code": 0,
+          "file_completion": true,
+          "launcher_supplies_tools": true
+        },
+        "indexed_extensions": [
+          ".cjs",
+          ".cs",
+          ".dart",
+          ".go",
+          ".java",
+          ".js",
+          ".jsx",
+          ".mjs",
+          ".py",
+          ".pyi",
+          ".ts",
+          ".tsx"
+        ],
+        "file_only_extensions": [
+          ".c",
+          ".cc",
+          ".cpp",
+          ".h",
+          ".hpp",
+          ".kt",
+          ".kts",
+          ".php",
+          ".ps1",
+          ".rb",
+          ".rs",
+          ".sh",
+          ".sql",
+          ".svelte",
+          ".swift",
+          ".tf",
+          ".vue"
+        ]
+      },
+      "linux-x64-musl": {
+        "manifest_hash": "1e8baca146b9273944edfb5c72ab58bcd844e019e4555740d1b7c7f70e2d86e8",
+        "steps": 20,
+        "commands": 29,
+        "profiles": 24,
+        "provider_calls": 0,
+        "interactive": {
+          "status": "passed",
+          "mode": "managed",
+          "version": "0.2.0",
+          "platform": "linux-x64-musl",
+          "provider_calls": 0,
+          "visual_acceptance": false,
+          "ui": "Actual POSIX PTY; no human visual/device or provider acceptance",
+          "theme": "light",
+          "resize": {
+            "columns": 100,
+            "rows": 32
+          },
+          "cache_refused": true,
+          "usage_status": "unconfigured",
+          "bytes": 17319,
+          "exit_code": 0,
+          "file_completion": true,
+          "launcher_supplies_tools": true
+        },
+        "indexed_extensions": [
+          ".cjs",
+          ".cs",
+          ".dart",
+          ".go",
+          ".java",
+          ".js",
+          ".jsx",
+          ".mjs",
+          ".py",
+          ".pyi",
+          ".ts",
+          ".tsx"
+        ],
+        "file_only_extensions": [
+          ".c",
+          ".cc",
+          ".cpp",
+          ".h",
+          ".hpp",
+          ".kt",
+          ".kts",
+          ".php",
+          ".ps1",
+          ".rb",
+          ".rs",
+          ".sh",
+          ".sql",
+          ".svelte",
+          ".swift",
+          ".tf",
+          ".vue"
+        ]
+      },
+      "win32-arm64": {
+        "manifest_hash": "d23fd50144d0fc9f468883d1d621f03eed5ff7926b918c3626aecabb725e6409",
+        "steps": 20,
+        "commands": 29,
+        "profiles": 24,
+        "provider_calls": 0,
+        "interactive": {
+          "status": "passed",
+          "mode": "managed",
+          "version": "0.2.0",
+          "platform": "win32-arm64",
+          "provider_calls": 0,
+          "visual_acceptance": false,
+          "ui": "Actual Windows ConPTY; no human visual/device or provider acceptance",
+          "theme": "light",
+          "resize": {
+            "columns": 100,
+            "rows": 32
+          },
+          "cache_refused": true,
+          "usage_status": "unconfigured",
+          "bytes": 10317,
+          "exit_code": 0,
+          "file_completion": true,
+          "launcher_supplies_tools": true
+        },
+        "indexed_extensions": [
+          ".cjs",
+          ".cs",
+          ".go",
+          ".java",
+          ".js",
+          ".jsx",
+          ".mjs",
+          ".py",
+          ".pyi",
+          ".ts",
+          ".tsx"
+        ],
+        "file_only_extensions": [
+          ".c",
+          ".cc",
+          ".cpp",
+          ".dart",
+          ".h",
+          ".hpp",
+          ".kt",
+          ".kts",
+          ".php",
+          ".ps1",
+          ".rb",
+          ".rs",
+          ".sh",
+          ".sql",
+          ".svelte",
+          ".swift",
+          ".tf",
+          ".vue"
+        ]
+      },
+      "win32-x64": {
+        "manifest_hash": "5a8addb5f94992724687dfd9d0c4b4c3525302946634bf022f099edbd7d067a0",
+        "steps": 20,
+        "commands": 29,
+        "profiles": 24,
+        "provider_calls": 0,
+        "interactive": {
+          "status": "passed",
+          "mode": "managed",
+          "version": "0.2.0",
+          "platform": "win32-x64",
+          "provider_calls": 0,
+          "visual_acceptance": false,
+          "ui": "Actual Windows ConPTY; no human visual/device or provider acceptance",
+          "theme": "light",
+          "resize": {
+            "columns": 100,
+            "rows": 32
+          },
+          "cache_refused": true,
+          "usage_status": "unconfigured",
+          "bytes": 10317,
+          "exit_code": 0,
+          "file_completion": true,
+          "launcher_supplies_tools": true
+        },
+        "indexed_extensions": [
+          ".cjs",
+          ".cs",
+          ".dart",
+          ".go",
+          ".java",
+          ".js",
+          ".jsx",
+          ".mjs",
+          ".py",
+          ".pyi",
+          ".ts",
+          ".tsx"
+        ],
+        "file_only_extensions": [
+          ".c",
+          ".cc",
+          ".cpp",
+          ".h",
+          ".hpp",
+          ".kt",
+          ".kts",
+          ".php",
+          ".ps1",
+          ".rb",
+          ".rs",
+          ".sh",
+          ".sql",
+          ".svelte",
+          ".swift",
+          ".tf",
+          ".vue"
+        ]
+      }
+    }
+  },
+  "ci": {
+    "pi": {
+      "run_id": 44636884765,
+      "passed": 6,
+      "total": 6
+    },
+    "python_memory_browser": {
+      "run_id": 44636884777,
+      "passed": 11,
+      "total": 11
+    },
+    "installers": {
+      "run_id": 44636884899,
+      "passed": 16,
+      "total": 16
+    }
+  },
+  "real_provider_trials": "not_executed",
+  "human_visual_acceptance": false,
+  "publication": false,
+  "recorded_at_utc": "2026-11-20T00:24:29.189543+00:00",
+  "pr_checks": {
+    "acceptance_commit": "3238bc2335035c0b9df57bc23ccb3fd6663545d9",
+    "primary": [
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884899/job/135958250055",
+        "name": "native (ubuntu-latest, 3.12)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884899/job/135958250010",
+        "name": "native (ubuntu-latest, 3.13)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884899/job/135958250017",
+        "name": "native (windows-latest, 3.10)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884899/job/135958249987",
+        "name": "native (windows-latest, 3.13)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884899/job/135958250125",
+        "name": "native (macos-latest, 3.10)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884899/job/135958249943",
+        "name": "native (ubuntu-latest, 3.11)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884899/job/135958250025",
+        "name": "native (macos-latest, 3.12)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884899/job/135958250070",
+        "name": "native (macos-latest, 3.11)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884899/job/135958249922",
+        "name": "native (ubuntu-latest, 3.10)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884899/job/135958249898",
+        "name": "native (macos-latest, 3.13)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884899/job/135958249873",
+        "name": "native (windows-latest, 3.12)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884899/job/135958249834",
+        "name": "linux-distros (debian:bookworm-slim, apt-get update && apt-get install -y python3 python3-venv ca...",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884899/job/135958249896",
+        "name": "native (windows-latest, 3.11)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884899/job/135958249754",
+        "name": "linux-distros (alpine:3.21, apk add --no-cache python3 py3-pip ca-certificates curl)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884777/job/135957705191",
+        "name": "Local memory | ubuntu-latest | Python 3.10",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884777/job/135957705212",
+        "name": "Local memory | windows-latest | Python 3.10",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884777/job/135957704846",
+        "name": "Unit tests | Python 3.10",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884899/job/135958249655",
+        "name": "linux-distros (fedora:42, dnf install -y python3 python3-pip ca-certificates curl)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884777/job/135957704790",
+        "name": "Unit tests | Python 3.13",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884777/job/135957704641",
+        "name": "Unit tests | Python 3.12",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884909/job/135957561069",
+        "name": "native (macos-15-intel, x64)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884765/job/135957560030",
+        "name": "contracts (ubuntu-latest, 22.19.0)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884777/job/135957704932",
+        "name": "Local memory | windows-latest | Python 3.13",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884777/job/135957704768",
+        "name": "Local memory | ubuntu-latest | Python 3.13",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884777/job/135957704220",
+        "name": "Memory viewer | synthetic browser acceptance",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884756/job/135957559693",
+        "name": "Profiles | offline, no generation",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884909/job/135957561204",
+        "name": "native (windows-latest, x64)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884765/job/135957560056",
+        "name": "contracts (windows-latest, 22.19.0)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884909/job/135957561012",
+        "name": "native (windows-11-arm, arm64)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884777/job/135957704460",
+        "name": "Unit tests | Python 3.11",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884777/job/135957704622",
+        "name": "Local memory | macos-latest | Python 3.10",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884777/job/135957704656",
+        "name": "Local memory | macos-latest | Python 3.13",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884765/job/135957560032",
+        "name": "contracts (ubuntu-latest, 26.13.0)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884909/job/135957560977",
+        "name": "native (ubuntu-24.04, x64)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884909/job/135957560942",
+        "name": "native (ubuntu-24.04-arm, arm64)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884765/job/135957559951",
+        "name": "contracts (windows-latest, 26.13.0)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884899/job/135957560127",
+        "name": "build",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884873/job/135957560619",
+        "name": "Engineering catalog and Aikya commands",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884765/job/135957560112",
+        "name": "contracts (macos-latest, 26.13.0)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884909/job/135957560591",
+        "name": "musl",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884765/job/135957559700",
+        "name": "contracts (macos-latest, 22.19.0)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884909/job/135957561183",
+        "name": "native (macos-15, arm64)",
+        "state": "SUCCESS"
+      },
+      {
+        "link": "https://github.com/jlema0590/aikya-forge/actions/runs/44636884720/job/135957559293",
+        "name": "static-context-budget",
+        "state": "SUCCESS"
+      }
+    ],
+    "duplicate_push_states": {
+      "SUCCESS": 21,
+      "CANCELLED": 6
+    },
+    "note": "Six cancelled push duplicates are recorded separately; all 43 primary PR checks passed. Final CI configuration keeps PR and develop/main checks and removes duplicate feature-branch push triggers."
+  },
+  "assembly": {
+    "asset_count": 16,
+    "sha256": {
+      "aikya-terminal-0.2.0-darwin-arm64.tar.gz": "0645a38dc36df2460b9613461d9c80b6f46b0f12866d3453a2116b60dd5beaa4",
+      "aikya-terminal-0.2.0-darwin-arm64.zip": "0b05bcbf77f571e624ea29ce125fc6742d8a73a0bcc3a65505f8a1a83bb27e57",
+      "aikya-terminal-0.2.0-darwin-x64.tar.gz": "ccffad4fb8dbf43237612e28d744d4c68573a4b8b3a0ca483929a64f8910d236",
+      "aikya-terminal-0.2.0-darwin-x64.zip": "ebed429df7be364edc5752c28004faf8a5ce4f58f96ea8ed01babbf8915bf4a1",
+      "aikya-terminal-0.2.0-linux-arm64-gnu.tar.gz": "7f562e339a7ddb91298230325f3e741fdafbc59fb781d4a4919b039d6fa0b543",
+      "aikya-terminal-0.2.0-linux-arm64-gnu.zip": "14556dcc474d90fec039df26347fa72ac94d646d1f8309309f3999816ad4aef5",
+      "aikya-terminal-0.2.0-linux-x64-gnu.tar.gz": "59746f155bce5720045b484a60c0f3e06ba7680a6fe298aceaa06a5979f91990",
+      "aikya-terminal-0.2.0-linux-x64-gnu.zip": "fd40b2cfaa4419182d39c0557145e5f19c5283e5af98fa0f04b364c52da82035",
+      "aikya-terminal-0.2.0-linux-x64-musl.tar.gz": "998f47fce84df45b90d1a9d9b80086aa96939f1c27c2848f9ba6aa6f2f4b9afe",
+      "aikya-terminal-0.2.0-linux-x64-musl.zip": "19e0b3dabfe19faca7520426d4ff65b5d540ee8320a5d6e95d723bf7912e0058",
+      "aikya-terminal-0.2.0-win32-arm64.zip": "5fee57306468012a95925f559124874ee48d46fac9623a4f049e82b60b967804",
+      "aikya-terminal-0.2.0-win32-x64.zip": "46e6e2d265a766816e4246437e98f01cadb024bd2dfe9c116e09d087a99b5b73",
+      "install.ps1": "3933b61ddfba90e3f5e6777325df74409b587e1981a20cefb1a2133ed1cea45c",
+      "install.sh": "8705f795e6d3b3bf592f10b3f51dc1d0823f1b1d2d290497db4df09736ef1cf2",
+      "release.json": "69311201d801778d9af03eb9f796d89edc4ef3ce1db8deec59ebc0c9392071ea",
+      "terminal-bootstrap.json": "535cf8a78120f5bb9e0400d44b9076f3b35bcb13396d7b5afbc6284a08979222"
+    },
+    "checksum_file_sha256": "6f990df33f7ac92c284b6ba3b0766d06ed176fa702dbc30e1c5a5f578a94a81e",
+    "directory": "aikya-forge-0.2.0-native-candidate-3238bc2",
+    "independent_hash_recheck": true,
+    "published": false
+  },
+  "universal_installer": {
+    "platform": "darwin-arm64",
+    "status": "installed",
+    "version": "0.2.0",
+    "core_version": "0.2.0",
+    "path_modified": false,
+    "application_root": "private temporary QA root"
+  },
+  "external_packet": {
+    "file": "aikya-forge-external-acceptance-0.2.0-a6ce603f.zip",
+    "sha256": "fae6635c9e4940373b14c12d2cf1ffffe0b94c4eee822306c2145644e1995742",
+    "files": 4,
+    "status": "prepared_not_executed"
+  },
+  "original_windows_recording_failure": {
+    "cause": "unknown",
+    "current_additional_focused_trials": 6,
+    "reproduced": false,
+    "automatic_write_retry": false
+  },
+  "remaining": [
+    "Real authenticated provider trials and reviewed comparisons in the separately agreed environment",
+    "Human visual/device acceptance on intended hosts",
+    "Approved main-branch publication after acceptance gates"
+  ]
+}

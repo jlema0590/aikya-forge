@@ -43,14 +43,20 @@ The inherited Harness v7/v8 changelog remains in
   fail explicitly on missing native metadata and yield during owned SDK fixture cleanup.
 - Preserve canonical LF source across Git checkouts while retaining byte-pinned
   assets; reject mixed or missing source fingerprints during seven-target assembly.
-- Validate 1,288 local Python tests (one separately exercised dependency fallback),
-  94/94 SDK contracts across six OS/Node combinations, 110 browser checks, a fresh
-  installed wheel and all seven native lifecycle targets. Verify one source identity
-  across downloaded archives and all 16 assembled output checksums; do not publish.
-- Record real macOS ARM PTY preview captures, the offline fd startup warning and
-  inherited v8 window title as interactive follow-up. Retain the non-reproduced
-  Windows Node 26 final-record test failure separately from its passing rerun.
-  Visual-terminal and real-provider acceptance remain explicit publication gates.
+- Validate 1,309 local Python cases (one dependency fallback checked separately),
+  six OS/Node matrices with 102 SDK cases, all 11 Python/memory/browser CI jobs,
+  all 16 installer jobs and the fresh installed wheel. All seven native lifecycle
+  targets pass 20 steps, 29 registrations and 24 profiles with actual installed
+  PTY/ConPTY file completion, themes, resize and cache refusal.
+- Verify one source identity across seven downloaded targets and independently
+  recheck all 16 universal output checksums. Exercise the assembled universal shell
+  installer in a fresh private macOS ARM root without PATH changes.
+- Keep the original Windows recording cause unknown after six additional focused
+  passing resumptions. Prepare a current-source external trial packet with pristine
+  per-trial project ledgers; real-provider and human visual acceptance remain gates.
+- Remove simultaneous feature-push/PR Python and installer runs while retaining
+  all PR, develop/main and manual checks. Record cancelled duplicates separately
+  from the 43 successful primary checks. Publication remains pending.
 
 ## v0.1.0 — 2026-11-10
 

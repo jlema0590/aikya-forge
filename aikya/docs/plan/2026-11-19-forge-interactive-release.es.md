@@ -66,7 +66,7 @@ resultado needs_host_action muestra esos metadatos sin repetir efectos.
 
 - [x] Probar fallos reales de proceso/respuesta y privacidad antes de implementar.
 - [x] Instrumentar fallo de reanudación con estado y transporte de fixtures sintéticos.
-- [ ] Reproducir en Windows; corregir únicamente la causa observada y añadir su
+- [x] Reproducir en Windows; corregir únicamente la causa observada y añadir su
   regresión. Si no se reproduce, registrar causa desconocida y evidencia disponible.
 - [x] No ampliar plazos, omitir validaciones ni aceptar el reintento como corrección.
 
@@ -79,11 +79,11 @@ Interfaz: recolector acotado del PTY del binario instalado registra inicio,
 comandos, presupuesto, confirmación de tema y resize sin invocar modelos.
 
 - [x] Probar recolector, límite de bytes/tiempo y cierre de sus procesos propios.
-- [ ] Ejecutar PTY real en macOS/Linux; en Windows comprobar contratos nativos y
+- [x] Ejecutar PTY real en macOS/Linux; en Windows comprobar contratos nativos y
   ejecutar ConPTY con colas acotadas y cierre de los procesos propios; mantener
   revisión visual y éxito de ConPTY pendientes hasta contar con evidencia real.
 - [x] Conservar capturas sin ocultar avisos; no convertir headless en revisión visual.
-- [ ] Revisar teclado, tema, cancelación y estado retenido donde el host lo permita.
+- [x] Revisar teclado, tema, cancelación y estado retenido donde el host lo permita.
 
 ## 4. Ensayos externos
 
@@ -99,16 +99,16 @@ aceptación externo y prueba de procedencia/salida nueva.
 
 - [x] Ejecutar regresión completa apropiada, SDK en Node 22/26, wheel instalado,
   contratos/índice/footers/calidad y nuevos casos negativos.
-- [ ] Empujar un conjunto coherente de cambios para una nueva matriz nativa,
+- [x] Empujar un conjunto coherente de cambios para una nueva matriz nativa,
   reduciendo reinicios; revisar fallos y resultados reales de todos los trabajos.
-- [ ] Revisar el diff y actualizar PR/evidencias; distinguir código validado de
+- [x] Revisar el diff y actualizar PR/evidencias; distinguir código validado de
   documentación posterior, y mantener los pendientes externos explícitos.
 
 ## 6. Entrega pública condicionada
 
-- [ ] Descargar siete artefactos actuales del mismo commit, comprobar huella única,
+- [x] Descargar siete artefactos actuales del mismo commit, comprobar huella única,
   ensamblar y verificar checksums/entradas universales sin publicar.
-- [ ] Revisar el estado actual del proveedor/visual y la rama requerida por release.
+- [x] Revisar el estado actual del proveedor/visual y la rama requerida por release.
 - [ ] Publicar release, URL corta y Pages únicamente cuando esos gates estén
   satisfechos; si falta evidencia, dejar paquete concreto y motivo de bloqueo.
 
@@ -143,5 +143,42 @@ aceptación externo y prueba de procedencia/salida nueva.
   los plazos. Cinco pruebas del recolector y el lanzador instalado de macOS correctos.
   Se sustituyen las ejecuciones nativas con el recolector anterior; sus cinco éxitos
   no se presentan como aceptación completa de siete plataformas.
+
+## Cierre técnico y pendientes externos
+
+| Punto | Estado contrastado |
+|---|---|
+| 1. Arranque | Completo: herramientas offline, versión actual y búsqueda de ejecutables revisada |
+| 2. Windows | Diagnóstico completo; seis repeticiones adicionales correctas; causa antigua desconocida |
+| 3. Terminal | Automatización completa en los siete hosts nativos; revisión visual humana pendiente |
+| 4. Proveedores | Paquete actual preparado; ensayos reales y comparativas pendientes en el otro entorno |
+| 5. PR | 43 comprobaciones principales correctas en 3238bc2; duplicación push/PR corregida |
+| 6. Entrega | Candidato local ensamblado y verificado; publicación/Pages pendientes de aceptación y main |
+
+Evidencia final: 1.309 casos Python locales, seis matrices OS/Node, 11 trabajos de
+Python/memoria/navegador, 16 de instalación y siete ciclos nativos correctos. Cada
+host verificó 20 pasos, 29 registros, 24 perfiles y PTY/ConPTY real. Los 16 hashes de
+salida se comprobaron de nuevo. El instalador universal se instaló en una raíz QA
+nueva en macOS ARM y su doctor devolvió versión/core 0.2.0, con NoPath.
+
+Los siete artefactos corresponden a 52fcd6ccb570f276773c7ab2d09aa53c26422efa y huella
+a6ce603f. El reporte JSON conserva resultados exactos y límites de cobertura: 29
+extensiones inventariadas; 12 indexadas por seis hosts y 11 por Windows ARM64, donde
+Dart permanece file-only. No se inventan símbolos de los lenguajes sin parser.
+
+El rollup también conservaba seis cancelaciones de push duplicados. El ajuste final
+de CI mantiene pruebas en PR, develop/main y petición manual, con los mismos jobs,
+plazos, permisos y gates. Los cambios finales son documentación y disparadores;
+la implementación empaquetada mantiene la huella validada.
+
+- [ ] Ejecutar y revisar los nueve escenarios con proveedores reales, tres ensayos
+  independientes y registros nuevos por copia prístina del proyecto.
+- [ ] Completar aceptación visual/dispositivo humana en los hosts previstos.
+- [ ] Publicar desde main mediante el flujo autorizado una vez satisfechos los gates.
+
+No se fusiona la PR ni se crea etiqueta, release o Pages en esta ejecución. El dossier
+externo sigue pending y el gate rechaza correctamente la publicación. La migración
+real de v7 permanece excluida. El trabajo técnico completo queda revisable en el
+[reporte final](../validation/2026-11-19-interactive-acceptance.md).
 
 GENERATED BY AIKYA HARNESS

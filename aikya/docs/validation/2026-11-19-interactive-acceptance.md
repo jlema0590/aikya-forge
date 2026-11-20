@@ -1,93 +1,105 @@
-# Forge 0.2.0 interactive acceptance follow-up
+# Forge 0.2.0 interactive acceptance
 
-Status: local acceptance complete; revised native CI in progress. Updated November
-20, 2026 (Europe/Madrid). Production source: 64f4a2e. Current runtime fingerprint:
-`a6ce603f08d0a015fbc3c598da224038f2a1d5b7c0cc6e7d2aea946e0be540cb`.
-The 24fb92b frozen local regression ran 1,306 Python tests without failures/errors;
-its one optional-dependency fallback skip passed separately against the freshly
-installed dependency-free wheel. That wheel passed all 11 isolated acceptance cases.
-Independent review then required additional Windows search, ambiguous-path,
-dual-host-failure, owned-process-group and installed-terminal coverage. Those
-corrections change packaged source and require a fresh full/native run. The old
-50bf7294 fingerprint and its prepared packet are superseded, not current evidence.
-The [active Spanish plan](../plan/2026-11-19-forge-interactive-release.es.md)
-implements the six remaining items requested by the user. Historical 40d7d8e
-native assembly and 1,288-test evidence remains in the
-[previous snapshot](2026-11-18-forge-completion.md); changed source requires its own
-current native acceptance. No previous fingerprint is substituted for the new one.
+Status: technical acceptance passed; external acceptance and publication pending.
+Updated November 20, 2026. [Machine-readable evidence](2026-11-20-interactive-acceptance.json)
+records exact results, hashes, limitations and the distinction between primary PR
+checks and cancelled duplicate push checks.
 
-## Implemented and locally checked
+## Source identity
 
-Official pinned fd 10.5.2/ripgrep 15.2.0 inputs cover seven native targets. All
-12 distinct archives matched official release digests and staged with complete
-licenses. Native macOS ARM executables ran with expected versions; non-native
-staging is data verification only. Managed CLI binds PATH to verified payload
-binaries. CLI and interactive SDK reject project executable caches without effects.
-The current package version appears in terminal title/help.
+- Last packaged implementation: 64f4a2e; accepted test harness: 3238bc2.
+- Native CI source merge: 52fcd6ccb570f276773c7ab2d09aa53c26422efa.
+- Runtime fingerprint: a6ce603f08d0a015fbc3c598da224038f2a1d5b7c0cc6e7d2aea946e0be540cb.
+- Final records and CI-trigger cleanup do not change packaged runtime inputs.
 
-Host refusals retain only bounded static category/stage metadata. The Node host
-transport distinguishes cancellation, timeout, process unavailability and protocol
-refusal without copying raw exceptions, inputs or private paths. Task diagnostics
-do not replay uncertain completion. Windows intermittence still needs current
-reproduction; a passing retry is not claimed as a production correction.
+The previous 40d7d8e/fc4ff9fa and 97daaf8/50bf7294 snapshots remain historical.
+Their artifacts are not mixed with this accepted seven-target set.
 
-The revised frozen regression ran 1,308 Python tests in 451.66 seconds: zero failures
-or errors, one optional-parser fallback skip exercised separately against the fresh
-dependency-free wheel. All 1,560 captured inputs remained unchanged; snapshot SHA-256:
-`b53f3b010c90aa21495ae2f4814bde40bc5537213e2bb4f8a30c1d65089228f8`.
-Both Node 26.12.1 and minimum Node 22.19.0 ran 102 SDK tests: 101 passed, with the
-Windows-only executable lookup test skipped on macOS. TypeScript, source quality,
-documentation guard, changed workflow lint and focused negative contracts passed.
-The new wheel passed all 11 isolated installed cases without source imports or an
-AI SDK. Wheel SHA-256:
-`e8ea9f758f891b6106aae9d540e35b072fe2c6e42678fce63287ffa37380936f`.
-These are executed local results; revised remote/native results remain separate.
+## Resulting behavior
 
-## Remaining gates
+Reviewed fd 10.5.2/ripgrep 15.2.0 archives, executable hashes, architectures and
+complete licenses are bound to native payloads. Startup uses verified tools offline.
+Project executable caches are preserved and refused. Windows native entry disables
+implicit current-directory executable lookup; preflight rejects installation roots
+containing the platform PATH separator. Terminal title/help use the Forge version.
 
-Actual macOS ARM source and installed-launcher PTYs passed recursive completion of
-verified/nested/SearchFixture.java, offline startup, tokens, confirmed light theme,
-100x32 resize, graceful exit and cache refusal. Installed mode began with an empty
-PATH; the collector did not supply tool directories. Four real-process collector
-tests cover actual I/O, size, output/deadline limits and owned-group cleanup,
-including a descendant ignoring TERM/HUP. The revised output-descriptor fixture
-also passes those four local tests. All captures used zero provider calls and retain
-unconfigured budget/unknown usage; no subscription percentage is inferred.
-Pi CI now adds real POSIX PTY checks and three focused Windows resumption trials per
-Node version. Windows ConPTY/visual acceptance remains explicit until observed.
-The first current-runtime Pi run (44541993000, 97daaf8) passed all six OS/Node
-combinations; Windows Node 26.13.0 reports 99 SDK tests and successful final-record
-resumption. This does not identify the previous intermittent failure's cause.
-The next Windows collector tests (44544627024, 84ce171) fail at the explicit POSIX
-restriction. A native ConPTY backend now replaces that restriction; its remote
-execution is pending, rather than being inferred from the passing POSIX tests.
-64f4a2e's Windows run reaches actual console readiness and passes output/deadline
-limits, but its size fixture queries the input handle. The follow-up uses the output
-screen buffer and preserves all assertions and limits. Current native acceptance is
-[run 44633078517](https://github.com/jlema0590/aikya-forge/actions/runs/44633078517).
-The earlier 97daaf8 seven-target lifecycle passed with fingerprint 50bf7294; it does
-not validate the later Windows lookup correction. Do not mix these artifact sets.
-ae453a7's Windows jobs both passed all 102 SDK tests and three additional final-record
-resumptions each. The old intermittent cause remains unknown. Real console captures
-then exposed joined editor input: pump(0.2) returned immediately on ready output.
-The follow-up uses a monotonic, output-draining input gap without extending any
-application/command deadline. Five collector tests and the installed macOS flow
-pass locally. Runs 44633078517 (five native successes, two unfinished Windows jobs)
-and 44634629161 (queued duplicate) were cancelled as obsolete collector executions.
-Neither is accepted as a complete release set; new native evidence remains required.
-The external preparation tool creates a source-bound, pending nine-scenario packet
-for the agreed other environment, without keys, trials or publication authority.
-Actual authenticated provider observations and reviewed comparisons are not present.
-The existing pending dossier therefore continues blocking publication.
-The current four-file external packet is aikya-forge-external-acceptance-0.2.0-a6ce603f.zip,
-SHA-256 fae6635c9e4940373b14c12d2cf1ffffe0b94c4eee822306c2145644e1995742.
-It requires a pristine project/ledger for every counted trial and one export per copy;
-different filenames with cumulative totals cannot prove independent trials. Live
-follow-up checks and final acceptance status are recorded on the
+Host failures expose bounded static categories/stages without exception contents,
+request values or private paths. A second failure while stopping retains the original
+diagnostic and reports an unconfirmed stop with inference blocked. No write is retried.
+The earlier intermittent Windows recording failure was not reproduced: three additional
+focused resumptions per Node version passed. Its underlying cause remains unknown.
+
+## Executed validation
+
+| Check | Observed result |
+|---|---|
+| Frozen local Python regression | 1,309 cases; zero failures/errors; one optional-parser fallback skip passed separately |
+| Frozen input stability | 1,562 inputs; no changes during execution |
+| Local Node 22.19.0 and 26.12.1 | 102 SDK cases each; 101 passed, one Windows-only case skipped on macOS |
+| Remote Node 22.19.0 / 26.13.0 | All six macOS/Linux/Windows jobs passed; Windows ran 102/102 |
+| Python / memory / synthetic browser CI | 11/11 jobs passed across Python 3.10–3.13 and native hosts |
+| Clean installers CI | 16/16 jobs passed, including Alpine, Debian and Fedora |
+| Fresh installed wheel | 11 cases passed without checkout imports or an AI SDK |
+| Primary PR checks | 43/43 passed on 3238bc2 |
+| Native lifecycle | 7/7 targets; each 20 steps, 29 registrations and 24 profiles |
+| Universal assembly | 16 checksummed assets independently rechecked; one source commit/fingerprint |
+| Universal installer smoke | Actual fresh macOS ARM installation and doctor passed with no PATH modification |
+
+The six source-mode and seven installed-mode console flows exercised actual
+POSIX PTY/Windows ConPTY input, recursive completion of a known nested file,
+confirmed light theme, 100x32 resize, clean exit and preserved/refused project cache.
+Installed mode began with an empty PATH; the collector supplied no tool directories.
+Five real-process collector tests cover input/size, byte/deadline bounds, owned-group
+cleanup and input gaps. A TERM/HUP-ignoring descendant cannot escape its owned group.
+These are automated console results, not human/device visual acceptance.
+
+Native fixtures cover 29 file extensions. Six targets index declarations for 12
+extensions and retain file-only evidence for 17. Windows ARM64 indexes 11 and retains
+18 file-only extensions because its reviewed Dart wheel is unavailable. No declarations
+are invented for inventory-only languages.
+
+The local frozen snapshot SHA-256 is
+5c6caeb12c00070d7dfd22c1cb26611c2664973463a5ffd278b2c03f3ecd1270.
+The fresh wheel SHA-256 is
+e8ea9f758f891b6106aae9d540e35b072fe2c6e42678fce63287ffa37380936f.
+Native calls to real providers: zero. Unknown/unconfigured usage and account quota
+remain unknown; no subscription percentage or token saving is inferred.
+
+## CI provenance and observed failures
+
+- [Native seven-target acceptance](https://github.com/jlema0590/aikya-forge/actions/runs/44636884909)
+- [Six OS/Node contracts and focused Windows resumptions](https://github.com/jlema0590/aikya-forge/actions/runs/44636884765)
+- [Python, memory and browser acceptance](https://github.com/jlema0590/aikya-forge/actions/runs/44636884777)
+- [Clean installers](https://github.com/jlema0590/aikya-forge/actions/runs/44636884899)
+
+Earlier Windows collector failures exposed the missing ConPTY transport, redirected
+parent standard handles, an input-handle screen-size query and joined editor
+keystrokes. Corrections preserve assertions and application deadlines. Failed
+synthetic captures remain separate from acceptance. Obsolete native collector runs
+were cancelled; their partial targets were not assembled as a complete release.
+
+The 3238bc2 rollup includes 64 successes and six cancelled duplicate push jobs.
+All 43 primary PR checks passed. Python/installers previously ran on both feature
+push and PR; final trigger cleanup retains PR, develop/main and manual runs while
+removing that duplication. Final documentation/configuration checks are separate
+from this accepted code snapshot; the runtime fingerprint remains unchanged.
+
+## External handoff and publication
+
+The four-file packet aikya-forge-external-acceptance-0.2.0-a6ce603f.zip has SHA-256
+fae6635c9e4940373b14c12d2cf1ffffe0b94c4eee822306c2145644e1995742.
+It is prepared, not executed. Each counted trial requires a pristine copy of the
+same fixture and a new project-local ledger/session, exported once per copy.
+Different filenames containing cumulative totals are not independent observations.
+
+The local native candidate contains the verified installers, seven target packages,
+bootstrap metadata and checksums; it is not a published release. The existing
+[provider procedure](forge-provider-procedure.md) and pending dossier require real
+authenticated trials and reviewed comparisons in the separately agreed environment.
+Human visual/device acceptance also remains pending. The publication gate correctly
+refuses the pending dossier; main-branch publication and Pages are not performed.
+No real v7 migration, public installer availability or quota/token saving is claimed.
+See the [Spanish plan](../plan/2026-11-19-forge-interactive-release.es.md) and
 [draft PR](https://github.com/jlema0590/aikya-forge/pull/1).
-
-No stable tag/release/Pages, real v7 migration or quota/token savings are claimed.
-See the [startup bug record](../bugs/2026-11-19-forge-offline-startup.md) for observed
-failures, code paths and the difference between staged and executed evidence.
 
 GENERATED BY AIKYA HARNESS
