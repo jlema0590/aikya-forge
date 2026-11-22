@@ -54,6 +54,11 @@ elegir el modelo del siguiente arranque, configurar temas claro/oscuro y colores
 HEX, elegir texto normal/negrita/cursiva y mostrar u ocultar el lateral derecho.
 La familia y el tamaño de letra se configuran en la aplicación de terminal.
 
+El tema **Aikya Harness** (`aikya`) utiliza el azul marino, cian y turquesa del logo
+original. Es el tema inicial para proyectos nuevos; conserva las selecciones ya
+existentes. El arranque representa el símbolo original en celdas de terminal con
+el nombre Harness/Forge legible. Se elige con `/aikya-theme aikya` o Appearance.
+
 El lateral reserva sus propias columnas para la fase, controles del flujo, tokens
 y llamadas locales, porcentajes de presupuesto y contexto estimado, y atribución
 de Claude/Codex y los roles author/reviewer. La cuota de cuenta solo aparece si

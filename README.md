@@ -54,6 +54,11 @@ catalog, choose a model for the next launch, configure light/dark appearance and
 HEX colors, select normal/bold/italic text, or show/hide the right sidebar.
 Font family and size remain controlled by your terminal application.
 
+The **Aikya Harness** theme (`aikya`) uses the original logo's navy, cyan and
+turquoise. New projects start with this theme; existing selections are retained.
+The startup header renders the original symbol in terminal cells with a readable
+Harness/Forge label. Select it with `/aikya-theme aikya` or Settings → Appearance.
+
 The sidebar reserves its own columns for phase, flow controls, local tokens/calls,
 budget and estimated context percentages, and Claude/Codex author/reviewer usage.
 Account quota appears only from observed provider response headers, with age/stale

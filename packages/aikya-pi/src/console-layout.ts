@@ -1,5 +1,6 @@
 import {Container,truncateToWidth,visibleWidth,type TuiMouseEvent} from '@earendil-works/pi-tui';
 import type {ConsoleSettings} from './console-preferences.ts';
+import {appearanceColors} from './brand.ts';
 
 /** Public TUI composition: reserve actual columns instead of covering the transcript. */
 export class ForgeWorkbench extends Container {
@@ -16,8 +17,9 @@ export class ForgeWorkbench extends Container {
   #style(lines:string[],width:number) {
     const settings=this.#appearance?.();if(!settings)return lines;
     const text=settings.textStyle==='bold'?'\x1b[1m':settings.textStyle==='italic'?'\x1b[3m':'';
-    const bg=settings.colors.background??(settings.theme==='light'?'#ffffff':'#101010');
-    const fg=settings.colors.text??(settings.theme==='light'?'#111827':'#e5ebf4');
+    const palette=appearanceColors(settings.theme);
+    const bg=settings.colors.background??palette.background;
+    const fg=settings.colors.text??palette.text;
     const ansi=(hex:string,code:number)=>'\x1b['+code+';2;'+[1,3,5].map(i=>parseInt(hex.slice(i,i+2),16)).join(';')+'m';
     const background=ansi(bg,48),foreground=ansi(fg,38),style=background+foreground+text;
     return lines.map(line=>style+line.replaceAll('\x1b[0m','\x1b[0m'+style)

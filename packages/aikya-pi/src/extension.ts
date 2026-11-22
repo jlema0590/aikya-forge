@@ -22,6 +22,7 @@ import { registerControlledTools } from "./tools.ts";
 import { registerSddCommands } from "./sdd.ts";
 import { registerOnboarding } from "./workflow.ts";
 import {registerConsole} from './console-settings.ts';
+import {renderBrandHeader} from './brand-header.ts';
 
 const version=runtimeVersion();
 
@@ -63,8 +64,8 @@ export function aikyaExtension(root: string, python?: string, controlled = false
       ctx.ui.setTitle("Aikya Forge v"+version+" · " + (controlled ? "Controlled preview" : "Local preview · model disabled"));
       ctx.ui.setStatus("aikya", controlled ? phase.value+" · "+(ctx.model?.id??"model unavailable") : "Local preview · model disabled");
       ctx.ui.setHeader((_tui, theme) => ({
-        render: (width: number) => [theme.fg("accent", "AIKYA v"+version),
-          ((controlled ? phase.value+" · "+(ctx.model?.provider??"unknown")+"/"+(ctx.model?.id??"unknown") : "Local preview · model disabled") + " · /aikya-settings").slice(0, width)],
+        render: (width: number) => renderBrandHeader(width,version,
+          controlled?phase.value+' · '+(ctx.model?.provider??'unknown')+'/'+(ctx.model?.id??'unknown'):'Local preview · model disabled'),
         invalidate: () => {},
       }));
     });

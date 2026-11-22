@@ -28,6 +28,13 @@ bindings remain fixed; switching provider does not rewrite a live task/checkpoin
 
 ## Appearance and layout
 
+The `aikya` theme is the original Harness identity for new projects. Explicit
+existing dark/light/inherit preferences and legacy theme.json are retained. The
+startup header uses the unchanged original PNG as its provenance source, displays
+its symbol in ANSI/Unicode cells and keeps Harness/Forge names readable in terminal
+type. It requires no terminal image protocol or network/model call. Small widths
+use a compact textual identity. Use `/aikya-theme aikya` to preview/select it.
+
 Choose dark/light, accent/text/muted/background HEX colors, and normal/bold/italic
 ANSI text style. Settings are applied locally and retained in
 `.aikya/pi/console.json`. Theme choices and the compatible `/aikya-theme` command

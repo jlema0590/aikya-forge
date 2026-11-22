@@ -1,0 +1,86 @@
+{
+  "schema": 1,
+  "branch": "feat/forge-settings-sidebar",
+  "base_feature_commit": "0cbeb7916b15c32df0607580437416e9d53035f2",
+  "status": "locally_verified_remote_native_pending",
+  "runtime_fingerprint": "84e15dea7a771c3f47f63415461c4afde74069f589b1f5f11b72cc12fdb96510",
+  "logo": {
+    "schema": 1,
+    "source": "docs/images/aikya-harness.png",
+    "source_sha256": "40a17b102c9aa7cb0fa89840b0efb91ae6a3dc27cf339b01b8042f8e77897432",
+    "source_dimensions": [
+      1254,
+      1254
+    ],
+    "source_content_bounds": [
+      84,
+      435,
+      1177,
+      819
+    ],
+    "view_bounds": [
+      84,
+      435,
+      509,
+      819
+    ],
+    "columns": 22,
+    "pixel_rows": 20,
+    "swatches": {
+      "cyan": "#0fb3f1",
+      "turquoise": "#1fccba",
+      "navy": "#0b1f44"
+    }
+  },
+  "logo_bytes": 1057227,
+  "original_png_unchanged": true,
+  "native_node_staging": "passed, original PNG bytes and companion data present",
+  "typecheck": "passed",
+  "sdk": {
+    "22": {
+      "tests": 118,
+      "passed": 117,
+      "failed": 0,
+      "skipped_windows_only": 1,
+      "log_sha256": "fb8fb24849f3d49e70a7fa0ee50933307c21a630f436ad516aa60469d3ec1c8f"
+    },
+    "26": {
+      "tests": 118,
+      "passed": 117,
+      "failed": 0,
+      "skipped_windows_only": 1,
+      "log_sha256": "4d460494017d2582f3f94a13e138493863cd6b5a287b0cf7b1a825bf943a96c4"
+    }
+  },
+  "pty": {
+    "status": "passed",
+    "mode": "source",
+    "version": "0.2.0",
+    "platform": "darwin-arm64",
+    "provider_calls": 0,
+    "visual_acceptance": false,
+    "ui": "Actual POSIX PTY; no human visual/device or provider acceptance",
+    "theme": "light",
+    "resize": {
+      "columns": 100,
+      "rows": 32
+    },
+    "cache_refused": true,
+    "usage_status": "unconfigured",
+    "bytes": 271825,
+    "exit_code": 0,
+    "file_completion": true,
+    "launcher_supplies_tools": false,
+    "settings_panel": true,
+    "provider_catalog": true,
+    "text_style": "bold"
+  },
+  "initial_failures": {
+    "count_per_node": 3,
+    "cause": "shared test UI Theme lacked colors/getColorMode",
+    "resolution": "use real pinned Theme objects",
+    "targeted_regressions_passed": 3
+  },
+  "captures": "aikya-forge-brand-preview: actual source PTY replay, not native device photographs",
+  "published": false
+}

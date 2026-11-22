@@ -1,12 +1,13 @@
 import {ModelRuntime,type ExtensionUIContext} from '@earendil-works/pi-coding-agent';
 import {createAssistantMessageEventStream,type AssistantMessage,type Context} from '@earendil-works/pi-ai';
 import {join} from 'node:path';
+import {installedTheme} from './theme-fixture.ts';
 
 /** Only the terminal and external provider transport are simulated; services and Pi execute. */
 export function approvingUI(decision=(title:string)=>true):ExtensionUIContext {
-  const theme={name:'dark',fg:(_color:string,text:string)=>text,bg:(_color:string,text:string)=>text,bold:(text:string)=>text};
+  let theme=installedTheme('dark');
   const noop=()=>{};
-  return {theme:theme as never,select:async()=>undefined,confirm:async title=>decision(title),input:async()=>undefined,
+  return {get theme(){return theme;},select:async()=>undefined,confirm:async title=>decision(title),input:async()=>undefined,
     notify:noop,onTerminalInput:()=>noop,setStatus:noop,setWorkingMessage:noop,setWorkingVisible:noop,setWorkingIndicator:noop,
     setHiddenThinkingLabel:noop,setWidget:noop,setFooter:noop,setHeader:noop,setTitle:noop,
     custom:async<T>(factory:Parameters<ExtensionUIContext['custom']>[0])=>new Promise<T>((resolve,reject)=>{
@@ -20,7 +21,9 @@ export function approvingUI(decision=(title:string)=>true):ExtensionUIContext {
       }).catch(reject);
     }),pasteToEditor:noop,setEditorText:noop,getEditorText:()=>'',editor:async()=>undefined,
     addAutocompleteProvider:noop,setEditorComponent:noop,getEditorComponent:()=>undefined,getAllThemes:()=>[{name:'dark',path:undefined},{name:'light',path:undefined}],
-    getTheme:()=>theme as never,setTheme:()=>({success:true}),getToolsExpanded:()=>false,setToolsExpanded:noop};
+    getTheme:name=>name==='dark'||name==='light'?installedTheme(name):undefined,
+    setTheme:value=>{if(typeof value==='string'){if(value!=='dark'&&value!=='light')return {success:false};theme=installedTheme(value);}else theme=value;return {success:true};},
+    getToolsExpanded:()=>false,setToolsExpanded:noop};
 }
 export async function fixtureModels(root:string,answer:(request:number,context:Context)=>AssistantMessage['content'],onRequest=()=>{}) {
   const models=await ModelRuntime.create({authPath:join(root,'.aikya/pi/fixture-auth.json'),modelsPath:null,

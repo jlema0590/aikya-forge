@@ -4,6 +4,8 @@ import { RuntimeBudget, QuotaCache, type BudgetStatus } from "./usage.ts";
 import { quotaFromHeaders, renderUsage, renderFooter } from "./usage-view.ts";
 import { ThemePreferences, previewTheme } from "./theme.ts";
 import {ConsolePreferences} from './console-preferences.ts';
+import {applyAppearance} from './console-appearance.ts';
+import {AIKYA_COLORS} from './brand.ts';
 
 export function registerLocalCommands(pi: ExtensionAPI, root: string, python?: string, phase=()=>"explore", controlled=false) {
   const preferences = new ThemePreferences(root), budget = new RuntimeBudget(root, python), quotas = new QuotaCache();
@@ -64,23 +66,24 @@ export function registerLocalCommands(pi: ExtensionAPI, root: string, python?: s
       latest=await budget.status();
       publish("aikya-tokens", {...latest,quotas:[...seenProviders].map(p=>quotas.view(p))});
     }});
-  pi.registerCommand("aikya-theme", {description: "Preview and select an installed light/dark theme with local persistence",
+  pi.registerCommand("aikya-theme", {description: "Preview and select Aikya Harness or installed light/dark themes locally",
     handler: async (args, ctx) => {
       if (!ctx.hasUI) { publish("aikya-theme", {status: "interactive_terminal_required"}); return; }
       const available = ctx.ui.getAllThemes().filter(t => ["dark", "light"].includes(t.name));
-      const names = available.map(t => t.name);
+      const names = ['aikya',...available.map(t => t.name)];
       const selected = args.trim() || await ctx.ui.select("Aikya theme", names);
       if (!selected) return;
       const source = available.find(t => t.name === selected);
-      if (!source?.path || !ctx.ui.getTheme(selected)) throw new Error("Installed theme source is unavailable");
-      const preview = previewTheme(selected, source.path);
+      if(!names.includes(selected))throw new Error('Choose a supported theme');
+      if (selected!=='aikya'&&(!source?.path || !ctx.ui.getTheme(selected))) throw new Error("Installed theme source is unavailable");
+      const preview = selected==='aikya'?{title:'Aikya Harness · original palette',
+        sample:'Navy '+AIKYA_COLORS.background+' · Cyan '+AIKYA_COLORS.accent+' · Turquoise '+AIKYA_COLORS.success}:previewTheme(selected,source!.path!);
       if (await ctx.ui.confirm(preview.title, preview.sample + "\nApply this theme?") !== true) return;
       const previous = ctx.ui.theme;
-      const result = ctx.ui.setTheme(selected);
-      if (!result.success) throw new Error("Theme could not be activated");
       try {const store=new ConsolePreferences(root);const current=store.load();
         if(current.diagnostic)throw new Error(current.diagnostic);
-        store.save({...current.value,theme:selected});}
+        const next={...current.value,theme:selected as 'aikya'|'dark'|'light'};
+        applyAppearance(ctx.ui,next);store.save(next);}
       catch (error) { ctx.ui.setTheme(previous); throw error; }
       publish("aikya-theme", {status: "applied", name: selected});
     }});

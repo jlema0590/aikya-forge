@@ -1,15 +1,16 @@
-import {openSync,closeSync,fstatSync,readFileSync,lstatSync,constants,writeFileSync,renameSync,rmSync} from 'node:fs';
+import {openSync,closeSync,fstatSync,readFileSync,lstatSync,existsSync,constants,writeFileSync,renameSync,rmSync} from 'node:fs';
 import {join} from 'node:path';
 import {randomUUID} from 'node:crypto';
 import {canonicalPath,projectDirectory} from './project.ts';
+import type {ConsoleTheme} from './brand.ts';
 
-export type ConsoleSettings={theme:'inherit'|'dark'|'light';textStyle:'normal'|'bold'|'italic';sidebar:boolean;
+export type ConsoleSettings={theme:ConsoleTheme;textStyle:'normal'|'bold'|'italic';sidebar:boolean;
   colors:Partial<Record<'accent'|'text'|'muted'|'background',string>>;provider?:{id:string;model:string}};
-const defaults=():ConsoleSettings=>({theme:'inherit',textStyle:'normal',sidebar:true,colors:{}});
+const defaults=():ConsoleSettings=>({theme:'aikya',textStyle:'normal',sidebar:true,colors:{}});
 const object=(v:unknown):v is Record<string,unknown>=>Boolean(v)&&typeof v==='object'&&!Array.isArray(v);
 export function validateSettings(input:unknown):ConsoleSettings {
   if(!object(input)||Object.keys(input).some(k=>!['theme','textStyle','sidebar','colors','provider'].includes(k))
-    ||!['inherit','dark','light'].includes(String(input.theme))||!['normal','bold','italic'].includes(String(input.textStyle))
+    ||!['inherit','aikya','dark','light'].includes(String(input.theme))||!['normal','bold','italic'].includes(String(input.textStyle))
     ||typeof input.sidebar!=='boolean'||!object(input.colors))throw new Error('Invalid console settings');
   for(const [key,value] of Object.entries(input.colors))if(!['accent','text','muted','background'].includes(key)
     ||typeof value!=='string'||!/^#[a-fA-F0-9]{6}$/.test(value))throw new Error('Use a six-digit HEX color');
@@ -46,8 +47,11 @@ export class ConsolePreferences {
       if(!object(doc)||Object.keys(doc).sort().join(',')!=='generated_by,project,schema,settings'
         ||doc.schema!==1||doc.generated_by!=='aikya-console'||doc.project!==this.#root)throw new Error('Foreign settings');
       return {value:validateSettings(doc.settings)};
-    }catch(error){return {value:defaults(),...((error as NodeJS.ErrnoException).code==='ENOENT'?{}:
-      {diagnostic:'Console settings unavailable; custom bytes preserved'})};}
+    }catch(error){
+      const missing=(error as NodeJS.ErrnoException).code==='ENOENT',value=defaults();
+      if(missing&&existsSync(join(this.#root,'.aikya/pi/theme.json')))value.theme='inherit';
+      return {value,...(missing?{}:{diagnostic:'Console settings unavailable; custom bytes preserved'})};
+    }
   }
   save(input:unknown) {
     const settings=validateSettings(input);

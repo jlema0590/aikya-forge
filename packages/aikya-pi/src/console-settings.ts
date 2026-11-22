@@ -54,8 +54,8 @@ export function registerConsole(pi:ExtensionAPI,root:string,python:string|undefi
         }else if(page==='Appearance') {
           const item=await ctx.ui.select('Appearance',['Theme','Accent color','Text color','Muted color','Background color','Text style','Font family and size','Reset colors']);
           if(item==='Theme') {
-            const theme=await ctx.ui.select('Theme',['dark','light']);
-            if(theme==='dark'||theme==='light')save({...settings,theme});
+            const theme=await ctx.ui.select('Theme',['aikya','dark','light']);
+            if(theme==='aikya'||theme==='dark'||theme==='light')save({...settings,theme});
           }else if(item==='Text style') {
             const style=await ctx.ui.select('Text style',['normal','bold','italic']);
             if(style==='normal'||style==='bold'||style==='italic')save({...settings,textStyle:style});
@@ -100,7 +100,7 @@ export function registerConsole(pi:ExtensionAPI,root:string,python:string|undefi
     tui=target;if(workbench&&target.children.includes(workbench))return;
     const body=new Container();body.children=[...target.children];
     workbench=new ForgeWorkbench(body,width=>renderSidebar(snapshot(),width).map(line=>context?.ui.theme.fg('muted',line)??line),()=>settings.sidebar,
-      ()=>({...settings,theme:context?.ui.theme.appearance??settings.theme}),action=>{
+      ()=>({...settings,theme:context?.ui.theme.name==='aikya'?'aikya':context?.ui.theme.appearance??settings.theme}),action=>{
         if(!context)return;const ctx=context;
         void (action==='stop'&&task?task({action:'stop-run'},ctx):show(ctx,action==='flow'?'Flow':undefined))
           .catch(()=>ctx.ui.notify('Control did not confirm completion; inspect flow status','warning'));
