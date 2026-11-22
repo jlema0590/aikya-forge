@@ -3,16 +3,20 @@ import { callBridge } from "./bridge.ts";
 import { RuntimeBudget, QuotaCache, type BudgetStatus } from "./usage.ts";
 import { quotaFromHeaders, renderUsage, renderFooter } from "./usage-view.ts";
 import { ThemePreferences, previewTheme } from "./theme.ts";
+import {ConsolePreferences} from './console-preferences.ts';
 
 export function registerLocalCommands(pi: ExtensionAPI, root: string, python?: string, phase=()=>"explore", controlled=false) {
   const preferences = new ThemePreferences(root), budget = new RuntimeBudget(root, python), quotas = new QuotaCache();
   const seenProviders = new Set<string>();
+  const listeners=new Set<()=>void>();
   let latest:BudgetStatus={status:'unconfigured',recorded_tokens:null,calls:0};
   const refresh=async()=>{
     try {latest=await budget.status();}
     catch {latest={status:'unavailable',recorded_tokens:null,calls:0};}
+    for(const listener of listeners)listener();
   };
   pi.on('agent_end',async(_event,ctx)=>{if(ctx.hasUI)await refresh();});
+  pi.on('turn_end',async(_event,ctx)=>{if(ctx.mode==='tui')await refresh();});
   const publish = (customType: string, result: unknown) => pi.sendMessage({customType,
     content: JSON.stringify(result), display: true});
   pi.on("after_provider_response",async (event,ctx)=>{
@@ -20,6 +24,7 @@ export function registerLocalCommands(pi: ExtensionAPI, root: string, python?: s
     if (!provider) return;
     seenProviders.add(provider);
     await quotas.refresh(provider,async()=>quotaFromHeaders(provider,event.headers));
+    for(const listener of listeners)listener();
   });
   pi.registerMessageRenderer("aikya-tokens",(message,_options,theme)=>{
     if (typeof message.content!=="string") return;
@@ -70,12 +75,15 @@ export function registerLocalCommands(pi: ExtensionAPI, root: string, python?: s
       if (!source?.path || !ctx.ui.getTheme(selected)) throw new Error("Installed theme source is unavailable");
       const preview = previewTheme(selected, source.path);
       if (await ctx.ui.confirm(preview.title, preview.sample + "\nApply this theme?") !== true) return;
-      const previous = ctx.ui.theme.name ?? preferences.load(names).name;
+      const previous = ctx.ui.theme;
       const result = ctx.ui.setTheme(selected);
       if (!result.success) throw new Error("Theme could not be activated");
-      try { preferences.save(selected, names); }
+      try {const store=new ConsolePreferences(root);const current=store.load();
+        if(current.diagnostic)throw new Error(current.diagnostic);
+        store.save({...current.value,theme:selected});}
       catch (error) { ctx.ui.setTheme(previous); throw error; }
       publish("aikya-theme", {status: "applied", name: selected});
     }});
-  return {refreshUsage:refresh};
+  return {refreshUsage:refresh,onUsageChanged:(listener:()=>void)=>{listeners.add(listener);},
+    viewUsage:()=>({budget:structuredClone(latest),quotas:[...seenProviders].map(p=>quotas.view(p))})};
 }

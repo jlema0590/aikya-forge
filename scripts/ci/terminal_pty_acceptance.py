@@ -139,8 +139,29 @@ class ConsoleCapture:
 
 
 def _theme(project):
+    try:return json.loads((project/'.aikya/pi/console.json').read_bytes())['settings']['theme']
+    except (FileNotFoundError,PermissionError):pass
     try:return json.loads((project/'.aikya/pi/theme.json').read_bytes()).get('name')
     except (FileNotFoundError,PermissionError):return None
+
+
+def _console_style(project):
+    try:return json.loads((project/'.aikya/pi/console.json').read_bytes())['settings']['textStyle']
+    except (FileNotFoundError,PermissionError):return None
+
+
+def settings_roundtrip(terminal,output,project):
+    offset=terminal.send('/aikya-settings\r');terminal.expect('Forge settings',after=offset)
+    write_new(output/'settings.ansi',bytes(terminal.raw))
+    terminal.send('\r');terminal.expect('Providers · local catalog')
+    terminal.expect('openai-codex');terminal.send('\x1b');terminal.settle(.2)
+    terminal.send('\x1b[B');terminal.settle(.1);terminal.send('\r');terminal.expect('Appearance')
+    for _ in range(5):terminal.send('\x1b[B');terminal.settle(.05)
+    terminal.send('\r');terminal.expect('Text style')
+    terminal.send('\x1b[B');terminal.settle(.1);terminal.send('\r')
+    terminal.until(lambda:_console_style(project)=='bold')
+    terminal.settle(.2);terminal.send('\x1b');terminal.settle(.2)
+    write_new(output/'settings-applied.ansi',bytes(terminal.raw))
 
 
 def run(output,*,application=None,source=None,assets=None,fetch=False):
@@ -185,6 +206,8 @@ def run(output,*,application=None,source=None,assets=None,fetch=False):
             offset=terminal.send('/aikya-theme light\r');terminal.expect('Apply this theme?',timeout=20,after=offset)
             terminal.send('\x1b[A');terminal.settle(.1);terminal.send('\r');terminal.until(lambda:_theme(project)=='light',timeout=20)
             write_new(output/'light-theme.ansi',bytes(terminal.raw))
+            settings_roundtrip(terminal,output,project)
+            assert _theme(project)=='light','Changing text style must retain the selected base theme'
             terminal.resize(100,32);offset=terminal.send('/aikya-tokens\r')
             terminal.expect('Provider quota: unavailable',timeout=20,after=offset)
             write_new(output/'resized.ansi',bytes(terminal.raw));terminal.send('/quit\r')
@@ -199,6 +222,7 @@ def run(output,*,application=None,source=None,assets=None,fetch=False):
         result.update(status='passed',theme='light',resize=dict(columns=100,rows=32),cache_refused=True,
             usage_status=usage['status'],bytes=len(terminal.raw),exit_code=terminal.exit_code,file_completion=True,
             launcher_supplies_tools=bool(application))
+        result.update(settings_panel=True,provider_catalog=True,text_style='bold')
         return result
     finally:
         if terminal is not None:write_new(output/'terminal.log',bytes(terminal.raw))

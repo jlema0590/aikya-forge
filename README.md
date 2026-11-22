@@ -47,6 +47,21 @@ been installed. Bare `aikya` resolves an already installed managed terminal.
 Model selection and inference require explicit configuration, credentials and a
 positive local budget; opening the terminal does not imply a model call.
 
+## Console settings and flow
+
+Open `/aikya-settings` or press **F2** to connect a provider from the pinned local
+catalog, choose a model for the next launch, configure light/dark appearance and
+HEX colors, select normal/bold/italic text, or show/hide the right sidebar.
+Font family and size remain controlled by your terminal application.
+
+The sidebar reserves its own columns for phase, flow controls, local tokens/calls,
+budget and estimated context percentages, and Claude/Codex author/reviewer usage.
+Account quota appears only from observed provider response headers, with age/stale
+labels; otherwise it remains unavailable. Configuring or repainting the panel
+does not invoke a model. Saved model selection requires an available local budget
+and does not change a live session's binding. See the
+[console guide](aikya/docs/features/forge-console-settings.md).
+
 ## Components
 
 | Component | Role |

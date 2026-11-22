@@ -4,6 +4,18 @@ Aikya Forge uses independent semantic versioning, beginning at `0.1.0`.
 The inherited Harness v7/v8 changelog remains in
 [aikya/docs/history/harness-CHANGELOG.md](aikya/docs/history/harness-CHANGELOG.md).
 
+## Unreleased
+
+- Add `/aikya-settings` and F2 for project-local provider connection, next-launch
+  model selection, appearance, HEX colors, ANSI text style and flow controls.
+- Reserve a right-side terminal column for local budget/context percentages,
+  Claude/Codex attribution and sourced provider quota; collapse on narrow terminals.
+- Mask API-key entry, keep credentials outside transcripts/preferences, preserve
+  uncertain budget accounting and refuse unsafe project credential locations.
+- Share the new preference with `/aikya-theme`, retain readable light backgrounds
+  and the selected theme when changing text style; keep font family/size host-owned.
+- Extend actual PTY acceptance to the provider catalog and settings/style flow.
+
 ## v0.2.0 — 2026-11-18
 
 - Include reviewed fd 10.5.2/ripgrep 15.2.0 binaries and licenses for offline native

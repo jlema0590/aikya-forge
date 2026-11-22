@@ -47,6 +47,22 @@ nativo administrado. Ejecutar `aikya` sin opciones utiliza la terminal administr
 que ya esté instalada. La inferencia requiere configuración, credenciales y un
 presupuesto local positivo; abrir la terminal no implica llamar a un modelo.
 
+## Configuración y control del flujo
+
+Abre `/aikya-settings` o pulsa **F2** para conectar un proveedor del catálogo local,
+elegir el modelo del siguiente arranque, configurar temas claro/oscuro y colores
+HEX, elegir texto normal/negrita/cursiva y mostrar u ocultar el lateral derecho.
+La familia y el tamaño de letra se configuran en la aplicación de terminal.
+
+El lateral reserva sus propias columnas para la fase, controles del flujo, tokens
+y llamadas locales, porcentajes de presupuesto y contexto estimado, y atribución
+de Claude/Codex y los roles author/reviewer. La cuota de cuenta solo aparece si
+se observa en las cabeceras del proveedor, con antigüedad y estado obsoleto;
+si no existe esa fuente, se indica como no disponible. Configurar o repintar el
+panel no invoca modelos. La selección guardada requiere presupuesto disponible y
+no cambia el modelo de una sesión activa. Consulta la
+[guía del panel](aikya/docs/features/forge-console-settings.md).
+
 ## Componentes
 
 | Componente | Función |
