@@ -71,7 +71,7 @@ jobs:
       - name: Install contributor package and build tools
         run: |
           python -m pip install 'setuptools>=77' wheel build
-          python -m pip install --no-build-isolation --no-deps -e .
+          python -m pip install --no-build-isolation -e ".[terminal]"
 
       - name: Python syntax checks
         run: |

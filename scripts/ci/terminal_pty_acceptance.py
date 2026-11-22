@@ -196,6 +196,7 @@ def run(output,*,application=None,source=None,assets=None,fetch=False):
     try:
         with ConsoleCapture(command,project,env) as terminal:
             terminal.expect('AIKYA v'+version,timeout=45)
+            terminal.expect('/   |  (_) /____  ______ _',timeout=10)
             offset=terminal.send('/aikya-tokens\r');terminal.expect('Provider quota: unavailable',timeout=30,after=offset)
             assert 'not found. Offline mode' not in plain(terminal.raw)
             assert 'Downloading...' not in plain(terminal.raw)
@@ -222,7 +223,7 @@ def run(output,*,application=None,source=None,assets=None,fetch=False):
         result.update(status='passed',theme='light',resize=dict(columns=100,rows=32),cache_refused=True,
             usage_status=usage['status'],bytes=len(terminal.raw),exit_code=terminal.exit_code,file_completion=True,
             launcher_supplies_tools=bool(application))
-        result.update(settings_panel=True,provider_catalog=True,text_style='bold')
+        result.update(settings_panel=True,provider_catalog=True,text_style='bold',banner='pyfiglet-1.0.4')
         return result
     finally:
         if terminal is not None:write_new(output/'terminal.log',bytes(terminal.raw))

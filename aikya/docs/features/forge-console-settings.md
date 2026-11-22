@@ -30,10 +30,13 @@ bindings remain fixed; switching provider does not rewrite a live task/checkpoin
 
 The `aikya` theme is the original Harness identity for new projects. Explicit
 existing dark/light/inherit preferences and legacy theme.json are retained. The
-startup header uses the unchanged original PNG as its provenance source, displays
-its symbol in ANSI/Unicode cells and keeps Harness/Forge names readable in terminal
-type. It requires no terminal image protocol or network/model call. Small widths
-use a compact textual identity. Use `/aikya-theme aikya` to preview/select it.
+startup header draws the fixed Aikya wordmark with pyfiglet 1.0.4 slant/small
+ASCII fonts, selecting an entire variant that fits. The original PNG remains the
+color reference. The verified Python helper runs once per interpreter per process
+with a 3-second deadline, 8-KiB response bound and no shell/provider call. Repaints
+reuse the result. Missing dependencies or narrow widths use plain text. Native
+payloads include fonts/license; source installs use `.[terminal]`. Use
+`/aikya-theme aikya` to preview/select the palette.
 
 Choose dark/light, accent/text/muted/background HEX colors, and normal/bold/italic
 ANSI text style. Settings are applied locally and retained in

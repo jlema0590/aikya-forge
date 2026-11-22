@@ -28,6 +28,7 @@ def check(wheel):
 
         run('-m', 'pip', 'install', '--no-deps', '--no-index', wheel)
         run('-I', '-m', 'aikya', '--help')
+        run('-I', '-c', 'from aikya.presentation.banner import banner;assert banner()["generator"]=="plain"')
         run('-I', '-c', "from importlib.metadata import version;from importlib.util import find_spec;from aikya.documentation.templates import validate_catalog;assert version('aikya-harness')=='" + (ROOT / 'VERSION').read_text().strip() + "';assert find_spec('claude_agent_sdk') is None;assert validate_catalog()['templates']==120")
         for scope in ('global', 'project'):
             env['HOME'] = str(base / (scope + '-home'))

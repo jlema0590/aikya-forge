@@ -24,7 +24,7 @@ cd aikya-forge
 python3 -m venv .venv
 . .venv/bin/activate
 python -m pip install 'setuptools>=77' wheel build
-python -m pip install --no-build-isolation -e .
+python -m pip install --no-build-isolation -e ".[terminal]"
 npm --prefix packages/aikya-pi ci --ignore-scripts --no-audit --no-fund
 ```
 
@@ -56,7 +56,11 @@ La familia y el tamaño de letra se configuran en la aplicación de terminal.
 
 El tema **Aikya Harness** (`aikya`) utiliza el azul marino, cian y turquesa del logo
 original. Es el tema inicial para proyectos nuevos; conserva las selecciones ya
-existentes. El arranque representa el símbolo original en celdas de terminal con
+existentes. El arranque dibuja **Aikya** con `pyfiglet` 1.0.4 y fuentes ASCII slant/small,
+según el ancho disponible. La instalación nativa incluye librería, fuentes y
+licencia para funcionar sin conexión; desde código se instala el extra `terminal`.
+El núcleo Python sin dependencias mantiene una alternativa de texto simple.
+El rótulo se guarda en caché local y no llama a modelos. El arranque conserva
 el nombre Harness/Forge legible. Se elige con `/aikya-theme aikya` o Appearance.
 
 El lateral reserva sus propias columnas para la fase, controles del flujo, tokens

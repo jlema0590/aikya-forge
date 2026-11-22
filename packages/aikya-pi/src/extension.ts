@@ -23,6 +23,7 @@ import { registerSddCommands } from "./sdd.ts";
 import { registerOnboarding } from "./workflow.ts";
 import {registerConsole} from './console-settings.ts';
 import {renderBrandHeader} from './brand-header.ts';
+import {loadFigletBanner} from './figlet.ts';
 
 const version=runtimeVersion();
 
@@ -55,8 +56,9 @@ export function aikyaExtension(root: string, python?: string, controlled = false
     pi.on("session_before_switch", (event) => {
       if (event.reason === "resume" && !ownedSessionFile(root, event.targetSessionFile)) return {cancel: true};
     });
-    pi.on("session_start", (_event, ctx) => {
+    pi.on("session_start", async (_event, ctx) => {
       if (!ctx.hasUI) return;
+      const banner=ctx.mode==='tui'?await loadFigletBanner(python):undefined;
       ctx.ui.setEditorComponent((...args) => {
         consoleUi?.mount(args[0]);
         return controlled ? new ControlledEditor(...args).permitSkills(skills.map(s=>s.name)) : new ReadOnlyEditor(...args);
@@ -65,7 +67,7 @@ export function aikyaExtension(root: string, python?: string, controlled = false
       ctx.ui.setStatus("aikya", controlled ? phase.value+" · "+(ctx.model?.id??"model unavailable") : "Local preview · model disabled");
       ctx.ui.setHeader((_tui, theme) => ({
         render: (width: number) => renderBrandHeader(width,version,
-          controlled?phase.value+' · '+(ctx.model?.provider??'unknown')+'/'+(ctx.model?.id??'unknown'):'Local preview · model disabled'),
+          controlled?phase.value+' · '+(ctx.model?.provider??'unknown')+'/'+(ctx.model?.id??'unknown'):'Local preview · model disabled',banner),
         invalidate: () => {},
       }));
     });

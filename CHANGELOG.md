@@ -7,8 +7,11 @@ The inherited Harness v7/v8 changelog remains in
 ## Unreleased
 
 - Add the Aikya Harness theme using original-logo navy/cyan/turquoise, preserve
-  existing selections and include an original-symbol terminal rendition at startup.
-  Bundle the unchanged PNG and provenance-bound display data without startup downloads.
+  existing selections and keep the original reference PNG unchanged.
+- Draw the Aikya startup wordmark with pinned pyfiglet 1.0.4 and width-aware
+  slant/small ASCII fonts. Bundle fonts/license in native Python, validate the wheel
+  hash and real rendering before sealing, and cache the bounded local response.
+  Retain a plain-text fallback; remove the superseded terminal-cell renderer/assets.
 - Add `/aikya-settings` and F2 for project-local provider connection, next-launch
   model selection, appearance, HEX colors, ANSI text style and flow controls.
 - Reserve a right-side terminal column for local budget/context percentages,

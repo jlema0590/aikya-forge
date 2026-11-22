@@ -3,7 +3,6 @@ import {test} from 'node:test';
 import {mkdtempSync,rmSync,readFileSync,writeFileSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join} from 'node:path';
-import {createHash} from 'node:crypto';
 import {visibleWidth,stripTerminalSequences,colorToHex} from '@earendil-works/pi-tui';
 import {Theme,type ExtensionUIContext} from '@earendil-works/pi-coding-agent';
 import {ConsolePreferences} from '../src/console-preferences.ts';
@@ -41,16 +40,16 @@ test('Aikya applies the brand palette and reset removes overrides without losing
   applyAppearance(ui,settings as never);assert.equal(colorToHex(active.colors.accent),brand.AIKYA_COLORS.accent);
 });
 
-test('header preserves original logo provenance and terminal widths with a compact fallback',()=>{
+test('header fits an entire ASCII variant or uses the compact identity at narrow widths',()=>{
   assert.ok(header,'Branded header is absent');
-  const original=readFileSync(new URL('../../../docs/images/aikya-harness.png',import.meta.url));
-  const bundled=readFileSync(new URL('../src/branding/aikya-harness.png',import.meta.url));
-  assert.equal(createHash('sha256').update(original).digest('hex'),createHash('sha256').update(bundled).digest('hex'));
+  const banner={generator:'pyfiglet' as const,variants:[{font:'slant',lines:['A'.repeat(35)]},{font:'small',lines:['A'.repeat(15)]}]};
   for(const width of [1,10,40,79,120]) {
-    const lines=header.renderBrandHeader(width,'0.2.0','Local preview · model disabled');
+    const lines=header.renderBrandHeader(width,'0.2.0','Local preview · model disabled',banner);
     assert.ok(lines.every(line=>visibleWidth(line)<=width));
     if(width>=40)assert.match(lines.map(stripTerminalSequences).join('\n'),/Aikya Harness/);
-    if(width>=60)assert.ok(lines.some(line=>line.includes('▀')));
+    if(width>=40)assert.equal(stripTerminalSequences(lines[0]),'A'.repeat(35));
+    if(width<=10)assert.ok(lines.length<=3);
   }
+  assert.equal(stripTerminalSequences(header.renderBrandHeader(20,'0.2.0','Local preview',banner)[0]),'A'.repeat(15));
   assert.match(header.renderBrandHeader(79,'0.2.0','Local preview').map(stripTerminalSequences).join('\n'),/AIKYA v0.2.0/);
 });
