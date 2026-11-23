@@ -69,6 +69,10 @@ la caché del SDK; no ejecuta Git al repintar. El usuario se consulta al iniciar
 la sesión. Sin Git o sin configuración se indican valores no disponibles.
 En terminales estrechas, los datos se conservan en el resumen inferior.
 
+El submenú desplegable **Agents** agrupa Claude y Codex. Se abre/cierra pulsando
+su cabecera, con **F3** o desde F2 → Agents. Comienza desplegado y conserva su estado
+durante la sesión actual.
+
 Cada bloque de **Claude** / **Codex** muestra **Context**, **Tokens**, **Usage 5h** y
 **Usage 7d**. Context es la estimación del SDK para la sesión activa del proveedor;
 Tokens son sus totales registrados en el proyecto. Los límites de cuenta requieren

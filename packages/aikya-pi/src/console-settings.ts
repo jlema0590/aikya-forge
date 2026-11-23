@@ -13,9 +13,9 @@ export function registerConsole(pi:ExtensionAPI,root:string,python:string|undefi
   phase:()=>string,runtime:ModelRuntime|undefined,task:TaskHandler|undefined,controlled=false) {
   const store=new ConsolePreferences(root);let settings=store.load().value;
   let context:ExtensionContext|undefined,tui:TUI|undefined,workbench:ForgeWorkbench|undefined,timer:ReturnType<typeof setInterval>|undefined;
-  let running=false;
+  let running=false,agentsExpanded=true;
   const request=()=>tui?.requestRender();
-  const snapshot=()=>({...local.viewUsage(),workspace:local.viewWorkspace(),phase:phase(),state:running?'running':'idle',
+  const snapshot=()=>({...local.viewUsage(),workspace:local.viewWorkspace(),agentsExpanded,phase:phase(),state:running?'running':'idle',
     contextProvider:controlled?context?.model?.provider:undefined,
     model:controlled&&context?.model?context.model.provider+'/'+context.model.id:null,context:controlled?context?.getContextUsage():undefined});
   const repaint=()=>{const value=store.load();if(!value.diagnostic)settings=value.value;request();};
@@ -46,7 +46,7 @@ export function registerConsole(pi:ExtensionAPI,root:string,python:string|undefi
         catch(error){ctx.ui.setTheme(previous);throw error;}
       };
       for(;;) {
-        const page=initialPage??await ctx.ui.select('Forge settings',['Providers','Appearance','Sidebar','Flow','Close']);
+        const page=initialPage??await ctx.ui.select('Forge settings',['Providers','Appearance','Sidebar','Flow','Agents','Close']);
         initialPage=undefined;
         if(!page||page==='Close')break;
         if(page==='Providers') {
@@ -72,6 +72,9 @@ export function registerConsole(pi:ExtensionAPI,root:string,python:string|undefi
           }
         }else if(page==='Sidebar') {
           const value=await ctx.ui.select('Right sidebar',['Show','Hide']);if(value)save({...settings,sidebar:value==='Show'});
+        }else if(page==='Agents') {
+          const value=await ctx.ui.select('Agents submenu',['Expand','Collapse']);
+          if(value){agentsExpanded=value==='Expand';request();}
         }else if(page==='Flow') {
           const value=await ctx.ui.select('Flow controls',['Inspect current flow','Stop current flow','Cancel current response','Refresh usage']);
           if(value==='Refresh usage'){await local.refreshUsage();request();}
@@ -97,11 +100,15 @@ export function registerConsole(pi:ExtensionAPI,root:string,python:string|undefi
       await show(ctx);
     }});
   pi.registerShortcut('f2',{description:'Open Forge settings',handler:ctx=>show(ctx)});
+  pi.registerShortcut('f3',{description:'Expand or collapse the Agents submenu',handler:ctx=>{
+    if(ctx.mode==='tui'){agentsExpanded=!agentsExpanded;request();}
+  }});
   return {mount:(target:TUI)=>{
     tui=target;if(workbench&&target.children.includes(workbench))return;
     const body=new Container();body.children=[...target.children];
     workbench=new ForgeWorkbench(body,width=>renderSidebar(snapshot(),width).map(line=>context?.ui.theme.fg('muted',line)??line),()=>settings.sidebar,
       ()=>({...settings,theme:context?.ui.theme.name==='aikya'?'aikya':context?.ui.theme.appearance??settings.theme}),action=>{
+        if(action==='agents'){agentsExpanded=!agentsExpanded;request();return;}
         if(!context)return;const ctx=context;
         void (action==='stop'&&task?task({action:'stop-run'},ctx):show(ctx,action==='flow'?'Flow':undefined))
           .catch(()=>ctx.ui.notify('Control did not confirm completion; inspect flow status','warning'));

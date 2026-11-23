@@ -2,7 +2,7 @@
 
 Open `/aikya-settings` or press F2 in the interactive terminal. This is a local
 administrative panel; opening it does not prompt a model. Its sections are
-Providers, Appearance, Sidebar and Flow. Headless/RPC sessions report that an
+Providers, Appearance, Sidebar, Flow and Agents. Headless/RPC sessions report that an
 interactive terminal is required and do not write preferences.
 
 ## Providers
@@ -87,6 +87,12 @@ at session start; missing Git/configuration is shown explicitly as unavailable.
 Narrow terminals retain project/Git fields in the compact summary below the transcript.
 
 ## Claude and Codex metrics
+
+The expanded-by-default Agents submenu contains both provider blocks. Click the
+Agents row, press F3, or use F2 → Agents → Expand/Collapse. Expansion is per-session
+presentation state, with no preference file, model/provider change or inference.
+The compact layout also offers keyboard expansion. Project & Git and the local
+budget remain outside this submenu.
 
 Each provider block shows Context, Tokens, Usage 5h and Usage 7d. Context belongs
 only to the active SDK provider session and is labeled estimated. A reviewer has

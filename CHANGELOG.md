@@ -6,6 +6,10 @@ The inherited Harness v7/v8 changelog remains in
 
 ## Unreleased
 
+- Group Claude/Codex metrics in an expandable Agents sidebar submenu, with heading
+  clicks, F3 and F2 → Agents. Preserve cached metrics when collapsed and support
+  expansion in compact layouts without changing providers or execution state.
+
 - Add separate Claude/Codex Context, Tokens, Usage 5h and Usage 7d fields. Bind
   context to the active provider, keep project attribution partial when needed,
   and select sourced account windows by exact duration with zero/stale handling.

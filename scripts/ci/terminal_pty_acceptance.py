@@ -156,9 +156,9 @@ def settings_roundtrip(terminal,output,project):
     write_new(output/'settings.ansi',bytes(terminal.raw))
     terminal.send('\r');terminal.expect('Providers · local catalog')
     terminal.expect('openai-codex');terminal.send('\x1b');terminal.settle(.2)
-    terminal.send('\x1b[B');terminal.settle(.1);terminal.send('\r');terminal.expect('Appearance')
+    terminal.send('\x1b[B');terminal.settle(.1);offset=terminal.send('\r');terminal.expect('Accent color',after=offset)
     for _ in range(5):terminal.send('\x1b[B');terminal.settle(.05)
-    terminal.send('\r');terminal.expect('Text style')
+    offset=terminal.send('\r');terminal.expect('Text style',after=offset);terminal.expect('→ normal',after=offset)
     terminal.send('\x1b[B');terminal.settle(.1);terminal.send('\r')
     terminal.until(lambda:_console_style(project)=='bold')
     terminal.settle(.2);terminal.send('\x1b');terminal.settle(.2)
@@ -207,8 +207,14 @@ def run(output,*,application=None,source=None,assets=None,fetch=False):
             terminal.expect('Aikya Forge v'+version,timeout=45)
             terminal.expect('Project & Git',timeout=10)
             terminal.expect('Aikya local budget',timeout=10)
+            terminal.expect('[-] Agents (F3)',timeout=10)
             for field in ('Claude','Codex','Context: unavailable','Tokens: unknown','Usage 5h: unavailable','Usage 7d: unavailable'):
                 terminal.expect(field,timeout=10)
+            offset=terminal.send('\x1bOR');terminal.expect('[+] Agents (F3)',timeout=10,after=offset)
+            write_new(output/'agents-collapsed.ansi',bytes(terminal.raw))
+            offset=terminal.send('\x1bOR');terminal.expect('[-] Agents (F3)',timeout=10,after=offset)
+            terminal.expect('Claude',timeout=10,after=offset);terminal.expect('Codex',timeout=10,after=offset)
+            write_new(output/'agents-expanded.ansi',bytes(terminal.raw))
             terminal.expect('Project: '+project.name,timeout=10)
             if git_fixture:
                 terminal.expect('Branch: preview/forge',timeout=10)
@@ -243,7 +249,7 @@ def run(output,*,application=None,source=None,assets=None,fetch=False):
         result.update(status='passed',theme='light',resize=dict(columns=100,rows=32),cache_refused=True,
             usage_status=usage['status'],bytes=len(terminal.raw),exit_code=terminal.exit_code,file_completion=True,
             launcher_supplies_tools=bool(application))
-        result.update(settings_panel=True,provider_catalog=True,text_style='bold',banner='pyfiglet-1.0.4',project_identity=git_fixture,branch_change_observed=bool(git_fixture),provider_metrics=True)
+        result.update(settings_panel=True,provider_catalog=True,text_style='bold',banner='pyfiglet-1.0.4',project_identity=git_fixture,branch_change_observed=bool(git_fixture),provider_metrics=True,agents_submenu=True,agents_keyboard_toggle=True)
         return result
     finally:
         if terminal is not None:write_new(output/'terminal.log',bytes(terminal.raw))

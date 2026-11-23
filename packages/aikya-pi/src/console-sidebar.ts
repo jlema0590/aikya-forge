@@ -1,7 +1,7 @@
 import {truncateToWidth,replaceControlCharacters} from '@earendil-works/pi-tui';
 import {workspaceLabel,type WorkspaceIdentity} from './workspace.ts';
 import {renderProviderPanel,attributionComplete,type ProviderPanelSnapshot} from './provider-panel.ts';
-export type SidebarSnapshot=ProviderPanelSnapshot&{phase:string;state:string;model:string|null;workspace?:WorkspaceIdentity};
+export type SidebarSnapshot=ProviderPanelSnapshot&{phase:string;state:string;model:string|null;workspace?:WorkspaceIdentity;agentsExpanded?:boolean};
 const safe=(v:string)=>replaceControlCharacters(v).slice(0,180);
 const percent=(v:number)=>Number.isFinite(v)?Number(v.toFixed(1))+'%':'unknown';
 
@@ -13,8 +13,15 @@ function intro(snapshot:SidebarSnapshot) {
   return rows;
 }
 
+function agents(snapshot:SidebarSnapshot,now=Date.now()) {
+  const rows=[snapshot.agentsExpanded===false?'[+] Agents (F3)':'[-] Agents (F3)'];
+  if(snapshot.agentsExpanded!==false)for(const provider of ['anthropic','openai-codex'] as const)
+    rows.push(...renderProviderPanel(provider,snapshot,now).map(row=>'  '+row),'');
+  return rows;
+}
+
 export function renderCompactSidebar(snapshot:SidebarSnapshot,width:number):string[] {
-  return intro(snapshot).filter(Boolean).map(row=>truncateToWidth(row,Math.max(1,width),'…'));
+  return [...intro(snapshot),...agents(snapshot)].filter(Boolean).map(row=>truncateToWidth(row,Math.max(1,width),'…'));
 }
 
 /** Account quota, context and local attribution always carry their own denominator. */
@@ -25,7 +32,7 @@ export function renderSidebar(snapshot:SidebarSnapshot,width=36,now=Date.now()):
     'Aikya local budget',total===null?'Recorded tokens: unknown':'Recorded tokens: '+total+(budget.status==='unknown_usage'?' + unknown':''),
     total!==null&&budget.limits?.tokens?percent(total/budget.limits.tokens*100)+' local budget'+(budget.status==='unknown_usage'?' (known only)':''):'Local budget: unconfigured',
     'Calls: '+budget.calls+(budget.limits?' / '+budget.limits.calls:''),'State: '+safe(budget.status),''];
-  for(const provider of ['anthropic','openai-codex'] as const)rows.push(...renderProviderPanel(provider,snapshot,now),'');
+  rows.push(...agents(snapshot,now),'');
   rows.push(complete?'Role token totals':'Role token totals · partial');
   for(const role of ['author','reviewer']) {
     const amount=groups.filter(g=>g.role===role).reduce((n,g)=>n+g.recorded_tokens,0);

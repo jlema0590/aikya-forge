@@ -70,6 +70,10 @@ the SDK cache/watch; repainting runs no Git commands. User identity is read once
 at session start; missing Git/configuration is shown explicitly as unavailable.
 Narrow terminals retain project/Git fields in the compact summary below the transcript.
 
+The expandable **Agents** submenu contains Claude and Codex. Click its heading,
+press **F3**, or use F2 → Agents to expand/collapse it. It starts expanded and keeps
+its view state for the current session.
+
 Each **Claude** / **Codex** block shows **Context**, **Tokens**, **Usage 5h** and
 **Usage 7d**. Context is the SDK estimate for the active provider session; Tokens
 are that provider's recorded project totals. Account windows require observed

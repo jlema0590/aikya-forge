@@ -1,4 +1,4 @@
-import {Container,truncateToWidth,visibleWidth,type TuiMouseEvent} from '@earendil-works/pi-tui';
+import {Container,truncateToWidth,visibleWidth,stripTerminalSequences,type TuiMouseEvent} from '@earendil-works/pi-tui';
 import type {ConsoleSettings} from './console-preferences.ts';
 import {appearanceColors} from './brand.ts';
 
@@ -6,10 +6,10 @@ import {appearanceColors} from './brand.ts';
 export class ForgeWorkbench extends Container {
   #body:Container;#sidebar:(width:number)=>string[];#enabled:()=>boolean;
   #left=0;#offset=0;
-  #height=0;#wide=false;#action?: (action:'settings'|'flow'|'stop')=>void;
+  #height=0;#wide=false;#agentsRow=-1;#action?: (action:'settings'|'flow'|'stop'|'agents')=>void;
   #appearance?:()=>ConsoleSettings;
   #compactSidebar?: (width:number)=>string[];
-  constructor(body:Container,sidebar:(width:number)=>string[],enabled:()=>boolean,appearance?:()=>ConsoleSettings,action?:(action:'settings'|'flow'|'stop')=>void,compactSidebar?:(width:number)=>string[]) {
+  constructor(body:Container,sidebar:(width:number)=>string[],enabled:()=>boolean,appearance?:()=>ConsoleSettings,action?:(action:'settings'|'flow'|'stop'|'agents')=>void,compactSidebar?:(width:number)=>string[]) {
     super();this.#body=body;this.#sidebar=sidebar;this.#enabled=enabled;
     this.#appearance=appearance;
     this.#action=action;
@@ -30,6 +30,7 @@ export class ForgeWorkbench extends Container {
   }
   override render(width:number) {
     const enabled=this.#enabled(),wide=enabled&&width>=110;
+    this.#agentsRow=-1;
     this.#wide=wide;
     const side=wide?Math.min(42,Math.floor(width*.32)):0;
     this.#left=wide?width-side-3:width;
@@ -38,6 +39,8 @@ export class ForgeWorkbench extends Container {
     if(!wide){this.#offset=0;const summary=this.#compactSidebar?.(width)??this.#sidebar(width).filter(Boolean).slice(0,3);
       return this.#style([...left,...summary.map(s=>truncateToWidth(s,width,'…'))],width);}
     const right=this.#sidebar(side),height=Math.max(left.length,right.length);
+    const agents=right.findIndex(row=>/^\[[+-]\] Agents(?:\s|$)/.test(stripTerminalSequences(row)));
+    if(agents>=0)this.#agentsRow=height-right.length+agents;
     this.#height=height;
     this.#offset=height-left.length;
     return this.#style(Array.from({length:height},(_,i)=>{
@@ -47,6 +50,10 @@ export class ForgeWorkbench extends Container {
   }
   override invalidate(){this.#body.invalidate();}
   override handleMouse(event:TuiMouseEvent) {
+    if(this.#wide&&event.type==='click'&&event.button==='left'&&event.y===this.#agentsRow&&event.x>=this.#left+3&&event.x<event.width) {
+      this.#action?.('agents');
+      return {handled:true as const,target:{component:this,originX:0,originY:0,width:event.width,height:event.height}};
+    }
     if(this.#wide&&event.type==='click'&&event.button==='left'&&event.y===this.#height-1&&event.x>=this.#left+3&&event.x<this.#left+27) {
       const column=event.x-this.#left-3;
       this.#action?.(column<10?'settings':column<17?'flow':'stop');
