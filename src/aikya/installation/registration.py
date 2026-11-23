@@ -19,7 +19,7 @@ ROOT=source_root()
 from aikya.cli.commands import BOOTSTRAP_COMMANDS
 from aikya.installation.assets import CORE_FILES, EXECUTION_FILES, runtime_assets, resolve_runtime_asset
 HISTORICAL_GALLERY=Path('examples/documentation/generated')
-SOURCE_GALLERY='https://github.com/jlema0590/aikya-harness/blob/08db4879ae3a8697c91adb0cc46bd76e333c693b/examples/documentation/generated/README.es.md'
+SOURCE_GALLERY='https://github.com/jlema0590/aikya-forge/blob/2b682a5de4347318330d3116728700e84cf5f86d/examples/documentation/generated/README.es.md'
 
 
 def files_to_copy(source:Path):
@@ -266,7 +266,7 @@ def setup(source:Path,target:Path,scope:str,home:Path|None=None,dry_run:bool=Fal
                 retire_legacy_commands(target / '.claude/skills', target / '.harness', logs,
                                        legacy, replacement_root=shared.parent / 'skills')
             return logs
-    runtime=(home/'.claude/aikya-harnes') if scope=='global' else (target/'.aikya/runtime')
+    runtime=(home/'.claude/aikya-forge') if scope=='global' else (target/'.aikya/runtime')
     skill_root=(home/'.claude/skills') if scope=='global' else (target/'.claude/skills')
     for candidate in (runtime, runtime.parent, skill_root, skill_root.parent):
         if candidate.is_symlink():
@@ -347,7 +347,7 @@ def setup(source:Path,target:Path,scope:str,home:Path|None=None,dry_run:bool=Fal
 
 
 def main(argv=None):
-    p=argparse.ArgumentParser(description='Aikya Harness registration within Claude Code')
+    p=argparse.ArgumentParser(description='Aikya Forge registration within Claude Code')
     p.add_argument('--scope',choices=['global','project'],required=True)
     p.add_argument('--target',type=Path,default=Path.cwd(),help='Directorio de trabajo actual, cuando scope=project')
     p.add_argument('--subagent-statusline',action='store_true',help='Enable only on a client supporting subagentStatusLine')

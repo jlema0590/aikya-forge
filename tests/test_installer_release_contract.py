@@ -34,14 +34,14 @@ class InstallerReleaseContract(unittest.TestCase):
         from scripts.ci.release_assets import verify_assets, compare_assets
         import zipfile
         with tempfile.TemporaryDirectory() as temporary:
-            base = Path(temporary); wheel = base / 'aikya_harness-7.0.0-py3-none-any.whl'
-            names = ['aikya_harness-7.0.0.tar.gz', 'aikya-harness-v7.0.0.zip', 'aikya-bootstrap.pyz', 'install.sh', 'install.ps1']
+            base = Path(temporary); wheel = base / 'aikya_forge-7.0.0-py3-none-any.whl'
+            names = ['aikya_forge-7.0.0.tar.gz', 'aikya-forge-v7.0.0.zip', 'aikya-bootstrap.pyz', 'install.sh', 'install.ps1']
             for name in names:
                 (base / name).write_bytes(b'controlled-payload')
             def metadata(version):
                 with zipfile.ZipFile(wheel, 'w') as archive:
-                    archive.writestr('aikya_harness-7.0.0.dist-info/METADATA', 'Name: aikya-harness\nVersion: ' + version + '\n')
-                    archive.writestr('aikya_harness-7.0.0.dist-info/WHEEL', 'Wheel-Version: 1.0\nTag: py3-none-any\n')
+                    archive.writestr('aikya_forge-7.0.0.dist-info/METADATA', 'Name: aikya-forge\nVersion: ' + version + '\n')
+                    archive.writestr('aikya_forge-7.0.0.dist-info/WHEEL', 'Wheel-Version: 1.0\nTag: py3-none-any\n')
                 (base / 'SHA256SUMS').write_text(''.join(hashlib.sha256((base / name).read_bytes()).hexdigest() + '  ' + name + '\n' for name in [wheel.name, *names]))
             metadata('0.0.1')
             with self.assertRaisesRegex(ValueError, 'metadata|version'):

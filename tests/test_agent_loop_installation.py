@@ -31,7 +31,7 @@ class LoopInstallationTests(unittest.TestCase):
    base=Path(tmp)
    for scope in ('global','project'):
     root=base/scope;home=base/(scope+'home');aikya_setup.setup(ROOT,root,scope,home=home)
-    folder=home/'.claude/aikya-harnes' if scope=='global' else root/'.aikya/runtime'
+    folder=home/'.claude/aikya-forge' if scope=='global' else root/'.aikya/runtime'
     for name in ('agent_loop.py','agent_runtime.py','agent_loop_state.py','agent_memory.py','memory_store.py','agent_memory_extract.py','durable_io.py','code_quality.py','requirements-agent-loop.txt','docs/AGENT_LOOP.md'):self.assertTrue((folder/name).is_file(),name)
    root=base/'installed';profile=install.validated(json.loads((ROOT/'examples/next-react/answers.json').read_text()),root);install.install(root,profile,{'modules':[],'findings':[]},docs_lang='en')
    for name in ('agent_loop.py','agent_runtime.py','agent_loop_state.py','agent_memory.py','memory_store.py','agent_memory_extract.py','durable_io.py','code_quality.py','requirements-agent-loop.txt','docs/AGENT_LOOP.md'):self.assertTrue((root/'aikya/scripts/harness'/name).is_file())

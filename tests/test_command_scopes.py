@@ -108,8 +108,8 @@ class CommandScopeTests(unittest.TestCase):
 
     def test_matching_global_skill_without_runtime_provenance_is_not_reused(self):
         self.global_setup()
-        (self.home / '.claude/aikya-harnes/.bundle-manifest.json').unlink()
-        (self.home / '.claude/aikya-harnes/manifest.json').unlink()
+        (self.home / '.claude/aikya-forge/.bundle-manifest.json').unlink()
+        (self.home / '.claude/aikya-forge/manifest.json').unlink()
         setup(ROOT, self.project, 'project', home=self.home)
         self.assertEqual(len(BOOTSTRAP_COMMANDS), len(self.local_commands()))
 

@@ -294,7 +294,7 @@ def install_custom(root: Path, profile: dict[str, Any], *, name: str, repo: str,
     return record
 
 def main(argv: list[str]|None = None) -> int:
-    parser = argparse.ArgumentParser(description='Aikya Harness external Agent Skills management')
+    parser = argparse.ArgumentParser(description='Aikya Forge external Agent Skills management')
     parser.add_argument('action',choices=['plan','install','status'])
     parser.add_argument('--target',type=Path,default=Path.cwd())
     parser.add_argument('--only',help='Nombres predefinidos separados por coma')

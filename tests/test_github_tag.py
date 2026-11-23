@@ -10,7 +10,7 @@ ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0,str(ROOT/"scripts/ci"))
 import github_tag
 
-REPO="jlema0590/aikya-harness"
+REPO="jlema0590/aikya-forge"
 TAG="v5.9.1"
 SHA="a"*40
 OTHER="b"*40

@@ -141,7 +141,7 @@ def runtime_assets(source: Path, target_kind: str, *, methodology=None) -> tuple
     return tuple(result)
 
 
-SOURCE_GALLERY='https://github.com/jlema0590/aikya-harness/blob/08db4879ae3a8697c91adb0cc46bd76e333c693b/examples/documentation/generated/README.es.md'
+SOURCE_GALLERY='https://github.com/jlema0590/aikya-forge/blob/2b682a5de4347318330d3116728700e84cf5f86d/examples/documentation/generated/README.es.md'
 
 def runtime_asset_bytes(relative:Path,raw:bytes)->bytes:
     """Keep source navigation local and registered-runtime navigation resolvable."""

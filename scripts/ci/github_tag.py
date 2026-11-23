@@ -36,7 +36,7 @@ def _get_json(repo: str, path: str, token: str, *, allow_not_found=False, opener
             "Accept": "application/vnd.github+json",
             "Authorization": "Bearer " + token,
             "X-GitHub-Api-Version": "2022-11-28",
-            "User-Agent": "aikya-harness-release-check",
+            "User-Agent": "aikya-forge-release-check",
         },
     )
     try:

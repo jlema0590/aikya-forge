@@ -82,7 +82,7 @@ def build(source,destination,version,*,assets=None,target=None,fetch_components=
     managed_parsers.install(parser_recipe,parser_raws,destination/'parser-downloads',purelib)
     parser_probe=parse(_run([str(python),'-I','-B','-c',managed_parsers.probe_script(parser_recipe)],payload,environment,destination/'parsers.log'))
     links=managed_node.install(payload/'runtime',node,destination/'npm-home',destination/'npm-ci.log')
-    installed=_run([str(python),'-I','-B','-c','from importlib.metadata import version;import aikya;print(version("aikya-harness"))'],payload,environment,destination/'core-import.log')
+    installed=_run([str(python),'-I','-B','-c','from importlib.metadata import version;import aikya;print(version("aikya-forge"))'],payload,environment,destination/'core-import.log')
     if installed!=core['python_version']:raise ValueError('Installed core identity differs from private wheel metadata')
     _run([str(python),'-I','-B','-m','aikya','--help'],payload,environment,destination/'core-help.log')
     _run([str(node),'--experimental-strip-types',str(payload/'runtime/src/launcher.ts'),'--help'],payload,environment,destination/'terminal-help.log')

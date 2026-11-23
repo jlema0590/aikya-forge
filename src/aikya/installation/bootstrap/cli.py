@@ -14,7 +14,7 @@ from .options import parser
 
 def locations(scope, target, commands=()):
     base = Path.home().resolve() if scope == 'global' else target
-    runtime = base / '.claude/aikya-harnes' if scope == 'global' else base / '.aikya/runtime'
+    runtime = base / '.claude/aikya-forge' if scope == 'global' else base / '.aikya/runtime'
     return [runtime, *(base / '.claude/skills' / name / 'SKILL.md' for name in commands), base / '.claude/settings.json', base / '.claude/visibility-proposed.json'] + ([base / '.aikya/bootstrap.json', base / '.aikya/visibility-proposed.json'] if scope == 'project' else [])
 
 

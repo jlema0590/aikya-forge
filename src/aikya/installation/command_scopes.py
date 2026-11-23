@@ -14,7 +14,7 @@ def digest(raw):
 
 def global_commands(source, home=None):
     home = Path(home or Path.home()).expanduser().resolve()
-    runtime = home / '.claude/aikya-harnes'
+    runtime = home / '.claude/aikya-forge'
     skills = home / '.claude/skills'
     try:
         if any(p.is_symlink() for p in (runtime, skills, runtime.parent)):

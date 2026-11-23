@@ -26,7 +26,7 @@ class DefaultWorkerStartup(unittest.TestCase):
                 with self.subTest(scope=scope):
                     target = base / scope; home = base / (scope + '-home')
                     setup(ROOT, target, scope, home=home)
-                    runtime = home / '.claude/aikya-harnes' if scope == 'global' else target / '.aikya/runtime'
+                    runtime = home / '.claude/aikya-forge' if scope == 'global' else target / '.aikya/runtime'
                     assert_startup(self, python, base, adapter=runtime / 'agent_runtime.py')
 
     def test_initialized_project_worker_uses_its_copied_package(self):

@@ -41,7 +41,7 @@ def ready(deadline,cancel):
 
 def read_url(url,limit,deadline,cancel,*,media_type='application/vnd.github+json'):
     ready(deadline,cancel)
-    headers={'User-Agent':'Aikya-Harness','Accept':media_type,'X-GitHub-Api-Version':'2026-03-10'}
+    headers={'User-Agent':'Aikya-Forge','Accept':media_type,'X-GitHub-Api-Version':'2026-03-10'}
     try:
         with build_opener(NoRedirect()).open(Request(url,headers=headers),timeout=max(.1,min(10,deadline-time.monotonic()))) as response:
             if response.geturl()!=url:raise ValueError('Source origin changed; review the new source explicitly')

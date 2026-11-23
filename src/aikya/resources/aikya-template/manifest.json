@@ -6,13 +6,13 @@
   "files": {
     "docs/CONTRIBUTING.md": {
       "upstream_sha256": "3e49fed82cdd447427c367b4a53ead15de94f033a6ea91c84cec64aa31b17610",
-      "installed_sha256": "dd3c6de3b1e783d8a9e890d9c41a0479237870bc02aaa2516ec67174188e7a8f",
+      "installed_sha256": "3ec8b4a76ce2573ffa927dc8239dae0d0273c5ef60eeccd017249fddd8d14d55",
       "source": "aikya-template/docs/CONTRIBUTING.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/CONTRIBUTING.md"
     },
     "docs/INDEX.md": {
       "upstream_sha256": "3658ba6813db8349d57d09eb7269ce223b2ad19ca8f38a92257bb2a82fb3f4c7",
-      "installed_sha256": "7e56f584759bea4cd798b9756a661c9ebc040a04f7dcd29f997bb89ea45e201d",
+      "installed_sha256": "dbdd29b2ed39b8f6bfd4e9543416bc8790ad13ba18ccec90d09b5b9cd3d68e5a",
       "source": "aikya-template/docs/INDEX.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/INDEX.md"
     },
@@ -24,916 +24,916 @@
     },
     "docs/README.md": {
       "upstream_sha256": "74eb9c622fd99f549d062be1943b548d8980f7017e38b197d5a8dd222b2c425b",
-      "installed_sha256": "42c4cba72f54209897f7f43b70ac394de2a7e990101e74da9578311ab95847ce",
+      "installed_sha256": "88910a4df3dec6e56f5f30a0ff8a3f6d084d310f082a06e947ba7ceb50c248f8",
       "source": "aikya-template/docs/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/README.md"
     },
     "docs/ai-assisted-development/README.md": {
       "upstream_sha256": "21f5241641142c8cc8fd747bc884ef4d0d88f897cb00c2a9f864e8179ee4f329",
-      "installed_sha256": "0ad991a971317b4e5b72fa519ac1cfbd45896bec003747d06363e6f3f63ec18e",
+      "installed_sha256": "f20b95e2aa352cbf34d745ad9613708860635606c05f9d9fe148cc44a1f0a1f1",
       "source": "aikya-template/docs/ai-assisted-development/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/ai-assisted-development/README.md"
     },
     "docs/ai-assisted-development/evaluation/README.md": {
       "upstream_sha256": "dbf1ed10a12b6532bdc6a98278826a11350aaf42cb3d329616b1d4fa94ebc4a8",
-      "installed_sha256": "fd7d4b5f8667fdc0a03704d441bbdb65e740fee76a560795333ecd7c24c5ed0b",
+      "installed_sha256": "e0fe7c9658841298557cd5b8e8cc666093bb61bcd72d8ff525cb44d8ffbd3d29",
       "source": "aikya-template/docs/ai-assisted-development/evaluation/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/ai-assisted-development/evaluation/README.md"
     },
     "docs/ai-assisted-development/evaluation/eval-run-log.md": {
       "upstream_sha256": "8e85af947c331e80416c05727e4d38a2b4854f3922ca38d9fc8d2caeb6070351",
-      "installed_sha256": "338679fe28f9e6d5772f34eb22ab16dc399b47bd21d663ecfdf5c307e99eb28b",
+      "installed_sha256": "07fe010ef0f5c530bc5eb28b004cf2a5f81d1232df4d27e61511cb397e95df6d",
       "source": "aikya-template/docs/ai-assisted-development/evaluation/eval-run-log.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/ai-assisted-development/evaluation/eval-run-log.md"
     },
     "docs/ai-assisted-development/evaluation/evaluation-plan.md": {
       "upstream_sha256": "0f5f39e6c6192ef35cfc89f2eaa527043e82bb21269ee6784e5f4a800c1a2503",
-      "installed_sha256": "d878a258b0f05f35f713468c1d6dee7f1e62026a7f307c27093e9ad226f1f74c",
+      "installed_sha256": "66d65834fc19fdd603fbe658fcf720d83cc936712186d78b2bf6e33d9738b634",
       "source": "aikya-template/docs/ai-assisted-development/evaluation/evaluation-plan.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/ai-assisted-development/evaluation/evaluation-plan.md"
     },
     "docs/ai-assisted-development/foundations/README.md": {
       "upstream_sha256": "a4fe202924d24f5282113505cd410f5e1a63a4ea251b845908d85e3127951384",
-      "installed_sha256": "982eb76fec4158e5afd4895ff5e6426482b93822cebaf0f31e5ce4701e44a89f",
+      "installed_sha256": "2f78a2d43a43cdd73d8c0927e578b342c24e5d0fc88cbdd65d5c006c38d2d5b2",
       "source": "aikya-template/docs/ai-assisted-development/foundations/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/ai-assisted-development/foundations/README.md"
     },
     "docs/ai-assisted-development/foundations/agent-instructions-file.md": {
       "upstream_sha256": "c7b8c8b4bd796eb45275ac821dad8cc88d05bee684cc8cef3162085852f4fb5b",
-      "installed_sha256": "ec717d70d93e10adedc0fc0d3b00bd30cbc61072cdd00b796a04df82ac96429b",
+      "installed_sha256": "df485420b8307bea3f999af117a985538f923506e5e665c91bbc099980be2a54",
       "source": "aikya-template/docs/ai-assisted-development/foundations/agent-instructions-file.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/ai-assisted-development/foundations/agent-instructions-file.md"
     },
     "docs/ai-assisted-development/foundations/task-plan.md": {
       "upstream_sha256": "2336b2c41cd35e431a6fa0adc20cfb55c6646bc68e0a05815e8c13bfb36f1a26",
-      "installed_sha256": "ec8d07ee94f8d1c4a84e2202926d6f631bc13fe053b0a833322a0cd77af15b35",
+      "installed_sha256": "f13c9886a8f0101ae4205ec465d33e5dab05d856963a1f1905fccddabaf6d2d2",
       "source": "aikya-template/docs/ai-assisted-development/foundations/task-plan.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/ai-assisted-development/foundations/task-plan.md"
     },
     "docs/ai-assisted-development/specification/README.md": {
       "upstream_sha256": "f86af7682067316d12f3b6b13fa4e15870f5781feb8b986000a21ab669176201",
-      "installed_sha256": "b9d8959b11d215c0dd74fb3c0c48eaccb7ff7f1068dec124f81a6db36b04f0aa",
+      "installed_sha256": "60452efef52976b28a97e4760a9282f5a088daf03104403213e3a7d175204674",
       "source": "aikya-template/docs/ai-assisted-development/specification/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/ai-assisted-development/specification/README.md"
     },
     "docs/ai-assisted-development/specification/agent-task-specification.md": {
       "upstream_sha256": "e887fac4da89cee8819a1f5578ac2113b831ed75d5d785289db1f0dd47a54e95",
-      "installed_sha256": "1bdb2b50d3b3dd5ae6f83a6e1869b00b5a1b82fa284fb85ca414820bf799338b",
+      "installed_sha256": "4ee929b6398399f3d203db27669b705dcb56726248f2f33f6b1be76293078b71",
       "source": "aikya-template/docs/ai-assisted-development/specification/agent-task-specification.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/ai-assisted-development/specification/agent-task-specification.md"
     },
     "docs/data-engineering/README.md": {
       "upstream_sha256": "841c255ea136d21b42b3dc0d9a84835da12e9f4d1c0dfc9d2a137516ddfbfd5b",
-      "installed_sha256": "93bd0b5fe5af4dc304190d6d69dca4d573a5880be8afa5fcc35f46620a1b51d2",
+      "installed_sha256": "3de895cfcb8e0a43843da5beb2cc21e0c993073972f0884c80daa0923897ca20",
       "source": "aikya-template/docs/data-engineering/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/README.md"
     },
     "docs/data-engineering/foundations/README.md": {
       "upstream_sha256": "2d19697527a4f63fce01a3566a70435e1047fdd7c1b140db9e5bd5dde0fa75ab",
-      "installed_sha256": "43b97c66a1b97b524ef8cc9d80cde52c4a7d8a1c9b8ebf9df1f2c581e4d72a30",
+      "installed_sha256": "27d5bb2e18cf4337d7eb518583520a6445403934a87f0654f00832d7b6b484dc",
       "source": "aikya-template/docs/data-engineering/foundations/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/foundations/README.md"
     },
     "docs/data-engineering/foundations/data-contract.md": {
       "upstream_sha256": "6697ea64b8aa563567fdf3bba4884552fd6cb086c996b3534e740363db4b41d7",
-      "installed_sha256": "5d9ef11dcee8468c5c1c022f88c834e02d59969e0a2020568481fe9af12aa9fd",
+      "installed_sha256": "2ab88f1f756e073084011f490d264e3fa21fec6cff59d5cb0bbf2f31f10e4834",
       "source": "aikya-template/docs/data-engineering/foundations/data-contract.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/foundations/data-contract.md"
     },
     "docs/data-engineering/foundations/data-pipeline-design-document.md": {
       "upstream_sha256": "c41aa3745d513d506ef2cf528b6611cbba4986d4683a05cba628852f5d247ea1",
-      "installed_sha256": "c062614fa4a31cb6323026fb2c631c0aafa9264bbb788065bcd28ba757866b59",
+      "installed_sha256": "a25e81b0e15113ae3930232aa22336d99b35f88d147c6af878502314d6dc40c1",
       "source": "aikya-template/docs/data-engineering/foundations/data-pipeline-design-document.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/foundations/data-pipeline-design-document.md"
     },
     "docs/data-engineering/foundations/dataset-catalog-entry.md": {
       "upstream_sha256": "599731736ca722d2658b54eb6c25ead525ff4e159d0729d30b3cc28cb3ec66d0",
-      "installed_sha256": "8d4048cf864f1d6a23d32334c0cb46d361563e868382604253c7bc549a337c7a",
+      "installed_sha256": "5a4dc29653e7b648b81d73259d9a1612adf6d3adf86819581be8eba60387f5b6",
       "source": "aikya-template/docs/data-engineering/foundations/dataset-catalog-entry.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/foundations/dataset-catalog-entry.md"
     },
     "docs/data-engineering/governance/README.md": {
       "upstream_sha256": "727e763f841c4e3448072fbd10fbd360a911032c42f95de186c7ea5c193f677d",
-      "installed_sha256": "3889afb31ef301632c4c712917d3da5b8c37347a8f303229c1175ea5af9fce2a",
+      "installed_sha256": "ea5b929a912b6e23b6ae9529f42b84759290c1120ae26462375533c92583a60d",
       "source": "aikya-template/docs/data-engineering/governance/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/governance/README.md"
     },
     "docs/data-engineering/governance/data-classification-and-access-policy.md": {
       "upstream_sha256": "b5caf2939751a8ca34520c38873b80afe34088c7b7a3dbf3d45617c6d7f59081",
-      "installed_sha256": "ac4673e820e12e2a3bdee2ebc05feaef246382bdf15844a5c48e590bc288f345",
+      "installed_sha256": "8f5994e8207522aa87379e8fe8ea4eaebebf7958165a06e6c1baf42e12308062",
       "source": "aikya-template/docs/data-engineering/governance/data-classification-and-access-policy.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/governance/data-classification-and-access-policy.md"
     },
     "docs/data-engineering/governance/data-lineage-record.md": {
       "upstream_sha256": "05e5aa7556d1fc44cc3f28f6dc0ed95aac380692e3f464d83ecda8c8434d88e8",
-      "installed_sha256": "e698e72f9d8050787addec78518aa8c90b3b7f1d4495868f36e11d3f17e62883",
+      "installed_sha256": "e7f043854c6301ee8e9826c30511182abbbfe2e5176db0fefa7c61f4bd8b3a7b",
       "source": "aikya-template/docs/data-engineering/governance/data-lineage-record.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/governance/data-lineage-record.md"
     },
     "docs/data-engineering/governance/data-quality-specification.md": {
       "upstream_sha256": "f0f80040b497e4fcf113088105011a475793e89f5e3249c93068194ef9260606",
-      "installed_sha256": "23efaf2a07bd1d7705084beda929236b9b85f32fd1304e65609f9e57042899c1",
+      "installed_sha256": "ce1b019374f5ad5dd948405b1ed35cdc5a0bc752ef592403a567c53c5c1b00c3",
       "source": "aikya-template/docs/data-engineering/governance/data-quality-specification.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/governance/data-quality-specification.md"
     },
     "docs/data-engineering/operations/README.md": {
       "upstream_sha256": "2db661b232e983e7722eb40fd2026942434247546b76ca4fc2085ed086c16686",
-      "installed_sha256": "e4a64ede8a3c02bb0d78b6e22d22961232cc2495692fdab1c5c9eff36955efb8",
+      "installed_sha256": "7144d10771f8e69153bfddfbdb6f9925c603601ccf1bc8327c1300a3e3cce530",
       "source": "aikya-template/docs/data-engineering/operations/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/operations/README.md"
     },
     "docs/data-engineering/operations/backfill-and-reprocessing-plan.md": {
       "upstream_sha256": "b4d03f86154c30ddc075d3f7c13772281e0fc70ec58d304091776d01b21c8980",
-      "installed_sha256": "98b5e5268874b29b520b09ef55006ba22ff16f1e19e2aafefdeef162a53f20bf",
+      "installed_sha256": "dcbcdcaca33bbef717b437af7b2b4adfe190eedad317d8d4d249cc3388953f47",
       "source": "aikya-template/docs/data-engineering/operations/backfill-and-reprocessing-plan.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/operations/backfill-and-reprocessing-plan.md"
     },
     "docs/data-engineering/operations/freshness-and-sla-log.md": {
       "upstream_sha256": "2d9d9c7f8002bae1d7e5ec87688717d169c99c2599f36a9f79d3195afd3dd692",
-      "installed_sha256": "55392fb25a7aa5349c04f6cc769f2735627d8cd21d28feeeb03e7d1b6f999f7a",
+      "installed_sha256": "cc6be2e9fe6aa0a9f6fbd4569f761687b340acde31e2e3f77a2b26b14bf0694d",
       "source": "aikya-template/docs/data-engineering/operations/freshness-and-sla-log.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/operations/freshness-and-sla-log.md"
     },
     "docs/data-engineering/operations/pipeline-runbook.md": {
       "upstream_sha256": "4dd5bcf8fe7765e8e5f99a5d646244078f36107f860c5d4b000b577d0d6c3a5e",
-      "installed_sha256": "4fa893af4532dee9b95b5e0e6639ed070958cdffbb25901b06a5f972b3f23b61",
+      "installed_sha256": "c681624f0fb3a6b84916f28adf0c16a110a0eefc8db3ab8d4de6889b0ac60d3b",
       "source": "aikya-template/docs/data-engineering/operations/pipeline-runbook.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/data-engineering/operations/pipeline-runbook.md"
     },
     "docs/game-development/README.md": {
       "upstream_sha256": "437033aa7dc28fdabf35b56b41a428dbaf63249686bfbe37ddf1baafddc80328",
-      "installed_sha256": "b4b217a276ec4fec8bc6863a5c827023be969cfc8b5021629830c0adcf292836",
+      "installed_sha256": "11cf6296900621a0899b72b88f3cd6c0442012a9acda1841fd1528b4a9eeb03c",
       "source": "aikya-template/docs/game-development/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/README.md"
     },
     "docs/game-development/foundations/README.md": {
       "upstream_sha256": "dc393a5aa8c83282d51507ac2c71d20b749f0573f2dd03aef44ab052480d8eaa",
-      "installed_sha256": "fdc834dd46fca939678a92ce5cf7e53389ab38d81d5c32caf38110613fad1bc1",
+      "installed_sha256": "22831ea8d83bca4ef96752befadef01291a1bc49b84633da418b5be81b86726d",
       "source": "aikya-template/docs/game-development/foundations/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/foundations/README.md"
     },
     "docs/game-development/foundations/art-bible.md": {
       "upstream_sha256": "63c4e90ce43f0a6d6c20c77d4929fd45bc47d5b6a8af1d2fa18b9938d3ed7180",
-      "installed_sha256": "17b1c6348c3d764804a2df3e6d8c3a83154261e361f0d432ee113cffac9ccdfa",
+      "installed_sha256": "c472306150aef5d108d9621d82a1ccb21a3500d616500b7cf9cac5c69505bed7",
       "source": "aikya-template/docs/game-development/foundations/art-bible.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/foundations/art-bible.md"
     },
     "docs/game-development/foundations/business-plan.md": {
       "upstream_sha256": "aede08624dc5704e6c4a54bde69cbb2dc4ed5bf7ab55123150cc4883e092d3be",
-      "installed_sha256": "a59e44b09e1c83d1fbc2f516a215caac0f64be3e3e3d8943737f3ee9228bde74",
+      "installed_sha256": "a2cc758f55148cadb7e2f8cf6d0e4f3452c88990e9afdcf0904723b6fdfd3e5e",
       "source": "aikya-template/docs/game-development/foundations/business-plan.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/foundations/business-plan.md"
     },
     "docs/game-development/foundations/game-design-document.md": {
       "upstream_sha256": "7ad98319b3c375268506bbe6529c893da7faea80dfade5d0dcf5002fa3c8f8c5",
-      "installed_sha256": "22f27baa8502a3ab8534a76ff768960b4ca77e7f1396b4d4ac8f6b34d15d2a6f",
+      "installed_sha256": "9fb182e2402906338108cc010f6369e9a5eb2211216f33ec4a44975843250aab",
       "source": "aikya-template/docs/game-development/foundations/game-design-document.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/foundations/game-design-document.md"
     },
     "docs/game-development/live-operations/README.md": {
       "upstream_sha256": "4ead967f5ab5037b92142a8edc6bc1b899c22606c1388a4438f1be4e8fbffff1",
-      "installed_sha256": "b70adf968a2ffd83fa7177c27f4cd63292cf3672b336f1615ca30de8b66e9fb5",
+      "installed_sha256": "ad105fd27c234415da091e0b8a44f8017686476f9c44f8fe7b650d0e2a38e7d3",
       "source": "aikya-template/docs/game-development/live-operations/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/live-operations/README.md"
     },
     "docs/game-development/live-operations/age-rating-compliance-record.md": {
       "upstream_sha256": "6fbe41af0e703522c3a4c7e4f45fe0f98b40f6dd830bf68ba4b025547ac910c8",
-      "installed_sha256": "98101f113cb706d19c51f79366833d14b405615eff4decc2c23532e28a593b4a",
+      "installed_sha256": "fd901920d0243be5f32269f5da5631ef1c4a9a81e1110a5d2ac4bf3dc6c7cc28",
       "source": "aikya-template/docs/game-development/live-operations/age-rating-compliance-record.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/live-operations/age-rating-compliance-record.md"
     },
     "docs/game-development/live-operations/balance-log.md": {
       "upstream_sha256": "6cb80c05f048f5b257cdd3c9713bf9b5b766624a25ab0ac3980ba6bb08184a60",
-      "installed_sha256": "df3e892dad626ebe7a0cf6cbaa6a5b0afe2ed8ac99d03a3092b48bc24547185e",
+      "installed_sha256": "4717b2d2ba6c1af07a2c160dd6b15440a4a0596557084d72114e476a717d2f0d",
       "source": "aikya-template/docs/game-development/live-operations/balance-log.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/live-operations/balance-log.md"
     },
     "docs/game-development/live-operations/deployment-plan.md": {
       "upstream_sha256": "27c4762257b34dfa016f5f89a3df2e5fcb74d525dbad1deed6fca4581786a70a",
-      "installed_sha256": "846e71cbd1db4683ee727ea51a4c62c39e04a94646947314b3f253debedc15a1",
+      "installed_sha256": "67ebe67d5d4c4c92e0a942040835436420bf8921468264e6138a6083e693a014",
       "source": "aikya-template/docs/game-development/live-operations/deployment-plan.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/live-operations/deployment-plan.md"
     },
     "docs/game-development/live-operations/live-ops-plan.md": {
       "upstream_sha256": "4a59f5b2b0e7cd287c167b7faf49012e66123e95beb795c9a35348c5c019511c",
-      "installed_sha256": "8ca9f19147ca9523e2c9828793fcb15a87e955ff3e242956e593946f4c9ccf3b",
+      "installed_sha256": "977b03de0a416d2a630737227dc151fbb59616da52af86976fa93a3cd0465d0b",
       "source": "aikya-template/docs/game-development/live-operations/live-ops-plan.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/live-operations/live-ops-plan.md"
     },
     "docs/game-development/live-operations/privacy-ledger.md": {
       "upstream_sha256": "abad250bfc1f9e8f1f5ca9765918c4b9c23b7115e39caf01a3a8116e4912362f",
-      "installed_sha256": "08b4b04c8aa7e8981f92e9ad6695428754d6c47048e34fdf4c23d19eedd9f5c6",
+      "installed_sha256": "cfd65b27db29cd5767e703652e98a2ad07a4d315829368677257f2004944ad8a",
       "source": "aikya-template/docs/game-development/live-operations/privacy-ledger.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/live-operations/privacy-ledger.md"
     },
     "docs/game-development/live-operations/release-notes.md": {
       "upstream_sha256": "26f9fa2637565cee8a303b386b5e5d679d8ab0f94d7914629f8a61c201a09924",
-      "installed_sha256": "ed73747f67a45524b51dcba470bb2881231047423829970d8509c79f1aad98b5",
+      "installed_sha256": "6d3882d772458ba4489342b10f452db2edad5c19297e1fb374569b21930f6266",
       "source": "aikya-template/docs/game-development/live-operations/release-notes.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/live-operations/release-notes.md"
     },
     "docs/game-development/production/README.md": {
       "upstream_sha256": "3c4c5c03523db3f15ba7194f50d90fb2c6d169ca66b499322bc2fc0e03c1522f",
-      "installed_sha256": "55ec3b321e7650dffbd7a64c2c241571c52fec0f5adbc4013a2d5e52c53f11be",
+      "installed_sha256": "b2a0f722d05fce7fc140eed5469c9569f960bbf8f97a4948a5cffe9f5372c009",
       "source": "aikya-template/docs/game-development/production/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/production/README.md"
     },
     "docs/game-development/production/asset-and-contribution-log.md": {
       "upstream_sha256": "ae27263e482f59b80a7eb0800d3e863d11d0465558bdab9ea8ea20689fb4a958",
-      "installed_sha256": "0f2f8e2c34ddcaf22bb554a651cefe1e49f6e0c4dc4eb8dec6495ddbad4ac2d0",
+      "installed_sha256": "df5ccdbc3f43772f3e9163a575d764df9eb446d655c3257ef9b036564fe2f2a2",
       "source": "aikya-template/docs/game-development/production/asset-and-contribution-log.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/production/asset-and-contribution-log.md"
     },
     "docs/game-development/production/cycle-retrospective.md": {
       "upstream_sha256": "24fb22443e4eb48edda427ed50c0cc228ace6c7c24d0779af81ebc0ef9a7e72c",
-      "installed_sha256": "6db36d1657f458159e93c052f53634802ba9c744bde0311c29f5f452ec1394ee",
+      "installed_sha256": "be3abd0fac270ddd156171752e756f0254d4cb1dc73932ddb9b00602409db51b",
       "source": "aikya-template/docs/game-development/production/cycle-retrospective.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/game-development/production/cycle-retrospective.md"
     },
     "docs/general-swe/README.md": {
       "upstream_sha256": "21a148ef2d479aa2de39e98102188cfeb5e8038875d6556cec309b7a0ff145f0",
-      "installed_sha256": "1264e1e440074880c44f07ee7b492e93f3650a92b406efe3dff59ed58e32455f",
+      "installed_sha256": "dc997f7bda1d0cf870a60220d527a8bbdbb58b5c263247fd6f6b88f580f7cd81",
       "source": "aikya-template/docs/general-swe/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/README.md"
     },
     "docs/general-swe/agile-scrum/README.md": {
       "upstream_sha256": "150ce8ccffb72722e34af039f7724018003c2e404fcb0243682ae695c86657aa",
-      "installed_sha256": "db1dd605e43b284aebcc2392bf801fd04f198fed066f307d171e68706c877d25",
+      "installed_sha256": "7b77f58d69bd7bbbe37e73ac71f20585af6dc8d7572ce42daeb972b127727e2a",
       "source": "aikya-template/docs/general-swe/agile-scrum/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/agile-scrum/README.md"
     },
     "docs/general-swe/agile-scrum/definition-of-done.md": {
       "upstream_sha256": "c652763c0a1f370db361f455921c8ada67a731feab40462d4ed28f8dee840417",
-      "installed_sha256": "7eba51913e43d85b07db7051e12c644efaa2de221f0c76354cde96174d3d4e26",
+      "installed_sha256": "ac39f21a63cda52d4fde14cf762dbe4eaaca330401d84038e866ef5ed81cbc78",
       "source": "aikya-template/docs/general-swe/agile-scrum/definition-of-done.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/agile-scrum/definition-of-done.md"
     },
     "docs/general-swe/agile-scrum/product-backlog-item.md": {
       "upstream_sha256": "ca59941f74486368f7c54a6fe23f36a0a763edd26312f764ed66f9343fcd55f8",
-      "installed_sha256": "d5a447f248b90f5ccd2b416218e53cb4d8370518df15a63cb66be5fb15fbbc44",
+      "installed_sha256": "4904bb5668c83e7e8c9ddf3916df6e0f042ebfaf55e9badce131c28c8114227b",
       "source": "aikya-template/docs/general-swe/agile-scrum/product-backlog-item.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/agile-scrum/product-backlog-item.md"
     },
     "docs/general-swe/agile-scrum/product-goal.md": {
       "upstream_sha256": "3f063118c3f48a43686a5c814456a62a5256feba009c283023501610a1b9dafc",
-      "installed_sha256": "fdd9c1ca300357ff0c4450b90813966fe118e28ad92c7cb69199be6622c7f2b6",
+      "installed_sha256": "71de9950c3719671e2528f21d47958e35b87e6336a6f7c601130c244ef96bab7",
       "source": "aikya-template/docs/general-swe/agile-scrum/product-goal.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/agile-scrum/product-goal.md"
     },
     "docs/general-swe/agile-scrum/sprint-backlog.md": {
       "upstream_sha256": "64c7323e69625a573d683b5d4e83dc27bb7f02a07a02a09a6f609c458c555195",
-      "installed_sha256": "1ec0e34d0e23634dc30fe63eeeb5d51835eaae3d55da790639d916ede9e98ee2",
+      "installed_sha256": "87ac6ff4249e77eff9296c7fadc0794d0b2d8992e1565b4ee150fe722bcd9bc7",
       "source": "aikya-template/docs/general-swe/agile-scrum/sprint-backlog.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/agile-scrum/sprint-backlog.md"
     },
     "docs/general-swe/agile-scrum/sprint-retrospective.md": {
       "upstream_sha256": "9e65e3a4bb5b626dee70964430003e7d9f8fb39f7e87b4f4945946be4a2ea638",
-      "installed_sha256": "8dcf26606230f4a95be24bc87f99c91ba0a586f07d19445093b967aaf2334e0a",
+      "installed_sha256": "8d5a9d721ee45b981c5e3800621e6e9590b55e508a155161f2c32179ed483c6b",
       "source": "aikya-template/docs/general-swe/agile-scrum/sprint-retrospective.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/agile-scrum/sprint-retrospective.md"
     },
     "docs/general-swe/agile-scrum/sprint-review-notes.md": {
       "upstream_sha256": "5946d851f481473e03744752a9bffa0c11c2b8ee284de3cc6c86c1454ba6bce8",
-      "installed_sha256": "356000ee7d0cbb6ff79305d4ca6fdb794c9348e006b73da74509d113150d9047",
+      "installed_sha256": "0ddeedfbb607d0b11952b3c82a2b29090cf15288f68d556a2e787f1ab89ee766",
       "source": "aikya-template/docs/general-swe/agile-scrum/sprint-review-notes.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/agile-scrum/sprint-review-notes.md"
     },
     "docs/general-swe/agile-scrum/team-working-agreement.md": {
       "upstream_sha256": "9e19b910ce577530021c6d3edf153af1d377cc7b9bb56e2edcbaa7a4a15617d2",
-      "installed_sha256": "1fc22126c55887e36d104d62716e2a0c02809516b3daedddc2422df8adb41cb5",
+      "installed_sha256": "db89d564c99471c464c2efecb05b0b1685dfd578ab9363bb7ff5590298eab287",
       "source": "aikya-template/docs/general-swe/agile-scrum/team-working-agreement.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/agile-scrum/team-working-agreement.md"
     },
     "docs/general-swe/foundations/README.md": {
       "upstream_sha256": "4b9a7cdd7e7e5d20f1c5f0b3d945bcc22ca84efee7a97f449f4872b34bbca99b",
-      "installed_sha256": "6fd6dc714b652300d4087241fa3b89d592e4649d1292948de6dfb60093170202",
+      "installed_sha256": "3634b20adf4f3146290d4ddff365ecfff1d19b4db1b29543fb67fb6ed653e09d",
       "source": "aikya-template/docs/general-swe/foundations/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/README.md"
     },
     "docs/general-swe/foundations/architecture-decision-record.md": {
       "upstream_sha256": "d4658d0c454d00f5fcb9e38b18064cf046489f45e443cca61ccf52443fea520a",
-      "installed_sha256": "c9fde39d5b8999854e9a2737978daccbb6e07a07dc96d15cadf9e87510a21e7e",
+      "installed_sha256": "3299a6d9b8e1b4dc20212b7eac184ac89b8d1b372202731d6f6d49a12d6772b7",
       "source": "aikya-template/docs/general-swe/foundations/architecture-decision-record.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/architecture-decision-record.md"
     },
     "docs/general-swe/foundations/architecture-overview.md": {
       "upstream_sha256": "a62353e98edb307ea9ff1d51d58b0676ac5b5b1dbcebe78f672c5d5f077e097b",
-      "installed_sha256": "e3f30e6ee6ef19c64a8016e524569f385c24e79bac5943b843526277541410fa",
+      "installed_sha256": "0a1689134520276ed8be74ba6c91878a22beba6d30fbb9a7be3fe61f04be6249",
       "source": "aikya-template/docs/general-swe/foundations/architecture-overview.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/architecture-overview.md"
     },
     "docs/general-swe/foundations/branching-strategy.md": {
       "upstream_sha256": "98f16f24c7a06f9aa4f0bf969aa975fa8e666e7e94dc43f66fb37417779f1bb2",
-      "installed_sha256": "18f16afcca33861409d078d6c72cdef4a10256af852a694df68b9ca805d41719",
+      "installed_sha256": "6588f197266ce470c40bedb2d87d8fa8be79e6c2df33d9ec682001b012c58aaf",
       "source": "aikya-template/docs/general-swe/foundations/branching-strategy.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/branching-strategy.md"
     },
     "docs/general-swe/foundations/bug-report.md": {
       "upstream_sha256": "ea22e9eac3e60a349b069dffda5361b70e764297a7796b8f2fa23c1965087d4f",
-      "installed_sha256": "5b03660db55f7121e6c66e37dd0664d70bd1829e3da20328578ff903edc21f98",
+      "installed_sha256": "458a2a99bfb5d7bedea7449051c917a832394bf395d8c69aca89c014627f1c9d",
       "source": "aikya-template/docs/general-swe/foundations/bug-report.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/bug-report.md"
     },
     "docs/general-swe/foundations/changelog.md": {
       "upstream_sha256": "418c2aeb77177852dcde9cf5dd14f8f1d195b0dd0f40ee1667e99139ef8ca383",
-      "installed_sha256": "7b177dfc8608a57476d4f29f3b464098e77c4874716b8988e82452785ea56f43",
+      "installed_sha256": "0ba4f9aebdc48859142b0f31de99571a1a5e3dd5d79b8342020a16f5b291ebcf",
       "source": "aikya-template/docs/general-swe/foundations/changelog.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/changelog.md"
     },
     "docs/general-swe/foundations/code-review-guidelines.md": {
       "upstream_sha256": "40505718097c6301d634ac87773d6f1dd58eceacaf74b8b4877f9a1c1c511a46",
-      "installed_sha256": "75b354f601b9db831e92d851340e23fea4971e589cb7d88c7174f77551b48237",
+      "installed_sha256": "c0f6ba7437c3b5c9a2b0ca69eb8ab2bf7a9465c088a7f2400bde5ef2dcf0f5dd",
       "source": "aikya-template/docs/general-swe/foundations/code-review-guidelines.md",
       "modification": "Aikya footer and trailing whitespace normalization",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/code-review-guidelines.md"
     },
     "docs/general-swe/foundations/coding-standards.md": {
       "upstream_sha256": "205ab695702289e8bbb1d017bc023ec3f55d2716554f732b96d38f03ac3c5ddf",
-      "installed_sha256": "9d1f4ebf6b454ffaab6e2f70f58700c9f283be3bde13277173e10af4ab98abe5",
+      "installed_sha256": "919be7190000c9cc7b2f49478d3617479f8bac8dc21c38372eeb695e9b23a3d1",
       "source": "aikya-template/docs/general-swe/foundations/coding-standards.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/coding-standards.md"
     },
     "docs/general-swe/foundations/configuration-management-plan.md": {
       "upstream_sha256": "32aed9d4401bb7c18f6f83876bac7400007bc4310e6656b94a835c25e3ef870f",
-      "installed_sha256": "3940bb14ecada969a3e808409abeb927480fedb4ec55a6843a1e5d098000d866",
+      "installed_sha256": "6f23ef66028e338489a5072ab0d6b25810c7dfb5e682965af330db2d5a030faf",
       "source": "aikya-template/docs/general-swe/foundations/configuration-management-plan.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/configuration-management-plan.md"
     },
     "docs/general-swe/foundations/contributing-guide.md": {
       "upstream_sha256": "1b9899e2a1b7d592dff3bacbc24f78b884ca1d8bba4715894c2c96d2f47c5bf9",
-      "installed_sha256": "f6ebafdad74f5178ac86e33e665852218905f9c3d08101f93d4d4e51673d6785",
+      "installed_sha256": "0a4940f3446cb4bb485a6fa16b1e6deb66f93009e20fe8f5b8e44b2a81720821",
       "source": "aikya-template/docs/general-swe/foundations/contributing-guide.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/contributing-guide.md"
     },
     "docs/general-swe/foundations/data-model.md": {
       "upstream_sha256": "a8797a3aa16c4a588afb6d803a3f270f540b1f0df8d50410873cbb70a2a6de03",
-      "installed_sha256": "f3533ac558e3573b5d32dc8bc17089354aee31528333e845afd40a4064adcaa9",
+      "installed_sha256": "125835a0d40d514edc60852b33641b1ec37ad42c0e2a0075360a6a770fc040ff",
       "source": "aikya-template/docs/general-swe/foundations/data-model.md",
       "modification": "Aikya footer and trailing whitespace normalization",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/data-model.md"
     },
     "docs/general-swe/foundations/deployment-plan.md": {
       "upstream_sha256": "65ecba0eaba6904442c5729ee60ea0107e6305927945924e6d004c9a4ac1c6e3",
-      "installed_sha256": "cfb68ef7533ff242a63dc81d53d653067e5933398bfcdd0048c7515706a47317",
+      "installed_sha256": "c99d5ecfc30c469a5149af691de640b7ba786a3b60cb4a220de36b352f184fbe",
       "source": "aikya-template/docs/general-swe/foundations/deployment-plan.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/deployment-plan.md"
     },
     "docs/general-swe/foundations/deprecation-plan.md": {
       "upstream_sha256": "bbacd145eb8b17cfb02d6c4f2ba809e441552d1cf303812de0355178b0717389",
-      "installed_sha256": "643f4cb6d3f5ab1ae4d552395ec752a2b14b5547a43d99ed59a1a50dd3abd68d",
+      "installed_sha256": "86dee80f42ab71e89229726c56b8a07de24a9c02470302b9be95dfab8ae9c13d",
       "source": "aikya-template/docs/general-swe/foundations/deprecation-plan.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/deprecation-plan.md"
     },
     "docs/general-swe/foundations/feature-request.md": {
       "upstream_sha256": "52380c414070d4042f34214f49cd4b132301fad07124fd8892c2d3090f00dd3b",
-      "installed_sha256": "e4760471ff4370d737a34bf4b31943588b7be2e36ec3304bd2083f82c43c6255",
+      "installed_sha256": "85bae8bbf2826ecbdfdfb60ea5911656c05092b8c421798dc7844ff9e09f4491",
       "source": "aikya-template/docs/general-swe/foundations/feature-request.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/feature-request.md"
     },
     "docs/general-swe/foundations/glossary.md": {
       "upstream_sha256": "d5e9fceef288520ce38d59935c7984036b2db38b34ad4966072d3bb44b7c08c0",
-      "installed_sha256": "201ffb763f827d39d9b02d2780ff21b861261d40c9844070f038c809cd12814b",
+      "installed_sha256": "5222e538d9a29cf164daa044d924fb9e31dcb104481d8f1e402ac94f2e4cda0b",
       "source": "aikya-template/docs/general-swe/foundations/glossary.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/glossary.md"
     },
     "docs/general-swe/foundations/governance.md": {
       "upstream_sha256": "178793e67eea09c5b24cacbc4d2954f66ca48bea1a649dcd47d0a5cb4fb11bfe",
-      "installed_sha256": "6c13a4076dc03cc26f219e17041732018592aa10d4b784fa9e5286641b707746",
+      "installed_sha256": "6f0a0710e27992ef6a0cddad6179890cf45b4c1037e796dee4c5656677e7d0cb",
       "source": "aikya-template/docs/general-swe/foundations/governance.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/governance.md"
     },
     "docs/general-swe/foundations/incident-postmortem.md": {
       "upstream_sha256": "c8f08874fde31d7bcb80f423ea366d964b2f9323738317b3c498d07fab400c2c",
-      "installed_sha256": "ae03464b3659fa3ea2bd82788d63b5d01aafa247e57afbf8ebb8c00a5d3e92b7",
+      "installed_sha256": "8b6e9f19e4f3763a6c732bcbc552990333a2be8e5034cc7c0995fe8ef894f5b5",
       "source": "aikya-template/docs/general-swe/foundations/incident-postmortem.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/incident-postmortem.md"
     },
     "docs/general-swe/foundations/interface-control-document.md": {
       "upstream_sha256": "617727b2c9291a4523935dec3888a1fb077e0646ceb7b01bd8dd9becc0b3139c",
-      "installed_sha256": "27679f7bd121a67f23e4eabe57cd9303c8078b31a4bfe27d94d83eff14361571",
+      "installed_sha256": "b2c2210830c0286701bc243b51ca96fdf61e65af29188ef34619071aab714202",
       "source": "aikya-template/docs/general-swe/foundations/interface-control-document.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/interface-control-document.md"
     },
     "docs/general-swe/foundations/onboarding-guide.md": {
       "upstream_sha256": "172ef0de93f58762703358fd2791102c8c0fcf6dda72f123cfd6a67f9882ff85",
-      "installed_sha256": "d62c246b4d271aea379688607f16f6bca7d6510db249273445ee760ebbe904fe",
+      "installed_sha256": "ebdeeb1d8e2bf565724faeaff0773a7f9899f1752e7d4c52049c21aafb89e87d",
       "source": "aikya-template/docs/general-swe/foundations/onboarding-guide.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/onboarding-guide.md"
     },
     "docs/general-swe/foundations/pull-request-template.md": {
       "upstream_sha256": "75b26388b6b7afdd19d4131a210d3e21aa784fd7764249f8b6f5b776f230e4da",
-      "installed_sha256": "3753835f59704d9c2cc5bb7739c27c90c5e49bc0e941867ec58ce01c223e6bf6",
+      "installed_sha256": "ac63ce46a2f416f439b37ea849a14a05a970ffe772a9996707c8af0c809bef85",
       "source": "aikya-template/docs/general-swe/foundations/pull-request-template.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/pull-request-template.md"
     },
     "docs/general-swe/foundations/release-notes.md": {
       "upstream_sha256": "1494c6bafd4623d4690b77d20091734410da344b098510318a49aa20c343f641",
-      "installed_sha256": "f6c6615a2c1b5058956768d6cde88c7239354fee11b6e2153768067d7503c990",
+      "installed_sha256": "20ed55ebc036cd6aa1464f8f86f644279103913a3cbfabef7778a91c8ba4a713",
       "source": "aikya-template/docs/general-swe/foundations/release-notes.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/release-notes.md"
     },
     "docs/general-swe/foundations/rfc.md": {
       "upstream_sha256": "02644a13567d58912968dc7f6024eef94daf3ce2cf1fec34871e6b75594c8474",
-      "installed_sha256": "dd3eabc6d553484a8e25fabdb3a470f774d5da841cd7b87819958fcd91786aeb",
+      "installed_sha256": "e38906f383c6309a8c6f5d7bcca7a7acbf70b3596f7befefc06c5e0e4ea68fc1",
       "source": "aikya-template/docs/general-swe/foundations/rfc.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/rfc.md"
     },
     "docs/general-swe/foundations/runbook.md": {
       "upstream_sha256": "9d56e523a797b28aa16c0257540b533a2ad044df18946c39d8a715e7a839ca65",
-      "installed_sha256": "b31308932eb04edac91fe17572d49e3092af8de17f1e9f52b434c3e8b15ff7d8",
+      "installed_sha256": "a671bcd242c2cced00806ef2239886280e4a40dbc6f64f511a47f2a268d839af",
       "source": "aikya-template/docs/general-swe/foundations/runbook.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/runbook.md"
     },
     "docs/general-swe/foundations/security.md": {
       "upstream_sha256": "00f670caa1153dccde25466ca15d6332d0affb4a0c3a744c9f85c54b73cb8038",
-      "installed_sha256": "0a3e1f795ecdc4ec562175654b2261b0f71caa2e3f30da249ecd99caf7f1ce5c",
+      "installed_sha256": "8491fd15609e8be1d1cf55485d707d95b2469c98f0617b0e6f934dfd174abb8d",
       "source": "aikya-template/docs/general-swe/foundations/security.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/security.md"
     },
     "docs/general-swe/foundations/service-readme.md": {
       "upstream_sha256": "27cdce04e36441d214fad5403ccf39e8ade0aa48864eb0b621f51aa65e64b474",
-      "installed_sha256": "e3ad780796aa9f12c746ad72e2bac69f80e7bdef458d0beafc0c126340c5c764",
+      "installed_sha256": "98eb86097cdc982e48345602a53699d984156aeccd0d98b6a9e48e57358a324e",
       "source": "aikya-template/docs/general-swe/foundations/service-readme.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/service-readme.md"
     },
     "docs/general-swe/foundations/support.md": {
       "upstream_sha256": "17a289713d648a346f81acb2443cf3c53406ab4ab42828d8076877c2a6d1e498",
-      "installed_sha256": "72a322590fe7354bd54f6ffd5ab49f951557916d3b924cc423a489bf6030cc0e",
+      "installed_sha256": "5bf5c73ee4c778aebfcd5bdb4fc2027cb99fd572ff17938d2e097ac92a0ae027",
       "source": "aikya-template/docs/general-swe/foundations/support.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/support.md"
     },
     "docs/general-swe/foundations/technical-design-document.md": {
       "upstream_sha256": "d94964b7f3b9f5c13b6da967d71a615138b869dde81891e1f4313a626165a7ae",
-      "installed_sha256": "0d9c8d0732ae7e8fc2d74ba3833da91c203504675848b05f6a5afbfa74625cf1",
+      "installed_sha256": "8f21186d7460de9cb0cc34356daf5be74b9e5c092ae1724ba64a28382e6d7d65",
       "source": "aikya-template/docs/general-swe/foundations/technical-design-document.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/technical-design-document.md"
     },
     "docs/general-swe/foundations/test-case-specification.md": {
       "upstream_sha256": "dc96933986be69f153ed5a1369683ff9fdb30c77fdec422e8db90db24564c008",
-      "installed_sha256": "653863ed295bc359f3b92ad3f80fee2f9861d2789d4373d65eff4e5cd675ed1b",
+      "installed_sha256": "7c3f76c4c0fcf7e1990ba38b23e8cfca32c8f0f8a75e5e4d46028431f2f0a8b9",
       "source": "aikya-template/docs/general-swe/foundations/test-case-specification.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/test-case-specification.md"
     },
     "docs/general-swe/foundations/test-strategy.md": {
       "upstream_sha256": "8acb943f9ec4ded7be949fac641b51b195c19ce0a8923f9d532583973a862f33",
-      "installed_sha256": "2f2ff92b5c6793bdb8512c5cdd5993a720bf7cd4211727fcb58db61ebe4e6793",
+      "installed_sha256": "b3665d9f41e219f6363b4570fcef55723d2847d87df25f4eec93d712923220c7",
       "source": "aikya-template/docs/general-swe/foundations/test-strategy.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/test-strategy.md"
     },
     "docs/general-swe/foundations/test-summary-report.md": {
       "upstream_sha256": "ab825f986ead259822df0683fdc2334c530f9de77d135604e7dc6164fdbc0bb9",
-      "installed_sha256": "a796696370ff3e1a3125d1e2ab5652767963130a7d82d5a1630cff7f60a092e1",
+      "installed_sha256": "f81f9196693121c17eb25e729777418045fa6405a5dbbfb2c3eca45d6f3eb050",
       "source": "aikya-template/docs/general-swe/foundations/test-summary-report.md",
       "modification": "Aikya footer and trailing whitespace normalization",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/test-summary-report.md"
     },
     "docs/general-swe/foundations/threat-model.md": {
       "upstream_sha256": "2d418dcd72432bfdcd9ea165aa45914a8552dcef3361f5f75eb2da63777f6310",
-      "installed_sha256": "fc8a71e5f1076d39297204cd3a6be50d7953adaf3335f5b75bd2d300e24091ae",
+      "installed_sha256": "2c88443f35118524947ff80e54f55b6e015c2d40b4d90dd384f2a0a66f84e4fa",
       "source": "aikya-template/docs/general-swe/foundations/threat-model.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/foundations/threat-model.md"
     },
     "docs/general-swe/kanban/README.md": {
       "upstream_sha256": "e9673ac852618d20670e234203614205e5d5990633534de9c1f9fb0e9c1cf494",
-      "installed_sha256": "06179bb4c5760b5a45511651342abc4596ae195e3b6a584b58e43c1d49e2a715",
+      "installed_sha256": "f3a372a740e5f69a11b5520cb40f274a36c5d575f699930f3002c4b0a78f4e4c",
       "source": "aikya-template/docs/general-swe/kanban/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/kanban/README.md"
     },
     "docs/general-swe/kanban/blocker-log.md": {
       "upstream_sha256": "fa35767ab8a1b70552e78a289dd8423726f2d4153a6950137b62443b7d198941",
-      "installed_sha256": "bdf4eb72a967cbb7a4f47031042fc4f2990879450eeb41515ef5f24387ab60a9",
+      "installed_sha256": "d5c51939f363a212d7536bd37d40d046dca5ee6dcc5b287498a6a340f7c49aec",
       "source": "aikya-template/docs/general-swe/kanban/blocker-log.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/kanban/blocker-log.md"
     },
     "docs/general-swe/kanban/definition-of-workflow.md": {
       "upstream_sha256": "4dd04be8eb2563b2b6c055d5787b8e752ff013d4987fe5dc546ee1092c179bf9",
-      "installed_sha256": "f9ff7b9bfcf88a553aa80872f85d63cb7a5bf22f4e21c002ad8fa68b7c5b2571",
+      "installed_sha256": "7c050b9622d04a429820cf330e303ea76ac8a61e1b51da07c5f6b2e692a63bce",
       "source": "aikya-template/docs/general-swe/kanban/definition-of-workflow.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/kanban/definition-of-workflow.md"
     },
     "docs/general-swe/kanban/flow-review.md": {
       "upstream_sha256": "f79e0beb65a04d5061ef5d4bd0f11f51424ff49f50115a042bb221610e7fc7ff",
-      "installed_sha256": "c91415bd44a9c7a47e9c0db4a9ee9a15a590166d704a86ee7c57f3e16469ce03",
+      "installed_sha256": "fde880497fecfc823aae127bf7df9d8940ae3ed6a9239361531c13be8baa9f41",
       "source": "aikya-template/docs/general-swe/kanban/flow-review.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/kanban/flow-review.md"
     },
     "docs/general-swe/kanban/kanban-system-design.md": {
       "upstream_sha256": "a72a891b19ac9d6e927986129ac9a9d78432366de0abb52d38e151130673b85c",
-      "installed_sha256": "2578360875551e51a173c5be25e33bd7af89ba716a0c73aadca5a1afde0d5a14",
+      "installed_sha256": "633c38c9978c2c2ea863260960e045fa366c742b7548dffa5478e6b0c8ef3750",
       "source": "aikya-template/docs/general-swe/kanban/kanban-system-design.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/kanban/kanban-system-design.md"
     },
     "docs/general-swe/kanban/work-item-types.md": {
       "upstream_sha256": "0520ebff193e4c483bd365b09fadab5ccd58bc7d80a35f24df070c2e70d29623",
-      "installed_sha256": "4068e19705aba6c574db638b307cee0d108e1a14d3151810c72d81b861aafed1",
+      "installed_sha256": "de4f9f3adc2286abc8116999dce1c4826f57cb97e18a749662e93ae1e360fea5",
       "source": "aikya-template/docs/general-swe/kanban/work-item-types.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/kanban/work-item-types.md"
     },
     "docs/general-swe/lean/README.md": {
       "upstream_sha256": "f94fb6e11117ff4fd706a7b99b280bb56dc7229e717ee1f005780898a5101b89",
-      "installed_sha256": "45e0d5185072282a8e30a303af71967b5fda564932b5c3f5d295abad09eb6348",
+      "installed_sha256": "8b518d879b8a1526892145daf4af34a06ea25b26e55e08b0c099476ddad45a72",
       "source": "aikya-template/docs/general-swe/lean/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/lean/README.md"
     },
     "docs/general-swe/lean/a3.md": {
       "upstream_sha256": "e28dffd52659e236dbebeb2a9f977a9a9f494452f9d0b18048c291e4b6912856",
-      "installed_sha256": "572be90b74f6e2655c069616bca0e7105bbb34c9735604be980040aa8f38b3ec",
+      "installed_sha256": "26024a75e14178bf88f76741fed60183be9ade788c4c982ae1014b2b98fb1d3f",
       "source": "aikya-template/docs/general-swe/lean/a3.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/lean/a3.md"
     },
     "docs/general-swe/lean/experiment-record.md": {
       "upstream_sha256": "03e1e43bd56b60889993af394a5ade44d8e0c2c04456f70dbcf0bfe7e95933cb",
-      "installed_sha256": "b01b512d200b97001ed28a201c6a509b26ce5b8c1b94b43d4bbe32229b85ea9c",
+      "installed_sha256": "98df55acffb6b76ad13fd6981800578d59106acf4f63495ebcb94f47b9354ca8",
       "source": "aikya-template/docs/general-swe/lean/experiment-record.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/lean/experiment-record.md"
     },
     "docs/general-swe/lean/improvement-kata.md": {
       "upstream_sha256": "aedb7b5b6e85b34f41abbbf1d13d3b7dd4af7b7bb9a3aebcda9008279660a583",
-      "installed_sha256": "eceb3c5dabeac7b06f627ec1d4ce9e9720a9962e3e01974b873e047feb79802b",
+      "installed_sha256": "57dfa5675f4d8c90fb2652d8193a257eedec7a11413ced65a429340dfa71de10",
       "source": "aikya-template/docs/general-swe/lean/improvement-kata.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/lean/improvement-kata.md"
     },
     "docs/general-swe/lean/value-stream-map.md": {
       "upstream_sha256": "57fa1be412688b700c757fc0aa224284b35f74379e82f345fa43f21fe281c466",
-      "installed_sha256": "c6178a47cb3104d163ad1ae080234dae328e0413585de3c04556516e6f4cc74c",
+      "installed_sha256": "59eae5b52a36fab24129f55107f758fb0e9e49ec1cb47ad0d446c839ba6ee873",
       "source": "aikya-template/docs/general-swe/lean/value-stream-map.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/lean/value-stream-map.md"
     },
     "docs/general-swe/project-management/README.md": {
       "upstream_sha256": "cd78494a10c0f189b65a57ef6902f622cedb7f4c570f0e7be5c62dc55dbe7e50",
-      "installed_sha256": "30d9c3ad1c4c471135251fced3a3ada376998f6afa24953d8c2ca399a56ed6de",
+      "installed_sha256": "7d8f2db395d88dd16937c6e51ec9330a4bc68cadf34d088a1dc855d7b7bf1437",
       "source": "aikya-template/docs/general-swe/project-management/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/project-management/README.md"
     },
     "docs/general-swe/project-management/project-brief.md": {
       "upstream_sha256": "5620ddaa7a32648b021dd77989fd43b85cb5bbdbd85d434866ab17ea703979d4",
-      "installed_sha256": "8b022911139ed98bf595d159c44d447e60b0f8b2776dc305ad066ec1915e11ee",
+      "installed_sha256": "693d62d9a501e3aba97abf7636ed9f019062ce99dad351e3c7aba1adb239e847",
       "source": "aikya-template/docs/general-swe/project-management/project-brief.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/project-management/project-brief.md"
     },
     "docs/general-swe/project-management/project-charter.md": {
       "upstream_sha256": "86b8204ebd0551995f9a9694d6d5105ff533206bd178ee8c13d403aba0858ef3",
-      "installed_sha256": "224ffd80cb53a01f1048c5dcbfd8f59ee2df70b06f1c091584a740ff5a54a1fb",
+      "installed_sha256": "e9e1ea83e7b7506ea29b978f9077b22db67dfbf0107bafa8d6d3991e76c693c2",
       "source": "aikya-template/docs/general-swe/project-management/project-charter.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/project-management/project-charter.md"
     },
     "docs/general-swe/project-management/risk-register.md": {
       "upstream_sha256": "d535491a38dc4dd36b6d7abdaf37d4a2c143e2a05bd7dabb447559ed4167fa1b",
-      "installed_sha256": "379f0c869774e57be0864e340a45f3dba128c43a32af2a71bd5a6d43d66bff50",
+      "installed_sha256": "4a0dac098ae03d55d1272f49901c0cf04b960f6acee94436ae7707c4e6060055",
       "source": "aikya-template/docs/general-swe/project-management/risk-register.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/project-management/risk-register.md"
     },
     "docs/general-swe/project-management/stakeholder-register.md": {
       "upstream_sha256": "133a13ead6cbef9dfb4638043074655a90a52dde43e595000772a270174bc941",
-      "installed_sha256": "d87ea5170a5a853e7888f1d6fd8c845d99558bf41d620c124a535e63d48c8678",
+      "installed_sha256": "2096ea1e8d5c131c0c3c641134a16742f46b5036f3426afc4296d997543ae185",
       "source": "aikya-template/docs/general-swe/project-management/stakeholder-register.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/project-management/stakeholder-register.md"
     },
     "docs/general-swe/requirements/README.md": {
       "upstream_sha256": "a33eab6dda73c088f5d2dedb83be6a6de8485b0ccffa2036aade2761b5b6e4eb",
-      "installed_sha256": "c26945cea71753a76a8b57b4ef15f69e89a18a804edf0f1d52b1a9872aa99185",
+      "installed_sha256": "6f36360c010fe29705f2ec835236c48775d902b5939e1de3d51ed3d430317eb4",
       "source": "aikya-template/docs/general-swe/requirements/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/requirements/README.md"
     },
     "docs/general-swe/requirements/non-functional-requirements.md": {
       "upstream_sha256": "9df6ba5489b08f1cdd5b4c03f0de408e60d93f1cea04a32f20739f27c7a897a5",
-      "installed_sha256": "055a434cbd1c222939ff77f815a615514a39bca7d22d38f10a3af0931e94beb7",
+      "installed_sha256": "1f636f3c416c89724cb127aa9673079a63d2d810f19c6c42874d146e8668ed8d",
       "source": "aikya-template/docs/general-swe/requirements/non-functional-requirements.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/requirements/non-functional-requirements.md"
     },
     "docs/general-swe/requirements/product-requirements-document.md": {
       "upstream_sha256": "e16b7d134c195b47473d6f0a5f8fbd108032f62cf8752a41d1d008245c5fed31",
-      "installed_sha256": "0d5ab6bb13408d02ff34066c32e8d5867bfbb18bad699b31f9aefcccbb0dc967",
+      "installed_sha256": "704f427854a4afc15221c0eab4f8dfda21c18628b9b5a15678455f87fcbf8f17",
       "source": "aikya-template/docs/general-swe/requirements/product-requirements-document.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/requirements/product-requirements-document.md"
     },
     "docs/general-swe/requirements/use-case-specification.md": {
       "upstream_sha256": "18c4256a6439c24f0944d0878d5dc1fb2cf71de34d5ed621749f281a0b5a6a7e",
-      "installed_sha256": "2d407248c50bb17e1e9f8f63eaad2a36f548b1b3f302382f9d9b3bb1678afaed",
+      "installed_sha256": "af9f7e34212da8e9a76ea0d5108cd28a91441547c87f7b4b7cff370b1f8b6f50",
       "source": "aikya-template/docs/general-swe/requirements/use-case-specification.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/requirements/use-case-specification.md"
     },
     "docs/general-swe/requirements/vision-and-scope.md": {
       "upstream_sha256": "6243a288fa70c51881eb45978f5572a02f08d624294042a8f5c4068da8bc85a8",
-      "installed_sha256": "0ab9b5eb51d5c7522ab522cf0348c39ad30574ae57edaaed9b1bf74428caec30",
+      "installed_sha256": "5da130bb219c55d5bf8ee1748b4718908f7845cd7b315de77dd62f1cd15d6a32",
       "source": "aikya-template/docs/general-swe/requirements/vision-and-scope.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/requirements/vision-and-scope.md"
     },
     "docs/general-swe/security-and-compliance/README.md": {
       "upstream_sha256": "16a4e2c78497021a5eb91aa044269ed7d156a541d8f50e2f25716d32d00151a2",
-      "installed_sha256": "72516fc06399746a43f5bd9f572d2527b30de7a72af4f4871affa814e5eea819",
+      "installed_sha256": "94982daaf81ea0296ccc44573dd74a376101a9bfff6f68d7c52d75433d3e4c93",
       "source": "aikya-template/docs/general-swe/security-and-compliance/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/security-and-compliance/README.md"
     },
     "docs/general-swe/security-and-compliance/data-protection-impact-assessment.md": {
       "upstream_sha256": "9830a87d193a4c21dae91890db4f886cfdf77b2e7609810625cc8a7a28110072",
-      "installed_sha256": "165e9fa29118b29d064d8b5a42e7ef4f530d694e092cabf8d9a8f857a44b92ad",
+      "installed_sha256": "31230244256495a953a7fe740660f4b6c496a89d89eb4f53be04a3b105d354d0",
       "source": "aikya-template/docs/general-swe/security-and-compliance/data-protection-impact-assessment.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/security-and-compliance/data-protection-impact-assessment.md"
     },
     "docs/general-swe/security-and-compliance/data-retention-policy.md": {
       "upstream_sha256": "747ef89900fa0f2d3b1da1b59907f7cd885b9b55511d1c1467ad6de87a529743",
-      "installed_sha256": "af765aa2cdc84ddaae27e8f6db7d89d7f1f6179599520d1f148995fa7a56d992",
+      "installed_sha256": "1ad1d41b22942eb675bcd19374640f1ede739d3c6883532bc5a8f0ff183ac942",
       "source": "aikya-template/docs/general-swe/security-and-compliance/data-retention-policy.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/security-and-compliance/data-retention-policy.md"
     },
     "docs/general-swe/security-and-compliance/incident-response-plan.md": {
       "upstream_sha256": "62015cb4d51c8542ebe3613d89a84d73ed0227f4a26dd72f3dd225f85b08b3c1",
-      "installed_sha256": "128a3559d864b71cbadf6e1972fb99bfb1d45d810a5b1de048c948b142b476fd",
+      "installed_sha256": "bdfb3cd901ff34ec2d165a64fd065abb8fce76f4a88650fc8ceec3d9b2e894f1",
       "source": "aikya-template/docs/general-swe/security-and-compliance/incident-response-plan.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/security-and-compliance/incident-response-plan.md"
     },
     "docs/general-swe/security-and-compliance/record-of-processing-activities.md": {
       "upstream_sha256": "f89fe164af0cfa21d148959e406ab45f1fca14d8bc68ea3016257d70d2b06053",
-      "installed_sha256": "e5820e5d8a452de31b2b4974fe54c50f1a454f5ae6f772573a5e0d734c9bc38a",
+      "installed_sha256": "c1273e8ceec744d5d39b79d77e89a4cdb9aef0919e98abacb4f10bc8adb81cd9",
       "source": "aikya-template/docs/general-swe/security-and-compliance/record-of-processing-activities.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/security-and-compliance/record-of-processing-activities.md"
     },
     "docs/general-swe/security-and-compliance/security-review-checklist.md": {
       "upstream_sha256": "8a456fc36a2d2f2941bc3437ae8e1823943616614ed0ae019f9782ce7846b5b1",
-      "installed_sha256": "b6ff2e0b315eacc8d429755ad1712526f8200cd36c197f10519814e549fe1621",
+      "installed_sha256": "e8c581a1db3fcfd1f98e295dbb2356ce914602b31b145c0b266e8fe3171d4bf7",
       "source": "aikya-template/docs/general-swe/security-and-compliance/security-review-checklist.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/security-and-compliance/security-review-checklist.md"
     },
     "docs/general-swe/shape-up/README.md": {
       "upstream_sha256": "e0c31f6541f1b66ae0d07813a1355a1042b13c42134f60ace64da4d38c1198f5",
-      "installed_sha256": "6f72dbf9cdedf0534b2fe48b892a3c9107a6674be1416365cbc2049329f41ae5",
+      "installed_sha256": "23118e752ef125128e33dee70b3b48423d5b6031e65f41ba21b4cb8a0a03041d",
       "source": "aikya-template/docs/general-swe/shape-up/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/shape-up/README.md"
     },
     "docs/general-swe/shape-up/cool-down-guide.md": {
       "upstream_sha256": "244b6afa6de1d5e877234fbb36e4d5704dd77237bd4550e2a6c5be9aa8fcd390",
-      "installed_sha256": "e9d84303f3348284bb34bda0b36a29ac6193849f0696c75b33758d3b012e6908",
+      "installed_sha256": "9f7590b02ec326bd0c23ad1fbc06d9c37e35d3b6185db12cc34eeebe167aa6d1",
       "source": "aikya-template/docs/general-swe/shape-up/cool-down-guide.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/shape-up/cool-down-guide.md"
     },
     "docs/general-swe/shape-up/kick-off-message.md": {
       "upstream_sha256": "8b709a543871ee0fb20006062d88264ab1cc3bcdb068b455fa33ea8ebebbef95",
-      "installed_sha256": "b2f17eed4571a3a9de2da17f5b9798b76c5c95f5efce980c5a7b895b53cf5974",
+      "installed_sha256": "af450111bf458954626aa264bd2f525de1bfbe74bcf1c369e2cc857bc91c7de1",
       "source": "aikya-template/docs/general-swe/shape-up/kick-off-message.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/shape-up/kick-off-message.md"
     },
     "docs/general-swe/shape-up/pitch.md": {
       "upstream_sha256": "7d672b79cdeb4f0f977271c741d96e001626141bfe5451dccb42e7b3d4fcd376",
-      "installed_sha256": "466809eb4c82281cd85bc0ca2143f58c8f47eb80ad27a41d7d39fb3c9fdc29e7",
+      "installed_sha256": "2a93243088bad2b20f0d20c21946fee51067e1d50acd6b350cad1280e3070770",
       "source": "aikya-template/docs/general-swe/shape-up/pitch.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/shape-up/pitch.md"
     },
     "docs/general-swe/shape-up/scope-map.md": {
       "upstream_sha256": "7fbbf2c378542f639806a9615d6c86a95c944f55818777276147112f81fbb3b2",
-      "installed_sha256": "4577ce21fb9d87630b260cb3fa2bebbe739db18773302e151c805b41f8e22c0a",
+      "installed_sha256": "711574709513d6f3c500fbc668f972b4955d3d5e5f4e241874a1f26229ee23fd",
       "source": "aikya-template/docs/general-swe/shape-up/scope-map.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/shape-up/scope-map.md"
     },
     "docs/general-swe/user-documentation/README.md": {
       "upstream_sha256": "91625364de0c4b943b99a59bce7b9a32aa50ce510fc6b250eb6a374097fb0ad5",
-      "installed_sha256": "d69101933a7fe34231db6ac3b32280153540217bcf18e52a62541fcbbdc1ac36",
+      "installed_sha256": "1c3bf344486c3bf82424871b3fc11b4531f7abd90b22a549564d33d58622e393",
       "source": "aikya-template/docs/general-swe/user-documentation/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/user-documentation/README.md"
     },
     "docs/general-swe/user-documentation/documentation-style-guide.md": {
       "upstream_sha256": "6eebc088f1e5e6b1553798a24692f755e77af299cc9b51be14de7d802b97b880",
-      "installed_sha256": "dc27a7578798d32de2c99468632a8c4d17a4b163ca288852de06cbc084095fd9",
+      "installed_sha256": "787e7a08f9555b01ddc9e2d5eb5630d8e8247949d4c9dd49f2a6f595f68a2619",
       "source": "aikya-template/docs/general-swe/user-documentation/documentation-style-guide.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/user-documentation/documentation-style-guide.md"
     },
     "docs/general-swe/user-documentation/explanation.md": {
       "upstream_sha256": "b346e291586bb35e973aafb75915d76c4465a5fbde2415009254d30bf652fe31",
-      "installed_sha256": "dbdb9e063b34d8508bd26c61369cb67539daca0eeda468660e877f2f46c53cd8",
+      "installed_sha256": "c4b1deef0186ee2a69e3dacdd29398a3f95bb979b7ad1fb7b27ca444d25222a3",
       "source": "aikya-template/docs/general-swe/user-documentation/explanation.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/user-documentation/explanation.md"
     },
     "docs/general-swe/user-documentation/how-to-guide.md": {
       "upstream_sha256": "1e5538c897928ca8c61a75c65dbf106c0ab01f29443a38f94ecc118d1da522b1",
-      "installed_sha256": "bb9fdcaded1f8df8b9fd002fbd2f667d1c4bf49c41a8daa875552c4314a65a2a",
+      "installed_sha256": "7737d91395dd4a0a710f805c826044d202629d9fc44aaed5a61458b9944913fe",
       "source": "aikya-template/docs/general-swe/user-documentation/how-to-guide.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/user-documentation/how-to-guide.md"
     },
     "docs/general-swe/user-documentation/installation-guide.md": {
       "upstream_sha256": "05b017cb5449ccb45f4c0de8d485a9522053e82b1187ea9936cd36a046af8b83",
-      "installed_sha256": "fbb14a66325d8d2095b4bd16f86df0bb583b464fd5bbdb7d1b685df18b5966d7",
+      "installed_sha256": "d35b197ceb5f1e64f046732fa2c74c5bcafc64d276c7c4ab3e9ffd665c4c7f29",
       "source": "aikya-template/docs/general-swe/user-documentation/installation-guide.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/user-documentation/installation-guide.md"
     },
     "docs/general-swe/user-documentation/reference-page.md": {
       "upstream_sha256": "4b18d2208c98e2aea49e2100fa67bd6335489aa1c0b531042abcdb0d007403c9",
-      "installed_sha256": "9a12807f288182bce0a48339fc5d9a526d02acbcad5ec7a74eb187190e4a6514",
+      "installed_sha256": "3d9414e9a0be0549e5a0e98e661b0d221a7063e55ac37792b778a1f03498aad8",
       "source": "aikya-template/docs/general-swe/user-documentation/reference-page.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/user-documentation/reference-page.md"
     },
     "docs/general-swe/user-documentation/troubleshooting-guide.md": {
       "upstream_sha256": "a96f3b11b078b290b9191cea9af7b7b186b29867275e3cc9cc051cae661dc9b1",
-      "installed_sha256": "cf1063251d0a3b2901ee2a0f98d94f641aa9f100578ebe92247b05ec916e3789",
+      "installed_sha256": "9e88d52639e94186f112affca98d74b1c7f45a228dcd4f236471a2533376bb9a",
       "source": "aikya-template/docs/general-swe/user-documentation/troubleshooting-guide.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/user-documentation/troubleshooting-guide.md"
     },
     "docs/general-swe/user-documentation/tutorial.md": {
       "upstream_sha256": "7e063ab4e75ec76f675143d9dd72c4bb854ff44fafc9fad62244d7c8f9e97e23",
-      "installed_sha256": "4561baecf89a3adbb9ce0dc9fef1877985b09b44512079109b43986355c99f29",
+      "installed_sha256": "ea28c56d457343edf01a13a1b22b3380fdcc251dd7a7bfe167712437dbace579",
       "source": "aikya-template/docs/general-swe/user-documentation/tutorial.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/user-documentation/tutorial.md"
     },
     "docs/general-swe/waterfall/README.md": {
       "upstream_sha256": "d717805252f6cff011cfa308143f1c95e1e215e7a5af64aa20724cc036b3f189",
-      "installed_sha256": "e1252899c66abdbcc61702a5f415424c9bb2a82dc0faf4ab6a8b3249ed7c7c85",
+      "installed_sha256": "cab01eb2bbbac675aab14e34290800f31339258bcdbce015834c8ed11b74ae15",
       "source": "aikya-template/docs/general-swe/waterfall/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/waterfall/README.md"
     },
     "docs/general-swe/waterfall/change-request.md": {
       "upstream_sha256": "53495005b37cde0fc061682e0714b664c94be39c3dd774536a53f56e7da29b46",
-      "installed_sha256": "54bd892e571b5d548dd8e5dc930aaa259fa4809eaf228491e069cfab42cde7ab",
+      "installed_sha256": "772ce49fc1e41351bf779cba9c2f9006272ab9c7ff683bf43881aa4219157425",
       "source": "aikya-template/docs/general-swe/waterfall/change-request.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/waterfall/change-request.md"
     },
     "docs/general-swe/waterfall/master-test-plan.md": {
       "upstream_sha256": "6a17e55a4008660bf52a6958d5099c950bf2dcf3ca5c97e6aca6db048018f448",
-      "installed_sha256": "9168038946f2467f16d6c06194233794ca28500cdd416172875927dfb47d8860",
+      "installed_sha256": "cc171ef63b9660231c7d5345d5d61b502b3db186edd03940e9bc2bd19009eb0c",
       "source": "aikya-template/docs/general-swe/waterfall/master-test-plan.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/waterfall/master-test-plan.md"
     },
     "docs/general-swe/waterfall/phase-gate-review.md": {
       "upstream_sha256": "2398e552250cd77211cda979d3938768dfe72496764b12e2ae2395e69837e5b4",
-      "installed_sha256": "fb7e2ac015df62d02f80f18692c2d6105df6f917ef53e5df72e56831d35791d6",
+      "installed_sha256": "52c6d5509755ff23664b63454f4fde70e4795de898cb6a990556c5a1312aa3cc",
       "source": "aikya-template/docs/general-swe/waterfall/phase-gate-review.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/waterfall/phase-gate-review.md"
     },
     "docs/general-swe/waterfall/requirements-traceability-matrix.md": {
       "upstream_sha256": "f16a953c292a15cecbccf55cc794965cc9a3ca398ffed99e16b08c21546715df",
-      "installed_sha256": "c68d1cfc6f220c758f442351eb2e3a45f5b53b5fd970fecdebf441481c660f84",
+      "installed_sha256": "9b1fa741fa5b467e2355be0e2dae9c4ff55811d151e721ba7e449b6e2b8ef386",
       "source": "aikya-template/docs/general-swe/waterfall/requirements-traceability-matrix.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/waterfall/requirements-traceability-matrix.md"
     },
     "docs/general-swe/waterfall/software-design-description.md": {
       "upstream_sha256": "550ccecdf2a313be5266704c9009804fce8e62004ccfe6001eb1e6bf52dd9266",
-      "installed_sha256": "3fb66d93f9aae54a42bac0247e600f74ef7fba4217bfdcb13294da69e7f7e5e8",
+      "installed_sha256": "f59427c8e7de962fd500cd6f8a496a4142f7cefb09cc118890862b8ec6ecdd83",
       "source": "aikya-template/docs/general-swe/waterfall/software-design-description.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/waterfall/software-design-description.md"
     },
     "docs/general-swe/waterfall/software-requirements-specification.md": {
       "upstream_sha256": "a3f824c5de2a185b6e2693360a3bdd9d3da0a04b10b6d44b7ded2031ce3828fa",
-      "installed_sha256": "af6606aebb091ba409c2d0b26bfa89673bc1c205d8ce7a17fd71899dc8adb4f5",
+      "installed_sha256": "6168769295fbefd2c157f8c74600038bc0b4ec608d77b6bf8452164c8ec14a6c",
       "source": "aikya-template/docs/general-swe/waterfall/software-requirements-specification.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/waterfall/software-requirements-specification.md"
     },
     "docs/general-swe/waterfall/user-acceptance-test-plan.md": {
       "upstream_sha256": "3a1fdef1987a16bb8b52cf16d2cf4db5831d11c8a28f3ad933dd56bbd85df4f0",
-      "installed_sha256": "536c15beb56fc051a9898343639c24ad35dfe6e8cf1d5577349464bb0f22fc80",
+      "installed_sha256": "f95a00562c937ae00facd6a45db92d9bb70c6d3b5d8e71b160e8179f6a1ce900",
       "source": "aikya-template/docs/general-swe/waterfall/user-acceptance-test-plan.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/general-swe/waterfall/user-acceptance-test-plan.md"
     },
     "docs/platform-engineering/README.md": {
       "upstream_sha256": "0c2383595e6116b9f7328973144ea85672a50cf40844ad2d9b3a2098492d5688",
-      "installed_sha256": "35ca43ec53cad36bae39b4b940de8ad6bf500cc30aa4b617d31d82e6cb6e7692",
+      "installed_sha256": "5154f8fbc46bcaf4b13c75ecb3ed8b4fe035637dadc69031031e5571b48e8c72",
       "source": "aikya-template/docs/platform-engineering/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/README.md"
     },
     "docs/platform-engineering/foundations/README.md": {
       "upstream_sha256": "30a3bf5fdbe46de85acdbb922c0e529be5af504d93dca2051397417c33eb1b55",
-      "installed_sha256": "ef0963bf5680620b09b9159126ef3757f5350e303fc1ab8347b4f5dcad1647c8",
+      "installed_sha256": "23a3a3ea5378c00d1cada12c507b87cd4189c85ec410f8791291363815f852b5",
       "source": "aikya-template/docs/platform-engineering/foundations/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/foundations/README.md"
     },
     "docs/platform-engineering/foundations/platform-onboarding-guide.md": {
       "upstream_sha256": "d1f1830b79ad5a353575a9c46dd25fbbe0b8d20bc2fbd3d969b8e59372f2e700",
-      "installed_sha256": "bd3b6708ced6e131d385a9497fcb9eb567ff6a4ac1319b40737abb8a216d4281",
+      "installed_sha256": "55c7e971fc6b8ed51f0ad9e4017d59cb5025e7ca15e426ff1add412b0f48bb59",
       "source": "aikya-template/docs/platform-engineering/foundations/platform-onboarding-guide.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/foundations/platform-onboarding-guide.md"
     },
     "docs/platform-engineering/foundations/service-catalog-entry.md": {
       "upstream_sha256": "22c385a5e0dd9c90b7e5b950a5d5ada3f60a7b4c4299f0a8a4219d21b718c5e1",
-      "installed_sha256": "68a058a46da42021b882496ec5ca8030ef2485e478081edc64f0fcd5ccbda980",
+      "installed_sha256": "f416bdb54d4052577279a776392dbe6f3d0bfe10f508e0e6bd4cdb104ba6d3e2",
       "source": "aikya-template/docs/platform-engineering/foundations/service-catalog-entry.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/foundations/service-catalog-entry.md"
     },
     "docs/platform-engineering/reliability/README.md": {
       "upstream_sha256": "f5ba73c409aa8e8c5ec758f188b7542a62bbe18b9161add50b65cfb5becf6c05",
-      "installed_sha256": "88fe13327900c1a03d5521c8f49976304e2aa6c06f22125d5606fc290805a95c",
+      "installed_sha256": "71bb2a17b74aeca12d354dd7d54e0d62e49e0c251637763d8fbabb9a7b5d596a",
       "source": "aikya-template/docs/platform-engineering/reliability/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/reliability/README.md"
     },
     "docs/platform-engineering/reliability/error-budget-policy.md": {
       "upstream_sha256": "c71c3dc676b5b0b9e4308115472a49ae070611612c73e1908f3c83244c316b91",
-      "installed_sha256": "6102b53b7eb338d9f43795095415656d6b5355cc1703956dfd8caf3841675834",
+      "installed_sha256": "c5bbf72b6fe4d13c91829b518a0394c9a85e7087510c69a07c98aaba10bab2a9",
       "source": "aikya-template/docs/platform-engineering/reliability/error-budget-policy.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/reliability/error-budget-policy.md"
     },
     "docs/platform-engineering/reliability/slo-document.md": {
       "upstream_sha256": "b9911cb339df542967bf1680e4c644945c6a228f1a0c5103f05e03230891eb55",
-      "installed_sha256": "20f72635354176d225a39d21ba4d78cf83c2666d85fd45fe12238faaeb05d86b",
+      "installed_sha256": "c6b6d3ca73556f77ad0b57bf60dd133964d4dbb2a35f58a664168030be7bf597",
       "source": "aikya-template/docs/platform-engineering/reliability/slo-document.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/reliability/slo-document.md"
     },
     "docs/platform-engineering/reliability/toil-log.md": {
       "upstream_sha256": "93ef2e112ae8578df8350f16b7b3e5d1d5e2194fa748fad9948b74f91944b7b5",
-      "installed_sha256": "9e36a845ffcb1dc04d72e66a32d55770d05111e3502874f80200f2ef4793b349",
+      "installed_sha256": "a60c290f86289b61ad08f192a2863034335d7e3778f03ad64a0a8d6e4c3e7e53",
       "source": "aikya-template/docs/platform-engineering/reliability/toil-log.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/reliability/toil-log.md"
     },
     "docs/platform-engineering/resilience/README.md": {
       "upstream_sha256": "50f4ef0d34dc96967068e54f7e10593962080d4e7940d2affe741d634a2966c4",
-      "installed_sha256": "8bacadd234f67ecfce8d50d4ddd914f349e1bc09d230c41e840f0c3b43b6df3c",
+      "installed_sha256": "f87f890967a67aa867470d3f0e87882230c4c9fc8d485f0ae4b1d4ddbf2211c7",
       "source": "aikya-template/docs/platform-engineering/resilience/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/resilience/README.md"
     },
     "docs/platform-engineering/resilience/capacity-plan.md": {
       "upstream_sha256": "fc1c36391c2c07876c7a39de7284e7008c4b2171b19403a6cb531a2cb141a310",
-      "installed_sha256": "0bb52b49522e55d4a0e83b1414a979c857adf96720ecb35a8bd5320b2631ac18",
+      "installed_sha256": "a6410a4c19bed1f5da7b5b7b13876b30d7bf8367e383e2423dd40d953e094074",
       "source": "aikya-template/docs/platform-engineering/resilience/capacity-plan.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/resilience/capacity-plan.md"
     },
     "docs/platform-engineering/resilience/disaster-recovery-plan.md": {
       "upstream_sha256": "69d9e7f997bd188a9b8c3e75e347451cc5d45d6379571da3c4211c126ea00315",
-      "installed_sha256": "551db0c4061a619a1077c3feea258353f0a8afb83ff494d17f8790033b26ad0e",
+      "installed_sha256": "d7ca378838174b90f906cd14c18aa2fc3554dbf6e921bf87259d1d25c7465644",
       "source": "aikya-template/docs/platform-engineering/resilience/disaster-recovery-plan.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/platform-engineering/resilience/disaster-recovery-plan.md"
     },
     "docs/web-development/README.md": {
       "upstream_sha256": "7197043be5868eebdf7c011f64edaa8d6a95bb256fe01ad194957b2ac25f384f",
-      "installed_sha256": "ce35a6fa112e91d07171275be0e09949961bf55859c8fe7c289d55882b984e21",
+      "installed_sha256": "7ffc160b14a9234dbeec4f3951d349a6065ff8f4f7d07da95e3be023f46e86ba",
       "source": "aikya-template/docs/web-development/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/README.md"
     },
     "docs/web-development/accessibility/README.md": {
       "upstream_sha256": "c43e028ac9b13aa1866b177c940fedf06a7d77c449771436b639dfc4dc2a62e4",
-      "installed_sha256": "46b5c5f68134e688e6c1673e6fe8a9a7bd708b2521ce39d67d39d49ded10a871",
+      "installed_sha256": "d31cdfdd66dab47f4fde0cd61246b4cf6a47f0f6af49bda46be9f85f2e175bc4",
       "source": "aikya-template/docs/web-development/accessibility/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/accessibility/README.md"
     },
     "docs/web-development/accessibility/accessibility-conformance-report.md": {
       "upstream_sha256": "1acc1ac79dc8173f41c0942f6143268c08263f096ca9ecc6c98fe221b60f4c22",
-      "installed_sha256": "646f27782f6731263d481d91a0a86b18fd4401167e82216566f8b4c21d310d88",
+      "installed_sha256": "6ae74cfb62d7aa206067eb31bcff9522733948be2ffc9383f65bd33a2ad9803b",
       "source": "aikya-template/docs/web-development/accessibility/accessibility-conformance-report.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/accessibility/accessibility-conformance-report.md"
     },
     "docs/web-development/accessibility/accessibility-statement.md": {
       "upstream_sha256": "aec53f7f7599e4198081f7f748ed61f6945e701603d6cb063a2c2a045a3271a5",
-      "installed_sha256": "fd496d9bd74390bd5580c20a4a47a28864a7aecac0b27ea357fd9a61bd708c09",
+      "installed_sha256": "f977800b776460f797ac6a1f4d1c0629be02e7bcac8cf829e0bf66a3789da385",
       "source": "aikya-template/docs/web-development/accessibility/accessibility-statement.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/accessibility/accessibility-statement.md"
     },
     "docs/web-development/accessibility/accessibility-test-plan.md": {
       "upstream_sha256": "10a260bb4e9b2df8027c2b522b180183fc7a43b414e07e1089117acab86ebcb4",
-      "installed_sha256": "9359d8a3aa823f2444f4b431209c6c01092b2ec4194c44bd2f8eb5c4935c3478",
+      "installed_sha256": "e22b667b52c738cf87f8f8737f255bb425e810b6e5b9e87f2a93e1611e7857ae",
       "source": "aikya-template/docs/web-development/accessibility/accessibility-test-plan.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/accessibility/accessibility-test-plan.md"
     },
     "docs/web-development/foundations/README.md": {
       "upstream_sha256": "5cf31bb96251cb36e60b4e4c830f376588f4aade98c0c1071bcff89cbd3294df",
-      "installed_sha256": "c86d26ba55f5eeb85f5a5d54dc11c2c852cb520a0d78d2b50d7e89f047b42c68",
+      "installed_sha256": "f1bf7ec68f9effc6e85b2e83aed496ab8d617e07d6c1d388de534008f12a1160",
       "source": "aikya-template/docs/web-development/foundations/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/foundations/README.md"
     },
     "docs/web-development/foundations/api-design-guide.md": {
       "upstream_sha256": "4ffe9289e42c0417fe9ebd59fe6e2e5ba3c8e751e8e75d4e259889be7d808b58",
-      "installed_sha256": "7d8d55c15d4a0282909b3f0b2227083921461e47ceae2a8e4e50c3434c97658c",
+      "installed_sha256": "696a14442fc5106390cd8c14ee45c3238f81063f262342e44bf9d2d8bb448c1a",
       "source": "aikya-template/docs/web-development/foundations/api-design-guide.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/foundations/api-design-guide.md"
     },
     "docs/web-development/foundations/brand-and-visual-guidelines.md": {
       "upstream_sha256": "bb8136b34bec840fc8d1f201eb8e9917c1e52062803c59996a752e1702e4e7c8",
-      "installed_sha256": "6d32d740ccba75d7c24f87b3083806433f236b16b4c7d0f928cdd0c34aabc8c6",
+      "installed_sha256": "df5cb04375696f1acd6a6af96e94fa04f249a6c2b45684f7ae4dae3af326bbb2",
       "source": "aikya-template/docs/web-development/foundations/brand-and-visual-guidelines.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/foundations/brand-and-visual-guidelines.md"
     },
     "docs/web-development/foundations/browser-support-policy.md": {
       "upstream_sha256": "1cb6d15902d5e333e80f759f2810f083e92654af8389c429db3307707a33cbb5",
-      "installed_sha256": "65a0751a87aa0818850133eacfe0ba1cd3bc42edbf5996e4aa3e102605587534",
+      "installed_sha256": "d128ddb4a033ffb09f3e08d5564572c9a5f1c2ac2063495a11c9e9b0aaa2f173",
       "source": "aikya-template/docs/web-development/foundations/browser-support-policy.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/foundations/browser-support-policy.md"
     },
     "docs/web-development/foundations/design-system-guide.md": {
       "upstream_sha256": "f02bcf61fb424d7e7abca736504e08673d6d76cb3c36d7dc6dbd7b26ee30a091",
-      "installed_sha256": "598a9c4cbcf1906e2d9ff0fb1a342e095b61d0bade07a9c87955a13ef687bd52",
+      "installed_sha256": "2315fe488fad7b1a3be5626cb933f2c827f153bab4812d9376495bcaa8db178b",
       "source": "aikya-template/docs/web-development/foundations/design-system-guide.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/foundations/design-system-guide.md"
     },
     "docs/web-development/foundations/frontend-architecture.md": {
       "upstream_sha256": "0172aaf92060d3021080aaac094abcf1b09113d869d5bc667246232f67b123a5",
-      "installed_sha256": "1895f20e50d8ffaa2e358493404a8c924970dc3861d20431f32d4144a849fced",
+      "installed_sha256": "b36b08f90df2e8e49576aac6a308d0a1df7b959077db81580cb4a29e0ee58990",
       "source": "aikya-template/docs/web-development/foundations/frontend-architecture.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/foundations/frontend-architecture.md"
     },
     "docs/web-development/foundations/rollout-plan.md": {
       "upstream_sha256": "119b5cfbd9d9d4ab6962740fe900b640151aa5eb0b8fe9d1dfbf106a26d47ed0",
-      "installed_sha256": "312fa885bd9e181fd504c8a8bdb665b097694602856a99c9e3db93e61eedd787",
+      "installed_sha256": "47c9b97f6a871219f60c7d5fd14341aa007fb1bce319e7fd15a50dfc01ee5940",
       "source": "aikya-template/docs/web-development/foundations/rollout-plan.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/foundations/rollout-plan.md"
     },
     "docs/web-development/performance/README.md": {
       "upstream_sha256": "754f422c50f864fc097c7975fc758bca05b23f8361d1a6b6d4912556712193ff",
-      "installed_sha256": "7a0e5b4547d08db74c06b0cc037a99d72e6f1bf149d3f38f9b6c728d6800c7a3",
+      "installed_sha256": "3ac08309e96fc9ffd0f505854ca966eb7c819138c23efd2539c7949e74f3f0da",
       "source": "aikya-template/docs/web-development/performance/README.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/performance/README.md"
     },
     "docs/web-development/performance/performance-budget.md": {
       "upstream_sha256": "57893b98957f00da4766981db30b1325666179ee49998e16e58296ea58afe9c4",
-      "installed_sha256": "34651575eab747a5268fb6e48caa43ad2c3fc8fec4efde0583dce283cc25d008",
+      "installed_sha256": "72d933a6d67e91697521943123bb933044fdfc1a2192735e22d6f3659da35dfd",
       "source": "aikya-template/docs/web-development/performance/performance-budget.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/performance/performance-budget.md"
     },
     "docs/web-development/performance/performance-review.md": {
       "upstream_sha256": "2e4394883e90cf5cee1516dda52c865df30967bdf1e95cac145565b8520c80b4",
-      "installed_sha256": "9602efb6b884bb016bd00b88930aa55631592dbee7aff6731c158211388fc8ff",
+      "installed_sha256": "162aec0b7da8b10a017f39db6f882c550d1640844eb35112b0539a3959fa6094",
       "source": "aikya-template/docs/web-development/performance/performance-review.md",
       "upstream_source": "https://github.com/Milkeles/software-doc-templates/blob/35fc8e29be1f0093b8ef13a9762de67dc99b6882/web-development/performance/performance-review.md"
     }

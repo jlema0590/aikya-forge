@@ -44,7 +44,7 @@ class WelcomeTests(unittest.TestCase):
         payload=json.loads(self.invoke())
         self.assertEqual(list(payload),['systemMessage'])
         self.assertIn('Juan',payload['systemMessage'])
-        self.assertIn('github.com/jlema0590/aikya-harnes',payload['systemMessage'])
+        self.assertIn('github.com/jlema0590/aikya-forge',payload['systemMessage'])
 
     def test_no_duplicate_after_clear_or_compact(self):
         self.assertEqual(self.invoke('clear'),'')

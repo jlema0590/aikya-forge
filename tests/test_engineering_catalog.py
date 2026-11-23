@@ -50,8 +50,8 @@ class EngineeringCatalogTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             project=Path(temp)/'new';home=Path(temp)/'home';home.mkdir()
             logs=aikya_setup.setup(ROOT,project,'global',home=home)
-            self.assertTrue((home/'.claude/aikya-harnes/engineering_catalog.py').exists())
-            self.assertTrue((home/'.claude/aikya-harnes/engineering/skills/vue-architecture/SKILL.md').exists())
+            self.assertTrue((home/'.claude/aikya-forge/engineering_catalog.py').exists())
+            self.assertTrue((home/'.claude/aikya-forge/engineering/skills/vue-architecture/SKILL.md').exists())
             self.assertFalse(project.exists())
             self.assertTrue(any('global' in x for x in logs))
 

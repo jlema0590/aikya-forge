@@ -45,7 +45,7 @@ class LatestReleaseSelection(unittest.TestCase):
 
     def test_latest_alias_resolves_once_then_downloads_only_selected_version(self):
         requests = []
-        wheel_name = 'aikya_harness-7.2.3-py3-none-any.whl'
+        wheel_name = 'aikya_forge-7.2.3-py3-none-any.whl'
         wheel_bytes = b'controlled-verified-wheel'
         manifest = (hashlib.sha256(wheel_bytes).hexdigest() + '  ' + wheel_name + '\n').encode()
         responses = {

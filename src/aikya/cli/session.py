@@ -15,7 +15,7 @@ from pathlib import Path
 def is_new_project(directory: Path, home: Path | None = None) -> bool:
     home=(home or Path.home()).resolve()
     root=directory.resolve()
-    if root in (home, home/'.claude', home/'.claude/aikya-harnes') or root==root.parent:
+    if root in (home, home/'.claude', home/'.claude/aikya-forge') or root==root.parent:
         return False
     if (root/'.harness/project-profile.json').is_file() or not root.is_dir():
         return False
@@ -46,7 +46,7 @@ def banner(root: Path) -> str:
         spec.loader.exec_module(mod)
         return mod.build_message(root)
     except (OSError,ValueError,AttributeError,TypeError):
-        return 'Welcome to Aikya Harness · '+root.name
+        return 'Welcome to Aikya Forge · '+root.name
 
 def main() -> int:
     try:data=json.load(sys.stdin)
