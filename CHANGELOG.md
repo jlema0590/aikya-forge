@@ -6,6 +6,9 @@ The inherited Harness v7/v8 changelog remains in
 
 ## Unreleased
 
+- Fix isolated Windows pyfiglet startup and native font preflight when APPDATA is
+  absent, without importing personal font locations or widening process environments.
+
 - Group Claude/Codex metrics in an expandable Agents sidebar submenu, with heading
   clicks, F3 and F2 → Agents. Preserve cached metrics when collapsed and support
   expansion in compact layouts without changing providers or execution state.

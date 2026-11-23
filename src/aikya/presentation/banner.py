@@ -1,5 +1,6 @@
 """Render fixed Aikya FIGlet variants for the terminal without reading the project."""
-import json
+import json,os,sys
+from pathlib import Path
 from importlib.metadata import PackageNotFoundError,version
 
 VERSION='1.0.4'
@@ -7,9 +8,15 @@ VERSION='1.0.4'
 
 def banner():
     fallback=dict(schema=1,text='Aikya',generator='plain',version=None,variants=[])
+    # pyfiglet imports APPDATA unconditionally on Windows, even for bundled fonts.
+    # Keep the isolated child compatible without importing the user's font location.
+    temporary_appdata=sys.platform=='win32' and 'APPDATA' not in os.environ
+    if temporary_appdata:os.environ['APPDATA']=str(Path(__file__).resolve().parent)
     try:
-        from pyfiglet import Figlet,FigletError
-    except ImportError:return fallback
+        try:from pyfiglet import Figlet,FigletError
+        except ImportError:return fallback
+    finally:
+        if temporary_appdata:os.environ.pop('APPDATA',None)
     try:
         if version('pyfiglet')!=VERSION:return fallback
         variants=[]
