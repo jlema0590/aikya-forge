@@ -1,0 +1,65 @@
+{
+  "schema": 1,
+  "date": "2026-11-09",
+  "base": "ed7299b",
+  "source": {
+    "packages/aikya-pi/src/bridge.ts": "157ffae9a30391fb957bd30b6ca7afb24434389ee25c05c041a0c1bde1cecfb4",
+    "packages/aikya-pi/src/extension.ts": "d1d646a1b28de623b0cfc3604292860ebdf8f0f55e504d3761727519c28a5758",
+    "packages/aikya-pi/src/host.ts": "9abc32b47c55f55f2cc4e65c290e0ee1382bd8f7556e99b376be80b6adf8e9e1",
+    "packages/aikya-pi/src/native-checks.ts": "a607b39d786040ac306d9fd495480d3866d5b08145470ee337f71b5d16efc483",
+    "packages/aikya-pi/src/permissions.ts": "f2672101643efb15a3616809b376faf2ae28c1fc2c20e65dbbbc7780f7159d85",
+    "packages/aikya-pi/src/source-batches.ts": "06e92e0ea07b83e59a0fe6e0b304628aa3bd96310b1673c7be9c3cec1e859f84",
+    "packages/aikya-pi/src/tools.ts": "1390bd2ebc0c81d36d4e3e058e13fc2e78030970ea74648c1800692fb2b5bf9d",
+    "packages/aikya-pi/src/workflow.ts": "131b535bb9a82d916e589afe46f653899b654d124d847b815351c79ead10b7d6",
+    "packages/aikya-pi/tests/source-batches.test.ts": "db4e492e0dc60cd6620565a1aab52d0249ccd98bfd7268ca5be79016a3374b24",
+    "src/aikya/services/authorization.py": "9a70b48689e7eb18f31486783d296873adcb311aea80d2d8ae10ff3de7455937",
+    "src/aikya/services/authorization_tokens.py": "734414867bc9464c631339b18381afeeae5c9a76c663324bf631243e0608cf56",
+    "src/aikya/services/batch_inputs.py": "9b36581cd75c6cb188a444d0afe796560efd3bda34eac548c1baa5db3528b7f1",
+    "src/aikya/services/batch_records.py": "51ad74aa66332ba236c99050b61a5e159a53c94df02a8587722d5f0e011b471b",
+    "src/aikya/services/batch_recovery.py": "89d8d6bee5c5c6aa49162c92da857600479d555fab8f3badd7c221cc7c977e17",
+    "src/aikya/services/bridge.py": "9f96b6c5770d1e8c7de07823c6cf592f7262d4c98f0ce50a209c8073ce326593",
+    "src/aikya/services/runtime_state.py": "be9b6335e1bfaa8988f87065779e862f0b144be8537e186b22a878e7054fbd24",
+    "src/aikya/services/source_batches.py": "46ab289968f481867518175df0b51fbbf1a38872091cf6d3cf02839fed6576e5",
+    "tests/test_pi_source_batches.py": "331fe965e86343be1667bb0618d643a0414dfb052650dd02f9c833484761b63d"
+  },
+  "wheel_sha256": "c25bfb34c0b90530724b4f257a8d4c4756ad86c2a72e4e3a948a8022b0103975",
+  "python": {
+    "tests": 1040,
+    "failures": 0,
+    "skips": 2,
+    "seconds": 1223.996
+  },
+  "pi": {
+    "tests": 71,
+    "node26_ms": 20372.018958,
+    "node22_ms": 20133.465208
+  },
+  "installed_host": {
+    "batch_contracts": 23,
+    "seconds": 4.503
+  },
+  "pty": {
+    "project": "/private/tmp/aikya-v8-batches-pty-v2hlxdkx",
+    "node": "22.19.0",
+    "python": "3.13.18",
+    "pi": "1.5.0",
+    "provider": "disabled",
+    "language": "es",
+    "large_file_bytes": 36524,
+    "batch_cancel": true,
+    "exact_large_patch": true,
+    "exclusive_parent_creation": true,
+    "explicit_delete": true,
+    "recovery_cancel": true,
+    "complete_effect_reconciled": true,
+    "no_source_replay": true,
+    "scope_escape_refused": true,
+    "checks": "not_run",
+    "delivery_authorized": false,
+    "all_footers_once": true,
+    "exit_code": 0
+  },
+  "native_windows_linux_tested": false,
+  "live_provider_tested": false,
+  "stable_v8_released": false
+}

@@ -1,0 +1,170 @@
+{
+  "schema": 1,
+  "branch": "feat/forge-settings-sidebar",
+  "base_feature_commit": "fda4d1d99cdbcc7b7365037510cc5f06bc9383fd",
+  "status": "locally_verified_after_environment_rechecks_remote_ci_pending",
+  "runtime_fingerprint": "e2ce0dc3cc3b25973214d8fed4063e5f4b81cb4bbad9b9dce3bfea36f307445e",
+  "pyfiglet": {
+    "schema": 1,
+    "version": "1.0.4",
+    "file": "pyfiglet-1.0.4-py3-none-any.whl",
+    "url": "https://files.pythonhosted.org/packages/9f/5c/fe9f95abd5eaedfa69f31e450f7e2768bef121dbdf25bcddee2cd3087a16/pyfiglet-1.0.4-py3-none-any.whl",
+    "sha256": "65b57b7a8e1dff8a67dc8e940a117238661d5e14c3e49121032bd404d9b2b39f"
+  },
+  "node_suites": {
+    "22.19.0": {
+      "tests": 120,
+      "passed": 119,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 1
+    },
+    "26.12.1": {
+      "tests": 120,
+      "passed": 119,
+      "failed": 0,
+      "cancelled": 0,
+      "skipped": 1
+    }
+  },
+  "python_presentation": {
+    "tests": 3,
+    "passed": 3
+  },
+  "targeted_node": {
+    "tests": 5,
+    "passed": 5
+  },
+  "typecheck": "passed",
+  "quality": "passed",
+  "core_wheel_smoke": "passed with no-index/no-deps and actual plain fallback",
+  "native_build": {
+    "archive": "/private/tmp/aikya-forge-20261118-7kyfzo3h/figlet-native-online/aikya-terminal-0.2.0-darwin-arm64.zip",
+    "bootstrap_archive": "/private/tmp/aikya-forge-20261118-7kyfzo3h/figlet-native-online/aikya-terminal-0.2.0-darwin-arm64.tar.gz",
+    "bytes": 466553000,
+    "files": 24490,
+    "manifest_hash": "d22d68943364e0d59b1413a353a0431dfcc82793e0db7208af680fa0b2ca5d9d",
+    "payload": "/private/tmp/aikya-forge-20261118-7kyfzo3h/figlet-native-online/payload",
+    "platform": "darwin-arm64",
+    "sha256": "8d84063e4a136d72eb21995906d3077fd2c7d1e314f113dc7d86929dbdfc3920",
+    "size": 143961067,
+    "version": "0.2.0"
+  },
+  "source_pty": {
+    "status": "passed",
+    "mode": "source",
+    "version": "0.2.0",
+    "platform": "darwin-arm64",
+    "provider_calls": 0,
+    "visual_acceptance": false,
+    "ui": "Actual POSIX PTY; no human visual/device or provider acceptance",
+    "theme": "light",
+    "resize": {
+      "columns": 100,
+      "rows": 32
+    },
+    "cache_refused": true,
+    "usage_status": "unconfigured",
+    "bytes": 141005,
+    "exit_code": 0,
+    "file_completion": true,
+    "launcher_supplies_tools": false,
+    "settings_panel": true,
+    "provider_catalog": true,
+    "text_style": "bold",
+    "banner": "pyfiglet-1.0.4"
+  },
+  "installed_pty": {
+    "status": "passed",
+    "mode": "managed",
+    "version": "0.2.0",
+    "platform": "darwin-arm64",
+    "provider_calls": 0,
+    "visual_acceptance": false,
+    "ui": "Actual POSIX PTY; no human visual/device or provider acceptance",
+    "theme": "light",
+    "resize": {
+      "columns": 100,
+      "rows": 32
+    },
+    "cache_refused": true,
+    "usage_status": "unconfigured",
+    "bytes": 141025,
+    "exit_code": 0,
+    "file_completion": true,
+    "launcher_supplies_tools": true,
+    "settings_panel": true,
+    "provider_catalog": true,
+    "text_style": "bold",
+    "banner": "pyfiglet-1.0.4"
+  },
+  "original_logo_sha256": "40a17b102c9aa7cb0fa89840b0efb91ae6a3dc27cf339b01b8042f8e77897432",
+  "logs": {
+    "node22": {
+      "file": "/private/tmp/aikya-forge-20261118-7kyfzo3h/figlet-node22.log",
+      "bytes": 28196,
+      "sha256": "707689a9db12ae8c8da5fccb5f7c834a65652db6602326e90a09d46dbc5bcfa4",
+      "exit_code": 0
+    },
+    "node26": {
+      "file": "/private/tmp/aikya-forge-20261118-7kyfzo3h/figlet-node26-final.log",
+      "bytes": 12127,
+      "sha256": "a2ac43ec47ef40569a54f2d5c60d53ef53c75908fcd249713a38b54614dc6377",
+      "exit_code": 0
+    },
+    "wheel": {
+      "file": "/private/tmp/aikya-forge-20261118-7kyfzo3h/figlet-wheel.log",
+      "bytes": 1417,
+      "sha256": "bfd3ba354b4bb0785e424009c59e5df859776307a93583e86bbb1b19c969876b",
+      "exit_code": 0
+    },
+    "python": {
+      "file": "/private/tmp/aikya-forge-20261118-7kyfzo3h/figlet-python.log",
+      "exit_code": 1,
+      "sha256": "3fa2266f7dd60712341b72d5973e59d85738221852a1cdac414b624e60133dd5",
+      "bytes": 123408
+    }
+  },
+  "limitations": [
+    "Current remote CI not yet completed",
+    "No human device/other-OS acceptance",
+    "No live provider inference, OAuth or quota measurement",
+    "No publication/tag/main/Pages change"
+  ],
+  "python_regression": {
+    "tests": 1312,
+    "seconds": 1304.368,
+    "initial_exit_code": 1,
+    "initial_failures": 1,
+    "initial_errors": 5,
+    "skipped": 3,
+    "causes": [
+      "One immutable package preflight overlapped an implementation edit to presentation/banner.py",
+      "Four loopback bind PermissionErrors and one stopped live client under sandbox socket restrictions"
+    ],
+    "all_initial_affected_groups_rechecked": true,
+    "rechecks": {
+      "template": {
+        "tests": 7,
+        "seconds": 20.617,
+        "exit_code": 0,
+        "file": "/private/tmp/aikya-forge-20261118-7kyfzo3h/figlet-template-recheck.log",
+        "sha256": "665be115ff45dd8995fae2e201bf1d7a677887b85dba900d512eac1ebb3b486b"
+      },
+      "live": {
+        "tests": 4,
+        "seconds": 0.643,
+        "exit_code": 0,
+        "file": "/private/tmp/aikya-forge-20261118-7kyfzo3h/figlet-live-recheck.log",
+        "sha256": "8e7302ae75043d92526275773e1ce16914f442561853b48fdd286946266d513f"
+      },
+      "memory": {
+        "tests": 10,
+        "seconds": 18.716,
+        "exit_code": 0,
+        "file": "/private/tmp/aikya-forge-20261118-7kyfzo3h/figlet-memory-recheck.log",
+        "sha256": "56bbfadcbc4cac51b45a29d4c7da7b18d8503195575d5fbaf543a59a5abf6a49"
+      }
+    }
+  }
+}

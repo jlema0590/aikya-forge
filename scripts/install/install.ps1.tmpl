@@ -1,0 +1,74 @@
+# Aikya @@VERSION@@; generated from the reviewed release commit.
+[CmdletBinding()]
+param(
+    [ValidateSet('global','project')][string]$Scope = 'global',
+    [string]$Target,
+    [string]$Python,
+    [string]$OfflineDir,
+    [string]$Version,
+    [ValidateSet('recommended','all','none')][string]$Mods,
+    [string[]]$Mod,
+    [string]$ModsVersion,
+    [ValidateSet('none','dart','all')][string]$CodeIndex,
+    [switch]$NoPath,
+    [switch]$DryRun
+)
+$callerPreference = $ErrorActionPreference
+try {
+$ErrorActionPreference = 'Stop'
+$probe = 'import sys,venv,ensurepip;sys.exit(0 if (3,10)<=sys.version_info[:2]<=(3,13) else 2)'
+$selected = $null
+$prefix = @()
+$candidates = @()
+if ($Python) { $candidates += ,@($Python) }
+else {
+    foreach ($minor in @('3.13','3.12','3.11','3.10')) { $candidates += ,@('py', "-$minor") }
+    $candidates += ,@('python3'); $candidates += ,@('python')
+}
+foreach ($candidate in $candidates) {
+    $command = Get-Command $candidate[0] -ErrorAction SilentlyContinue
+    if (-not $command -or $command.Source -like '*\WindowsApps\*') { continue }
+    $trialPrefix = @($candidate | Select-Object -Skip 1)
+    & $command.Source @trialPrefix -I -B -c $probe 2>$null
+    if ($LASTEXITCODE -eq 0) { $selected = $command.Source; $prefix = $trialPrefix; break }
+}
+if (-not $selected) { throw 'Install Python 3.10-3.13 with venv/ensurepip first.' }
+$options = @('--scope',$Scope)
+if ($Version) { $options += @('--version',$Version) }
+elseif ($OfflineDir) { $options += @('--version','@@VERSION@@') }
+if ($Target) { $options += @('--target',$Target) }
+if ($Python) { $options += @('--python',$Python) }
+if ($OfflineDir) { $options += @('--offline-dir',$OfflineDir) }
+if ($Mods) { $options += @('--mods',$Mods) }
+foreach ($name in $Mod) { $options += @('--mod',$name) }
+if ($CodeIndex) { $options += @('--code-index',$CodeIndex) }
+if ($ModsVersion) { $options += @('--mods-version',$ModsVersion) }
+if ($NoPath) { $options += '--no-path' }
+if ($DryRun) {
+    $previewCode = @'
+@@PREVIEW_CODE@@
+'@
+    $previewCode | & $selected @prefix -I -B - @options
+    if ($LASTEXITCODE -ne 0) { throw "Aikya preview failed with exit $LASTEXITCODE" }
+    return
+}
+$stage = Join-Path ([IO.Path]::GetTempPath()) ('aikya-install-' + [guid]::NewGuid().ToString('N'))
+New-Item -ItemType Directory -Path $stage | Out-Null
+try {
+    $payload = Join-Path $stage 'aikya-bootstrap.pyz'
+    if ($OfflineDir) { Copy-Item -LiteralPath (Join-Path $OfflineDir 'aikya-bootstrap.pyz') -Destination $payload }
+    else { Invoke-WebRequest -UseBasicParsing -Uri 'https://github.com/jlema0590/aikya-forge/releases/download/v@@VERSION@@/aikya-bootstrap.pyz' -OutFile $payload -TimeoutSec 120 }
+    $checksumCode = @'
+import hashlib, sys
+with open(sys.argv[1], "rb") as payload:
+    actual = hashlib.sha256(payload.read()).hexdigest()
+sys.exit(0 if actual == sys.argv[2] else "Bootstrap integrity checksum mismatch")
+'@
+    $checksumCode | & $selected @prefix -I -B - $payload '@@BOOTSTRAP_SHA256@@'
+    if ($LASTEXITCODE -ne 0) { throw 'Bootstrap integrity checksum mismatch' }
+    $arguments = @('-I','-B',$payload,'install') + $options
+    & $selected @prefix @arguments
+    if ($LASTEXITCODE -ne 0) { throw "Aikya installation failed with exit $LASTEXITCODE" }
+} finally { Remove-Item -LiteralPath $stage -Recurse -Force }
+
+} finally { $ErrorActionPreference = $callerPreference }

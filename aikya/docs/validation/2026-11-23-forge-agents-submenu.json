@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "branch": "feat/forge-settings-sidebar",
+  "base_commit": "a74f66561f7325098b92bbd6981280c42f438662",
+  "runtime_fingerprint": "0294daf592975b985f7e2798015dc6c05a083a38ebb81152993e26590436d8c4",
+  "status": "local_checks_passed_current_remote_ci_pending",
+  "node": {
+    "version": "26.12.1",
+    "tests": 130,
+    "passed": 129,
+    "failed": 0,
+    "skipped": 1
+  },
+  "targeted": {
+    "tests": 12,
+    "passed": 12
+  },
+  "collector": {
+    "tests": 5,
+    "passed": 5
+  },
+  "typecheck": "passed",
+  "native_source_staging": "passed",
+  "pty": {
+    "status": "passed",
+    "mode": "source",
+    "version": "0.2.0",
+    "platform": "darwin-arm64",
+    "provider_calls": 0,
+    "visual_acceptance": false,
+    "ui": "Actual POSIX PTY; no human visual/device or provider acceptance",
+    "theme": "light",
+    "resize": {
+      "columns": 100,
+      "rows": 32
+    },
+    "cache_refused": true,
+    "usage_status": "unconfigured",
+    "bytes": 178825,
+    "exit_code": 0,
+    "file_completion": true,
+    "launcher_supplies_tools": false,
+    "settings_panel": true,
+    "provider_catalog": true,
+    "text_style": "bold",
+    "banner": "pyfiglet-1.0.4",
+    "project_identity": {
+      "project": "project",
+      "branch": "preview/forge",
+      "user": "Forge Preview"
+    },
+    "branch_change_observed": true,
+    "provider_metrics": true,
+    "agents_submenu": true,
+    "agents_keyboard_toggle": true
+  },
+  "logs": {
+    "node": {
+      "path": "/private/tmp/aikya-forge-20261123-identity/agents-node-full.log",
+      "sha256": "ebe377b1b299976b64132c309bd168fa52e5ffac1345a739440423ada2e19f34",
+      "exit_code": 0
+    },
+    "collector": {
+      "path": "/private/tmp/aikya-forge-20261123-identity/agents-collector.log",
+      "sha256": "82f36f38c14b920e99bf056363312764ab3ff478b82f9b0d276e1c77cbd7eb96",
+      "exit_code": 0
+    }
+  },
+  "initial_pty": {
+    "status": "style-selector timeout after successful Agents toggle",
+    "reason": "Unscoped history/option matching before navigation",
+    "recheck": "passed with fresh-output unique-menu gating"
+  },
+  "limitations": [
+    "Actual mouse routing tested in workbench; native PTY acceptance used keyboard F3",
+    "No current full native build/install, Windows/Linux execution or live-provider trial",
+    "Graphical-symbol image remains a proposal"
+  ]
+}

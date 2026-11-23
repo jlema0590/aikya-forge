@@ -1,0 +1,353 @@
+{
+  "date": "2026-11-07",
+  "branch": "research/gentle-shell-4.7.0-comparison",
+  "sources": {
+    "gentle_shell": {
+      "tag": "v4.7.0",
+      "commit": "8e11f0e2fb19af2a28233d1774848f7a3a33bbf1",
+      "package": "gentle-pi"
+    },
+    "gentle_ai": {
+      "tag": "v4.4.0",
+      "commit": "55240afb100ad6d2ef5fbe16f7be33a7693f77ad"
+    },
+    "pi": "1.4.0",
+    "engram": "3.5.2",
+    "aikya": {
+      "tag": "v7.2.2",
+      "release_commit": "0e411e5df559f0d57b67c5eabf8cd2fb1906c7aa",
+      "develop_commit": "e7415238cbafa24f285d2fb3a006333d37be7ee6",
+      "tree": "4c6d6ba04558bd8be441333b79c5e0759df773b1"
+    },
+    "gentle_unreleased_main": {
+      "commit": "d17c6f98cc69ea9a7a5a359c79934ee9292f1fcf",
+      "ahead_of_release": 3,
+      "installed": false
+    }
+  },
+  "environment": {
+    "os": "macOS arm64",
+    "python": "3.13.18",
+    "node": "26.12.1",
+    "pnpm": "11.1.1",
+    "typescript": "5.9.3",
+    "claude_cli": "2.1.311",
+    "codex_cli": "0.163.0"
+  },
+  "gentle_tests": {
+    "tests": 9335,
+    "pass": 9252,
+    "fail": 0,
+    "skipped": 83,
+    "milliseconds": 134097.086542,
+    "provider_contract": "pass, 1.4.0; 10 entries; 2 baselines",
+    "runtime_harness": "pass",
+    "typecheck": "zero diagnostics",
+    "runtime_generated_modules": 16
+  },
+  "engram_selftest": {
+    "schema_version": "engram-self-test/v1",
+    "suite": "all",
+    "quick": true,
+    "passed": true,
+    "duration_ms": 208,
+    "scenarios": [
+      {
+        "name": "database_save_search_context",
+        "suite": "reliability",
+        "passed": true,
+        "duration_ms": 31
+      },
+      {
+        "name": "concurrent_local_writes",
+        "suite": "reliability",
+        "passed": true,
+        "duration_ms": 52
+      },
+      {
+        "name": "store_search",
+        "suite": "performance",
+        "passed": true,
+        "duration_ms": 123,
+        "metrics": {
+          "operations": 20,
+          "throughput_ops_per_second": 785.5613818024706
+        }
+      }
+    ]
+  },
+  "aikya_wheel": {
+    "wheel": "aikya_harness-7.2.2-py3-none-any.whl",
+    "source_imports": false,
+    "sdk_installed": false,
+    "cases": [
+      {
+        "scope": "global-and-project",
+        "command": "reuse-command-registration",
+        "result": "passed"
+      },
+      {
+        "scope": "global",
+        "command": "mobile-feature-hook-and-phase",
+        "result": "passed"
+      },
+      {
+        "scope": "global",
+        "methodology": "odd",
+        "command": "init",
+        "result": "passed"
+      },
+      {
+        "scope": "global",
+        "methodology": "odd",
+        "command": "analyze",
+        "result": "passed"
+      },
+      {
+        "scope": "global",
+        "methodology": "sdd",
+        "command": "init",
+        "result": "passed"
+      },
+      {
+        "scope": "global",
+        "methodology": "sdd",
+        "command": "analyze",
+        "result": "passed"
+      },
+      {
+        "scope": "project",
+        "command": "mobile-feature-hook-and-phase",
+        "result": "passed"
+      },
+      {
+        "scope": "project",
+        "methodology": "odd",
+        "command": "init",
+        "result": "passed"
+      },
+      {
+        "scope": "project",
+        "methodology": "odd",
+        "command": "analyze",
+        "result": "passed"
+      },
+      {
+        "scope": "project",
+        "methodology": "sdd",
+        "command": "init",
+        "result": "passed"
+      },
+      {
+        "scope": "project",
+        "methodology": "sdd",
+        "command": "analyze",
+        "result": "passed"
+      }
+    ]
+  },
+  "aikya_full_suite": {
+    "status": "passed",
+    "tests": 706,
+    "pass": 700,
+    "fail": 0,
+    "skipped": 6,
+    "seconds": 1050.264,
+    "skip_records": [
+      "test_local_function_scope_is_not_invented_as_a_class_method (test_code_index_dart.DartNestedScopeTests.test_local_function_scope_is_not_invented_as_a_class_method) ... skipped 'Optional Dart binary is not installed'",
+      "test_declarations_ranges_and_imports (test_code_index_dart.DartTests.test_declarations_ranges_and_imports) ... skipped 'Optional Dart binary is not installed'",
+      "test_invalid_syntax_does_not_publish_symbols (test_code_index_dart.DartTests.test_invalid_syntax_does_not_publish_symbols) ... skipped 'Optional Dart binary is not installed'",
+      "test_language_declarations_and_positions (test_code_index_languages.LanguageIndexTests.test_language_declarations_and_positions) ... skipped 'Optional parser extras not installed'",
+      "test_syntax_errors_do_not_export_partial_classes_as_current (test_code_index_languages.LanguageIndexTests.test_syntax_errors_do_not_export_partial_classes_as_current) ... skipped 'Optional parser extras not installed'",
+      "test_powershell_verifies_bootstrap_without_get_filehash_and_rejects_corruption (test_latest_installer.LatestEntryScripts.test_powershell_verifies_bootstrap_without_get_filehash_and_rejects_corruption) ... skipped 'PowerShell is required'"
+    ]
+  },
+  "multi_host_install": {
+    "hosts": [
+      "claude-code",
+      "codex",
+      "gemini-cli",
+      "opencode"
+    ],
+    "components": [
+      "persona",
+      "skills"
+    ],
+    "scope": "temporary global",
+    "completed": true,
+    "owner_sentinels_preserved": true,
+    "codex_config_cli_parse": true,
+    "model_sessions_executed": false
+  },
+  "coexistence": {
+    "gentle_files_preserved": true,
+    "codex_config_preserved": true,
+    "user_settings_preserved": true,
+    "global_aikya_commands": 28,
+    "local_aikya_duplicates": 0,
+    "agent_conversation_executed": false
+  },
+  "limits": {
+    "live_model_benchmark": false,
+    "personal_config_modified": false,
+    "native_windows_linux_executed": false,
+    "full_bundled_installer_executed": false,
+    "interactive_tui_exercised": false,
+    "codegraph_external_cli_installed": false,
+    "subscription_usage_saving_measured": false
+  },
+  "evidence_directory": "/Users/jlema/.codex/.chatgpt-projects/g-p-6acf4337155881918101b957a2b076d1/deliverables/gentle-shell-comparison-2026-11-07/evidence",
+  "logs": {
+    "aikya-build.log": {
+      "sha256": "3540d40287e1b30b2cf16c75a42ae3164f9eb9d4df9bdd55b7b7444490049609",
+      "bytes": 206891
+    },
+    "aikya-deps.log": {
+      "sha256": "13340bcd859abd84d053a720e18f634d7c80f1e22bf3a544a4e05b28d9f656f4",
+      "bytes": 1244
+    },
+    "aikya-install.log": {
+      "sha256": "4eaf1b55e29c4d15b14d1972aa9bf5d959b638aaceb08607dc9280083ca4b930",
+      "bytes": 1247
+    },
+    "aikya-wheel.log": {
+      "sha256": "dfbdb73c34513a4c93365bc917cfd7366ed9fe3000809a205c239f51e98b9500",
+      "bytes": 1417
+    },
+    "claude-agents-check.log": {
+      "sha256": "9fbe72669d83895620407464992d7f3a370766a7a809fd4b6c8b6912ea40f788",
+      "bytes": 134
+    },
+    "claude-agents-json.log": {
+      "sha256": "37517e5f3dc66819f61f5a7bb8ace1921282415f10551d2defa5c3eb0985b570",
+      "bytes": 3
+    },
+    "codex-config-check.log": {
+      "sha256": "6dd1708362bdc7de0a50f7e4ad9087410fbfe42df7793bf9977cf6d2103ff810",
+      "bytes": 11491
+    },
+    "engram-help.log": {
+      "sha256": "cfdd72072dfa0fb0706d0ebeed94ecd793fd2dcad6ff77954ed55cd86de84f00",
+      "bytes": 10701
+    },
+    "engram-selftest.err": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    "engram-selftest.json": {
+      "sha256": "6379abbee71e070991bafdfc55fe26d2d34bcbc3af17ae71a95e4cba8232ad28",
+      "bytes": 447
+    },
+    "gentle-ai-help.log": {
+      "sha256": "123832ee98b366e55ebeb9a2d6374a6ebfa5d718f450657e46511c77e0a759a5",
+      "bytes": 4716
+    },
+    "gentle-ai-install-help.log": {
+      "sha256": "b07f4bbee4601337d0d3693edde45dac6a4d43c1713a8374a4878c1e3b3c59d0",
+      "bytes": 2875
+    },
+    "gentle-deps.log": {
+      "sha256": "b3547778cbe5da3b87e97f9ef7578c27dea38973be05d3b5790925ee3647da4b",
+      "bytes": 1158
+    },
+    "gentle-full-suite.log": {
+      "sha256": "40f62e1e8b437acd7e783024c04b371d024c1946c511aa8c66d85418e27075b5",
+      "bytes": 923616
+    },
+    "gentle-help.log": {
+      "sha256": "8bf065bfda949c549d2c3a87d1b72cd93885a607dfc278c986a4a4ccbd4dd91b",
+      "bytes": 7270
+    },
+    "gentle-multi-agent-install.log": {
+      "sha256": "3d236f06d01d52ed0762bbce87bc304d0c6f3cab43cc88cb57d1cd92216b53ce",
+      "bytes": 9830
+    },
+    "gentle-multi-agent-preview.log": {
+      "sha256": "235af10f1a3979f99fe35a8fa794c3799054f299d26a585f78940232526eafa6",
+      "bytes": 953
+    },
+    "gentle-native-install.log": {
+      "sha256": "85e872898d6a6256942037d8686ca2418f25cddaecc7c5f92cef331cf8955871",
+      "bytes": 314
+    },
+    "gentle-runtime-direct.log": {
+      "sha256": "38ad973186a1d1349dcf50dc0d205e5a9a5e77c730ee82904ddc131323a15feb",
+      "bytes": 277
+    },
+    "gentle-runtime-modules.log": {
+      "sha256": "50cc364d4e4ade924cbc43bd5d58ce2290451e102ba711fd5fc95cb53466f031",
+      "bytes": 326
+    },
+    "gentle-setup-preview.log": {
+      "sha256": "1050b3d415afac11e6eb54ae5d926491837d7af7d2fc932dab805f150131c5d5",
+      "bytes": 1103
+    },
+    "gentle-typecheck.log": {
+      "sha256": "f7e234215c9d1bb775906deac5f91edcdf4d80db69035ee1b88387322c5950b5",
+      "bytes": 79
+    },
+    "gentle-version.log": {
+      "sha256": "e77cdd4064883df6df71f474c7492b70b688b3e0a41211d86326a281942ad211",
+      "bytes": 111
+    },
+    "aikya-full-suite.log": {
+      "sha256": "1931bc178ee8b9fea88526496be3bfd0f4c87749809387da02935d6b36801f22",
+      "bytes": 213152
+    },
+    "aikya-languages.log": {
+      "sha256": "58fe65504d8c6bc0c5cae8fb5cdbc0e8adc0b82a0d0c8178160ec7365b6ee6d9",
+      "bytes": 839
+    },
+    "aikya-dart.log": {
+      "sha256": "ab74f110367ae28aecc146d61db63979646dc7fe34e9d56a67842e74ce023b9c",
+      "bytes": 829
+    },
+    "aikya-language-matrix.log": {
+      "sha256": "047ae3bdc4f80687a02cc9ea2e32c0d37b1fb9ad31d977b1df755b21a92fd13a",
+      "bytes": 943
+    },
+    "aikya-parser-install.log": {
+      "sha256": "c13a2c2592bb5d8b759b16c8bc6d4389cb52bc0ed0b7891ddb089cd802752918",
+      "bytes": 3294
+    }
+  },
+  "research_environment_launcher_sha256": "20393202417cb26c129dbdc2f0a499527327710fd235addba853220d274a1436",
+  "engram_artifact": {
+    "name": "engram",
+    "version": "3.5.2",
+    "platform": "darwin",
+    "arch": "arm64",
+    "url": "https://github.com/Gentleman-Programming/engram/releases/download/v3.5.2/engram_3.5.2_darwin_arm64.tar.gz",
+    "integrity": "sha256-43d398b2fe3327a4a6436c26b2a17d3285ba80bf2f11a22d0796ea2a7fd2b78c",
+    "size": 7749520,
+    "maxBytes": 7749520,
+    "redirectHosts": [
+      "objects.githubusercontent.com",
+      "release-assets.githubusercontent.com"
+    ]
+  },
+  "aikya_optional_parsers_followup": {
+    "results": {
+      "aikya-languages.log": {
+        "tests": 4,
+        "skipped": 1,
+        "failures": 0,
+        "seconds": 0.45
+      },
+      "aikya-dart.log": {
+        "tests": 5,
+        "skipped": 0,
+        "failures": 0,
+        "seconds": 0.192
+      },
+      "aikya-language-matrix.log": {
+        "tests": 5,
+        "skipped": 0,
+        "failures": 0,
+        "seconds": 0.917
+      }
+    },
+    "full_suite_repeated_with_extras": false,
+    "notes": "Focused tests after installing pinned optional parser binaries; do not add overlapping counts to full-suite total."
+  }
+}

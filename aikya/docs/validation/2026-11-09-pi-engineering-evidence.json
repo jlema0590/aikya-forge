@@ -1,0 +1,54 @@
+{
+  "schema": 1,
+  "base": "91efd78",
+  "source_sha256": {
+    "packages/aikya-pi/src/editor.ts": "a9f6461911585a07cb6d9d4cf2c5f61c71a492d55295a20ef890040bcf415a5d",
+    "packages/aikya-pi/src/engineering-workflows.ts": "4e1fa7a667fff27c85f028be5ed30208ebeec6aee0e4c7ae2ede3d7f5f12185b",
+    "packages/aikya-pi/src/extension.ts": "191a027ac15e712ab5a78d591b5ad4bdf190a959f44b12fdb29380767afa09c8",
+    "packages/aikya-pi/src/host.ts": "7ee51c604e43dae0dd0156d0fdf7c20d6a3aa966019f07bcb5862e7333cc92ea",
+    "packages/aikya-pi/tests/documentation.test.ts": "0a5bbf5d583c47dcc41c4a91fcdd7ccdf1738fa5aecaf50a72b1b614795ad7bf",
+    "packages/aikya-pi/tests/engineering-workflows.test.ts": "1835f0889a4329e884e47ad94c67cbf29f367d262f8e3335879ceff4d12a1ec9",
+    "src/aikya/documentation/composition.py": "94d16fa21a2a65ee3a939fc34b844b8b2d45ec2c4b4fd0485c0aeccac3f330a3",
+    "src/aikya/services/architecture_findings.py": "da22c2525f2bd9a6ab2ebaff9097b7d9106e6ef7b1ccec182298fbad5ee385a7",
+    "src/aikya/services/bug_document.py": "cee06cb94948ac7384e73449d2da47230081b669102dbd8782e6d31746016bb0",
+    "src/aikya/services/bug_evidence.py": "844cc3d59ff5b29e4446ba5f7fa62f8095c54e0614e0b5e5c5ace03c479ed8a3",
+    "src/aikya/services/documentation.py": "eef960583d15409de03ce4e612f6b5be1e6313df904bc9403637d8482e3023bf",
+    "src/aikya/services/engineering_workflows.py": "3b69e8904de841b07215090a5e2a63f3c54e77c4077e1baf68817579b647d5f5",
+    "src/aikya/services/mobile_inputs.py": "920ea7f3bf54719f69c6779ee0928c867ac50c0cd8f7d09308ec97f442e70092",
+    "src/aikya/services/mobile_workflow.py": "5b918bddfc04e7a6a08acc69fc24fc441bf18e2c2a9bab6c4f284f65f93edf16",
+    "src/aikya/services/runtime_state.py": "2867913bd1afb326f874a67d67a7d2be33923af2bb1a979a3a8497b8ed409c56",
+    "src/aikya/services/task_binding.py": "4001902b1ae74a59c5805f6831ac95162dbbc320eef4184408d0b574bf6581c1",
+    "src/aikya/workflows/mobile_scope.py": "67ea6fd6c556cdeaada30233bef01c68a733e044daadcfa10a053736f41e5569",
+    "src/aikya/workflows/odd.py": "9cc015f7960d305d4f3418eacc99a617a61e087920f53883ded7faa0e7ffbd25",
+    "tests/test_pi_architecture_review.py": "e7c0d5810bf996b082c828fa1c95cfac3b97317daed105c56a8f920a24b735c7",
+    "tests/test_pi_bugfix.py": "5aac98a64705050f1f19bf488231cbb19d85f631e91bcc470f5bf339691bdadf",
+    "tests/test_pi_mobile_workflow.py": "e485c83119ccdcbb2fc74fa2c0d0cc13037e6526425edde1ede16e8339af693e"
+  },
+  "wheel": {
+    "name": "aikya_harness-7.2.2-py3-none-any.whl",
+    "sha256": "85cd0f7df67522ca5dcf980b7931f5eb205789fbcfc7ba38f1460deb478f2c20"
+  },
+  "python_regression": {
+    "tests": 971,
+    "seconds": 1221.651,
+    "failures": 0,
+    "skipped": 2
+  },
+  "pi": {
+    "tests": 65,
+    "node26_ms": 18672.829667,
+    "node22_installed_ms": 21575.856042
+  },
+  "installed_contracts": 21,
+  "mobile_metadata_cases": 112,
+  "canonical_commands": 28,
+  "duplicate_commands": 0,
+  "terminal": {
+    "os": "macOS",
+    "language": "es",
+    "provider": "disabled",
+    "exit_code": 0
+  },
+  "live_provider_acceptance": false,
+  "native_mobile_acceptance": false
+}

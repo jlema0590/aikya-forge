@@ -1,0 +1,16 @@
+{
+  "mode": "new",
+  "name": "android-kotlin-demo",
+  "backend": "none",
+  "frontend": "none",
+  "mobile": "android",
+  "mobile_framework": "native",
+  "android_language": "kotlin",
+  "architecture": "clean",
+  "database": "sqlite",
+  "ci": "github-actions",
+  "deployment": "app-stores",
+  "package_manager": "none",
+  "notes": "Android Studio and Kotlin; verify JDK, Android Gradle Plugin and Android SDK compatibility before generating a project.",
+  "repository_layout": "singlerepo"
+}
