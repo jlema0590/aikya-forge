@@ -1,7 +1,8 @@
 # Aikya Forge CI and publication policy
 
 Feature/fix branches target `develop`. Promotion to `main` and publication are
-separate reviewed actions; pushing or merging a change does not publish a release.
+separate stages: a main push starts the gated automatic release workflow. PRs and
+develop pushes do not publish releases.
 
 ## Active checks
 
@@ -16,10 +17,13 @@ separate reviewed actions; pushing or merging a change does not publish a releas
 
 ## Native release
 
-`forge-release.yml` runs manually. Its default `publish=false` prepares reviewed
-artifacts without publishing. Enabling publication additionally requires `main`,
-all native checks and separately reviewed real-provider evidence. The release
-workflow validates same-commit assets before updating installation Pages.
+`forge-release.yml` runs on main pushes and manual dispatch. New versions use
+VERSION and matching changelog notes from the reviewed commit; no automatic bump
+is made. Publishing requires all native checks and current accepted real-provider
+evidence. Manual publish=false prepares without publication; publish=true requires
+main. A published version is never replaced. Retries can restore latest stable
+Pages from the original tag commit without rebuilding assets. See the
+[release and Pages guide](../aikya/docs/deployment/automatic-releases.md).
 
 The inherited `release.yml`, `bump-versions.yml` and `install-pages.yml` jobs are
 explicitly disabled. Changing the product name must not activate them.

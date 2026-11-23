@@ -232,9 +232,13 @@ reconocen la firma anterior para poder actualizar documentos sin duplicarla.
 Los registros históricos y la procedencia de terceros conservan sus identificadores.
 
 Los workflows heredados de publicación están desactivados explícitamente. Forge incluye
-una matriz de construcción/aceptación de siete destinos y preparación manual de releases.
-La publicación está desactivada por defecto y exige main, pruebas nativas y evidencia
-revisada de proveedor real. Este cambio no publica una release estable ni la URL de Pages. El
+una matriz de construcción/aceptación de siete destinos. Las versiones nuevas se
+publican automáticamente al llegar a main, usando `VERSION` y el changelog de la PR.
+También se conserva la ejecución manual: `publish=false` prepara artefactos y
+`publish=true` solicita publicar desde main. Ambas rutas de publicación exigen las
+pruebas nativas y evidencia real vigente aceptada. Las versiones publicadas se
+conservan; los reintentos pueden recuperar Pages desde sus archivos originales.
+Consulta la [guía de releases y Pages](aikya/docs/deployment/automatic-releases.md). Este cambio no publica una release estable ni la URL de Pages. El
 [índice documental](aikya/docs/indice.md) conserva planes y evidencias anteriores;
 las referencias a v7/v8 de los registros históricos describen aquellas versiones.
 

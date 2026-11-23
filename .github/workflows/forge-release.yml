@@ -1,5 +1,7 @@
 name: Forge | Prepare or publish verified native release
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
     inputs:
       publish:
@@ -11,14 +13,39 @@ permissions:
 concurrency:
   group: forge-release
   cancel-in-progress: false
+  queue: max
 jobs:
-  verify:
+  plan:
     runs-on: ubuntu-24.04
-    timeout-minutes: 30
+    outputs:
+      mode: ${{ steps.plan.outputs.mode }}
+      version: ${{ steps.plan.outputs.version }}
+      tag: ${{ steps.plan.outputs.tag }}
+      source_commit: ${{ steps.plan.outputs.source_commit }}
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Plan a new release, an immutable retry or manual preparation
+        id: plan
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FORGE_PUBLISH: ${{ inputs.publish && 'true' || 'false' }}
+        run: python scripts/ci/forge_release_plan.py
+  verify:
+    needs: plan
+    if: needs.plan.outputs.mode == 'publish' || needs.plan.outputs.mode == 'prepare'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
@@ -39,7 +66,7 @@ jobs:
         env:
           AIKYA_TEST_PYTHON: python
       - name: Require main and separately reviewed real-provider evidence before publication
-        if: inputs.publish
+        if: needs.plan.outputs.mode == 'publish'
         shell: bash
         run: |
           set -euo pipefail
@@ -47,10 +74,10 @@ jobs:
           python scripts/ci/forge_release_gate.py --version "$(cat VERSION)" \
             --report "$GITHUB_WORKSPACE/aikya/docs/validation/forge-provider-acceptance.json"
   native:
-    needs: verify
+    needs: [plan, verify]
     uses: ./.github/workflows/forge-native.yml
   assemble:
-    needs: [verify, native]
+    needs: [plan, verify, native]
     runs-on: ubuntu-24.04
     steps:
       - uses: actions/checkout@v4
@@ -79,8 +106,8 @@ jobs:
           retention-days: 30
           if-no-files-found: error
   publish:
-    if: inputs.publish && github.ref == 'refs/heads/main' && github.repository == 'jlema0590/aikya-forge'
-    needs: [verify, native, assemble]
+    if: needs.plan.outputs.mode == 'publish' && github.ref == 'refs/heads/main' && github.repository == 'jlema0590/aikya-forge'
+    needs: [plan, verify, native, assemble]
     runs-on: ubuntu-24.04
     permissions:
       contents: write
@@ -112,7 +139,8 @@ jobs:
           gh release create "v$VERSION" "${ASSETS[@]}" release/SHA256SUMS \
             --target "$GITHUB_SHA" --title "Aikya Forge v$VERSION" --notes-file release/RELEASE_NOTES.md --latest
   pages:
-    needs: publish
+    if: ${{ always() && !cancelled() && needs.plan.result == 'success' && ((needs.plan.outputs.mode == 'publish' && needs.publish.result == 'success') || needs.plan.outputs.mode == 'pages') }}
+    needs: [plan, publish]
     runs-on: ubuntu-24.04
     permissions:
       contents: read
@@ -135,14 +163,28 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          gh release download "v$(cat VERSION)" --dir published \
+          gh release download "${{ needs.plan.outputs.tag }}" --repo "$GITHUB_REPOSITORY" --dir published \
             --pattern install.sh --pattern install.ps1 --pattern terminal-bootstrap.json \
             --pattern release.json --pattern SHA256SUMS
-          python scripts/ci/forge_install_pages.py --version "$(cat VERSION)" \
-            --assets published --output site --commit "$GITHUB_SHA"
+          python scripts/ci/forge_install_pages.py --version "${{ needs.plan.outputs.version }}" \
+            --assets published --output site --commit "${{ needs.plan.outputs.source_commit }}"
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
       - uses: actions/deploy-pages@v4
         id: deploy
+      - name: Verify public installer bytes
+        env:
+          PAGES_URL: ${{ steps.deploy.outputs.page_url }}
+        run: |
+          python - <<'PY'
+          import os, pathlib, urllib.request
+          base=os.environ['PAGES_URL'].rstrip('/')+'/'
+          for name in ('install.sh','install.ps1.txt','provenance.json'):
+              with urllib.request.urlopen(base+name,timeout=30) as response:
+                  if response.read()!=(pathlib.Path('site')/name).read_bytes():
+                      raise SystemExit('Public installer bytes differ: '+name)
+                  if name.endswith('.txt') and not response.headers.get_content_type().startswith('text/'):
+                      raise SystemExit('PowerShell entry must be served as text')
+          PY
