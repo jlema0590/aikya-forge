@@ -229,9 +229,12 @@ so an existing document can be refreshed without duplicating its signature.
 Historical records and third-party provenance retain their original identifiers.
 
 Inherited publication workflows are explicitly disabled.
-Forge has its own seven-target build/acceptance workflow and manual release preparation.
-Publication is disabled by default and requires main, all native checks and separately
-reviewed real-provider evidence. No stable release or Pages URL is published by this change. The [documentation index](aikya/docs/indice.md) preserves previous plans
+Forge publishes new versions automatically on main pushes, using `VERSION` and the
+matching changelog notes. Manual runs remain available: `publish=false` prepares
+artifacts; `publish=true` requests publication on main. Both publishing paths require
+all native checks and current accepted real-provider evidence. Published versions
+are preserved; retries can restore Pages from their original assets. See the
+[release and Pages guide](aikya/docs/deployment/automatic-releases.md). No stable release or Pages URL is published by this change. The [documentation index](aikya/docs/indice.md) preserves previous plans
 and evidence; references to v7/v8 inside historical records describe their original
 snapshots, not Forge's current version.
 

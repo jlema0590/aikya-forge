@@ -1,0 +1,81 @@
+# Automatic releases and component Pages
+
+## Release behavior
+
+`forge-release.yml` runs on every push to `main`, including merged PRs. Each new
+release uses `VERSION` and its matching `CHANGELOG.md` section from that commit.
+There is no automatic version increment or write-back to the protected branch.
+Use a higher version and reviewed release notes when publishing new changes.
+
+| Event/state | Behavior |
+|---|---|
+| New version reaches main | Validate the version, accepted real-provider evidence, full Python/Pi tests and all seven native targets; assemble same-commit assets; publish; deploy Pages. |
+| Manual, publish=false | Prepare and validate artifacts without publishing. This remains the manual default. |
+| Manual, publish=true on main | Publish a new version after the same checks, or restore Pages from the existing latest stable release. |
+| Main push with an already published version from an earlier commit | Skip publication and preserve all original assets. |
+| Retry the same published commit | Restore latest stable Pages from the original assets; do not rebuild or replace the release. |
+| Foreign tag, draft/prerelease conflict, partial assets or API failure | Stop with a clear error; never move tags or interpret an access failure as a missing release. |
+
+The workflow queues executions rather than cancelling publication in progress.
+Read-only planning happens before builds. Only the publication job has
+`contents: write`; Pages has its own narrow Pages/OIDC permissions.
+
+The existing real-provider acceptance gate remains required for every new public
+release. An absent, pending or stale report blocks publication even after a main
+merge. Local fixtures do not certify real-provider transport or account quotas.
+
+## Repository setup and first deployment
+
+1. Integrate this workflow through the normal reviewed PR path into `main`.
+2. In repository **Settings → Pages**, select **GitHub Actions** as the build source.
+3. Include a current accepted `aikya/docs/validation/forge-provider-acceptance.json`
+   and its genuine controlled observations before requesting public release.
+4. Let the main push start the workflow. Alternatively use **Actions → Forge |
+   Prepare or publish verified native release → Run workflow**, choose main and
+   set publish=true. Keeping it false performs preparation only.
+5. Confirm the release exists and the final public-byte check succeeds for
+   `install.sh`, `install.ps1.txt` and `provenance.json`.
+
+The normal repository GITHUB_TOKEN is sufficient for the declared workflow
+operations when Actions/Pages permissions permit them. No personal token is added
+to scripts or installer URLs. Environment protection rules may still require their
+configured deployment review.
+
+If release creation succeeds but Pages fails, rerun that workflow or manually
+request publish=true on main. The planner resolves the original tag commit and
+verifies that this is still the latest stable release. Pages validates downloaded
+checksums and source identity against that original commit. A later docs-only main
+commit does not rewrite release provenance. A retry cannot roll the site back to
+an older stable release.
+
+The public install URL is available only after the first successful deployment.
+Neither adding the workflow nor a preparation-only run makes a 404 disappear.
+
+## Recommended Pages layout
+
+Use one common Aikya portal and independent project Pages for independently
+versioned products. Proposed locations, not sites created by this change:
+
+| Purpose | Repository | Proposed location |
+|---|---|---|
+| Shared navigation, product comparison and getting started | jlema0590.github.io | https://jlema0590.github.io/ |
+| Forge installation, release provenance and Forge documentation | aikya-forge | https://jlema0590.github.io/aikya-forge/ |
+| Mods catalog and its own compatibility/version notes | aikya-mods | https://jlema0590.github.io/aikya-mods/ |
+
+If the account root already hosts a personal site, put the portal in a project
+repository such as aikya-page instead; product installer URLs can remain unchanged.
+The portal links each component's canonical guide. Each product deploys from its
+own release workflow, so a Mods documentation update does not redeploy Forge's
+installer. Individual skills, agents and themes are sections within their product,
+not separate Pages deployments.
+
+If the predecessor product remains independently maintained, it can retain its own
+project Pages. If Forge replaces it, use the old site for migration guidance and
+links instead of maintaining two competing sets of current instructions. Preserve
+existing installer paths for scripts and automation when changing site navigation.
+
+GitHub supports one user/organization site per account and one project site per
+repository. This permits both the shared portal and component sites without a
+custom domain. See [GitHub Pages site types](https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages).
+
+GENERATED BY AIKYA FORGE
