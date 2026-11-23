@@ -8,10 +8,12 @@ export class ForgeWorkbench extends Container {
   #left=0;#offset=0;
   #height=0;#wide=false;#action?: (action:'settings'|'flow'|'stop')=>void;
   #appearance?:()=>ConsoleSettings;
-  constructor(body:Container,sidebar:(width:number)=>string[],enabled:()=>boolean,appearance?:()=>ConsoleSettings,action?:(action:'settings'|'flow'|'stop')=>void) {
+  #compactSidebar?: (width:number)=>string[];
+  constructor(body:Container,sidebar:(width:number)=>string[],enabled:()=>boolean,appearance?:()=>ConsoleSettings,action?:(action:'settings'|'flow'|'stop')=>void,compactSidebar?:(width:number)=>string[]) {
     super();this.#body=body;this.#sidebar=sidebar;this.#enabled=enabled;
     this.#appearance=appearance;
     this.#action=action;
+    this.#compactSidebar=compactSidebar;
   }
   originalChildren(){return this.#body.children;}
   #style(lines:string[],width:number) {
@@ -33,7 +35,8 @@ export class ForgeWorkbench extends Container {
     this.#left=wide?width-side-3:width;
     const left=this.#body.render(Math.max(1,this.#left));
     if(!enabled){this.#offset=0;return this.#style(left,width);}
-    if(!wide){this.#offset=0;return this.#style([...left,...this.#sidebar(width).filter(Boolean).slice(0,3).map(s=>truncateToWidth(s,width,'…'))],width);}
+    if(!wide){this.#offset=0;const summary=this.#compactSidebar?.(width)??this.#sidebar(width).filter(Boolean).slice(0,3);
+      return this.#style([...left,...summary.map(s=>truncateToWidth(s,width,'…'))],width);}
     const right=this.#sidebar(side),height=Math.max(left.length,right.length);
     this.#height=height;
     this.#offset=height-left.length;

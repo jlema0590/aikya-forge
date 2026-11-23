@@ -2,7 +2,7 @@ import {Container,replaceControlCharacters,type TUI} from '@earendil-works/pi-tu
 import type {ExtensionAPI,ExtensionCommandContext,ExtensionContext,ModelRuntime} from '@earendil-works/pi-coding-agent';
 import {ConsolePreferences,type ConsoleSettings} from './console-preferences.ts';
 import {applyAppearance} from './console-appearance.ts';
-import {renderSidebar} from './console-sidebar.ts';
+import {renderSidebar,renderCompactSidebar} from './console-sidebar.ts';
 import {ForgeWorkbench} from './console-layout.ts';
 import {configureProvider} from './provider-settings.ts';
 import type {registerLocalCommands} from './local-commands.ts';
@@ -15,7 +15,7 @@ export function registerConsole(pi:ExtensionAPI,root:string,python:string|undefi
   let context:ExtensionContext|undefined,tui:TUI|undefined,workbench:ForgeWorkbench|undefined,timer:ReturnType<typeof setInterval>|undefined;
   let running=false;
   const request=()=>tui?.requestRender();
-  const snapshot=()=>({...local.viewUsage(),phase:phase(),state:running?'running':'idle',
+  const snapshot=()=>({...local.viewUsage(),workspace:local.viewWorkspace(),phase:phase(),state:running?'running':'idle',
     model:controlled&&context?.model?context.model.provider+'/'+context.model.id:null,context:controlled?context?.getContextUsage():undefined});
   const repaint=()=>{const value=store.load();if(!value.diagnostic)settings=value.value;request();};
   local.onUsageChanged(request);
@@ -104,7 +104,7 @@ export function registerConsole(pi:ExtensionAPI,root:string,python:string|undefi
         if(!context)return;const ctx=context;
         void (action==='stop'&&task?task({action:'stop-run'},ctx):show(ctx,action==='flow'?'Flow':undefined))
           .catch(()=>ctx.ui.notify('Control did not confirm completion; inspect flow status','warning'));
-      });
+      },width=>renderCompactSidebar(snapshot(),width).map(line=>context?.ui.theme.fg('muted',line)??line));
     target.children.splice(0,target.children.length,workbench);
   }};
 }

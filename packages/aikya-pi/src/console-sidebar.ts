@@ -1,9 +1,22 @@
 import {truncateToWidth,replaceControlCharacters} from '@earendil-works/pi-tui';
 import type {BudgetStatus,QuotaCache} from './usage.ts';
+import {workspaceLabel,type WorkspaceIdentity} from './workspace.ts';
 export type SidebarSnapshot={phase:string;state:string;model:string|null;budget:BudgetStatus;
-  context?:{tokens:number|null;contextWindow:number;percent:number|null};quotas:ReturnType<QuotaCache['view']>[]};
+  workspace?:WorkspaceIdentity;context?:{tokens:number|null;contextWindow:number;percent:number|null};quotas:ReturnType<QuotaCache['view']>[]};
 const safe=(v:string)=>replaceControlCharacters(v).slice(0,180);
 const percent=(v:number)=>Number.isFinite(v)?Number(v.toFixed(1))+'%':'unknown';
+
+function intro(snapshot:SidebarSnapshot) {
+  const rows=['Flow',safe(snapshot.state)+' · '+safe(snapshot.phase),safe(snapshot.model??'Model disabled'),''];
+  const workspace=snapshot.workspace;
+  if(workspace)rows.push('Project & Git','Project: '+workspaceLabel(workspace.project),
+    'Branch: '+workspaceLabel(workspace.branch??'unavailable'),'User: '+workspaceLabel(workspace.user??'not configured'),'');
+  return rows;
+}
+
+export function renderCompactSidebar(snapshot:SidebarSnapshot,width:number):string[] {
+  return intro(snapshot).filter(Boolean).map(row=>truncateToWidth(row,Math.max(1,width),'…'));
+}
 
 /** Account quota, context and local attribution always carry their own denominator. */
 export function renderSidebar(snapshot:SidebarSnapshot,width=36,now=Date.now()):string[] {
@@ -11,7 +24,7 @@ export function renderSidebar(snapshot:SidebarSnapshot,width=36,now=Date.now()):
   const complete=budget.status!=='unknown_usage'&&budget.recorded_tokens!==null
     &&budget.grouped_calls===budget.calls&&groups.every(g=>g.usage_complete);
   const total=budget.recorded_tokens;
-  const rows=['Flow',safe(snapshot.state)+' · '+safe(snapshot.phase),safe(snapshot.model??'Model disabled'),'',
+  const rows=[...intro(snapshot),
     'Project token budget',total===null?'Recorded tokens: unknown':'Recorded tokens: '+total+(budget.status==='unknown_usage'?' + unknown':''),
     total!==null&&budget.limits?.tokens?percent(total/budget.limits.tokens*100)+' local budget'+(budget.status==='unknown_usage'?' (known only)':''):'Local budget: unconfigured',
     'Calls: '+budget.calls+(budget.limits?' / '+budget.limits.calls:''),'State: '+safe(budget.status),

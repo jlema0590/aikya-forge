@@ -63,10 +63,12 @@ the dependency-free Python core retains a plain-text fallback. The banner is cac
 locally and makes no model calls. Select the theme with `/aikya-theme aikya` or
 Settings → Appearance.
 
-The startup header identifies the project directory, the observed Git branch and
+The right sidebar’s Project & Git block identifies the project directory, observed
+Git branch and
 `git config user.name`. Email and remotes are not displayed. Branch changes reuse
 the SDK cache/watch; repainting runs no Git commands. User identity is read once
 at session start; missing Git/configuration is shown explicitly as unavailable.
+Narrow terminals retain project/Git fields in the compact summary below the transcript.
 
 The sidebar reserves its own columns for phase, flow controls, local tokens/calls,
 budget and estimated context percentages, and Claude/Codex author/reviewer usage.

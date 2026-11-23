@@ -67,7 +67,7 @@ export function aikyaExtension(root: string, python?: string, controlled = false
       ctx.ui.setStatus("aikya", controlled ? phase.value+" · "+(ctx.model?.id??"model unavailable") : "Local preview · model disabled");
       ctx.ui.setHeader((_tui, theme) => ({
         render: (width: number) => renderBrandHeader(width,version,
-          controlled?phase.value+' · '+(ctx.model?.provider??'unknown')+'/'+(ctx.model?.id??'unknown'):'Local preview · model disabled',banner,local.viewWorkspace()),
+          controlled?phase.value+' · '+(ctx.model?.provider??'unknown')+'/'+(ctx.model?.id??'unknown'):'Local preview · model disabled',banner),
         invalidate: () => {},
       }));
     });

@@ -205,10 +205,11 @@ def run(output,*,application=None,source=None,assets=None,fetch=False):
     try:
         with ConsoleCapture(command,project,env) as terminal:
             terminal.expect('Aikya Forge v'+version,timeout=45)
+            terminal.expect('Project & Git',timeout=10)
             terminal.expect('Project: '+project.name,timeout=10)
             if git_fixture:
-                terminal.expect('Git branch: preview/forge',timeout=10)
-                terminal.expect('Git user: Forge Preview',timeout=10)
+                terminal.expect('Branch: preview/forge',timeout=10)
+                terminal.expect('User: Forge Preview',timeout=10)
             terminal.expect('/   |  (_) /____  ______ _',timeout=10)
             offset=terminal.send('/aikya-tokens\r');terminal.expect('Provider quota: unavailable',timeout=30,after=offset)
             assert 'not found. Offline mode' not in plain(terminal.raw)
@@ -219,7 +220,7 @@ def run(output,*,application=None,source=None,assets=None,fetch=False):
             write_new(output/'startup.ansi',bytes(terminal.raw))
             if git_fixture:
                 subprocess.run([git,'-C',str(project),'symbolic-ref','HEAD','refs/heads/preview/updated'],env=env,cwd=output,capture_output=True,check=True,timeout=10)
-                terminal.expect('Git branch: preview/updated',timeout=15)
+                terminal.expect('Branch: preview/updated',timeout=15)
             offset=terminal.send('/aikya-theme light\r');terminal.expect('Apply this theme?',timeout=20,after=offset)
             terminal.send('\x1b[A');terminal.settle(.1);terminal.send('\r');terminal.until(lambda:_theme(project)=='light',timeout=20)
             write_new(output/'light-theme.ansi',bytes(terminal.raw))

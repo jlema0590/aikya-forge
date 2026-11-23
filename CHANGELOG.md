@@ -7,7 +7,8 @@ The inherited Harness v7/v8 changelog remains in
 ## Unreleased
 
 - Use Aikya Forge as the terminal/theme display name and show project, Git branch
-  and configured Git user in the header. Reuse SDK branch observation, read only
+  and configured Git user in the right-side Project & Git block, with a compact
+  summary on narrow terminals. Reuse SDK branch observation, read only
   user.name at startup and retain explicit fallbacks without repaint subprocesses.
 
 - Add the Aikya Forge theme using original-logo navy/cyan/turquoise, preserve

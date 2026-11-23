@@ -54,3 +54,15 @@ test('light appearance paints a readable background even when the host terminal 
   const workbench=new layout.ForgeWorkbench(body,()=>[],()=>false,()=>({theme:'light',textStyle:'normal',sidebar:false,colors:{}}));
   assert.match(workbench.render(60)[0],/\x1b\[48;2;255;255;255m/);
 });
+
+
+test('compact layout retains Git context below the transcript when columns cannot fit',()=>{
+  assert.ok(sidebar&&layout);
+  const snapshot={phase:'explore',state:'idle',model:null,workspace:{project:'app',branch:'feature/api',user:'Forge User'},budget:{status:'unconfigured' as const,recorded_tokens:null,calls:0},quotas:[]};
+  const body=new Container();body.addChild({render:()=>['Aikya Forge'],invalidate:()=>{}});
+  const workbench=new layout.ForgeWorkbench(body,(width:number)=>sidebar.renderSidebar(snapshot,width),()=>true,undefined,undefined,
+    (width:number)=>sidebar.renderCompactSidebar(snapshot,width));
+  const rows=workbench.render(60);
+  assert.ok(rows.every(row=>visibleWidth(row)<=60));
+  assert.match(rows.join('\n'),/Project: app/);assert.match(rows.join('\n'),/Branch: feature\/api/);assert.match(rows.join('\n'),/User: Forge User/);
+});

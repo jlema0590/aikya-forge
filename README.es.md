@@ -63,10 +63,11 @@ El núcleo Python sin dependencias mantiene una alternativa de texto simple.
 El rótulo se guarda en caché local y no llama a modelos. El arranque conserva
 el nombre Aikya Forge legible. Se elige con `/aikya-theme aikya` o Appearance.
 
-La cabecera muestra el proyecto, la rama observada por Git y el usuario de
+El bloque Project & Git del panel derecho muestra el proyecto, la rama y el usuario de
 `git config user.name`. No muestra el correo ni remotos. La rama se actualiza desde
 la caché del SDK; no ejecuta Git al repintar. El usuario se consulta al iniciar
 la sesión. Sin Git o sin configuración se indican valores no disponibles.
+En terminales estrechas, los datos se conservan en el resumen inferior.
 
 El lateral reserva sus propias columnas para la fase, controles del flujo, tokens
 y llamadas locales, porcentajes de presupuesto y contexto estimado, y atribución

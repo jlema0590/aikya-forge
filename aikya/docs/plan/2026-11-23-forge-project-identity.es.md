@@ -2,7 +2,7 @@
 
 **Objetivo:** usar solo Aikya Forge como nombre visible y mostrar proyecto, rama y
 usuario Git en la terminal real y en una captura de ejemplo.
-**Arquitectura:** la cabecera consulta la rama cacheada por el proveedor de footer
+**Arquitectura:** el bloque Project & Git del panel derecho consulta la rama cacheada por el proveedor de footer
 existente de Pi, que observa cambios en HEAD. El usuario procede únicamente de
 `git config user.name`, mediante una consulta local acotada al iniciar la TUI.
 **Tecnologías:** Pi 1.5.0, TypeScript/Node >=22.19.0, Git del equipo y pyfiglet 1.0.4.
@@ -20,11 +20,12 @@ el rótulo ASCII real de pyfiglet y la paleta original.
 ## Implementación secuencial
 
 - [x] Escribir y observar pruebas rojas para la lectura del usuario Git y la
-  cabecera con campos reales, sanitización y anchos pequeños.
+  composición de columnas con campos reales, sanitización y anchos pequeños.
 - [x] Crear workspace.ts con lectura local acotada de user.name, sin shell, con
   fallback cuando Git/configuración no estén disponibles y sin invocar Git al pintar.
 - [x] Reutilizar getGitBranch/onBranchChange del footer del SDK; mostrar el nombre
-  del directorio del proyecto, la rama y el usuario únicamente en la cabecera.
+  del directorio del proyecto, la rama y el usuario en el panel derecho, con un
+  resumen inferior cuando no quepan ambas columnas.
 - [x] Cambiar los nombres visibles del arranque y del tema a Aikya Forge; mantener
   la preferencia `aikya` y las identidades internas compatibles.
 - [x] Ejecutar npm test completo, TypeScript, pruebas del colector y una PTY real

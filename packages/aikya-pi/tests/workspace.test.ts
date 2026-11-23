@@ -4,18 +4,24 @@ import {execFileSync} from 'node:child_process';
 import {mkdtempSync,rmSync,existsSync} from 'node:fs';
 import {tmpdir} from 'node:os';
 import {join,basename} from 'node:path';
-import {stripTerminalSequences,visibleWidth} from '@earendil-works/pi-tui';
+import {Container,stripTerminalSequences,visibleWidth} from '@earendil-works/pi-tui';
 import {renderBrandHeader} from '../src/brand-header.ts';
+import {renderSidebar} from '../src/console-sidebar.ts';
+import {ForgeWorkbench} from '../src/console-layout.ts';
 const workspace=await import('../src/workspace.ts').catch(()=>null);
 
-test('startup identifies the selected project, Git branch and user without legacy branding or terminal escapes',()=>{
+test('project and Git identity render only in the reserved right column with safe bounded rows',()=>{
   const identity={project:'payments-app',branch:'feature/payments',user:'Juan Lema'};
-  const value=renderBrandHeader(79,'0.2.0','Local preview',undefined,identity).map(stripTerminalSequences).join('\n');
-  assert.match(value,/Aikya Forge v0.2.0/);assert.doesNotMatch(value,/Harness/);
-  assert.match(value,/Project: payments-app/);assert.match(value,/Git branch: feature\/payments/);assert.match(value,/Git user: Juan Lema/);
-  for(const width of [1,10,20,79])assert.ok(renderBrandHeader(width,'0.2.0','Local preview',undefined,identity).every(s=>visibleWidth(s)<=width));
-  const unsafe=renderBrandHeader(79,'0.2.0','Local preview',undefined,{project:'app\x1b[2J',branch:'x\nFAKE',user:'a\r\nUSER'}).map(stripTerminalSequences).join('\n');
-  assert.equal(unsafe.split('\n').length,5,'Metadata cannot inject additional terminal rows');
+  const snapshot={phase:'explore',state:'idle',model:null,workspace:identity,budget:{status:'unconfigured' as const,recorded_tokens:null,calls:0},quotas:[]};
+  const body=new Container();body.addChild({render:(width:number)=>renderBrandHeader(width,'0.2.0','Local preview'),invalidate:()=>{}});
+  const workbench=new ForgeWorkbench(body,width=>renderSidebar(snapshot,width),()=>true);
+  const value=workbench.render(120).map(stripTerminalSequences);
+  const left=value.map(row=>row.split(' │ ')[0]).join('\n'),right=value.map(row=>row.split(' │ ')[1]??'').join('\n');
+  assert.match(left,/Aikya Forge v0.2.0/);assert.doesNotMatch(left,/Harness|Project:|Branch:|User:/);
+  assert.match(right,/Project & Git/);assert.match(right,/Project: payments-app/);assert.match(right,/Branch: feature\/payments/);assert.match(right,/User: Juan Lema/);
+  for(const width of [1,10,20,79])assert.ok(renderSidebar(snapshot,width).every(s=>visibleWidth(s)<=width));
+  const unsafe=renderSidebar({...snapshot,workspace:{project:'app\x1b[2J',branch:'x\nFAKE',user:'a\r\nUSER'}},79).map(stripTerminalSequences);
+  assert.ok(unsafe.every(row=>!/[\r\n]/.test(row)),'Metadata cannot inject additional terminal rows');
 });
 
 test('Git identity uses real project user.name as data and permits no shell interpretation',async()=>{
@@ -37,7 +43,7 @@ test('missing Git retains explicit unavailable fields and does not block startup
   const key=Object.keys(process.env).find(k=>k.toUpperCase()==='PATH')??'PATH',before=process.env[key];
   try {
     process.env[key]='';assert.equal(await workspace.readGitUser(tmpdir()),null);
-    const rows=renderBrandHeader(79,'0.2.0','Local preview',undefined,workspace.projectIdentity(tmpdir(),null,()=>null)).join('\n');
-    assert.match(rows,/Git branch: unavailable/);assert.match(rows,/Git user: not configured/);
+    const rows=renderSidebar({phase:'explore',state:'idle',model:null,budget:{status:'unconfigured',recorded_tokens:null,calls:0},quotas:[],workspace:workspace.projectIdentity(tmpdir(),null,()=>null)},79).join('\n');
+    assert.match(rows,/Branch: unavailable/);assert.match(rows,/User: not configured/);
   } finally {if(before===undefined)delete process.env[key];else process.env[key]=before;}
 });
