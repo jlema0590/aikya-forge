@@ -6,13 +6,13 @@ const layout=await import('../src/console-layout.ts').catch(()=>null);
 
 test('sidebar keeps project budget, agent share, context and account quota as distinct measures',()=>{
   assert.ok(sidebar,'Sidebar is absent');
-  const rows=sidebar.renderSidebar({phase:'implement',state:'running',model:'anthropic/example',context:{tokens:200,contextWindow:1000,percent:20},
+  const rows=sidebar.renderSidebar({phase:'implement',state:'running',model:'anthropic/example',contextProvider:'anthropic',context:{tokens:200,contextWindow:1000,percent:20},
     budget:{status:'available',recorded_tokens:100,calls:2,limits:{tokens:400,calls:10},grouped_calls:2,groups:[
       {role:'author',phase:'implement',provider:'anthropic',model:'example',recorded_tokens:75,calls:1,usage_complete:true},
       {role:'reviewer',phase:'review',provider:'openai-codex',model:'example',recorded_tokens:25,calls:1,usage_complete:true}]},
     quotas:[{snapshot:{provider:'openai-codex',fetchedAt:1000,windows:[{label:'5h',seconds:18000,usedPercent:42,resetAt:null}]},stale:true}]},44,62000).join('\n');
-  assert.match(rows,/25(?:\.0)?%.*local budget/);assert.match(rows,/20(?:\.0)?%.*context/);
-  assert.match(rows,/Claude.*75.*75(?:\.0)?%/);assert.match(rows,/Codex.*25.*25(?:\.0)?%/);
+  assert.match(rows,/25(?:\.0)?%.*local budget/);assert.match(rows,/Context: 20(?:\.0)?% \(estimated\)/);
+  assert.match(rows,/Claude\nContext: 20% \(estimated\)\nTokens: 75.*75% project/);assert.match(rows,/Codex\nContext: unavailable\nTokens: 25.*25% project/);
   assert.match(rows,/reviewer.*25/);assert.match(rows,/5h.*42.*%/);assert.match(rows,/stale/);
 });
 
@@ -22,7 +22,7 @@ test('unknown and truncated usage never becomes zero percent or complete agent a
     budget:{status:'unknown_usage',recorded_tokens:20,calls:2,limits:{tokens:100,calls:10},grouped_calls:1,
       groups:[{role:'author',phase:'review',provider:'anthropic',model:'a',calls:1,recorded_tokens:20,usage_complete:false}]},quotas:[]},44).join('\n');
   assert.match(unknown,/unknown/);assert.match(unknown,/partial/);assert.doesNotMatch(unknown,/100%/);
-  assert.match(unknown,/Claude quota: unavailable/);assert.match(unknown,/Codex quota: unavailable/);
+  assert.match(unknown,/Claude\nContext: unavailable\nTokens: 20 \+ unknown\nUsage 5h: unavailable/);assert.match(unknown,/Codex\nContext: unavailable\nTokens: unknown\nUsage 5h: unavailable/);
 });
 
 test('real column composition reserves sidebar width and collapses without clipping Unicode or cursor markers',()=>{

@@ -6,6 +6,11 @@ The inherited Harness v7/v8 changelog remains in
 
 ## Unreleased
 
+- Add separate Claude/Codex Context, Tokens, Usage 5h and Usage 7d fields. Bind
+  context to the active provider, keep project attribution partial when needed,
+  and select sourced account windows by exact duration with zero/stale handling.
+  Clarify that Aikya local budget is a project token/call execution guard.
+
 - Use Aikya Forge as the terminal/theme display name and show project, Git branch
   and configured Git user in the right-side Project & Git block, with a compact
   summary on narrow terminals. Reuse SDK branch observation, read only

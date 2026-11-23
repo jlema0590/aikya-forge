@@ -1,0 +1,73 @@
+{
+  "schema": 1,
+  "branch": "feat/forge-settings-sidebar",
+  "base_commit": "0ff64b44bb3cfc4fdf4153913db9936543fdeab9",
+  "runtime_fingerprint": "25eb097c36b00f259441272b13694054d61402121778155f6fc13c2cc9de5762",
+  "status": "local_checks_passed_current_remote_ci_pending",
+  "node": {
+    "version": "26.12.1",
+    "tests": 128,
+    "passed": 127,
+    "failed": 0,
+    "skipped": 1
+  },
+  "targeted": {
+    "tests": 10,
+    "passed": 10
+  },
+  "collector": {
+    "tests": 5,
+    "passed": 5
+  },
+  "typecheck": "passed",
+  "native_source_staging": "passed",
+  "pty": {
+    "status": "passed",
+    "mode": "source",
+    "version": "0.2.0",
+    "platform": "darwin-arm64",
+    "provider_calls": 0,
+    "visual_acceptance": false,
+    "ui": "Actual POSIX PTY; no human visual/device or provider acceptance",
+    "theme": "light",
+    "resize": {
+      "columns": 100,
+      "rows": 32
+    },
+    "cache_refused": true,
+    "usage_status": "unconfigured",
+    "bytes": 161823,
+    "exit_code": 0,
+    "file_completion": true,
+    "launcher_supplies_tools": false,
+    "settings_panel": true,
+    "provider_catalog": true,
+    "text_style": "bold",
+    "banner": "pyfiglet-1.0.4",
+    "project_identity": {
+      "project": "project",
+      "branch": "preview/forge",
+      "user": "Forge Preview"
+    },
+    "branch_change_observed": true,
+    "provider_metrics": true
+  },
+  "logs": {
+    "node": {
+      "path": "/private/tmp/aikya-forge-20261123-identity/provider-node-full.log",
+      "sha256": "2490f89b5ab7b6ec5b184831c68221942c5b62a9050c9d8b709b7150a6734ce8",
+      "exit_code": 0
+    },
+    "collector": {
+      "path": "/private/tmp/aikya-forge-20261123-identity/provider-collector.log",
+      "sha256": "49865bee73b0c41baa0f8506cdd71cafc1e6e415d2d3ab1a426a476145b629d9",
+      "exit_code": 0
+    }
+  },
+  "limitations": [
+    "Account windows are optional sourced observations, not local token estimates",
+    "Context is observed only for the active provider session; independent reviewer context is not inferred",
+    "No current full native build/install or Windows/Linux acceptance",
+    "No real provider/account quota trial"
+  ]
+}

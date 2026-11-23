@@ -69,6 +69,17 @@ la caché del SDK; no ejecuta Git al repintar. El usuario se consulta al iniciar
 la sesión. Sin Git o sin configuración se indican valores no disponibles.
 En terminales estrechas, los datos se conservan en el resumen inferior.
 
+Cada bloque de **Claude** / **Codex** muestra **Context**, **Tokens**, **Usage 5h** y
+**Usage 7d**. Context es la estimación del SDK para la sesión activa del proveedor;
+Tokens son sus totales registrados en el proyecto. Los límites de cuenta requieren
+datos observados y aparecen como unavailable si faltan. Solo se muestra cero cuando
+es conocido.
+
+**Aikya local budget** es el límite de tokens/llamadas que configuras para ejecutar
+Aikya en ese proyecto. Es un control local de parada, independiente de la cuota o
+saldo económico de la cuenta. La inferencia controlada requiere un límite
+configurado disponible; el consumo desconocido se indica expresamente.
+
 El lateral reserva sus propias columnas para la fase, controles del flujo, tokens
 y llamadas locales, porcentajes de presupuesto y contexto estimado, y atribución
 de Claude/Codex y los roles author/reviewer. La cuota de cuenta solo aparece si

@@ -70,6 +70,15 @@ the SDK cache/watch; repainting runs no Git commands. User identity is read once
 at session start; missing Git/configuration is shown explicitly as unavailable.
 Narrow terminals retain project/Git fields in the compact summary below the transcript.
 
+Each **Claude** / **Codex** block shows **Context**, **Tokens**, **Usage 5h** and
+**Usage 7d**. Context is the SDK estimate for the active provider session; Tokens
+are that provider's recorded project totals. Account windows require observed
+provider data and remain unavailable when absent. Zeros are shown only when known.
+
+**Aikya local budget** is the project-configured token/call execution limit. It is
+a local stop guard, separate from account quota or monetary balance. Controlled
+inference requires an available configured limit. Unknown usage stays explicit.
+
 The sidebar reserves its own columns for phase, flow controls, local tokens/calls,
 budget and estimated context percentages, and Claude/Codex author/reviewer usage.
 Account quota appears only from observed provider response headers, with age/stale

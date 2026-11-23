@@ -206,6 +206,9 @@ def run(output,*,application=None,source=None,assets=None,fetch=False):
         with ConsoleCapture(command,project,env) as terminal:
             terminal.expect('Aikya Forge v'+version,timeout=45)
             terminal.expect('Project & Git',timeout=10)
+            terminal.expect('Aikya local budget',timeout=10)
+            for field in ('Claude','Codex','Context: unavailable','Tokens: unknown','Usage 5h: unavailable','Usage 7d: unavailable'):
+                terminal.expect(field,timeout=10)
             terminal.expect('Project: '+project.name,timeout=10)
             if git_fixture:
                 terminal.expect('Branch: preview/forge',timeout=10)
@@ -240,7 +243,7 @@ def run(output,*,application=None,source=None,assets=None,fetch=False):
         result.update(status='passed',theme='light',resize=dict(columns=100,rows=32),cache_refused=True,
             usage_status=usage['status'],bytes=len(terminal.raw),exit_code=terminal.exit_code,file_completion=True,
             launcher_supplies_tools=bool(application))
-        result.update(settings_panel=True,provider_catalog=True,text_style='bold',banner='pyfiglet-1.0.4',project_identity=git_fixture,branch_change_observed=bool(git_fixture))
+        result.update(settings_panel=True,provider_catalog=True,text_style='bold',banner='pyfiglet-1.0.4',project_identity=git_fixture,branch_change_observed=bool(git_fixture),provider_metrics=True)
         return result
     finally:
         if terminal is not None:write_new(output/'terminal.log',bytes(terminal.raw))

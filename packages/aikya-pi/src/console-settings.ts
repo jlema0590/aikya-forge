@@ -16,6 +16,7 @@ export function registerConsole(pi:ExtensionAPI,root:string,python:string|undefi
   let running=false;
   const request=()=>tui?.requestRender();
   const snapshot=()=>({...local.viewUsage(),workspace:local.viewWorkspace(),phase:phase(),state:running?'running':'idle',
+    contextProvider:controlled?context?.model?.provider:undefined,
     model:controlled&&context?.model?context.model.provider+'/'+context.model.id:null,context:controlled?context?.getContextUsage():undefined});
   const repaint=()=>{const value=store.load();if(!value.diagnostic)settings=value.value;request();};
   local.onUsageChanged(request);
