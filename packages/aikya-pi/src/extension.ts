@@ -21,13 +21,16 @@ import { registerLocalCommands } from "./local-commands.ts";
 import { registerControlledTools } from "./tools.ts";
 import { registerSddCommands } from "./sdd.ts";
 import { registerOnboarding } from "./workflow.ts";
+import {registerConsole} from './console-settings.ts';
+import {renderBrandHeader} from './brand-header.ts';
+import {loadFigletBanner} from './figlet.ts';
 
 const version=runtimeVersion();
 
 /** Pi host commands are separate from the model tool allowlist. */
 export function aikyaExtension(root: string, python?: string, controlled = false, reviewer = false, phase={value:"explore"},modelRuntime?:ModelRuntime,skills:SelectedSkill[]=[],activeSkills=new Set<string>(),taskControl={blocked:false},reviewRuntime?:ReviewRuntimeFactory) {
   return (pi: ExtensionAPI) => {
-    const administrative=new Set(['aikya-task-run','aikya-source-batch','aikya-arc-review','aikya-bugfix','aikya-mobile-feature','aikya-project','aikya-infra','aikya-scaffold','aikya-models','aikya-answers','aikya-docs','aikya-docs-sync','aikya-doctor','aikya-quality','aikya-tokens','aikya-theme','aikya-phase','aikya-migrate','aikya-skills-status','aikya-skills-plan','aikya-install-skill','aikya-uninstall-skills','aikya-skill-unavailable']);
+    const administrative=new Set(['aikya-settings','aikya-task-run','aikya-source-batch','aikya-arc-review','aikya-bugfix','aikya-mobile-feature','aikya-project','aikya-infra','aikya-scaffold','aikya-models','aikya-answers','aikya-docs','aikya-docs-sync','aikya-doctor','aikya-quality','aikya-tokens','aikya-theme','aikya-phase','aikya-migrate','aikya-skills-status','aikya-skills-plan','aikya-install-skill','aikya-uninstall-skills','aikya-skill-unavailable']);
     pi.on('context',event=>({messages:event.messages.filter(message=>
       message.role!=='custom'||!administrative.has(message.customType))}));
     registerSelectedSkills(pi,root,python,skills,reviewer);
@@ -37,6 +40,7 @@ export function aikyaExtension(root: string, python?: string, controlled = false
     registerMemoryLifecycle(pi,root,python);
     const local=registerLocalCommands(pi, root, python,()=>phase.value,controlled);
     const task=!reviewer?registerTaskRun(pi,root,python,controlled,phase,taskControl,reviewRuntime):undefined;
+    const consoleUi=!reviewer?registerConsole(pi,root,python,local,()=>phase.value,modelRuntime,task,controlled):undefined;
     if(!reviewer)registerOddWorkflow(pi,root,python,phase,task);
     if(!reviewer)registerNativeChecks(pi,root,python,controlled,phase,local.refreshUsage);
     if (!reviewer) pi.registerCommand('aikya-phase',{description:'Select the English phase for subsequent local usage attribution',handler:async(args,ctx)=>{
@@ -52,14 +56,18 @@ export function aikyaExtension(root: string, python?: string, controlled = false
     pi.on("session_before_switch", (event) => {
       if (event.reason === "resume" && !ownedSessionFile(root, event.targetSessionFile)) return {cancel: true};
     });
-    pi.on("session_start", (_event, ctx) => {
+    pi.on("session_start", async (_event, ctx) => {
       if (!ctx.hasUI) return;
-      ctx.ui.setEditorComponent((...args) => controlled ? new ControlledEditor(...args).permitSkills(skills.map(s=>s.name)) : new ReadOnlyEditor(...args));
+      const banner=ctx.mode==='tui'?await loadFigletBanner(python):undefined;
+      ctx.ui.setEditorComponent((...args) => {
+        consoleUi?.mount(args[0]);
+        return controlled ? new ControlledEditor(...args).permitSkills(skills.map(s=>s.name)) : new ReadOnlyEditor(...args);
+      });
       ctx.ui.setTitle("Aikya Forge v"+version+" · " + (controlled ? "Controlled preview" : "Local preview · model disabled"));
       ctx.ui.setStatus("aikya", controlled ? phase.value+" · "+(ctx.model?.id??"model unavailable") : "Local preview · model disabled");
       ctx.ui.setHeader((_tui, theme) => ({
-        render: (width: number) => [theme.fg("accent", "AIKYA v"+version),
-          ((controlled ? phase.value+" · "+(ctx.model?.provider??"unknown")+"/"+(ctx.model?.id??"unknown") : "Local preview · model disabled") + " · /aikya-status").slice(0, width)],
+        render: (width: number) => renderBrandHeader(width,version,
+          controlled?phase.value+' · '+(ctx.model?.provider??'unknown')+'/'+(ctx.model?.id??'unknown'):'Local preview · model disabled',banner),
         invalidate: () => {},
       }));
     });

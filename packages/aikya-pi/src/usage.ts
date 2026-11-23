@@ -5,7 +5,8 @@ import { randomUUID } from "node:crypto";
 export type UsageCounts = {input: number; output: number; cacheRead: number; cacheWrite: number};
 export type CallContext = {session: string; role: string; phase: string; provider: string; model: string; candidate?:string;change_id?:string};
 export type BudgetStatus = {status: string; recorded_tokens: number | null; calls: number;
-  remaining_tokens?: number; limits?: {tokens: number; calls: number}; uncertain_calls?: string[]};
+  remaining_tokens?: number; limits?: {tokens: number; calls: number}; uncertain_calls?: string[];
+  grouped_calls?:number;groups?:{role:string;phase:string;provider:string;model:string;calls:number;recorded_tokens:number;usage_complete:boolean}[]};
 
 export class RuntimeBudget {
   #project: string;

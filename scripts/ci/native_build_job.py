@@ -34,7 +34,7 @@ def main():
         shutil.copy2(first/name,output/name)
     shutil.copy2(work/'acceptance.json',output/'acceptance.json')
     interactive=Path(evidence['work'])/'interactive';retained=output/'interactive';retained.mkdir()
-    for name in ('startup.ansi','light-theme.ansi','resized.ansi','terminal.log','pty-result.json'):
+    for name in ('startup.ansi','light-theme.ansi','settings.ansi','settings-applied.ansi','resized.ansi','terminal.log','pty-result.json'):
         shutil.copy2(interactive/name,retained/name)
     source_sha=os.environ.get('GITHUB_SHA')
     (output/'build-origin.json').write_text(json.dumps(dict(version=version,platform=result['platform'],source_commit=source_sha,

@@ -51,7 +51,7 @@ class WorkspacePolicyTests(unittest.TestCase):
             hooks = [h for g in settings['hooks']['PreToolUse'] for h in g['hooks']
                      if 'workspace_guard.py' in h.get('command', '')]
             self.assertEqual(1, len(hooks))
-            result = subprocess.run([sys.executable, '-B', str(home / '.claude/aikya-harnes/workspace_guard.py')],
+            result = subprocess.run([sys.executable, '-B', str(home / '.claude/aikya-forge/workspace_guard.py')],
                                     input=json.dumps({'tool_name': 'Agent', 'tool_input': {'isolation': 'worktree'}}),
                                     capture_output=True, text=True, cwd=base)
             self.assertEqual(0, result.returncode, result.stderr)

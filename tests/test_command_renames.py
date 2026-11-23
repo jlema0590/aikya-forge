@@ -22,7 +22,7 @@ class CommandRenameTests(unittest.TestCase):
    with self.subTest(scope=scope),tempfile.TemporaryDirectory() as tmp:
     base=Path(tmp);root=base/'project';home=base/'home';aikya_setup.setup(ROOT,root,scope,home=home)
     skills=(home if scope=='global' else root)/'.claude/skills'
-    runtime=home/'.claude/aikya-harnes' if scope=='global' else root/'.aikya/runtime'
+    runtime=home/'.claude/aikya-forge' if scope=='global' else root/'.aikya/runtime'
     originals={}
     for old in RENAMES:
      path=skills/old/'SKILL.md';path.parent.mkdir(parents=True,exist_ok=True);raw=(ROOT/'tests/fixtures/command-renames'/(old+'.md')).read_bytes();path.write_bytes(raw);originals[old]=raw

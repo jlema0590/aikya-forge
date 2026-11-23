@@ -13,6 +13,62 @@ La aceptación de la instalación y la terminal se registra por plataforma en el
 con proveedores reales constituyen una condición separada de publicación. El código
 disponible no implica una release ni un instalador corto publicado.
 
+## Instalar con un comando
+
+El instalador nativo incluye Python, Node y la terminal Pi. El usuario final no
+necesita clonar el repositorio ni instalar esos entornos por separado.
+
+**Publicación pendiente:** estos comandos públicos requieren una release estable
+de Forge y sus páginas de instalación verificadas. Aún no hay una release estable
+publicada. Mientras tanto, utiliza el [inicio desde código](#inicio-rápido-desde-el-código).
+
+macOS / Linux:
+
+```sh
+curl -fsSL https://jlema0590.github.io/aikya-forge/install.sh | sh
+```
+
+Windows PowerShell:
+
+```powershell
+irm https://jlema0590.github.io/aikya-forge/install.ps1.txt | iex
+```
+
+Después de instalar, abre una terminal nueva dentro de tu proyecto y ejecuta
+`aikya`. La aplicación se instala una vez para tu usuario; la memoria permanece
+local en cada proyecto. Las credenciales del proveedor y el presupuesto local
+positivo se configuran por separado desde Settings.
+
+El repositorio también incluye [install.sh](install.sh) e [install.ps1](install.ps1).
+Seleccionan la última release estable, verifican su entrada nativa contra
+`SHA256SUMS` y delegan en el instalador vinculado a esa versión. No compilan desde
+código ni necesitan npm. Si falta una release o no coincide la suma de comprobación,
+la instalación se detiene. `npx aikya-forge` no está publicado ni es necesario.
+
+```sh
+sh ./install.sh --dry-run                    # Sin descargas ni cambios
+sh ./install.sh --no-path                    # Última estable; no modifica PATH
+sh ./install.sh --version 0.2.0              # Versión estable publicada explícita
+sh ./install.sh --offline-dir /ruta/assets   # Archivos locales verificados de la release
+```
+
+Equivalentes PowerShell: `./install.ps1 -DryRun`, `-NoPath`, `-Version 0.2.0` o
+`-OfflineDir C:\ruta\assets`. La instalación sin conexión necesita `SHA256SUMS`,
+la entrada nativa y el archivo de tu plataforma de la misma release. La entrada
+corta admite versiones estables; las preview usan su propia entrada vinculada a versión.
+
+Para actualizar y comprobar una aplicación nativa instalada:
+
+```sh
+aikya-manage update --dry-run
+aikya-manage update --yes
+aikya-manage doctor
+```
+
+Una instalación estable selecciona la última release estable al actualizar. En
+macOS/Linux, `aikya-manage uninstall --dry-run` muestra la retirada y `--yes` la
+confirma. En Windows, usa la entrada nativa PowerShell verificada con `-Action uninstall`.
+
 ## Inicio rápido desde el código
 
 Requisitos: Python 3.10–3.13 con pip/venv, Node.js 22.19.0+ con npm y Git.
@@ -24,7 +80,7 @@ cd aikya-forge
 python3 -m venv .venv
 . .venv/bin/activate
 python -m pip install 'setuptools>=77' wheel build
-python -m pip install --no-build-isolation -e .
+python -m pip install --no-build-isolation -e ".[terminal]"
 npm --prefix packages/aikya-pi ci --ignore-scripts --no-audit --no-fund
 ```
 
@@ -46,6 +102,52 @@ La opción explícita del runtime de código es necesaria hasta instalar un paqu
 nativo administrado. Ejecutar `aikya` sin opciones utiliza la terminal administrada
 que ya esté instalada. La inferencia requiere configuración, credenciales y un
 presupuesto local positivo; abrir la terminal no implica llamar a un modelo.
+
+## Configuración y control del flujo
+
+Abre `/aikya-settings` o pulsa **F2** para conectar un proveedor del catálogo local,
+elegir el modelo del siguiente arranque, configurar temas claro/oscuro y colores
+HEX, elegir texto normal/negrita/cursiva y mostrar u ocultar el lateral derecho.
+La familia y el tamaño de letra se configuran en la aplicación de terminal.
+
+El tema **Aikya Forge** (`aikya`) utiliza el azul marino, cian y turquesa del logo
+original. Es el tema inicial para proyectos nuevos; conserva las selecciones ya
+existentes. El arranque dibuja **Aikya** con `pyfiglet` 1.0.4 y fuentes ASCII slant/small,
+según el ancho disponible. La instalación nativa incluye librería, fuentes y
+licencia para funcionar sin conexión; desde código se instala el extra `terminal`.
+El núcleo Python sin dependencias mantiene una alternativa de texto simple.
+El rótulo se guarda en caché local y no llama a modelos. El arranque conserva
+el nombre Aikya Forge legible. Se elige con `/aikya-theme aikya` o Appearance.
+
+El bloque Project & Git del panel derecho muestra el proyecto, la rama y el usuario de
+`git config user.name`. No muestra el correo ni remotos. La rama se actualiza desde
+la caché del SDK; no ejecuta Git al repintar. El usuario se consulta al iniciar
+la sesión. Sin Git o sin configuración se indican valores no disponibles.
+En terminales estrechas, los datos se conservan en el resumen inferior.
+
+El submenú desplegable **Agents** agrupa Claude y Codex. Se abre/cierra pulsando
+su cabecera, con **F3** o desde F2 → Agents. Comienza desplegado y conserva su estado
+durante la sesión actual.
+
+Cada bloque de **Claude** / **Codex** muestra **Context**, **Tokens**, **Usage 5h** y
+**Usage 7d**. Context es la estimación del SDK para la sesión activa del proveedor;
+Tokens son sus totales registrados en el proyecto. Los límites de cuenta requieren
+datos observados y aparecen como unavailable si faltan. Solo se muestra cero cuando
+es conocido.
+
+**Aikya local budget** es el límite de tokens/llamadas que configuras para ejecutar
+Aikya en ese proyecto. Es un control local de parada, independiente de la cuota o
+saldo económico de la cuenta. La inferencia controlada requiere un límite
+configurado disponible; el consumo desconocido se indica expresamente.
+
+El lateral reserva sus propias columnas para la fase, controles del flujo, tokens
+y llamadas locales, porcentajes de presupuesto y contexto estimado, y atribución
+de Claude/Codex y los roles author/reviewer. La cuota de cuenta solo aparece si
+se observa en las cabeceras del proveedor, con antigüedad y estado obsoleto;
+si no existe esa fuente, se indica como no disponible. Configurar o repintar el
+panel no invoca modelos. La selección guardada requiere presupuesto disponible y
+no cambia el modelo de una sesión activa. Consulta la
+[guía del panel](aikya/docs/features/forge-console-settings.md).
 
 ## Componentes
 
@@ -123,12 +225,13 @@ seguirán versionado semántico independiente. El [changelog](CHANGELOG.md) regi
 los cambios de Forge; el [histórico heredado](aikya/docs/history/harness-CHANGELOG.md)
 conserva los cambios del Harness.
 
-En esta primera importación se mantienen los comandos, los módulos Python (`aikya`)
-y el nombre de distribución Python (`aikya-harness`) por compatibilidad. Las direcciones
-operativas de actualización apuntan al nuevo repositorio. Se conservan las identidades
-v8 para compatibilidad explícita, sin alterar la numeración propia de Forge.
+La distribución Python se llama ahora `aikya-forge`; los módulos siguen siendo
+`aikya` y se conservan los comandos `aikya`, `aikya-setup` y `aikya-manage`.
+Los documentos nuevos terminan con `GENERATED BY AIKYA FORGE`. Los lectores aún
+reconocen la firma anterior para poder actualizar documentos sin duplicarla.
+Los registros históricos y la procedencia de terceros conservan sus identificadores.
 
-Los workflows heredados de publicación siguen limitados al Harness. Forge incluye
+Los workflows heredados de publicación están desactivados explícitamente. Forge incluye
 una matriz de construcción/aceptación de siete destinos y preparación manual de releases.
 La publicación está desactivada por defecto y exige main, pruebas nativas y evidencia
 revisada de proveedor real. Este cambio no publica una release estable ni la URL de Pages. El
@@ -173,4 +276,4 @@ Consulta la [guía Forge](aikya/docs/deployment/forge-0.2.0.md) y el
 La memoria, el HTML y la administración de skills no llaman a modelos. Los tokens
 medidos no prueban porcentajes de cuota de suscripción ni ahorros de consumo.
 
-GENERATED BY AIKYA HARNESS
+GENERATED BY AIKYA FORGE

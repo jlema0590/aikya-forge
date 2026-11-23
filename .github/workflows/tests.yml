@@ -71,7 +71,7 @@ jobs:
       - name: Install contributor package and build tools
         run: |
           python -m pip install 'setuptools>=77' wheel build
-          python -m pip install --no-build-isolation --no-deps -e .
+          python -m pip install --no-build-isolation -e ".[terminal]"
 
       - name: Python syntax checks
         run: |
@@ -104,7 +104,7 @@ jobs:
           python -m build --no-isolation
 
       - name: Verify installed wheel without checkout imports or optional SDK
-        run: python scripts/ci/package_smoke.py --wheel dist/aikya_harness-$(cat VERSION)-py3-none-any.whl
+        run: python scripts/ci/package_smoke.py --wheel dist/aikya_forge-$(cat VERSION)-py3-none-any.whl
 
   local-memory:
     name: Local memory | ${{ matrix.os }} | Python ${{ matrix.python }}

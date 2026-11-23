@@ -7,6 +7,7 @@ from aikya.storage import write_new
 from . import build_sources,managed_archives,managed_inputs,managed_node,managed_payload,managed_distribution,managed_runtime,managed_versions,managed_wheel,managed_parsers,managed_tools
 from .bootstrap import download,state
 from . import component_download
+from . import managed_figlet
 
 
 def _components(recipe,assets,fetch):
@@ -55,6 +56,7 @@ def build(source,destination,version,*,assets=None,target=None,fetch_components=
     if code_index=='available':parser_recipe,parser_raws=managed_parsers.prepare(target,assets,fetch=fetch_components)
     else:parser_recipe,parser_raws=dict(wheels={},unavailable={n:'Explicitly omitted by builder' for n in managed_parsers.PINS}),{}
     tool_recipe,tool_raws=managed_tools.prepare(target,assets,fetch=fetch_components)
+    figlet_recipe,figlet_raw=managed_figlet.prepare(assets,fetch=fetch_components)
 
     destination.mkdir(parents=True);payload=destination/'payload';payload.mkdir();downloads=destination/'downloads';downloads.mkdir()
     for name,raw in components.items():
@@ -75,16 +77,18 @@ def build(source,destination,version,*,assets=None,target=None,fetch_components=
     purelib=Path(_run([str(python),'-I','-B','-c','import sysconfig;print(sysconfig.get_path("purelib"))'],payload,environment,destination/'purelib.log'))
     if not purelib.is_relative_to(payload/'python') or not state.safe(purelib).is_dir():raise ValueError('Interpreter site-packages escaped the staged payload')
     managed_archives.extract(core['wheel'],purelib,core['sha256'],'.',merge=True)
+    managed_figlet.install(figlet_recipe,figlet_raw,downloads,purelib)
+    figlet_probe=parse(_run([str(python),'-I','-B','-c',managed_figlet.probe_script()],payload,environment,destination/'figlet.log'))
     managed_parsers.install(parser_recipe,parser_raws,destination/'parser-downloads',purelib)
     parser_probe=parse(_run([str(python),'-I','-B','-c',managed_parsers.probe_script(parser_recipe)],payload,environment,destination/'parsers.log'))
     links=managed_node.install(payload/'runtime',node,destination/'npm-home',destination/'npm-ci.log')
-    installed=_run([str(python),'-I','-B','-c','from importlib.metadata import version;import aikya;print(version("aikya-harness"))'],payload,environment,destination/'core-import.log')
+    installed=_run([str(python),'-I','-B','-c','from importlib.metadata import version;import aikya;print(version("aikya-forge"))'],payload,environment,destination/'core-import.log')
     if installed!=core['python_version']:raise ValueError('Installed core identity differs from private wheel metadata')
     _run([str(python),'-I','-B','-m','aikya','--help'],payload,environment,destination/'core-help.log')
     _run([str(node),'--experimental-strip-types',str(payload/'runtime/src/launcher.ts'),'--help'],payload,environment,destination/'terminal-help.log')
     provenance=dict(schema=1,version=version,platform=target,components={name:recipe[name] for name in ('python','node')},versions=recipe['versions'],
                     core=dict(sha256=core['sha256'],python_version=core['python_version'],source=parse((destination/'core/source-inputs.json').read_bytes())),
-                    runtime=snapshot,parsers=dict(inputs=parser_recipe,observed=parser_probe),tools=dict(inputs=tool_recipe,observed=tool_records),links_flattened=links,node_packages=_licenses(payload),requirements=recipe['requirements'],
+                    runtime=snapshot,figlet=dict(inputs=figlet_recipe,observed=figlet_probe),parsers=dict(inputs=parser_recipe,observed=parser_probe),tools=dict(inputs=tool_recipe,observed=tool_records),links_flattened=links,node_packages=_licenses(payload),requirements=recipe['requirements'],
                     acceptance='Native build/import/help only; live provider and OS release gates remain separate')
     write_new(payload/'provenance.json',encoded(provenance)+'\n',mode=0o600)
     sealed=managed_payload.seal(payload,version=version,target=target,versions=recipe['versions'],

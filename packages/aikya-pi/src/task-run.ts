@@ -39,7 +39,7 @@ export function registerTaskRun(pi:ExtensionAPI,root:string,python:string|undefi
       return {status:'needs_host_action',run_id:run.state.run_id,action:'recover-run',delivery_authorized:false,...hostFailure(error)};
     }
   }
-  async function arm(ctx:ExtensionCommandContext,result:Input,change:string) {
+  async function arm(ctx:ExtensionContext,result:Input,change:string) {
     const session=ctx.sessionManager.getSessionId();
     const state=await hostOperation(root,'task.status',{session_id:session,run_id:result.run_id},python) as unknown as TaskState;
     const remaining=Number(BigInt(state.deadline_ns)-BigInt(Date.now())*1000000n)/1000000;
@@ -90,7 +90,7 @@ export function registerTaskRun(pi:ExtensionAPI,root:string,python:string|undefi
     if(event.isError||details?.status!==valid)await stop(ctx,details?.status==='declined'?'declined':'needs_host_action');
   });
   pi.on('session_shutdown',async(_event,ctx)=>{if(current)await stop(ctx,'user_stop');});
-  return async function handle(value:Input,ctx:ExtensionCommandContext):Promise<boolean> {
+  return async function handle(value:Input,ctx:ExtensionContext):Promise<boolean> {
     const action=value.action;if(typeof action!=='string'||!taskActions.includes(action))return false;
     const session_id=ctx.sessionManager.getSessionId();
     if(action==='run-status') {publish(await hostOperation(root,'task.status',{session_id,...(value.run_id?{run_id:value.run_id}:{})},python));return true;}

@@ -34,7 +34,7 @@ def verify_wheel(wheel, version):
         if len(metadata) != 1:
             raise ValueError('Invalid Aikya wheel metadata')
         info = BytesParser().parsebytes(archive.read(metadata[0]))
-        if info['Name'] != 'aikya-harness' or info['Version'] != version:
+        if info['Name'] != 'aikya-forge' or info['Version'] != version:
             raise ValueError('Wheel package/version does not match the requested release')
 
 
@@ -45,5 +45,5 @@ def create_environment(destination: Path, python: Path, wheel: Path) -> Path:
     run(python, '-m', 'venv', destination)
     candidate = destination / ('Scripts/python.exe' if os.name == 'nt' else 'bin/python')
     run(candidate, '-m', 'pip', '--isolated', 'install', '--no-index', '--no-deps', wheel)
-    run(candidate, '-c', "from importlib.metadata import version;from importlib.util import find_spec;import aikya;assert find_spec('claude_agent_sdk') is None;print(version('aikya-harness'))")
+    run(candidate, '-c', "from importlib.metadata import version;from importlib.util import find_spec;import aikya;assert find_spec('claude_agent_sdk') is None;print(version('aikya-forge'))")
     return candidate

@@ -28,7 +28,7 @@ def build(version, assets, output):
                 'sha256':{name:hashes[name] for name in scripts}}
     (output/'provenance.json').write_text(json.dumps(provenance,indent=2)+'\n',encoding='utf8')
     (output/'index.html').write_text('<!doctype html><html lang="en"><meta charset="utf-8"><title>Aikya installation</title>'
-        '<h1>Aikya Harness</h1><p>Requires Python 3.10–3.13 with venv/pip and Claude Code 2.1.308+ for Mods.</p>'
+        '<h1>Aikya Forge</h1><p>Requires Python 3.10–3.13 with venv/pip and Claude Code 2.1.308+ for Mods.</p>'
         '<h2>Linux / macOS</h2><pre>curl -fsSL https://jlema0590.github.io/aikya-forge/install.sh | sh</pre>'
         '<h2>Windows PowerShell</h2><pre>irm https://jlema0590.github.io/aikya-forge/install.ps1.txt | iex</pre>'
         '<p>Default: global Harness + Flow + Usage. BoxBot: --mods all. Restart your terminal and Claude.</p>'

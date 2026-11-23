@@ -1,0 +1,69 @@
+{
+  "schema": 1,
+  "branch": "feat/forge-settings-sidebar",
+  "base_commit": "0920d6a4d0b40316f9197799da2aa9d82233c485",
+  "runtime_fingerprint": "383aee0a0e5c286fbd0c2000ef2cf3cd892deb4551d9a5c312d44b165a8ccfd5",
+  "status": "local_checks_passed_current_remote_ci_pending",
+  "node": {
+    "version": "26.12.1",
+    "tests": 123,
+    "passed": 122,
+    "failures": 0,
+    "skipped": 1
+  },
+  "collector": {
+    "tests": 5,
+    "passed": 5
+  },
+  "typecheck": "passed",
+  "native_source_staging": "passed, identical module bytes",
+  "pty": {
+    "status": "passed",
+    "mode": "source",
+    "version": "0.2.0",
+    "platform": "darwin-arm64",
+    "provider_calls": 0,
+    "visual_acceptance": false,
+    "ui": "Actual POSIX PTY; no human visual/device or provider acceptance",
+    "theme": "light",
+    "resize": {
+      "columns": 100,
+      "rows": 32
+    },
+    "cache_refused": true,
+    "usage_status": "unconfigured",
+    "bytes": 143215,
+    "exit_code": 0,
+    "file_completion": true,
+    "launcher_supplies_tools": false,
+    "settings_panel": true,
+    "provider_catalog": true,
+    "text_style": "bold",
+    "banner": "pyfiglet-1.0.4",
+    "project_identity": {
+      "project": "project",
+      "branch": "preview/forge",
+      "user": "Forge Preview"
+    },
+    "branch_change_observed": true
+  },
+  "logs": {
+    "node": {
+      "file": "/private/tmp/aikya-forge-20261123-identity/node-full.log",
+      "sha256": "5c363f2f1d153316bda206e48910e7080bcd3434372627d51d789a882cdb660c",
+      "bytes": 12459,
+      "exit_code": 0
+    },
+    "collector": {
+      "file": "/private/tmp/aikya-forge-20261123-identity/collector-tests.log",
+      "sha256": "cd37711e8fadb2dd56f7984fef195109b5ba5193955786fbdb6487fe6f7cf857",
+      "bytes": 1012,
+      "exit_code": 0
+    }
+  },
+  "limitations": [
+    "No full native bundle rebuild for current source",
+    "No current Windows/Linux or live-provider acceptance",
+    "Graphical-symbol image remains a labeled proposal; actual terminal uses ASCII wordmark"
+  ]
+}

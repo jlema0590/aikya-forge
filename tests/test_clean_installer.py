@@ -21,7 +21,7 @@ class CleanInstaller(unittest.TestCase):
         download = self.core('download')
         with tempfile.TemporaryDirectory() as temporary:
             base = Path(temporary).resolve(); source = base / 'release'; source.mkdir()
-            name = 'aikya_harness-7.0.0-py3-none-any.whl'; wheel = source / name
+            name = 'aikya_forge-7.0.0-py3-none-any.whl'; wheel = source / name
             wheel.write_bytes(b'controlled-wheel')
             checksum = hashlib.sha256(wheel.read_bytes()).hexdigest()
             (source / 'SHA256SUMS').write_text(checksum + '  ' + name + '\n')

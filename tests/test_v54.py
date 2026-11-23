@@ -29,7 +29,7 @@ class RenamedSkillsTests(unittest.TestCase):
                     home = base / scope / 'home'
                     project = base / scope / 'app'
                     logs = aikya_setup.setup(ROOT, project, scope, home=home)
-                    runtime = home / '.claude/aikya-harnes' if scope == 'global' else project / '.aikya/runtime'
+                    runtime = home / '.claude/aikya-forge' if scope == 'global' else project / '.aikya/runtime'
                     skills = home / '.claude/skills' if scope == 'global' else project / '.claude/skills'
                     self.assertTrue((runtime / 'aikya-skills/aikya-init/SKILL.md').is_file())
                     self.assertTrue((skills / 'aikya-init/SKILL.md').is_file())
@@ -76,7 +76,7 @@ class RenamedSkillsTests(unittest.TestCase):
             home = Path(temp) / 'home'
             project = Path(temp) / 'app'
             aikya_setup.setup(ROOT, project, 'global', home=home)
-            runtime = home / '.claude/aikya-harnes'
+            runtime = home / '.claude/aikya-forge'
             old = self._simulate_old_layout(runtime, ['aikya-init', 'aikya-feature'], with_custom=True)
             logs = aikya_setup.setup(ROOT, project, 'global', home=home)
             self.assertFalse((old / 'aikya-init').exists())

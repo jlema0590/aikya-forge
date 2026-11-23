@@ -22,7 +22,8 @@ concurrency:
 
 jobs:
   deploy:
-    if: github.repository == 'jlema0590/aikya-harness'
+    # Retired publication workflow; Forge uses forge-release.yml.
+    if: ${{ false }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
     permissions:

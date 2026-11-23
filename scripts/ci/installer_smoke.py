@@ -22,7 +22,7 @@ def check(assets, python=sys.executable):
         settings.write_text(json.dumps({'custom_setting': 'preserve', 'env': {'ANTHROPIC_AUTH_TOKEN': 'synthetic-do-not-copy'}}))
         document = project / 'owner.md'; document.write_text('# Owner document\n')
         payload = assets / 'aikya-bootstrap.pyz'
-        version = next(assets.glob('aikya_harness-*-py3-none-any.whl')).name.removeprefix('aikya_harness-').removesuffix('-py3-none-any.whl')
+        version = next(assets.glob('aikya_forge-*-py3-none-any.whl')).name.removeprefix('aikya_forge-').removesuffix('-py3-none-any.whl')
         def run(argv, expected=0, input=None):
             process = subprocess.run([str(x) for x in argv], cwd=base, env=env, capture_output=True, text=True, timeout=240, input=input)
             if process.returncode != expected:
@@ -40,7 +40,7 @@ def check(assets, python=sys.executable):
             run(command)
             current = json.loads((app / 'current.json').read_text()); installed_python = current['python']
             run([installed_python, '-I', '-B', '-m', 'aikya', '--help'])
-            runtime = project / '.aikya/runtime' if scope == 'project' and (project / '.aikya/runtime').is_dir() else home / '.claude/aikya-harnes'
+            runtime = project / '.aikya/runtime' if scope == 'project' and (project / '.aikya/runtime').is_dir() else home / '.claude/aikya-forge'
             if scope == 'project':
                 assert not (project / '.aikya/runtime').exists(), 'Verified global registration was redundantly copied'
                 assert not list((project / '.claude/skills').glob('aikya-*/SKILL.md'))
@@ -61,7 +61,7 @@ def check(assets, python=sys.executable):
             doctor=json.loads(run([installed_python,'-I','-B',payload,'doctor']).stdout)
             assert doctor['code_index']['status']=='observed'
             results.append({'scope': scope, 'entry_script': 'passed', 'runtime': 'passed', 'update': 'passed'})
-        runtime = home / '.claude/aikya-harnes'
+        runtime = home / '.claude/aikya-forge'
         startup = json.loads(settings.read_text())['hooks']['SessionStart'][0]['hooks'][0]
         shell = ['powershell', '-NoProfile', '-NonInteractive', '-Command'] if os.name == 'nt' else ['/bin/sh', '-c']
         run([*shell, startup['command']], input=json.dumps({'source': 'startup', 'cwd': str(project)}))

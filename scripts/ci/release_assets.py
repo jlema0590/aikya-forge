@@ -9,8 +9,8 @@ from aikya.installation.bootstrap.environment import verify_wheel
 def verify_assets(directory, version):
     if not re.fullmatch(r'(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)\.(0|[1-9][0-9]*)', version):
         raise ValueError('Invalid release version')
-    names = {'aikya_harness-' + version + '-py3-none-any.whl', 'aikya_harness-' + version + '.tar.gz',
-             'aikya-harness-v' + version + '.zip', 'aikya-bootstrap.pyz', 'install.sh', 'install.ps1'}
+    names = {'aikya_forge-' + version + '-py3-none-any.whl', 'aikya_forge-' + version + '.tar.gz',
+             'aikya-forge-v' + version + '.zip', 'aikya-bootstrap.pyz', 'install.sh', 'install.ps1'}
     from aikya.installation.bootstrap.code_index import PINS
     def parser_asset(name):
         return any(name.startswith(k.replace('-','_')+'-'+v+'-') and name.endswith('.whl') for k,v in PINS.items())
@@ -26,7 +26,7 @@ def verify_assets(directory, version):
         path = directory / name
         if path.is_symlink() or not path.is_file() or hashlib.sha256(path.read_bytes()).hexdigest() != digest:
             raise ValueError('Invalid release asset: ' + name)
-    verify_wheel(directory / ('aikya_harness-' + version + '-py3-none-any.whl'), version)
+    verify_wheel(directory / ('aikya_forge-' + version + '-py3-none-any.whl'), version)
     return sorted(entries) + ['SHA256SUMS']
 
 

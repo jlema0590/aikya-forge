@@ -33,7 +33,7 @@ def _summary(plan):
 
 def _doctor(root):
     from importlib.metadata import version,PackageNotFoundError
-    try:core=version('aikya-harness')
+    try:core=version('aikya-forge')
     except PackageNotFoundError:core=None
     result=dict(core_version=core,root=str(root),installed=False,pending=(root/managed_install.PENDING).exists(),errors=[])
     try:

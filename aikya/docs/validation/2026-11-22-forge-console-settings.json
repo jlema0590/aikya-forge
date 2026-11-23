@@ -1,0 +1,74 @@
+{
+  "schema": 1,
+  "status": "local_feature_verified_native_remote_and_provider_acceptance_pending",
+  "branch": "feat/forge-settings-sidebar",
+  "base_commit": "94c7ea061e8df838e6be392999f6b6888cc81c10",
+  "version": "0.2.0",
+  "release_status": "unreleased",
+  "runtime_fingerprint": "2fbb7f0f462e3de3f45e568bbdc604d976b81350eef1e88de33e7b8174517ee2",
+  "sdk": {
+    "22": {
+      "tests": 115,
+      "passed": 114,
+      "failed": 0,
+      "skipped_windows_only": 1,
+      "log_sha256": "0fdad1e2f17e6d9274a1f5c3f0cfff388a395c2abfff0809b3d709b53708f16c"
+    },
+    "26": {
+      "tests": 115,
+      "passed": 114,
+      "failed": 0,
+      "skipped_windows_only": 1,
+      "log_sha256": "6eac2453d430b6432cb0b4a7a55d440c27feab49fd3e048555badb15949a1fdf"
+    }
+  },
+  "typecheck": "passed",
+  "python": {
+    "budget": 7,
+    "entrypoint": 4,
+    "pty_capture": 5
+  },
+  "terminal": {
+    "status": "passed",
+    "mode": "source",
+    "version": "0.2.0",
+    "platform": "darwin-arm64",
+    "provider_calls": 0,
+    "visual_acceptance": false,
+    "ui": "Actual POSIX PTY; no human visual/device or provider acceptance",
+    "theme": "light",
+    "resize": {
+      "columns": 100,
+      "rows": 32
+    },
+    "cache_refused": true,
+    "usage_status": "unconfigured",
+    "bytes": 120280,
+    "exit_code": 0,
+    "file_completion": true,
+    "launcher_supplies_tools": false,
+    "settings_panel": true,
+    "provider_catalog": true,
+    "text_style": "bold"
+  },
+  "authentication": {
+    "sdk": "real ModelRuntime",
+    "credential": "fictitious API key in disposable project",
+    "remote_credential_validation": false,
+    "real_inference_calls": 0
+  },
+  "captures": {
+    "origin": "actual source PTY replay in xterm",
+    "platform": "darwin-arm64",
+    "directory": "aikya-forge-settings-preview",
+    "human_native_device_acceptance": false
+  },
+  "limitations": [
+    "New branch not yet validated on Windows/Linux CI",
+    "Real OAuth/provider trials remain in the agreed external environment",
+    "Account quota requires recognized actual response headers",
+    "Font family and size are terminal-emulator settings",
+    "Previously merged Windows Node 26 observer-cleanup failure is not fixed by this feature"
+  ],
+  "published": false
+}

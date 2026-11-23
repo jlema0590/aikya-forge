@@ -250,7 +250,7 @@ class SddLanguageAndExecutionTests(unittest.TestCase):
             import subprocess
             base = Path(d); home=base/'home'; project=base/'project'
             aikya_setup.setup(ROOT, project, 'global', home=home)
-            runtime=home/'.claude/aikya-harnes'
+            runtime=home/'.claude/aikya-forge'
             project.mkdir()
             result=subprocess.run([sys.executable,'-B',str(runtime/'sdd_engine.py'),'lint','--root',str(project)],capture_output=True,text=True,cwd=base)
             self.assertEqual(0,result.returncode,result.stderr)

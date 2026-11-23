@@ -2,7 +2,7 @@ import { SDD_COMMANDS } from "./sdd.ts";
 import { CustomEditor } from "@earendil-works/pi-coding-agent";
 
 type Submit = (text: string) => unknown;
-const LOCAL_COMMANDS = ["/aikya-arc-review", "/aikya-bugfix", "/aikya-mobile-feature", "/aikya-project", "/aikya-infra", "/aikya-scaffold", "/aikya-status", "/aikya-answers", "/aikya-docs", "/aikya-docs-sync", "/aikya-doctor", "/aikya-quality", "/aikya-phase", "/aikya-context", "/aikya-memory", "/aikya-tokens", "/aikya-theme", "/aikya-init", "/aikya-analyze", "/aikya-implement", "/aikya-migrate", "/aikya-models", "/aikya-skills-status", "/aikya-skills-plan", "/aikya-install-skill", "/aikya-uninstall-skills", "/aikya-feature", "/aikya-tests", "/aikya-verify", ...SDD_COMMANDS.map(c=>"/"+c)];
+const LOCAL_COMMANDS = ["/aikya-settings", "/aikya-arc-review", "/aikya-bugfix", "/aikya-mobile-feature", "/aikya-project", "/aikya-infra", "/aikya-scaffold", "/aikya-status", "/aikya-answers", "/aikya-docs", "/aikya-docs-sync", "/aikya-doctor", "/aikya-quality", "/aikya-phase", "/aikya-context", "/aikya-memory", "/aikya-tokens", "/aikya-theme", "/aikya-init", "/aikya-analyze", "/aikya-implement", "/aikya-migrate", "/aikya-models", "/aikya-skills-status", "/aikya-skills-plan", "/aikya-install-skill", "/aikya-uninstall-skills", "/aikya-feature", "/aikya-tests", "/aikya-verify", ...SDD_COMMANDS.map(c=>"/"+c)];
 export function guardedSubmission(submit: Submit, blocked: Submit, allowed = LOCAL_COMMANDS): Submit {
   return (text) => {
     const value = text.trim();

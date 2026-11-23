@@ -15,7 +15,7 @@ import sys
 from pathlib import Path
 from urllib.parse import urlparse
 
-DEFAULT_SOURCE = 'https://github.com/jlema0590/aikya-harnes'
+DEFAULT_SOURCE = 'https://github.com/jlema0590/aikya-forge'
 _ALLOWED_EVENTS = {'startup', 'resume', 'fork'}
 
 
@@ -86,7 +86,7 @@ def build_message(root: Path) -> str:
     repo = repository(root)
     # Short box: CLI notification renderers may not support ANSI or wide panels.
     lines = [
-        '================================== Welcome to Aikya Harness ==================================',
+        '================================== Welcome to Aikya Forge ==================================',
         f'Developer: {who}',
         f'Repository: {repo}',
         f'Aikya project: {DEFAULT_SOURCE}',
@@ -104,7 +104,7 @@ def build_message(root: Path) -> str:
 
 
 def main(argv: list[str] | None = None) -> int:
-    parser = argparse.ArgumentParser(description='Aikya Harness welcome message')
+    parser = argparse.ArgumentParser(description='Aikya Forge welcome message')
     parser.add_argument('--preview', action='store_true', help='Preview the welcome without starting Claude Code')
     parser.add_argument('--project-root', type=Path, help='Repository directory (preview/tests)')
     args = parser.parse_args(argv)

@@ -33,7 +33,7 @@ def _label(kind,value):return kind+'-'+hashlib.sha256(value.encode()).hexdigest(
 
 def snapshot(root):
     root=project_root(root);usage=pi_usage.status(root);runtime,fingerprint=_runtime()
-    try:package=version('aikya-harness')
+    try:package=version('aikya-forge')
     except PackageNotFoundError:package=None
     uncertain=usage.get('uncertain_calls',[]);groups=[]
     for value in usage.get('groups',[]):

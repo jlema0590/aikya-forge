@@ -14,6 +14,7 @@ import { claimSessionRole } from "./session-roles.ts";
 import { lockInference } from "./inference.ts";
 import { RuntimeBudget } from "./usage.ts";
 import { installBudgetedInference } from "./budgeted-inference.ts";
+import {assertCredentialLocation} from './credential-path.ts';
 
 type Options = {python?: string; resume?: boolean; provider?: string; model?: string; modelRuntime?: ModelRuntime;
   role?:"author"|"reviewer";reviewCandidate?:string;reviewChange?:string;sessionManager?:SessionManager;onCall?:(id:string)=>void;reviewRuntimeFactory?:ReviewRuntimeFactory};
@@ -24,13 +25,14 @@ async function createLocal(root: string, sessionManager: SessionManager, options
   const file = sessionManager.getSessionFile();
   if (canonicalPath(sessionManager.getCwd()) !== cwd || !file || dirname(file) !== sessions
       || (existsSync(file) && !ownedSessionFile(cwd, file))) throw new Error("Foreign project session refused");
-  const settingsManager = SettingsManager.inMemory({quietStartup:true,retry: {enabled: false}, compaction: {enabled: false}, cacheWarming: "off"});
+  const settingsManager = SettingsManager.inMemory({tuiMode:'regular',quietStartup:true,retry: {enabled: false}, compaction: {enabled: false}, cacheWarming: "off"});
   const controlled = Boolean(options.provider && options.model);
   const reviewer = options.role === "reviewer";
   claimSessionRole(cwd,sessionManager,reviewer?"reviewer":"author");
   const phase={value:reviewer?"review":controlled?"implement":"explore"};
   if (reviewer && (!options.reviewCandidate || !options.reviewChange)) throw new Error("Reviewer needs a frozen candidate binding");
   if (Boolean(options.provider) !== Boolean(options.model)) throw new Error("Provider and model must be selected together");
+  assertCredentialLocation(cwd);
   const modelRuntime = options.modelRuntime ?? await ModelRuntime.create({authPath: join(agentDir, "auth.json"), modelsPath: null,
     modelsStorePath: join(agentDir, "models.json"), allowModelNetwork: false, refreshOnCreate: false});
   const model = controlled ? modelRuntime.getModel(options.provider!, options.model!) : undefined;

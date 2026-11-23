@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "branch": "feat/forge-settings-sidebar",
+  "base_commit": "226a8ac81b54713770a96627c739d523c5b391ec",
+  "runtime_fingerprint": "1a26cf76d186dba5b31d5940137a50121687fbaeb6232b20937e7fe4f5d91351",
+  "status": "local_checks_passed_current_remote_ci_pending",
+  "node": {
+    "version": "26.12.1",
+    "tests": 124,
+    "passed": 123,
+    "failed": 0,
+    "skipped": 1,
+    "log_sha256": "ef3106f99646946f123d4b5d325d315019f231b57c22b8ba994a0551fa33e1ae"
+  },
+  "targeted_tests": {
+    "tests": 9,
+    "passed": 9
+  },
+  "typecheck": "passed",
+  "native_source_staging": "passed",
+  "pty": {
+    "status": "passed",
+    "mode": "source",
+    "version": "0.2.0",
+    "platform": "darwin-arm64",
+    "provider_calls": 0,
+    "visual_acceptance": false,
+    "ui": "Actual POSIX PTY; no human visual/device or provider acceptance",
+    "theme": "light",
+    "resize": {
+      "columns": 100,
+      "rows": 32
+    },
+    "cache_refused": true,
+    "usage_status": "unconfigured",
+    "bytes": 152500,
+    "exit_code": 0,
+    "file_completion": true,
+    "launcher_supplies_tools": false,
+    "settings_panel": true,
+    "provider_catalog": true,
+    "text_style": "bold",
+    "banner": "pyfiglet-1.0.4",
+    "project_identity": {
+      "project": "project",
+      "branch": "preview/forge",
+      "user": "Forge Preview"
+    },
+    "branch_change_observed": true
+  },
+  "limitations": [
+    "No full native build/install for current fingerprint",
+    "No current Windows/Linux or live-provider acceptance",
+    "Graphical-symbol example is a proposal; real terminal uses ASCII wordmark"
+  ]
+}
