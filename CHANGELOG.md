@@ -6,6 +6,13 @@ The inherited Harness v7/v8 changelog remains in
 
 ## Unreleased
 
+- Start gated stable releases automatically on main pushes while retaining manual
+  preparation/publication, using reviewed VERSION and changelog values.
+- Plan publication before builds, preserve published assets/tags, skip unchanged
+  versions and recover latest stable Pages from the original release on retry.
+  Verify public installer bytes after deployment and document shared portal plus
+  independently versioned product Pages.
+
 - Standardize active branding, the Python distribution and generated-document
   signatures on Aikya Forge. Preserve previous generated-footer recognition and
   original third-party license/provenance and historical evidence.

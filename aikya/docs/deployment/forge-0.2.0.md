@@ -84,17 +84,19 @@ recursive completion, confirmed theme, resize and cache refusal. Human/device
 visual review and authenticated provider acceptance remain separate requirements.
 Archive downloads and a configured job are not proof that its host passed.
 
-forge-release.yml is manually dispatched with publish=false by default. It requires
-full tests and all seven same-commit native artifacts, verifies complete ZIP content
-and checksums, and emits a reviewable universal installer artifact. Publication needs
-main plus separately reviewed current real-provider evidence. The read-only gate
-checks evidence shape/current source; a human must assess real transport provenance.
-It does not authorize a deployment itself. Only explicit publish=true requests the
-GitHub release and Pages steps. Existing releases/assets are never replaced.
+forge-release.yml runs on main pushes and manual dispatch. VERSION and the matching
+changelog section define each release. Manual publish=false prepares artifacts;
+publish=true requests publication on main. New publication requires complete tests,
+all seven same-commit native artifacts and current accepted real-provider evidence.
+The read-only gate checks evidence shape/current source; a human must assess actual
+transport provenance. A main merge does not waive that requirement.
 
-Pages copies exact checksum-bound bytes downloaded from that published release.
-PowerShell uses install.ps1.txt. The earlier Harness publication jobs remain scoped
-to their original repository. No release/tag/Pages is created by local tests.
+Published versions are never overwritten. A later commit retaining a published
+version skips publication. A same-commit retry or explicit manual publication can
+restore Pages from the original latest stable assets without rebuilding the release.
+Pages validates checksum-bound bytes and their original tag commit, then checks the
+public response. PowerShell uses install.ps1.txt. Retired publication jobs remain
+disabled. See [automatic releases and component Pages](automatic-releases.md).
 
 See the [external procedure](../validation/forge-provider-procedure.md) and
 [current evidence](../validation/2026-11-19-interactive-acceptance.md).
