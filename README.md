@@ -54,7 +54,7 @@ catalog, choose a model for the next launch, configure light/dark appearance and
 HEX colors, select normal/bold/italic text, or show/hide the right sidebar.
 Font family and size remain controlled by your terminal application.
 
-The **Aikya Harness** theme (`aikya`) uses the original logo's navy, cyan and
+The **Aikya Forge** theme (`aikya`) uses the original logo's navy, cyan and
 turquoise. New projects start with this theme; existing selections are retained.
 The startup header draws **Aikya** with `pyfiglet` 1.0.4, using slant/small ASCII
 fonts according to terminal width. Native installations include the library, fonts
@@ -62,6 +62,11 @@ and license for offline startup. Source installs use the `terminal` extra above;
 the dependency-free Python core retains a plain-text fallback. The banner is cached
 locally and makes no model calls. Select the theme with `/aikya-theme aikya` or
 Settings → Appearance.
+
+The startup header identifies the project directory, the observed Git branch and
+`git config user.name`. Email and remotes are not displayed. Branch changes reuse
+the SDK cache/watch; repainting runs no Git commands. User identity is read once
+at session start; missing Git/configuration is shown explicitly as unavailable.
 
 The sidebar reserves its own columns for phase, flow controls, local tokens/calls,
 budget and estimated context percentages, and Claude/Codex author/reviewer usage.

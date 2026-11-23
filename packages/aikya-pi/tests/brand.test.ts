@@ -46,10 +46,10 @@ test('header fits an entire ASCII variant or uses the compact identity at narrow
   for(const width of [1,10,40,79,120]) {
     const lines=header.renderBrandHeader(width,'0.2.0','Local preview · model disabled',banner);
     assert.ok(lines.every(line=>visibleWidth(line)<=width));
-    if(width>=40)assert.match(lines.map(stripTerminalSequences).join('\n'),/Aikya Harness/);
+    if(width>=40)assert.match(lines.map(stripTerminalSequences).join('\n'),/Aikya Forge/);
     if(width>=40)assert.equal(stripTerminalSequences(lines[0]),'A'.repeat(35));
     if(width<=10)assert.ok(lines.length<=3);
   }
   assert.equal(stripTerminalSequences(header.renderBrandHeader(20,'0.2.0','Local preview',banner)[0]),'A'.repeat(15));
-  assert.match(header.renderBrandHeader(79,'0.2.0','Local preview').map(stripTerminalSequences).join('\n'),/AIKYA v0.2.0/);
+  assert.match(header.renderBrandHeader(79,'0.2.0','Local preview').map(stripTerminalSequences).join('\n'),/Aikya Forge v0.2.0/);
 });

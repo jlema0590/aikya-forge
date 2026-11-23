@@ -6,7 +6,11 @@ The inherited Harness v7/v8 changelog remains in
 
 ## Unreleased
 
-- Add the Aikya Harness theme using original-logo navy/cyan/turquoise, preserve
+- Use Aikya Forge as the terminal/theme display name and show project, Git branch
+  and configured Git user in the header. Reuse SDK branch observation, read only
+  user.name at startup and retain explicit fallbacks without repaint subprocesses.
+
+- Add the Aikya Forge theme using original-logo navy/cyan/turquoise, preserve
   existing selections and keep the original reference PNG unchanged.
 - Draw the Aikya startup wordmark with pinned pyfiglet 1.0.4 and width-aware
   slant/small ASCII fonts. Bundle fonts/license in native Python, validate the wheel

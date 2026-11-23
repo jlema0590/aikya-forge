@@ -1,4 +1,4 @@
-import type { ExtensionAPI } from "@earendil-works/pi-coding-agent";
+import type { ExtensionAPI,ReadonlyFooterDataProvider } from "@earendil-works/pi-coding-agent";
 import { callBridge } from "./bridge.ts";
 import { RuntimeBudget, QuotaCache, type BudgetStatus } from "./usage.ts";
 import { quotaFromHeaders, renderUsage, renderFooter } from "./usage-view.ts";
@@ -6,12 +6,14 @@ import { ThemePreferences, previewTheme } from "./theme.ts";
 import {ConsolePreferences} from './console-preferences.ts';
 import {applyAppearance} from './console-appearance.ts';
 import {AIKYA_COLORS} from './brand.ts';
+import {readGitUser,projectIdentity} from './workspace.ts';
 
 export function registerLocalCommands(pi: ExtensionAPI, root: string, python?: string, phase=()=>"explore", controlled=false) {
   const preferences = new ThemePreferences(root), budget = new RuntimeBudget(root, python), quotas = new QuotaCache();
   const seenProviders = new Set<string>();
   const listeners=new Set<()=>void>();
   let latest:BudgetStatus={status:'unconfigured',recorded_tokens:null,calls:0};
+  let gitUser:string|null=null,footerData:ReadonlyFooterDataProvider|undefined;
   const refresh=async()=>{
     try {latest=await budget.status();}
     catch {latest={status:'unavailable',recorded_tokens:null,calls:0};}
@@ -38,9 +40,13 @@ export function registerLocalCommands(pi: ExtensionAPI, root: string, python?: s
   });
   pi.on("session_start", async (_event, ctx) => {
     if (!ctx.hasUI) return;
-    await refresh();
-    ctx.ui.setFooter((_tui,theme)=>({render:(width:number)=>[
-      theme.fg('muted',renderFooter(phase(),controlled?(ctx.model?.provider??'unknown')+'/'+(ctx.model?.id??'unknown'):null,latest,width))],invalidate:()=>{}}));
+    await Promise.all([refresh(),ctx.mode==='tui'?readGitUser(root).then(value=>{gitUser=value;}):Promise.resolve()]);
+    ctx.ui.setFooter((tui,theme,data)=>{
+      footerData=data;const unsubscribe=data?.onBranchChange(()=>tui.requestRender());
+      return {render:(width:number)=>[
+        theme.fg('muted',renderFooter(phase(),controlled?(ctx.model?.provider??'unknown')+'/'+(ctx.model?.id??'unknown'):null,latest,width))],
+        invalidate:()=>{},dispose:()=>{unsubscribe?.();footerData=undefined;}};
+    });
     const names = ctx.ui.getAllThemes().map(t => t.name).filter(n => ["dark", "light"].includes(n));
     const preference = preferences.load(names);
     ctx.ui.setTheme(preference.name);
@@ -66,7 +72,7 @@ export function registerLocalCommands(pi: ExtensionAPI, root: string, python?: s
       latest=await budget.status();
       publish("aikya-tokens", {...latest,quotas:[...seenProviders].map(p=>quotas.view(p))});
     }});
-  pi.registerCommand("aikya-theme", {description: "Preview and select Aikya Harness or installed light/dark themes locally",
+  pi.registerCommand("aikya-theme", {description: "Preview and select Aikya Forge or installed light/dark themes locally",
     handler: async (args, ctx) => {
       if (!ctx.hasUI) { publish("aikya-theme", {status: "interactive_terminal_required"}); return; }
       const available = ctx.ui.getAllThemes().filter(t => ["dark", "light"].includes(t.name));
@@ -76,7 +82,7 @@ export function registerLocalCommands(pi: ExtensionAPI, root: string, python?: s
       const source = available.find(t => t.name === selected);
       if(!names.includes(selected))throw new Error('Choose a supported theme');
       if (selected!=='aikya'&&(!source?.path || !ctx.ui.getTheme(selected))) throw new Error("Installed theme source is unavailable");
-      const preview = selected==='aikya'?{title:'Aikya Harness · original palette',
+      const preview = selected==='aikya'?{title:'Aikya Forge · original palette',
         sample:'Navy '+AIKYA_COLORS.background+' · Cyan '+AIKYA_COLORS.accent+' · Turquoise '+AIKYA_COLORS.success}:previewTheme(selected,source!.path!);
       if (await ctx.ui.confirm(preview.title, preview.sample + "\nApply this theme?") !== true) return;
       const previous = ctx.ui.theme;
@@ -88,5 +94,6 @@ export function registerLocalCommands(pi: ExtensionAPI, root: string, python?: s
       publish("aikya-theme", {status: "applied", name: selected});
     }});
   return {refreshUsage:refresh,onUsageChanged:(listener:()=>void)=>{listeners.add(listener);},
+    viewWorkspace:()=>projectIdentity(root,gitUser,()=>footerData?.getGitBranch()??null),
     viewUsage:()=>({budget:structuredClone(latest),quotas:[...seenProviders].map(p=>quotas.view(p))})};
 }

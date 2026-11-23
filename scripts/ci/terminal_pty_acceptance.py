@@ -8,6 +8,7 @@ import re
 import select
 import shutil
 import signal
+import subprocess
 import time
 from aikya.installation import build_sources,managed_runtime,managed_tools
 from aikya.installation.bootstrap import state
@@ -169,6 +170,7 @@ def run(output,*,application=None,source=None,assets=None,fetch=False):
     output=state.safe(Path(output).absolute()).resolve(strict=False)
     if output.exists():raise ValueError('Existing PTY evidence is preserved')
     if source and output.is_relative_to(Path(source).resolve()):raise ValueError('PTY evidence must be outside the source checkout')
+    git_fixture=None
     output.mkdir(parents=True);project=output/'project';project.mkdir();env=build_sources.environment(output/'home')
     env.update(TERM='xterm-256color',COLORTERM='truecolor',COLUMNS='120',LINES='38')
     if os.name=='nt':
@@ -185,7 +187,14 @@ def run(output,*,application=None,source=None,assets=None,fetch=False):
         recipe,raws=managed_tools.prepare(managed_runtime.host_platform(),assets,fetch=fetch)
         downloads=output/'downloads';downloads.mkdir();payload=output/'payload';payload.mkdir()
         managed_tools.install(recipe,raws,downloads,payload)
-        env['PATH']=os.pathsep.join([str(payload/'tools/fd'),str(payload/'tools/rg'),str(Path(node).resolve().parent)])
+        path_entries=[str(payload/'tools/fd'),str(payload/'tools/rg'),str(Path(node).resolve().parent)]
+        git=shutil.which('git')
+        if git:
+            git=str(Path(git).resolve());path_entries.append(str(Path(git).parent))
+            for arguments in (['init','--quiet','--initial-branch','preview/forge',str(project)],['-C',str(project),'config','user.name','Forge Preview']):
+                subprocess.run([git,*arguments],env=env,cwd=output,capture_output=True,check=True,timeout=10)
+            git_fixture=dict(project=project.name,branch='preview/forge',user='Forge Preview')
+        env['PATH']=os.pathsep.join(path_entries)
         version=(source/'VERSION').read_text().strip();python=sys.executable
         command=[python,'-I','-B','-m','aikya','terminal','--runtime-dir',str(source/'packages/aikya-pi'),'--target',str(project)]
     terminal=None;result=dict(status='failed',mode='managed' if application else 'source',version=version,platform=managed_runtime.host_platform(),
@@ -195,7 +204,11 @@ def run(output,*,application=None,source=None,assets=None,fetch=False):
         for name in ('fd.exe','rg.exe'):write_new(project/name,b'Inert invalid executable, never runnable')
     try:
         with ConsoleCapture(command,project,env) as terminal:
-            terminal.expect('AIKYA v'+version,timeout=45)
+            terminal.expect('Aikya Forge v'+version,timeout=45)
+            terminal.expect('Project: '+project.name,timeout=10)
+            if git_fixture:
+                terminal.expect('Git branch: preview/forge',timeout=10)
+                terminal.expect('Git user: Forge Preview',timeout=10)
             terminal.expect('/   |  (_) /____  ______ _',timeout=10)
             offset=terminal.send('/aikya-tokens\r');terminal.expect('Provider quota: unavailable',timeout=30,after=offset)
             assert 'not found. Offline mode' not in plain(terminal.raw)
@@ -204,6 +217,9 @@ def run(output,*,application=None,source=None,assets=None,fetch=False):
             terminal.send('\x1b');terminal.settle(.2)
             terminal.send('\x15');terminal.settle(.2)
             write_new(output/'startup.ansi',bytes(terminal.raw))
+            if git_fixture:
+                subprocess.run([git,'-C',str(project),'symbolic-ref','HEAD','refs/heads/preview/updated'],env=env,cwd=output,capture_output=True,check=True,timeout=10)
+                terminal.expect('Git branch: preview/updated',timeout=15)
             offset=terminal.send('/aikya-theme light\r');terminal.expect('Apply this theme?',timeout=20,after=offset)
             terminal.send('\x1b[A');terminal.settle(.1);terminal.send('\r');terminal.until(lambda:_theme(project)=='light',timeout=20)
             write_new(output/'light-theme.ansi',bytes(terminal.raw))
@@ -223,7 +239,7 @@ def run(output,*,application=None,source=None,assets=None,fetch=False):
         result.update(status='passed',theme='light',resize=dict(columns=100,rows=32),cache_refused=True,
             usage_status=usage['status'],bytes=len(terminal.raw),exit_code=terminal.exit_code,file_completion=True,
             launcher_supplies_tools=bool(application))
-        result.update(settings_panel=True,provider_catalog=True,text_style='bold',banner='pyfiglet-1.0.4')
+        result.update(settings_panel=True,provider_catalog=True,text_style='bold',banner='pyfiglet-1.0.4',project_identity=git_fixture,branch_change_observed=bool(git_fixture))
         return result
     finally:
         if terminal is not None:write_new(output/'terminal.log',bytes(terminal.raw))
