@@ -23,6 +23,15 @@ on:
     branches: [develop, main]
     paths: *native-inputs
   workflow_dispatch:
+    inputs:
+      artifact_run:
+        type: string
+        default: ''
+        description: Temporary assembly diagnostic using a completed native CI run
+      artifact_source:
+        type: string
+        default: ''
+        description: Exact source commit executed by all seven retained native jobs
   workflow_call:
 permissions:
   contents: read
@@ -31,6 +40,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   native:
+    if: github.event_name != 'workflow_dispatch' || inputs.artifact_run == ''
     strategy:
       fail-fast: false
       matrix:
@@ -83,6 +93,7 @@ jobs:
             ${{ runner.temp }}/forge-native-build/**/*.log
           retention-days: 7
   musl:
+    if: github.event_name != 'workflow_dispatch' || inputs.artifact_run == ''
     runs-on: ubuntu-24.04
     timeout-minutes: 45
     steps:
@@ -123,3 +134,51 @@ jobs:
             ${{ runner.temp }}/forge-musl/build/acceptance.json
             ${{ runner.temp }}/forge-musl/build/**/*.log
           retention-days: 7
+  assembly:
+    if: github.event_name == 'workflow_dispatch' && inputs.artifact_run != ''
+    runs-on: ubuntu-24.04
+    timeout-minutes: 25
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install --no-deps .
+      - name: Read the reviewed release workflow's actual artifact selector
+        id: selection
+        shell: bash
+        run: |
+          python - <<'PY'
+          import os,re
+          from pathlib import Path
+          text=Path('.github/workflows/forge-release.yml').read_text()
+          pattern=re.search(r'^\s+pattern: (.+)$',text,re.MULTILINE).group(1).strip()
+          with open(os.environ['GITHUB_OUTPUT'],'a') as stream:stream.write('pattern='+pattern+'\n')
+          PY
+      - uses: actions/download-artifact@v4
+        with:
+          pattern: ${{ steps.selection.outputs.pattern }}
+          run-id: ${{ inputs.artifact_run }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          path: native-inputs
+      - name: Verify seven same-commit native archives and universal entries
+        shell: bash
+        env:
+          ARTIFACT_SOURCE: ${{ inputs.artifact_source }}
+        run: |
+          set -euo pipefail
+          python scripts/ci/assemble_terminal_release.py --inputs native-inputs --output release \
+            --version "$(cat VERSION)" --commit "$ARTIFACT_SOURCE"
+          (cd release && sha256sum --check SHA256SUMS)
+          python scripts/ci/release_contract.py notes --output release/RELEASE_NOTES.md
+      - uses: actions/upload-artifact@v4
+        with:
+          name: forge-reviewed-release-diagnostic
+          path: release/
+          retention-days: 7
+          if-no-files-found: error
