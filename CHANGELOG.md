@@ -6,6 +6,9 @@ The inherited Harness v7/v8 changelog remains in
 
 ## Unreleased
 
+- Synchronize observer shutdown assertions with the actual owned child exit, using
+  the existing bounded cleanup instead of reading its status during publication.
+
 - Align release verification with the editable contributor installation used by
   source regression tests, preserving separate installed-wheel validation.
 - Require the final-record resumption fixture to observe the actual declined

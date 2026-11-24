@@ -24,17 +24,20 @@ def completed_observers():
         processes.append(process)
         return process
 
+    def wait_for_exit():
+        for process in processes:
+            try:
+                process.wait(12)
+            except subprocess.TimeoutExpired:
+                process.kill()
+                process.wait(5)
+                raise AssertionError('Session observer did not exit after SessionEnd')
+
     with patch('aikya.code_index.hooks.subprocess.Popen', side_effect=observed_launch):
         try:
-            yield
+            yield wait_for_exit
         finally:
-            for process in processes:
-                try:
-                    process.wait(12)
-                except subprocess.TimeoutExpired:
-                    process.kill()
-                    process.wait(5)
-                    raise AssertionError('Session observer did not exit after SessionEnd')
+            wait_for_exit()
 
 
 class MemoryIntegrationTests(unittest.TestCase):
@@ -87,7 +90,7 @@ class MemoryIntegrationTests(unittest.TestCase):
     def test_session_hooks_start_and_stop_only_the_project_observer(self):
         from aikya.code_index.policy import configure
         from aikya.code_index.hooks import process_event
-        with tempfile.TemporaryDirectory() as folder, completed_observers():
+        with tempfile.TemporaryDirectory() as folder, completed_observers() as wait_for_exit:
             root = Path(folder).resolve();configure(root, approved=True)
             (root / 'entity.py').write_text('class SessionEntity: pass\n')
             event = {'hook_event_name': 'SessionStart', 'session_id': 'test-session'}
@@ -106,11 +109,9 @@ class MemoryIntegrationTests(unittest.TestCase):
             finally:
                 process_event(root, {'hook_event_name': 'SessionEnd', 'session_id': 'test-session'})
                 state = root / '.harness/state/memory-view/status.json'
-                deadline = time.monotonic() + 8
-                while time.monotonic() < deadline:
-                    if state.exists() and json.loads(state.read_text()).get('state') == 'Stopped':
-                        break
-                    time.sleep(.05)
+                # HTML publication can precede the observer's final status write.
+                # Reuse the existing child-exit bound before reading its terminal state.
+                wait_for_exit()
                 self.assertEqual('Stopped', json.loads(state.read_text())['state'])
 
     def test_loop_context_uses_index_only_inside_its_approved_files(self):
