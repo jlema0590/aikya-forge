@@ -48,5 +48,17 @@ class PullRequestEventTests(unittest.TestCase):
             self.assertEqual(result.returncode,0,result.stderr)
             self.assertEqual(output.read_text(),'analyze=false\ncontext=PR metadata update\n')
 
+    def test_required_check_identity_is_available_before_jobs_run(self):
+        import re
+        workflow=(ROOT/'.github/workflows/pr-acceptance.yml').read_text()
+        acceptance=workflow.split('  acceptance:\n',1)[1]
+        name=re.search(r'^    name: (.+)$',acceptance,re.MULTILINE).group(1)
+        # Protection must bind the check before upstream outputs exist. Metadata
+        # must never register a skipped check under either required branch name.
+        self.assertNotIn('needs.',name)
+        self.assertIn('github.event.pull_request.base.ref',name)
+        self.assertIn('github.event.changes.base',name)
+        self.assertIn('PR metadata update',name)
+
 
 if __name__=='__main__':unittest.main()

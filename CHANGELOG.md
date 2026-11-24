@@ -15,6 +15,8 @@ The inherited Harness v7/v8 changelog remains in
 - Isolate PR title/body edits from source analysis so metadata changes neither
   cancel full matrices nor overwrite required acceptance checks. Source/base
   changes still require every technical stage; abandoned jobs fail acceptance.
+- Resolve required-check identities from the PR event before jobs run, keeping
+  metadata checks distinct and preserving strict GitHub Actions app binding.
 
 - Exclude retained native-failure diagnostics from release artifact selection
   after retries, preserving strict seven-platform provenance and checksum checks.

@@ -90,7 +90,7 @@ jobs:
           python scripts/ci/forge_release_gate.py --status --version "$(cat VERSION)" \
             --report "$GITHUB_WORKSPACE/aikya/docs/validation/forge-provider-acceptance.json"
   acceptance:
-    name: ${{ needs.route.outputs.context || format('Forge PR acceptance | {0}', github.event.pull_request.base.ref) }}
+    name: ${{ (github.event.action != 'edited' || github.event.changes.base != null) && format('Forge PR acceptance | {0}', github.event.pull_request.base.ref) || 'PR metadata update' }}
     if: always() && (needs.route.result != 'success' || needs.route.outputs.analyze == 'true')
     needs: [route, contracts, python, runtime, installers, native, publication]
     runs-on: ubuntu-24.04
