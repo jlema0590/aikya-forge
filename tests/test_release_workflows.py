@@ -1,6 +1,7 @@
 """Regression tests for v5.9.1 release contract and automatic GitHub Actions."""
 from __future__ import annotations
 import json
+import subprocess
 import sys
 import tempfile
 import unittest
@@ -143,11 +144,19 @@ class VersionContractTests(unittest.TestCase):
         self.assertIn("SHA256SUMS",yaml)
         self.assertNotIn("terraform apply",yaml)
 
-    def test_pr_contract_checks_main_not_develop(self):
-        yaml=(ROOT/".github/workflows/release-check.yml").read_text(encoding="utf8")
-        self.assertIn("branches: [main]",yaml)
-        self.assertIn("--base-ref origin/main",yaml)
-        self.assertNotIn("contents: write",yaml)
+    def test_pr_version_validation_uses_the_provided_base_commit(self):
+        def git(*arguments):
+            return subprocess.run(['git',*arguments],cwd=self.root,capture_output=True,text=True,check=True).stdout.strip()
+        git('init','--quiet')
+        (self.root/'VERSION').write_text('5.9.2\n')
+        git('add','.');git('-c','user.name=Fixture','-c','user.email=fixture@example.invalid','commit','--quiet','-m','PR base')
+        base=git('rev-parse','HEAD')
+        (self.root/'VERSION').write_text('5.9.0\n')
+        git('add','.');git('-c','user.name=Fixture','-c','user.email=fixture@example.invalid','commit','--quiet','-m','Other base')
+        other=git('rev-parse','HEAD');(self.root/'VERSION').write_text('5.9.1\n')
+        with self.assertRaisesRegex(contract.ReleaseError,'lower'):
+            self.valid(base_ref=base)
+        self.assertEqual(self.valid(base_ref=other)['version'],'5.9.1')
 
     def test_version_and_release_notes_in_repo(self):
         version = (ROOT/"VERSION").read_text().strip()

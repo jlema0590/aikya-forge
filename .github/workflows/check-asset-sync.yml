@@ -12,17 +12,6 @@ on:
       - 'src/aikya/resources/**'
       - 'scripts/ci/check_assets.py'
       - '.github/workflows/check-asset-sync.yml'
-  pull_request:
-    branches: [develop, main]
-    paths:
-      - 'src/aikya/catalogs/**'
-      - 'src/aikya/installation/**'
-      - 'src/aikya/cli/**'
-      - 'aikya_setup.py'
-      - 'engineering_catalog.py'
-      - 'src/aikya/resources/**'
-      - 'scripts/ci/check_assets.py'
-      - '.github/workflows/check-asset-sync.yml'
   workflow_dispatch:
 
 permissions:

@@ -197,6 +197,20 @@ La URL corta de instalación de Forge se documentará cuando esté desplegada y 
 
 ## Desarrollo y validación
 
+Cada PR a `develop` o `main` ejecuta una validación completa: contratos de catálogo,
+perfiles, plantillas, versión y tokens; pruebas Python y Pi; navegador y memoria;
+instaladores; siete plataformas nativas; y ensamblado del mismo commit.
+`Forge PR acceptance | develop` o `Forge PR acceptance | main` reúne el resultado
+para la rama de destino. Las fases obligatorias fallidas,
+canceladas, ausentes u omitidas impiden su aprobación.
+
+Las PR a `main` también requieren el mismo informe vigente de aceptación con
+proveedores reales que exige la publicación. Las pruebas locales con datos
+simulados no sustituyen esa evidencia. Consulta el
+[procedimiento de aceptación](aikya/docs/validation/forge-provider-procedure.md).
+Una validación aprobada no integra la PR ni publica una release automáticamente.
+
+
 ```sh
 python -m unittest discover -s tests -p 'test_*.py' -v
 npm --prefix packages/aikya-pi run typecheck

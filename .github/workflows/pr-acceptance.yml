@@ -1,0 +1,81 @@
+name: Forge | Pull request acceptance
+on:
+  pull_request:
+    branches: [develop, main]
+    types: [opened, synchronize, reopened, edited]
+permissions:
+  contents: read
+concurrency:
+  group: forge-pr-${{ github.event.pull_request.number }}
+  cancel-in-progress: true
+jobs:
+  contracts:
+    name: Complete project contracts
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Install contributor tools
+        run: |
+          python -m pip install 'setuptools>=77' wheel build
+          python -m pip install --no-build-isolation -e ".[terminal]"
+      - name: Verify all assets, profiles, templates and static token policy
+        run: |
+          python -m compileall -q src scripts/ci
+          python scripts/ci/check_assets.py
+          python scripts/ci/smoke_profiles.py
+          python -m aikya.documentation.templates check
+          python scripts/ci/context_budget.py --max-proxy-tokens 6000
+      - name: Verify version and changelog against this PR base
+        env:
+          PR_BASE_SHA: ${{ github.event.pull_request.base.sha }}
+        run: python scripts/ci/release_contract.py check --base-ref "$PR_BASE_SHA"
+  python:
+    uses: ./.github/workflows/tests.yml
+  runtime:
+    uses: ./.github/workflows/pi-runtime.yml
+  installers:
+    uses: ./.github/workflows/installers.yml
+  native:
+    uses: ./.github/workflows/forge-native.yml
+  publication:
+    name: Main release readiness | reviewed provider trials
+    if: github.event.pull_request.base.ref == 'main'
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - run: python -m pip install --no-deps .
+      - name: Require the same current evidence that publication requires
+        run: |
+          python scripts/ci/forge_release_gate.py --version "$(cat VERSION)" \
+            --report "$GITHUB_WORKSPACE/aikya/docs/validation/forge-provider-acceptance.json"
+  acceptance:
+    name: Forge PR acceptance | ${{ github.event.pull_request.base.ref }}
+    if: always()
+    needs: [contracts, python, runtime, installers, native, publication]
+    runs-on: ubuntu-24.04
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+      - name: Require every mandatory stage and publish a consolidated summary
+        env:
+          AIKYA_PR_NEEDS: ${{ toJSON(needs) }}
+          AIKYA_PR_BASE: ${{ github.event.pull_request.base.ref }}
+        run: python scripts/ci/pr_acceptance.py --base "$AIKYA_PR_BASE"

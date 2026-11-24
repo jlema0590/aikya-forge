@@ -18,23 +18,6 @@ on:
       - 'src/aikya/discovery/**'
       - 'scripts/ci/smoke_profiles.py'
       - '.github/workflows/smoke-stacks.yml'
-  pull_request:
-    branches: [develop, main]
-    paths:
-      - 'examples/**'
-      - 'install.py'
-      - 'src/aikya/installation/**'
-      - 'src/aikya/cli/**'
-      - 'src/aikya/resources/**'
-      - 'aikya_layout.py'
-      - 'infrastructure_profile.py'
-      - 'engineering_catalog.py'
-      - 'aikya_requirements.py'
-      - 'doc_bootstrap.py'
-      - 'src/aikya/tools/**'
-      - 'src/aikya/discovery/**'
-      - 'scripts/ci/smoke_profiles.py'
-      - '.github/workflows/smoke-stacks.yml'
   workflow_dispatch:
 
 permissions:
