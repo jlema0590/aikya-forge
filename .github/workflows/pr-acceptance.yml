@@ -62,7 +62,7 @@ jobs:
           python scripts/ci/forge_release_gate.py --version "$(cat VERSION)" \
             --report "$GITHUB_WORKSPACE/aikya/docs/validation/forge-provider-acceptance.json"
   acceptance:
-    name: Forge PR acceptance
+    name: Forge PR acceptance | ${{ github.event.pull_request.base.ref }}
     if: always()
     needs: [contracts, python, runtime, installers, native, publication]
     runs-on: ubuntu-24.04

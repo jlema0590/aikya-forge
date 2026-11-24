@@ -198,7 +198,8 @@ The public one-command installation remains conditional on release publication a
 Every PR to `develop` or `main` runs one complete acceptance workflow: catalog,
 profile, template, version and token contracts; Python and Pi regressions; browser
 and memory checks; clean installers; seven native platforms; and same-commit
-release assembly. `Forge PR acceptance` reports the combined result. Mandatory
+release assembly. `Forge PR acceptance | develop` or `Forge PR acceptance | main`
+reports the combined result for its destination branch. Mandatory
 failed, cancelled, missing or skipped stages cannot pass.
 
 A PR targeting `main` also requires the same current reviewed real-provider

@@ -200,7 +200,8 @@ La URL corta de instalación de Forge se documentará cuando esté desplegada y 
 Cada PR a `develop` o `main` ejecuta una validación completa: contratos de catálogo,
 perfiles, plantillas, versión y tokens; pruebas Python y Pi; navegador y memoria;
 instaladores; siete plataformas nativas; y ensamblado del mismo commit.
-`Forge PR acceptance` reúne el resultado. Las fases obligatorias fallidas,
+`Forge PR acceptance | develop` o `Forge PR acceptance | main` reúne el resultado
+para la rama de destino. Las fases obligatorias fallidas,
 canceladas, ausentes u omitidas impiden su aprobación.
 
 Las PR a `main` también requieren el mismo informe vigente de aceptación con
