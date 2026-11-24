@@ -6,6 +6,12 @@ The inherited Harness v7/v8 changelog remains in
 
 ## Unreleased
 
+- Run complete reusable PR acceptance for develop/main, including all Python/Pi,
+  memory/browser, installer and seven-target native checks plus shared real archive
+  assembly. Consolidate failures in one final fail-closed check and summary.
+- Validate current real-provider release evidence before integrating to main,
+  preserving the publication gate and avoiding duplicate PR workflow runs.
+
 - Exclude retained native-failure diagnostics from release artifact selection
   after retries, preserving strict seven-platform provenance and checksum checks.
 

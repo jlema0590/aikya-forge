@@ -61,7 +61,7 @@ class TerminalReleaseAssemblyTests(unittest.TestCase):
     def test_downloaded_native_artifacts_still_assemble_after_a_failed_job_retry(self):
         diagnostic=self.inputs/'forge-native-failure-windows-11-arm-arm64';diagnostic.mkdir()
         (diagnostic/'installed-session.log').write_bytes(b'Original failed attempt is retained')
-        workflow=(ROOT/'.github/workflows/forge-release.yml').read_text(encoding='utf8')
+        workflow=(ROOT/'.github/workflows/forge-native.yml').read_text(encoding='utf8')
         pattern=re.search(r'^\s+pattern: (.+)$',workflow,re.MULTILINE).group(1).strip()
         downloaded=self.root/'downloaded';downloaded.mkdir()
         for artifact in self.inputs.iterdir():

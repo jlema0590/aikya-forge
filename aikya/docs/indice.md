@@ -1,5 +1,10 @@
 # Document index
 
+- [bugs/2026-11-24-pr-publication-readiness.md](bugs/2026-11-24-pr-publication-readiness.md)
+- [validation/2026-11-24-pr-complete-acceptance.md](validation/2026-11-24-pr-complete-acceptance.md)
+
+- [plan/2026-11-24-pr-complete-acceptance.md](plan/2026-11-24-pr-complete-acceptance.md)
+
 - [validation/2026-11-24-actions-reliability.md](validation/2026-11-24-actions-reliability.md)
 
 - [plan/2026-11-24-actions-reliability.md](plan/2026-11-24-actions-reliability.md)

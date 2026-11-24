@@ -195,6 +195,18 @@ The public one-command installation remains conditional on release publication a
 
 ## Development and validation
 
+Every PR to `develop` or `main` runs one complete acceptance workflow: catalog,
+profile, template, version and token contracts; Python and Pi regressions; browser
+and memory checks; clean installers; seven native platforms; and same-commit
+release assembly. `Forge PR acceptance` reports the combined result. Mandatory
+failed, cancelled, missing or skipped stages cannot pass.
+
+A PR targeting `main` also requires the same current reviewed real-provider
+acceptance report as publication. Offline fixtures do not satisfy that requirement.
+See the [acceptance procedure](aikya/docs/validation/forge-provider-procedure.md).
+Passing PR checks does not merge the PR or publish a release.
+
+
 ```sh
 python -m unittest discover -s tests -p 'test_*.py' -v
 npm --prefix packages/aikya-pi run typecheck

@@ -1,8 +1,6 @@
 name: Aikya | Release version contract
 
 on:
-  pull_request:
-    branches: [main]
   push:
     branches: ['feat/**', 'fix/**', 'release/**', 'refactor/**']
     paths:
@@ -44,10 +42,6 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          if [[ "${{ github.event_name }}" == "pull_request" ]]; then
-            python scripts/ci/release_contract.py check --base-ref origin/main
-          else
-            python scripts/ci/release_contract.py check
-          fi
+          python scripts/ci/release_contract.py check
       - name: Test release contract
         run: python -m unittest discover -s tests -p 'test_release_workflows.py' -v

@@ -2,8 +2,8 @@ name: Pi runtime contracts
 on:
   push:
     branches: [develop]
-  pull_request:
   workflow_dispatch:
+  workflow_call:
 permissions:
   contents: read
 jobs:
