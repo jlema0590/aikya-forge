@@ -11,7 +11,7 @@ def main():
     source=Path(__file__).resolve().parents[2]
     inputs=source/'native-inputs';output=source/'observer-probe';output.mkdir()
     origin=json.loads((inputs/'build-origin.json').read_bytes())
-    if origin['source_commit']!='4ce714fd00e10149c5331f45bef28602bd085254':
+    if origin['source_commit']!='86c37346ce27749713109e4529061f4b2d07aef0':
         raise ValueError('Unexpected retained native source')
     managed_entries.build(origin['version'],inputs,output/'entries')
     shutil.copy2(output/'entries/install.ps1',inputs/'install.ps1')

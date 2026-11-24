@@ -146,11 +146,18 @@ jobs:
         with:
           python-version: '3.13'
           architecture: arm64
+      - uses: actions/checkout@v4
+        with:
+          ref: 86c37346ce27749713109e4529061f4b2d07aef0
+          path: retained-source
+          persist-credentials: false
       - name: Require unchanged production inputs for the retained native artifact
         shell: pwsh
         run: |
-          git diff --exit-code 4ce714fd00e10149c5331f45bef28602bd085254 -- src packages/aikya-pi/src packages/aikya-pi/package.json packages/aikya-pi/package-lock.json
-          if ($LASTEXITCODE -ne 0) { throw 'Diagnostic artifact production inputs differ' }
+          foreach ($path in @('src', 'packages/aikya-pi/src', 'packages/aikya-pi/package.json', 'packages/aikya-pi/package-lock.json')) {
+            git diff --exit-code --no-index "retained-source/$path" "$path"
+            if ($LASTEXITCODE -ne 0) { throw 'Diagnostic artifact production inputs differ' }
+          }
           python -m pip install 'setuptools>=77' wheel
           python -m pip install --no-build-isolation --no-deps .
       - uses: actions/download-artifact@v4
