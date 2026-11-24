@@ -6,6 +6,9 @@ The inherited Harness v7/v8 changelog remains in
 
 ## Unreleased
 
+- Retain bounded installed-observer status, leases, policy and SDK diagnostics
+  before failed native acceptance teardown, preserving its existing deadlines.
+
 - Synchronize observer shutdown assertions with the actual owned child exit, using
   the existing bounded cleanup instead of reading its status during publication.
 

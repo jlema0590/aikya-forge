@@ -12,7 +12,18 @@ const {RuntimeBudget}=await moduleAt('usage');
 const runtime=await createReadOnlySession(root,{python});
 let providerCalls=0;
 runtime.session.agent.streamFunction=()=>{providerCalls++;throw new Error('No inference is authorized in native acceptance');};
-const observations=[];
+const observations=[],errors=[];
+runtime.session.extensionRunner.onError(error=>{
+  if(errors.length<20)errors.push({event:error.event,error:String(error.error).slice(0,1000)});
+});
+const observerState=()=>{
+  const read=relative=>{
+    try {const raw=readFileSync(join(root,relative),'utf8');return raw.length<=16000?JSON.parse(raw):{status:'oversized'};}
+    catch(error) {return {status:'unavailable',code:error.code};}
+  };
+  return {status:read('.harness/state/memory-view/status.json'),leases:read('.harness/state/memory-view/sessions.json'),
+    policy:read('.aikya/code-index.json'),errors};
+};
 try {
   const names=runtime.session.extensionRunner.getRegisteredCommands().map(c=>c.name);
   for(const name of JSON.parse(readFileSync(commandsFile,'utf8')))assert.equal(names.filter(n=>n===name).length,1,name);
@@ -35,5 +46,9 @@ try {
   const accounting=await new RuntimeBudget(root,python).status();
   assert.notEqual(accounting.status,'available','The fixture must not silently configure a model budget');
   assert.equal(providerCalls,0);
+} catch(error) {
+  // Retain the failing boundary before teardown can replace its terminal status.
+  console.error('Installed observer diagnostic: '+JSON.stringify(observerState()));
+  throw error;
 } finally {await runtime.close();}
 console.log(JSON.stringify({provider_calls:providerCalls,observations,theme:'light',runtime:'actual-installed-Pi',ui:'headless SDK; not visual terminal acceptance'}));
