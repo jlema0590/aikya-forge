@@ -1,0 +1,97 @@
+# Forge Actions failures — 2026-11-24
+
+## Release source regression environment
+
+Run 45211872718 failed verification with 24 errors and two failures after running
+1,265 Python tests. It installed the regular distribution and then ran checkout
+source tests. The test helper resolves generated adapters through source_root();
+with the installed wheel active, checkout helper paths were treated as files,
+although those launchers are generated rather than stored in the source tree.
+A template-library comparison likewise mixed checkout and installed resources.
+
+A disposable environment reproduced the missing docs_guard.py errors using a
+regular wheel. Installing the contributor build prerequisites and the editable
+checkout made all four document-path tests and all four template-path tests pass.
+The release verify job now uses the same editable contributor installation as the
+passing Python matrix. Separate installed-wheel/package acceptance stays intact.
+
+## Intermittent Pi final-record test
+
+Run 45211783306 passed five OS/Node jobs and failed macOS with Node 26.13.0:
+resuming a stopped final-record fixture returned needs_host_action rather than
+recorded. The original first-stop assertion only required stopped, so an unrelated
+failure could be mistaken for the intended user decline.
+
+The exact pinned Node runtime passed twelve focused local repetitions without
+changing source/call/deadline limits. The complete SDK suite also passed. Temporary
+diagnostics were removed. The fixture now requires the actual declined recording
+dialog, checks its exact dialog count and retains SDK errors for diagnosis. This
+is stronger acceptance/diagnostics, not a claimed production fix for an unproven
+intermittent cause. Its same-commit failed-job retry passed in GitHub.
+
+## Native macOS runner acquisition
+
+Run 45211782923 had six successful native jobs and an unstarted macOS ARM job.
+GitHub annotations state: "The job was not acquired by Runner of type hosted even
+after multiple attempts" and report macOS ARM capacity constraints. A job-only
+retry passed; no product or platform acceptance was removed.
+
+## Publication remains separately gated
+
+The external provider report still has review_status=pending, zero repetitions
+and no observations. Running the genuine release gate rejects it as absent,
+pending or stale. No provider evidence is fabricated and no gate is disabled.
+Fixing CI does not itself publish native installers or resolve their public 404.
+
+Validation results are recorded in the corresponding validation report.
+
+## Windows observer shutdown test
+
+The new PR run exposed Local memory / Windows / Python 3.13 failure at
+`MemoryIntegrationTests.test_session_hooks_start_and_stop_only_the_project_observer`.
+It asserted Stopped before awaiting the owned observer's exit. The status could
+still be Up to date while the final writer/exit was completing; the existing
+bounded child cleanup subsequently finished without error.
+
+The tests now await that actual exit before reading the final status, reusing
+the existing 12-second wait and kill-on-timeout behavior. The independent early
+8/10-second status poll is removed; observer/runtime limits are not increased.
+The same coordination is used by the Pi lifecycle case. No production observer
+behavior or SessionEnd semantics changed. All ten memory integration tests and
+both Pi lifecycle tests passed locally after the correction.
+
+## Installed Windows ARM observer boundary
+
+Preparation run 45352336115 passed plan, verify and six native targets, but its
+Windows ARM installed session failed at external-create publication after the
+existing 20-second deadline. Latest-head PR run 45353925757 passed all seven native
+targets, and all 43 PR checks passed. This is an intermittent acceptance failure;
+its cause is not established by a successful independent run.
+
+The failure artifact contains the installed session stack and timing, but not the
+observer status/leases before teardown. Temporary branch
+`diagnostics/windows-arm-observer` adds bounded pre-teardown diagnostics and probes
+a retained native Windows ARM artifact from run 45211782923. It requires unchanged
+production source/runtime inputs against that artifact's source commit before
+execution. All ten fresh installed-project trials passed with zero provider calls
+in run 45364336123. The cause remains unconfirmed. The final native acceptance
+script retains the bounded diagnostic before teardown, without changing observer
+behavior or deadlines. Only the failed preparation job was retried; no model
+transport or release publication is enabled.
+
+## Release assembly after a failed-job retry
+
+The preparation run retains `forge-native-failure-windows-11-arm-arm64`. Its
+`forge-native-*` download pattern also selects that diagnostic alongside the
+seven successful platform artifacts after a retry. The assembler correctly
+requires exactly seven platform folders and rejects the extra diagnostic.
+
+A functional regression using the workflow pattern, seven valid native fixtures
+and the retained failure folder failed with that exact extra name. Narrowing the
+selection to `forge-native-[dlw]*` selects Darwin, Linux and Windows artifacts;
+strict completeness, same-commit acceptance and archive checks remain intact.
+The regression then assembled all seven targets and preserved the original
+failure log. Five release assembly cases passed. The Actions download source
+uses Minimatch; the selected pattern uses its ordinary character-class syntax.
+
+GENERATED BY AIKYA FORGE

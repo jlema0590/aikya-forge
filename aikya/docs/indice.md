@@ -1,5 +1,10 @@
 # Document index
 
+- [validation/2026-11-24-actions-reliability.md](validation/2026-11-24-actions-reliability.md)
+
+- [plan/2026-11-24-actions-reliability.md](plan/2026-11-24-actions-reliability.md)
+- [bugs/2026-11-24-actions-reliability.md](bugs/2026-11-24-actions-reliability.md)
+
 - [changes/REQ-20261120-f0900221.md](changes/REQ-20261120-f0900221.md)
 
 - [changes/REQ-20261120-f0900220.md](changes/REQ-20261120-f0900220.md)
