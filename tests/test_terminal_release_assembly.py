@@ -1,8 +1,11 @@
 """Publishable installers require complete same-commit native evidence and exact archives."""
 import hashlib
+from fnmatch import fnmatchcase
 import importlib.util
 import json
 from pathlib import Path
+import re
+import shutil
 import subprocess
 import tempfile
 import tarfile
@@ -54,6 +57,19 @@ class TerminalReleaseAssemblyTests(unittest.TestCase):
         if Path('/bin/sh').exists():
             result=subprocess.run(['/bin/sh',str(output/'install.sh'),'--dry-run'],env={'PATH':'/not-present'},capture_output=True,text=True)
             self.assertEqual(result.returncode,0,result.stderr);self.assertEqual(json.loads(result.stdout)['version'],'0.2.0')
+
+    def test_downloaded_native_artifacts_still_assemble_after_a_failed_job_retry(self):
+        diagnostic=self.inputs/'forge-native-failure-windows-11-arm-arm64';diagnostic.mkdir()
+        (diagnostic/'installed-session.log').write_bytes(b'Original failed attempt is retained')
+        workflow=(ROOT/'.github/workflows/forge-release.yml').read_text(encoding='utf8')
+        pattern=re.search(r'^\s+pattern: (.+)$',workflow,re.MULTILINE).group(1).strip()
+        downloaded=self.root/'downloaded';downloaded.mkdir()
+        for artifact in self.inputs.iterdir():
+            if fnmatchcase(artifact.name,pattern):shutil.copytree(artifact,downloaded/artifact.name)
+        self.assertEqual({path.name for path in downloaded.iterdir()},{'forge-native-'+target for target in TARGETS})
+        output=self.root/'retried-release';self.module.assemble(downloaded,output,self.version,self.commit)
+        self.assertEqual(set(json.loads((output/'release.json').read_bytes())['platforms']),set(TARGETS))
+        self.assertEqual((diagnostic/'installed-session.log').read_bytes(),b'Original failed attempt is retained')
 
     def test_wrong_commit_failed_acceptance_and_corruption_cannot_create_release(self):
         folder=self.inputs/'forge-native-darwin-arm64'
