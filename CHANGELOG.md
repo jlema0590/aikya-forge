@@ -6,6 +6,9 @@ The inherited Harness v7/v8 changelog remains in
 
 ## Unreleased
 
+- Exclude retained native-failure diagnostics from release artifact selection
+  after retries, preserving strict seven-platform provenance and checksum checks.
+
 - Retain bounded installed-observer status, leases, policy and SDK diagnostics
   before failed native acceptance teardown, preserving its existing deadlines.
 

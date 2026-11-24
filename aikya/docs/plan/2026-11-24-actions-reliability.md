@@ -19,7 +19,9 @@ temporary diagnostic branch does not change the reviewed PR's production inputs.
   or increase acceptance deadlines. Request only its failed-job retry and assembly.
 - [x] Update changelog, bug record, validation dossier and documentation index;
   preserve the real-provider publication gate and pending evidence.
-- [ ] Confirm final-head hosted checks and the preparation-only native retry/assembly,
+- [x] Reproduce retried-run diagnostic artifacts entering native assembly; narrow
+  only the download selection and pass the five assembly regression cases.
+- [ ] Confirm final-head hosted checks and isolated same-commit native assembly,
   then make PR 6 ready for review. No merge or publication is performed here.
 
 This file is a validation checkpoint. Final post-push results are maintained in
