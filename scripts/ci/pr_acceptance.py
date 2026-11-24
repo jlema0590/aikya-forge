@@ -5,23 +5,33 @@ import os
 from pathlib import Path
 import sys
 
-REQUIRED=('contracts','python','runtime','installers','native')
+REQUIRED=('route','contracts','python','runtime','installers','native','publication')
 
 
 def evaluate(results,base):
-    if base not in ('develop','main') or not isinstance(results,dict) or set(results)!=set(REQUIRED)|{'publication'}:
+    if base not in ('develop','main') or not isinstance(results,dict) or set(results)!=set(REQUIRED):
         raise ValueError('Complete known PR stage results and a supported base are required')
     checks=[];issues=[]
-    for name in (*REQUIRED,'publication'):
+    for name in REQUIRED:
         value=results[name]
         if not isinstance(value,dict) or not isinstance(value.get('result'),str):
             raise ValueError('Malformed PR stage result')
         status=value['result']
-        if status not in ('success','failure','cancelled','skipped'):status='invalid'
-        optional=name=='publication' and base=='develop'
-        if status!='success' and not (optional and status=='skipped'):issues.append(name+': '+status)
-        checks.append(dict(stage=name,result=status,required=not optional))
-    return dict(status='failed' if issues else 'passed',base=base,checks=checks,issues=issues,publishes=False)
+        if status not in ('success','failure','cancelled','skipped','abandoned'):status='invalid'
+        if status!='success':issues.append(name+': '+status)
+        checks.append(dict(stage=name,result=status,required=True))
+    if results['route']['result']=='success':
+        routed=results['route'].get('outputs')
+        if not isinstance(routed,dict) or routed.get('analyze')!='true' or routed.get('context')!='Forge PR acceptance | '+base:
+            raise ValueError('Required acceptance must be bound to actual analysis for this target')
+    publication_ready=False;publication_status='unavailable'
+    if results['publication']['result']=='success':
+        output=results['publication'].get('outputs')
+        if not isinstance(output,dict) or (output.get('status'),output.get('ready')) not in (('ready','true'),('blocked','false')):
+            raise ValueError('Truthful publication readiness metadata is required')
+        publication_status=output['status'];publication_ready=output['ready']=='true'
+    return dict(status='failed' if issues else 'passed',base=base,checks=checks,issues=issues,
+                publication_status=publication_status,publication_ready=publication_ready,publishes=False)
 
 
 def main(argv=None):
@@ -35,7 +45,8 @@ def main(argv=None):
             rows=['# Forge PR acceptance','',f"Result: **{result['status']}**; target: `{args.base}`.",'',
                   '| Stage | Result | Required |','| --- | --- | --- |']
             rows.extend('| '+c['stage']+' | '+c['result']+' | '+('yes' if c['required'] else 'no')+' |' for c in result['checks'])
-            rows.extend(['','Main integration requires current reviewed real-provider evidence. Offline checks do not create that evidence.',
+            rows.extend(['','Publication readiness: **'+result['publication_status']+'**.',
+                         'Technically validated code may integrate. Publication requires current reviewed real-provider evidence.',
                          'A passing PR analysis does not merge or publish a release.',''])
             with Path(os.environ['GITHUB_STEP_SUMMARY']).open('a',encoding='utf8') as stream:stream.write('\n'.join(rows))
         print(json.dumps(result));return 0 if result['status']=='passed' else 1

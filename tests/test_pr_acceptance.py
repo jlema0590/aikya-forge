@@ -1,4 +1,4 @@
-"""PR acceptance cannot hide incomplete checks or a main publication refusal."""
+"""Technical PR acceptance remains mandatory; publication readiness stays truthful."""
 import importlib.util
 import json
 import os
@@ -14,51 +14,56 @@ SCRIPT=ROOT/'scripts/ci/pr_acceptance.py'
 
 class PullRequestAcceptanceTests(unittest.TestCase):
     def setUp(self):
-        self.assertTrue(SCRIPT.is_file(),'A complete PR acceptance decision is missing')
         spec=importlib.util.spec_from_file_location('pr_acceptance',SCRIPT)
         self.module=importlib.util.module_from_spec(spec);spec.loader.exec_module(self.module)
-        self.results={name:dict(result='success',outputs={}) for name in
-                      ('contracts','python','runtime','installers','native','publication')}
 
-    def test_main_requires_success_from_every_stage(self):
-        self.assertEqual(self.module.evaluate(self.results,'main')['status'],'passed')
-        for name in self.results:
-            for status in ('failure','cancelled','skipped','unknown'):
+    def results(self,base='main'):
+        result={name:dict(result='success',outputs={}) for name in
+                ('route','contracts','python','runtime','installers','native','publication')}
+        result['route']['outputs']={'analyze':'true','context':'Forge PR acceptance | '+base}
+        result['publication']['outputs']={'status':'blocked','ready':'false'}
+        return result
+
+    def test_every_technical_stage_and_readiness_report_must_complete(self):
+        for name in self.results():
+            for status in ('failure','cancelled','abandoned','skipped','unknown'):
                 with self.subTest(stage=name,status=status):
-                    values={**self.results,name:dict(result=status)}
+                    values={**self.results(),name:dict(result=status,outputs={})}
                     self.assertEqual(self.module.evaluate(values,'main')['status'],'failed')
 
-    def test_develop_only_allows_publication_to_be_skipped(self):
-        self.results['publication']['result']='skipped'
-        result=self.module.evaluate(self.results,'develop')
-        self.assertEqual(result['status'],'passed')
-        failed={**self.results,'publication':dict(result='failure')}
-        self.assertEqual(self.module.evaluate(failed,'develop')['status'],'failed')
-        for name in ('contracts','python','runtime','installers','native'):
-            with self.subTest(stage=name):
-                values={**self.results,name:dict(result='skipped')}
-                self.assertEqual(self.module.evaluate(values,'develop')['status'],'failed')
+    def test_pending_trials_do_not_block_integration_or_claim_publication(self):
+        for base in ('develop','main'):
+            result=self.module.evaluate(self.results(base),base)
+            self.assertEqual(result['status'],'passed');self.assertFalse(result['publication_ready'])
+            self.assertFalse(result['publishes'])
+        values=self.results();values['publication']['outputs']={'status':'ready','ready':'true'}
+        result=self.module.evaluate(values,'main')
+        self.assertTrue(result['publication_ready']);self.assertFalse(result['publishes'])
 
-    def test_missing_extra_malformed_results_or_unknown_base_fail_closed(self):
-        for values in ({},None,[],{**self.results,'unreviewed':dict(result='success')},
-                       {**self.results,'native':None},{**self.results,'python':dict(outputs={})}):
-            with self.subTest(values=values):
-                with self.assertRaises(ValueError):self.module.evaluate(values,'develop')
-        with self.assertRaises(ValueError):self.module.evaluate(self.results,'other')
+    def test_missing_or_inconsistent_metadata_never_passes(self):
+        for values in ({},None,[],{**self.results(),'unreviewed':dict(result='success')},
+                       {**self.results(),'native':None},{**self.results(),'python':dict(outputs={})}):
+            with self.subTest(values=values),self.assertRaises(ValueError):self.module.evaluate(values,'main')
+        for output in ({},{'status':'ready','ready':'false'},{'status':'unknown','ready':'true'}):
+            values=self.results();values['publication']['outputs']=output
+            with self.subTest(output=output),self.assertRaises(ValueError):self.module.evaluate(values,'main')
+        values=self.results();values['route']['outputs']={'analyze':'false','context':'PR metadata update'}
+        with self.assertRaises(ValueError):self.module.evaluate(values,'main')
+        with self.assertRaises(ValueError):self.module.evaluate(self.results(),'other')
 
-    def test_cli_records_real_failure_and_preserves_main_publication_refusal(self):
+    def test_cli_distinguishes_failed_code_from_blocked_publication(self):
         with tempfile.TemporaryDirectory() as temporary:
-            summary=Path(temporary)/'summary.md'
-            self.results['publication']['result']='failure'
-            env={**os.environ,'AIKYA_PR_NEEDS':json.dumps(self.results),'GITHUB_STEP_SUMMARY':str(summary)}
+            summary=Path(temporary)/'summary.md';values=self.results()
+            values['installers']['result']='failure'
+            env={**os.environ,'AIKYA_PR_NEEDS':json.dumps(values),'GITHUB_STEP_SUMMARY':str(summary)}
             result=subprocess.run([sys.executable,'-B',SCRIPT,'--base','main'],env=env,capture_output=True,text=True,timeout=10)
             self.assertEqual(result.returncode,1,result.stderr)
             self.assertEqual(json.loads(result.stdout)['status'],'failed')
-            self.assertIn('publication',summary.read_text());self.assertIn('failure',summary.read_text())
-            self.results['publication']['result']='skipped';env['AIKYA_PR_NEEDS']=json.dumps(self.results)
-            result=subprocess.run([sys.executable,'-B',SCRIPT,'--base','develop'],env=env,capture_output=True,text=True,timeout=10)
+            values['installers']['result']='success';env['AIKYA_PR_NEEDS']=json.dumps(values)
+            result=subprocess.run([sys.executable,'-B',SCRIPT,'--base','main'],env=env,capture_output=True,text=True,timeout=10)
             self.assertEqual(result.returncode,0,result.stderr)
-            self.assertEqual(json.loads(result.stdout)['status'],'passed')
+            self.assertFalse(json.loads(result.stdout)['publication_ready'])
+            self.assertIn('blocked',summary.read_text());self.assertIn('publication',summary.read_text())
 
 
 if __name__=='__main__':unittest.main()

@@ -202,9 +202,12 @@ release assembly. `Forge PR acceptance | develop` or `Forge PR acceptance | main
 reports the combined result for its destination branch. Mandatory
 failed, cancelled, missing or skipped stages cannot pass.
 
-A PR targeting `main` also requires the same current reviewed real-provider
-acceptance report as publication. Offline fixtures do not satisfy that requirement.
-See the [acceptance procedure](aikya/docs/validation/forge-provider-procedure.md).
+Technically validated code may integrate into either branch while publication
+readiness is reported separately. Pending real-provider trials keep publication
+blocked; offline fixtures cannot approve a release. See the
+[acceptance procedure](aikya/docs/validation/forge-provider-procedure.md).
+Title/body edits use a lightweight metadata run without cancelling source analysis
+or satisfying its required check. Source and destination changes run full acceptance.
 Passing PR checks does not merge the PR or publish a release.
 
 
@@ -242,10 +245,11 @@ so an existing document can be refreshed without duplicating its signature.
 Historical records and third-party provenance retain their original identifiers.
 
 Inherited publication workflows are explicitly disabled.
-Forge publishes new versions automatically on main pushes, using `VERSION` and the
-matching changelog notes. Manual runs remain available: `publish=false` prepares
-artifacts; `publish=true` requests publication on main. Both publishing paths require
-all native checks and current accepted real-provider evidence. Published versions
+Forge prepares new versions on main pushes, using `VERSION` and the matching
+changelog notes. It publishes automatically only with current accepted real-provider
+evidence and all release checks passed; pending evidence leaves publication and
+Pages blocked. Manual `publish=false` prepares artifacts; `publish=true` requests
+publication on main and refuses a new release without that evidence. Published versions
 are preserved; retries can restore Pages from their original assets. See the
 [release and Pages guide](aikya/docs/deployment/automatic-releases.md). No stable release or Pages URL is published by this change. The [documentation index](aikya/docs/indice.md) preserves previous plans
 and evidence; references to v7/v8 inside historical records describe their original

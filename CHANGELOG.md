@@ -9,8 +9,12 @@ The inherited Harness v7/v8 changelog remains in
 - Run complete reusable PR acceptance for develop/main, including all Python/Pi,
   memory/browser, installer and seven-target native checks plus shared real archive
   assembly. Consolidate failures in one final fail-closed check and summary.
-- Validate current real-provider release evidence before integrating to main,
-  preserving the publication gate and avoiding duplicate PR workflow runs.
+- Allow technically validated code to integrate into develop/main while reporting
+  publication readiness separately. Pending real-provider trials permit native
+  preparation only; both publication checkpoints retain strict evidence validation.
+- Isolate PR title/body edits from source analysis so metadata changes neither
+  cancel full matrices nor overwrite required acceptance checks. Source/base
+  changes still require every technical stage; abandoned jobs fail acceptance.
 
 - Exclude retained native-failure diagnostics from release artifact selection
   after retries, preserving strict seven-platform provenance and checksum checks.

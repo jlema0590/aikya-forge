@@ -9,9 +9,10 @@ Use a higher version and reviewed release notes when publishing new changes.
 
 | Event/state | Behavior |
 |---|---|
-| New version reaches main | Validate the version, accepted real-provider evidence, full Python/Pi tests and all seven native targets; assemble same-commit assets; publish; deploy Pages. |
+| New version reaches main, evidence accepted | Validate the version, current real-provider evidence, full Python/Pi tests and all seven native targets; assemble same-commit assets; publish; deploy Pages. |
+| New version reaches main, evidence pending or stale | Run technical checks and prepare native artifacts; report publication blocked; skip release creation and Pages. |
 | Manual, publish=false | Prepare and validate artifacts without publishing. This remains the manual default. |
-| Manual, publish=true on main | Publish a new version after the same checks, or restore Pages from the existing latest stable release. |
+| Manual, publish=true on main | Publish a new version after the same checks; refuse missing/pending/stale evidence. An existing latest stable release may restore Pages from its original assets. |
 | Main push with an already published version from an earlier commit | Skip publication and preserve all original assets. |
 | Retry the same published commit | Restore latest stable Pages from the original assets; do not rebuild or replace the release. |
 | Foreign tag, draft/prerelease conflict, partial assets or API failure | Stop with a clear error; never move tags or interpret an access failure as a missing release. |
@@ -23,6 +24,9 @@ Read-only planning happens before builds. Only the publication job has
 The existing real-provider acceptance gate remains required for every new public
 release. An absent, pending or stale report blocks publication even after a main
 merge. Local fixtures do not certify real-provider transport or account quotas.
+PR acceptance checks technical integration separately and reports publication
+readiness without approving it. The default evidence validator remains strict at
+both pre-publication checkpoints; its read-only `--status` mode cannot publish.
 
 ## Repository setup and first deployment
 

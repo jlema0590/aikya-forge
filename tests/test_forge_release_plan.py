@@ -23,7 +23,7 @@ class ForgeReleasePlanTests(unittest.TestCase):
             self.calls.append((path,missing))
             return (table or {}).get(path)
         args=dict(repository='jlema0590/aikya-forge',event='push',ref='refs/heads/main',
-                  sha=self.sha,version='0.2.0',publish=False,lookup=lookup)
+                  sha=self.sha,version='0.2.0',publish=False,lookup=lookup,publication_ready=True)
         return self.module.plan(**{**args,**changes})
 
     def existing(self,sha=None):
@@ -35,6 +35,16 @@ class ForgeReleasePlanTests(unittest.TestCase):
         self.assertEqual('prepare',self.run_plan(event='workflow_dispatch',ref='refs/heads/develop')['mode'])
         self.assertEqual([],self.calls)
         self.assertEqual('publish',self.run_plan(event='workflow_dispatch',publish=True)['mode'])
+
+    def test_pending_trials_prepare_main_artifacts_without_publishing(self):
+        result=self.run_plan(publication_ready=False)
+        self.assertEqual(result['mode'],'prepare');self.assertEqual(result['source_commit'],self.sha)
+        with self.assertRaises(ValueError):
+            self.run_plan(event='workflow_dispatch',publish=True,publication_ready=False)
+
+    def test_published_pages_recovery_does_not_reapprove_changed_source(self):
+        result=self.run_plan(table=self.existing(),event='workflow_dispatch',publish=True,publication_ready=False)
+        self.assertEqual(result['mode'],'pages');self.assertEqual(result['source_commit'],self.sha)
 
     def test_nonmain_and_forks_cannot_publish_and_bad_versions_fail(self):
         for change in (dict(ref='refs/heads/develop'),dict(repository='other/aikya-forge'),dict(event='pull_request'),dict(version='0.2.0\nnext'),dict(version='v0.2.0')):

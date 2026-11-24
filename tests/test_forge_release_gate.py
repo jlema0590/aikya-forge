@@ -2,7 +2,10 @@
 import hashlib
 import importlib.util
 import json
+import os
 from pathlib import Path
+import subprocess
+import sys
 import tempfile
 import unittest
 from unittest.mock import patch
@@ -56,6 +59,34 @@ class ForgeReleaseGateTests(unittest.TestCase):
     def test_observation_paths_cannot_escape_the_validation_dossier(self):
         self.value['observations'][0]='../outside.json';self.write()
         with self.assertRaises(ValueError):self.validate()
+
+    def test_readiness_reports_pending_without_approving_publication_or_editing_evidence(self):
+        self.assertTrue(callable(getattr(self.gate,'readiness',None)),'Publication readiness reporting is missing')
+        self.value['review_status']='pending';self.write();before=self.report.read_bytes()
+        with patch.object(self.gate,'runtime_fingerprint',return_value='f'*64):
+            result=self.gate.readiness(self.root,self.report,'0.2.0')
+        self.assertFalse(result['ready']);self.assertEqual(result['status'],'blocked')
+        self.assertEqual(self.report.read_bytes(),before)
+        with self.assertRaises(ValueError):self.validate()
+
+    def test_only_current_accepted_evidence_reports_ready(self):
+        self.assertTrue(callable(getattr(self.gate,'readiness',None)),'Publication readiness reporting is missing')
+        with patch.object(self.gate,'runtime_fingerprint',return_value='f'*64):
+            result=self.gate.readiness(self.root,self.report,'0.2.0')
+        self.assertTrue(result['ready']);self.assertEqual(result['status'],'ready')
+
+    def test_status_cli_is_informational_while_the_default_cli_still_refuses(self):
+        self.value['review_status']='pending';self.write();before=self.report.read_bytes()
+        output=self.root/'output';summary=self.root/'summary'
+        command=[sys.executable,'-B',str(ROOT/'scripts/ci/forge_release_gate.py'),'--source',str(self.root),
+                 '--report',str(self.report),'--version','0.2.0']
+        env={**os.environ,'GITHUB_OUTPUT':str(output),'GITHUB_STEP_SUMMARY':str(summary)}
+        result=subprocess.run(command+['--status'],env=env,capture_output=True,text=True,timeout=10)
+        self.assertEqual(result.returncode,0,result.stderr);self.assertFalse(json.loads(result.stdout)['ready'])
+        self.assertEqual(output.read_text(),'ready=false\nstatus=blocked\n')
+        self.assertIn('blocked',summary.read_text());self.assertEqual(self.report.read_bytes(),before)
+        refused=subprocess.run(command,env=env,capture_output=True,text=True,timeout=10)
+        self.assertNotEqual(refused.returncode,0)
 
 
 if __name__=='__main__':unittest.main()

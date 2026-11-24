@@ -1,5 +1,7 @@
 # Document index
 
+- [plan/2026-11-24-pr9-ci-reliability.md](plan/2026-11-24-pr9-ci-reliability.md)
+
 - [bugs/2026-11-24-pr-publication-readiness.md](bugs/2026-11-24-pr-publication-readiness.md)
 - [validation/2026-11-24-pr-complete-acceptance.md](validation/2026-11-24-pr-complete-acceptance.md)
 
@@ -262,6 +264,10 @@
 - [plan/2026-11-23-forge-branding-installer.es.md](plan/2026-11-23-forge-branding-installer.es.md)
 
 - [validation/2026-11-23-forge-branding-installer.md](validation/2026-11-23-forge-branding-installer.md)
+
+- [bugs/2026-11-24-pr9-ci-reliability.md](bugs/2026-11-24-pr9-ci-reliability.md)
+
+- [validation/2026-11-24-pr9-ci-reliability.md](validation/2026-11-24-pr9-ci-reliability.md)
 
 - [deployment/automatic-releases.md](deployment/automatic-releases.md)
 

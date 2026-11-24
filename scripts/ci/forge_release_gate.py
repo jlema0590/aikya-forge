@@ -2,6 +2,7 @@
 import argparse
 import hashlib
 import json
+import os
 from pathlib import Path
 from aikya.core.checkpoints import safe_file
 from aikya.installation import build_sources, managed_runtime, managed_versions, managed_wheel
@@ -65,14 +66,34 @@ def validate(source,report,version):
                 note='Document validation only. A human must verify real provider provenance; local exports do not prove it.')
 
 
+def readiness(source,report,version):
+    try:
+        validate(source,report,version)
+        return dict(status='ready',ready=True,version=version,publishes=False)
+    except (ValueError,OSError) as error:
+        return dict(status='blocked',ready=False,version=version,publishes=False,
+                    reason=' '.join(str(error).split())[:500])
+
+
 def main():
     parser=argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--source',type=Path,default=Path(__file__).resolve().parents[2])
     parser.add_argument('--report',type=Path);parser.add_argument('--version');parser.add_argument('--fingerprint',action='store_true')
+    parser.add_argument('--status',action='store_true',help='Report readiness only; does not authorize publication')
     args=parser.parse_args()
     if args.fingerprint:print(runtime_fingerprint(args.source));return
     if not args.report or not args.version:parser.error('--report and --version are required for validation')
-    print(json.dumps(validate(args.source,args.report,args.version),sort_keys=True))
+    if not args.status:
+        print(json.dumps(validate(args.source,args.report,args.version),sort_keys=True));return
+    result=readiness(args.source,args.report,args.version)
+    if os.environ.get('GITHUB_OUTPUT'):
+        with Path(os.environ['GITHUB_OUTPUT']).open('a',encoding='utf8') as output:
+            output.write('ready='+str(result['ready']).lower()+'\nstatus='+result['status']+'\n')
+    if os.environ.get('GITHUB_STEP_SUMMARY'):
+        with Path(os.environ['GITHUB_STEP_SUMMARY']).open('a',encoding='utf8') as summary:
+            summary.write('## Publication readiness: **'+result['status']+'**\n\n'
+                          'Technical integration is separate. Publication still requires current reviewed real-provider evidence.\n')
+    print(json.dumps(result,sort_keys=True))
 
 
 if __name__=='__main__':main()

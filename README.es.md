@@ -204,10 +204,14 @@ instaladores; siete plataformas nativas; y ensamblado del mismo commit.
 para la rama de destino. Las fases obligatorias fallidas,
 canceladas, ausentes u omitidas impiden su aprobación.
 
-Las PR a `main` también requieren el mismo informe vigente de aceptación con
-proveedores reales que exige la publicación. Las pruebas locales con datos
-simulados no sustituyen esa evidencia. Consulta el
+El código validado técnicamente puede integrarse en ambas ramas. La preparación
+para publicar se informa por separado: las pruebas pendientes con proveedores
+reales mantienen bloqueada la publicación. Los datos simulados no autorizan una
+release. Consulta el
 [procedimiento de aceptación](aikya/docs/validation/forge-provider-procedure.md).
+Los cambios de título o descripción usan una ejecución ligera, sin cancelar el
+análisis del código ni aprobar su control obligatorio. Los cambios de código o de
+rama de destino ejecutan la validación completa.
 Una validación aprobada no integra la PR ni publica una release automáticamente.
 
 
@@ -247,10 +251,11 @@ Los registros históricos y la procedencia de terceros conservan sus identificad
 
 Los workflows heredados de publicación están desactivados explícitamente. Forge incluye
 una matriz de construcción/aceptación de siete destinos. Las versiones nuevas se
-publican automáticamente al llegar a main, usando `VERSION` y el changelog de la PR.
-También se conserva la ejecución manual: `publish=false` prepara artefactos y
-`publish=true` solicita publicar desde main. Ambas rutas de publicación exigen las
-pruebas nativas y evidencia real vigente aceptada. Las versiones publicadas se
+preparan al llegar a main, usando `VERSION` y el changelog de la PR. Solo se publican
+automáticamente con evidencia real vigente aceptada y todas las pruebas aprobadas;
+sin esa evidencia, la publicación y Pages siguen bloqueados. La ejecución manual
+`publish=false` prepara artefactos; `publish=true` solicita publicar desde main y
+rechaza una nueva release sin la evidencia requerida. Las versiones publicadas se
 conservan; los reintentos pueden recuperar Pages desde sus archivos originales.
 Consulta la [guía de releases y Pages](aikya/docs/deployment/automatic-releases.md). Este cambio no publica una release estable ni la URL de Pages. El
 [índice documental](aikya/docs/indice.md) conserva planes y evidencias anteriores;

@@ -30,6 +30,8 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.13'
+      - name: Install the read-only publication evidence validator
+        run: python -m pip install --no-deps .
       - name: Plan a new release, an immutable retry or manual preparation
         id: plan
         env:
