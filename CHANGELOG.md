@@ -6,6 +6,11 @@ The inherited Harness v7/v8 changelog remains in
 
 ## Unreleased
 
+- Align release verification with the editable contributor installation used by
+  source regression tests, preserving separate installed-wheel validation.
+- Require the final-record resumption fixture to observe the actual declined
+  recording dialog before resuming; retain SDK diagnostics for unrelated stops.
+
 - Start gated stable releases automatically on main pushes while retaining manual
   preparation/publication, using reviewed VERSION and changelog values.
 - Plan publication before builds, preserve published assets/tags, skip unchanged

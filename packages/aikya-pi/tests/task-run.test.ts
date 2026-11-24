@@ -260,24 +260,26 @@ test('resuming a declined final record reuses only the same current run review w
     const manager=projectSession(root,false,'author');
     execFileSync(python,['-B','-c','import sys;from pathlib import Path;sys.path.insert(0,sys.argv[1]);from pi_task_run_fixture import prepare;prepare(Path(sys.argv[2]),"odd",sys.argv[3])',
       fileURLToPath(new URL('../../../tests',import.meta.url)),root,manager.getSessionId()],{encoding:'utf8'});
-    let authorCalls=0,reviewCalls=0,completionDialogs=0;
+    let authorCalls=0,reviewCalls=0,completionDialogs=0;const errors:string[]=[];
     const models=await fixtureModels(root,request=>request===1?[{type:'toolCall',id:'edit-for-review',name:'aikya_write',arguments:{
       change_id:'task-proof',operations:[{path:'value.py',edits:[{old:'VALUE=0',new:'VALUE=1'}]}]}}]:[{type:'text',text:'Ready for validation.'}],()=>{authorCalls++;});
     const runtime=await createControlledSession(root,{python,provider:'fixture',model:'fixture',sessionManager:manager,modelRuntime:models,
       reviewRuntimeFactory:()=>fixtureModels(root,()=>[{type:'text',text:'{"decision":"accept","findings":[]}'}],()=>{reviewCalls++;})});
     try {
-      await runtime.session.bindExtensions({uiContext:approvingUI(title=>!title.startsWith('Record independently accepted')||++completionDialogs>1),mode:'tui'});
+      await runtime.session.bindExtensions({uiContext:approvingUI(title=>!title.startsWith('Record independently accepted')||++completionDialogs>1),mode:'tui',onError:e=>errors.push(e.error)});
       await runtime.session.prompt('/aikya-feature {"action":"run","change_id":"task-proof","security":{"checks":[],"not_applicable":"No security behavior changes in the reviewed constant."}}');
       await runtime.session.waitForIdle();
       const stopped=runtime.session.messages.findLast(m=>m.role==='custom'&&m.customType==='aikya-task-run');assert.ok(stopped);assert.equal(stopped.role,'custom');
-      const state=JSON.parse(stopped.content as string);assert.equal(state.status,'stopped');assert.equal(authorCalls,2);assert.equal(reviewCalls,1);
+      const state=JSON.parse(stopped.content as string);assert.equal(state.status,'stopped');
+      assert.equal(state.reason,'declined',JSON.stringify({state,completionDialogs,errors}));
+      assert.equal(completionDialogs,1);assert.equal(authorCalls,2);assert.equal(reviewCalls,1);
       const source=join(root,'value.py'),bytes=readFileSync(source),mtime=statSync(source).mtimeMs;
       await runtime.session.prompt('/aikya-feature '+JSON.stringify({action:'resume-run',run_id:state.run_id}));
       await runtime.session.waitForIdle();
       const finished=runtime.session.messages.findLast(m=>m.role==='custom'&&m.customType==='aikya-task-run');assert.ok(finished);assert.equal(finished.role,'custom');
       assert.equal(JSON.parse(finished.content as string).status,'recorded',JSON.stringify({result:JSON.parse(finished.content as string),
         evidence:runtime.session.messages.filter(m=>m.role==='custom').slice(-8).map(m=>({type:m.customType,content:String(m.content).slice(0,1500)}))}));
-      assert.equal(authorCalls,2);assert.equal(reviewCalls,1);
+      assert.equal(authorCalls,2);assert.equal(reviewCalls,1);assert.equal(completionDialogs,2);assert.deepEqual(errors,[]);
       const current=await hostOperation(root,'task.status',{session_id:manager.getSessionId(),run_id:state.run_id},python);
       assert.equal(current.calls_spent,3);assert.deepEqual(readFileSync(source),bytes);assert.equal(statSync(source).mtimeMs,mtime);
     } finally {await runtime.close();}
