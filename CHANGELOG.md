@@ -11,6 +11,9 @@ The inherited Harness v7/v8 changelog remains in
   observer; keep final shutdown and other-session ownership checks intact.
 - Serialize observer lease reads with session updates using the existing launcher
   lock, preventing a concurrent open reader from blocking durable release on Windows.
+- Bound prepared-file rename retries to 250 ms for Windows sharing/access conflicts;
+  preserve the previous destination on persistent denial and never replay caller effects.
+  Verify real open-reader replacement and idle lease renewal in Windows matrices.
 - Repeat Windows same-session binding and complete ODD/SDD task regressions on
   both supported Node versions without changing their time or inference limits.
 - Retain bounded observer-state and lease-count diagnostics on SDK fixture cleanup
