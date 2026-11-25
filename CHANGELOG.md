@@ -6,6 +6,14 @@ The inherited Harness v7/v8 changelog remains in
 
 ## Unreleased
 
+- Preserve the memory lease when the pinned Pi SDK binds UI extensions again for
+  the same session. Renew the existing owner instead of briefly retiring its
+  observer; keep final shutdown and other-session ownership checks intact.
+- Repeat Windows same-session binding and complete ODD/SDD task regressions on
+  both supported Node versions without changing their time or inference limits.
+- Retain bounded observer-state and lease-count diagnostics on SDK fixture cleanup
+  failure, preserving the failed fixture and excluding paths or session contents.
+
 - Run complete reusable PR acceptance for develop/main, including all Python/Pi,
   memory/browser, installer and seven-target native checks plus shared real archive
   assembly. Consolidate failures in one final fail-closed check and summary.

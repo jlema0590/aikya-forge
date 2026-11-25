@@ -54,3 +54,27 @@ test('the session lease renews locally during idle time and stops renewal before
     await until(()=>existsSync(state)&&JSON.parse(readFileSync(state,'utf8')).state==='Stopped');
   } finally {await removeProject(root);}
 });
+
+test('rebinding the real SDK UI preserves continuous ownership of the same memory session',async()=>{
+  const root=mkdtempSync(join(tmpdir(),'aikya-pi-rebind-'));
+  const python=process.env.AIKYA_TEST_PYTHON??'python3';
+  const leases=join(root,'.harness/state/memory-view/sessions.json');
+  try {
+    execFileSync(python,['-I','-B','-c','from pathlib import Path;import sys;from aikya.code_index.policy import configure;configure(Path(sys.argv[1]),approved=True)',root]);
+    const runtime=await createReadOnlySession(root,{python});
+    try {
+      let released=false;
+      const sample=()=>{
+        try {if(Object.keys(JSON.parse(readFileSync(leases,'utf8'))).length===0)released=true;}
+        catch(error) {if(!['EPERM','EACCES'].includes((error as NodeJS.ErrnoException).code??''))throw error;}
+      };
+      sample();
+      const timer=setInterval(sample,5);
+      try {await runtime.session.bindExtensions({});sample();}
+      finally {clearInterval(timer);}
+      assert.equal(released,false,'Rebinding UI must not release the session lease and retire its observer');
+      assert.equal(Object.keys(JSON.parse(readFileSync(leases,'utf8'))).length,1);
+    } finally {await runtime.close();}
+    assert.deepEqual(JSON.parse(readFileSync(leases,'utf8')),{});
+  } finally {await removeProject(root);}
+});

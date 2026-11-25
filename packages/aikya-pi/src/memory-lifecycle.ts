@@ -35,17 +35,25 @@ export class LocalMemoryLease {
 
 export function registerMemoryLifecycle(pi:ExtensionAPI,root:string,python?:string) {
   let owner:LocalMemoryLease|undefined;
+  let ownerSession:string|undefined;
   const observe=async(action:()=>Promise<unknown>,ctx:ExtensionContext)=>{
     try {await action();}
     catch {if(ctx.hasUI)ctx.ui.notify('Local memory observer unavailable; source and workflow permissions are unchanged','warning');}
   };
   pi.on('session_start',async(_event,ctx)=>{
+    const session=ctx.sessionManager.getSessionId();
+    // Binding a UI again emits session_start for the existing SDK session.
+    // Releasing it first can retire the observer while that session is active.
+    if(owner&&ownerSession===session) {
+      await observe(()=>owner!.renew(),ctx);
+      return;
+    }
     if(owner)await observe(()=>owner!.stop(),ctx);
-    owner=new LocalMemoryLease(root,ctx.sessionManager.getSessionId(),python);
+    ownerSession=session;owner=new LocalMemoryLease(root,session,python);
     await observe(()=>owner!.start(),ctx);
   });
   pi.on('before_agent_start',async(_event,ctx)=>{if(owner)await observe(()=>owner!.renew(),ctx);});
-  pi.on('session_shutdown',async(_event,ctx)=>{if(owner)await observe(()=>owner!.stop(),ctx);owner=undefined;});
+  pi.on('session_shutdown',async(_event,ctx)=>{if(owner)await observe(()=>owner!.stop(),ctx);owner=undefined;ownerSession=undefined;});
 }
 
 /** Headless SDK consumers must await teardown; interactive runtime owns this itself. */

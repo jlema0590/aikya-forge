@@ -37,12 +37,12 @@ jobs:
         working-directory: packages/aikya-pi
         env:
           AIKYA_TEST_PYTHON: python
-      - name: Repeat the Windows final-record resumption without changing its limits
+      - name: Repeat Windows session ownership and task completion without changing their limits
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
           for ($trial = 1; $trial -le 3; $trial++) {
-            node --test --test-name-pattern="resuming a declined final record" packages/aikya-pi/tests/task-run.test.ts
+            node --test --test-name-pattern="resuming a declined final record|the real SDK completes selected ODD and SDD tasks|rebinding the real SDK UI" packages/aikya-pi/tests/task-run.test.ts packages/aikya-pi/tests/memory-lifecycle.test.ts
             if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           }
         env:
