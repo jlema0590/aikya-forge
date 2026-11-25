@@ -29,13 +29,11 @@ The inherited Harness v7/v8 changelog remains in
 - Allow technically validated code to integrate into develop/main while reporting
   publication readiness separately. Pending real-provider trials permit native
   preparation only; both publication checkpoints retain strict evidence validation.
-- Isolate PR title/body edits from source analysis so metadata changes neither
-  cancel full matrices nor overwrite required acceptance checks. Source/base
-  changes still require every technical stage; abandoned jobs fail acceptance.
-- Resolve required-check identities from the PR event before jobs run, keeping
-  metadata checks distinct and preserving strict GitHub Actions app binding.
-- Schedule metadata completion under its resolved non-required name; keep
-  mandatory source acceptance limited to actual source/base analysis.
+- Run mandatory acceptance only on PR opening, source updates and reopening;
+  title/body edits cannot supersede a validated workflow run. Document reopening
+  after retargeting to obtain full acceptance for the protected destination.
+- Resolve required-check identities from the target event before jobs run,
+  preserving strict GitHub Actions app binding and every mandatory stage.
 
 - Exclude retained native-failure diagnostics from release artifact selection
   after retries, preserving strict seven-platform provenance and checksum checks.

@@ -18,20 +18,19 @@ class PullRequestEventTests(unittest.TestCase):
         spec=importlib.util.spec_from_file_location('pr_event',SCRIPT)
         self.module=importlib.util.module_from_spec(spec);spec.loader.exec_module(self.module)
 
-    def event(self,action='edited',base='main',changes=None):
+    def event(self,action='synchronize',base='main',changes=None):
         return dict(action=action,number=9,pull_request={'base':{'ref':base}},changes=changes or {})
 
-    def test_body_and_title_edits_are_separate_from_required_analysis(self):
-        for changes in ({'body':{'from':'previous'}},{'title':{'from':'previous'}},{}):
-            result=self.module.route(self.event(changes=changes))
-            self.assertFalse(result['analyze']);self.assertEqual(result['group'],'forge-pr-9-metadata')
-            self.assertEqual(result['context'],'PR metadata update')
+    def test_edits_are_rejected_instead_of_registering_another_required_workflow_run(self):
+        for changes in ({'body':{'from':'previous'}},{'title':{'from':'previous'}},
+                        {'base':{'ref':{'from':'other'}}},{}):
+            with self.subTest(changes=changes),self.assertRaises(ValueError):
+                self.module.route(self.event('edited',changes=changes))
 
-    def test_source_reopen_and_base_changes_keep_full_target_specific_analysis(self):
+    def test_source_and_reopen_events_keep_full_target_specific_analysis(self):
         for base in ('develop','main'):
-            for action,changes in (('opened',{}),('synchronize',{}),('reopened',{}),
-                                   ('edited',{'base':{'ref':{'from':'other'}}})):
-                result=self.module.route(self.event(action,base,changes))
+            for action in ('opened','synchronize','reopened'):
+                result=self.module.route(self.event(action,base))
                 self.assertTrue(result['analyze']);self.assertEqual(result['group'],'forge-pr-9-analysis')
                 self.assertEqual(result['context'],'Forge PR acceptance | '+base)
 
@@ -46,19 +45,17 @@ class PullRequestEventTests(unittest.TestCase):
             result=subprocess.run([sys.executable,'-B',SCRIPT,'--event',event],
                 env={**os.environ,'GITHUB_OUTPUT':str(output)},capture_output=True,text=True,timeout=10)
             self.assertEqual(result.returncode,0,result.stderr)
-            self.assertEqual(output.read_text(),'analyze=false\ncontext=PR metadata update\n')
+            self.assertEqual(output.read_text(),'analyze=true\ncontext=Forge PR acceptance | main\n')
 
     def test_required_check_identity_is_available_before_jobs_run(self):
         import re
         workflow=(ROOT/'.github/workflows/pr-acceptance.yml').read_text()
         acceptance=workflow.split('  acceptance:\n',1)[1]
         name=re.search(r'^    name: (.+)$',acceptance,re.MULTILINE).group(1)
-        # Protection must bind the check before upstream outputs exist. Metadata
-        # must never register a skipped check under either required branch name.
+        # Protection must bind the source check before upstream outputs exist.
         self.assertNotIn('needs.',name)
         self.assertIn('github.event.pull_request.base.ref',name)
-        self.assertIn('github.event.changes.base',name)
-        self.assertIn('PR metadata update',name)
+        self.assertNotIn('PR metadata update',name)
 
 
 if __name__=='__main__':unittest.main()

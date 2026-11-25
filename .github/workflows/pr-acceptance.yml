@@ -2,11 +2,11 @@ name: Forge | Pull request acceptance
 on:
   pull_request:
     branches: [develop, main]
-    types: [opened, synchronize, reopened, edited]
+    types: [opened, synchronize, reopened]
 permissions:
   contents: read
 concurrency:
-  group: forge-pr-${{ github.event.pull_request.number }}-${{ (github.event.action != 'edited' || github.event.changes.base != null) && 'analysis' || 'metadata' }}
+  group: forge-pr-${{ github.event.pull_request.number }}-analysis
   cancel-in-progress: true
 jobs:
   route:
@@ -90,9 +90,7 @@ jobs:
           python scripts/ci/forge_release_gate.py --status --version "$(cat VERSION)" \
             --report "$GITHUB_WORKSPACE/aikya/docs/validation/forge-provider-acceptance.json"
   acceptance:
-    name: ${{ (github.event.action != 'edited' || github.event.changes.base != null) && format('Forge PR acceptance | {0}', github.event.pull_request.base.ref) || 'PR metadata update' }}
-    # Schedule metadata completion too: skipped jobs retain an unresolved name
-    # expression, which makes GitHub lose the required source-check identity.
+    name: ${{ format('Forge PR acceptance | {0}', github.event.pull_request.base.ref) }}
     if: always()
     needs: [route, contracts, python, runtime, installers, native, publication]
     runs-on: ubuntu-24.04
@@ -105,7 +103,6 @@ jobs:
         with:
           python-version: '3.13'
       - name: Require every mandatory stage and publish a consolidated summary
-        if: needs.route.result != 'success' || needs.route.outputs.analyze == 'true'
         env:
           AIKYA_PR_NEEDS: ${{ toJSON(needs) }}
           AIKYA_PR_BASE: ${{ github.event.pull_request.base.ref }}

@@ -209,9 +209,10 @@ para publicar se informa por separado: las pruebas pendientes con proveedores
 reales mantienen bloqueada la publicación. Los datos simulados no autorizan una
 release. Consulta el
 [procedimiento de aceptación](aikya/docs/validation/forge-provider-procedure.md).
-Los cambios de título o descripción usan una ejecución ligera, sin cancelar el
-análisis del código ni aprobar su control obligatorio. Los cambios de código o de
-rama de destino ejecutan la validación completa.
+La validación se ejecuta al abrir la PR, actualizar su código o reabrirla. Editar
+el título o la descripción no inicia otra ejecución ni sustituye su control
+obligatorio. Si cambias la rama de destino, cierra y reabre la PR para validar
+el nuevo destino; su control protegido sigue siendo obligatorio.
 Una validación aprobada no integra la PR ni publica una release automáticamente.
 
 

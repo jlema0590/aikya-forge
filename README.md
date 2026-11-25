@@ -206,8 +206,10 @@ Technically validated code may integrate into either branch while publication
 readiness is reported separately. Pending real-provider trials keep publication
 blocked; offline fixtures cannot approve a release. See the
 [acceptance procedure](aikya/docs/validation/forge-provider-procedure.md).
-Title/body edits use a lightweight metadata run without cancelling source analysis
-or satisfying its required check. Source and destination changes run full acceptance.
+Acceptance runs when a PR opens, its source changes or it reopens. Title/body
+edits do not start another acceptance run or replace its required check. After
+retargeting a PR, close and reopen it to validate its new destination; that
+destination's protected acceptance check remains mandatory.
 Passing PR checks does not merge the PR or publish a release.
 
 

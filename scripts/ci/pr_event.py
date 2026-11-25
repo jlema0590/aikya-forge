@@ -1,4 +1,4 @@
-"""Route harmless PR metadata separately from mandatory source/base analysis."""
+"""Bind source acceptance to an eligible PR lifecycle event and target."""
 import argparse
 import json
 import os
@@ -7,16 +7,15 @@ import sys
 
 
 def route(event):
-    if not isinstance(event,dict) or event.get('action') not in ('opened','synchronize','reopened','edited'):
+    if not isinstance(event,dict) or event.get('action') not in ('opened','synchronize','reopened'):
         raise ValueError('Supported PR event required')
     number=event.get('number');pull=event.get('pull_request');changes=event.get('changes',{})
     if type(number) is not int or number<=0 or not isinstance(pull,dict) or not isinstance(changes,dict):
         raise ValueError('Invalid PR event metadata')
     base=pull.get('base',{}).get('ref') if isinstance(pull.get('base'),dict) else None
     if base not in ('develop','main'):raise ValueError('Supported PR target required')
-    analyze=event['action']!='edited' or changes.get('base') is not None
-    return dict(analyze=analyze,context='Forge PR acceptance | '+base if analyze else 'PR metadata update',
-                group='forge-pr-'+str(number)+('-analysis' if analyze else '-metadata'))
+    return dict(analyze=True,context='Forge PR acceptance | '+base,
+                group='forge-pr-'+str(number)+'-analysis')
 
 
 def main(argv=None):
