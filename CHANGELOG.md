@@ -34,6 +34,8 @@ The inherited Harness v7/v8 changelog remains in
   changes still require every technical stage; abandoned jobs fail acceptance.
 - Resolve required-check identities from the PR event before jobs run, keeping
   metadata checks distinct and preserving strict GitHub Actions app binding.
+- Schedule metadata completion under its resolved non-required name; keep
+  mandatory source acceptance limited to actual source/base analysis.
 
 - Exclude retained native-failure diagnostics from release artifact selection
   after retries, preserving strict seven-platform provenance and checksum checks.
