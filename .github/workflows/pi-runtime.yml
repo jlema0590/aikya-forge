@@ -2,8 +2,8 @@ name: Pi runtime contracts
 on:
   push:
     branches: [develop]
-  pull_request:
   workflow_dispatch:
+  workflow_call:
 permissions:
   contents: read
 jobs:
@@ -27,6 +27,8 @@ jobs:
           cache-dependency-path: packages/aikya-pi/package-lock.json
       - run: python -m pip install 'setuptools>=77' wheel build
       - run: python -m pip install --no-build-isolation ".[terminal]"
+      - name: Verify durable replacement with native file sharing semantics
+        run: python -B -m unittest discover -s tests -p test_atomic_storage.py -v
       - run: npm ci --ignore-scripts --no-audit --no-fund
         working-directory: packages/aikya-pi
       - run: npm run typecheck
@@ -37,12 +39,12 @@ jobs:
         working-directory: packages/aikya-pi
         env:
           AIKYA_TEST_PYTHON: python
-      - name: Repeat the Windows final-record resumption without changing its limits
+      - name: Repeat Windows session ownership and task completion without changing their limits
         if: runner.os == 'Windows'
         shell: pwsh
         run: |
           for ($trial = 1; $trial -le 3; $trial++) {
-            node --test --test-name-pattern="resuming a declined final record" packages/aikya-pi/tests/task-run.test.ts
+            node --test --test-name-pattern="resuming a declined final record|the real SDK completes selected ODD and SDD tasks|rebinding the real SDK UI|the session lease renews locally" packages/aikya-pi/tests/task-run.test.ts packages/aikya-pi/tests/memory-lifecycle.test.ts
             if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
           }
         env:

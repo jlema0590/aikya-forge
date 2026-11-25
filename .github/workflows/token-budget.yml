@@ -1,8 +1,6 @@
 name: Aikya | Token budget (v6)
 
 on:
-  pull_request:
-    branches: [develop, main]
   push:
     branches: [develop]
 

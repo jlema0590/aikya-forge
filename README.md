@@ -195,6 +195,24 @@ The public one-command installation remains conditional on release publication a
 
 ## Development and validation
 
+Every PR to `develop` or `main` runs one complete acceptance workflow: catalog,
+profile, template, version and token contracts; Python and Pi regressions; browser
+and memory checks; clean installers; seven native platforms; and same-commit
+release assembly. `Forge PR acceptance | develop` or `Forge PR acceptance | main`
+reports the combined result for its destination branch. Mandatory
+failed, cancelled, missing or skipped stages cannot pass.
+
+Technically validated code may integrate into either branch while publication
+readiness is reported separately. Pending real-provider trials keep publication
+blocked; offline fixtures cannot approve a release. See the
+[acceptance procedure](aikya/docs/validation/forge-provider-procedure.md).
+Acceptance runs when a PR opens, its source changes or it reopens. Title/body
+edits do not start another acceptance run or replace its required check. After
+retargeting a PR, close and reopen it to validate its new destination; that
+destination's protected acceptance check remains mandatory.
+Passing PR checks does not merge the PR or publish a release.
+
+
 ```sh
 python -m unittest discover -s tests -p 'test_*.py' -v
 npm --prefix packages/aikya-pi run typecheck
@@ -229,10 +247,11 @@ so an existing document can be refreshed without duplicating its signature.
 Historical records and third-party provenance retain their original identifiers.
 
 Inherited publication workflows are explicitly disabled.
-Forge publishes new versions automatically on main pushes, using `VERSION` and the
-matching changelog notes. Manual runs remain available: `publish=false` prepares
-artifacts; `publish=true` requests publication on main. Both publishing paths require
-all native checks and current accepted real-provider evidence. Published versions
+Forge prepares new versions on main pushes, using `VERSION` and the matching
+changelog notes. It publishes automatically only with current accepted real-provider
+evidence and all release checks passed; pending evidence leaves publication and
+Pages blocked. Manual `publish=false` prepares artifacts; `publish=true` requests
+publication on main and refuses a new release without that evidence. Published versions
 are preserved; retries can restore Pages from their original assets. See the
 [release and Pages guide](aikya/docs/deployment/automatic-releases.md). No stable release or Pages URL is published by this change. The [documentation index](aikya/docs/indice.md) preserves previous plans
 and evidence; references to v7/v8 inside historical records describe their original

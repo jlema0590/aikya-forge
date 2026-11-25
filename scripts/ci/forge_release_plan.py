@@ -5,6 +5,7 @@ import os
 from pathlib import Path
 import sys
 import github_tag
+from forge_release_gate import readiness
 
 REPOSITORY='jlema0590/aikya-forge'
 ENTRIES={'install.sh','install.ps1','SHA256SUMS','terminal-bootstrap.json','release.json'}
@@ -23,8 +24,8 @@ def stable_release(value,tag):
         raise ValueError('Published release is missing unique native installation entries; no assets will be replaced')
 
 
-def plan(*,repository,event,ref,sha,version,publish=False,lookup=None):
-    if not all(isinstance(v,str) for v in (repository,event,ref,sha,version)) or type(publish) is not bool:
+def plan(*,repository,event,ref,sha,version,publish=False,lookup=None,publication_ready=False):
+    if not all(isinstance(v,str) for v in (repository,event,ref,sha,version)) or type(publish) is not bool or type(publication_ready) is not bool:
         raise ValueError('Invalid release context types')
     tag='v'+version;github_tag.check_args(repository,tag,sha)
     if event not in ('push','workflow_dispatch'):raise ValueError('Only main pushes and explicit manual runs are release events')
@@ -37,6 +38,9 @@ def plan(*,repository,event,ref,sha,version,publish=False,lookup=None):
     tagged=github_tag.resolve_commit(repository,tag,'',getter=lookup)
     if release is None:
         if tagged not in (None,sha.lower()):raise ValueError('Existing version tag points to another commit; never move it')
+        if not publication_ready:
+            if publish:raise ValueError('Publication blocked: current reviewed real-provider evidence is required')
+            return {**result,'reason':'Native preparation only: real-provider publication evidence is pending or stale'}
         return {**result,'mode':'publish','reason':'New stable version; all release checks remain required'}
     stable_release(release,tag)
     if tagged is None:raise ValueError('Published release has no matching version tag')
@@ -56,15 +60,19 @@ def main(argv=None):
             token=os.environ.get('GH_TOKEN')
             if not token:raise ValueError('A read-only GitHub token is required for publication planning')
             return github_tag._get_json(os.environ.get('GITHUB_REPOSITORY',''),path,token,allow_not_found=missing)
+        version=(args.source/'VERSION').read_text().strip()
+        status=readiness(args.source,args.source/'aikya/docs/validation/forge-provider-acceptance.json',version)
         result=plan(repository=os.environ.get('GITHUB_REPOSITORY',''),event=os.environ.get('GITHUB_EVENT_NAME',''),
-            ref=os.environ.get('GITHUB_REF',''),sha=os.environ.get('GITHUB_SHA',''),version=(args.source/'VERSION').read_text().strip(),
-            publish=os.environ.get('FORGE_PUBLISH','false')=='true',lookup=lookup)
+            ref=os.environ.get('GITHUB_REF',''),sha=os.environ.get('GITHUB_SHA',''),version=version,
+            publish=os.environ.get('FORGE_PUBLISH','false')=='true',lookup=lookup,publication_ready=status['ready'])
+        result['publication_status']=status['status']
         if os.environ.get('GITHUB_OUTPUT'):
             with Path(os.environ['GITHUB_OUTPUT']).open('a',encoding='utf8') as output:
                 for name in ('mode','version','tag','source_commit'):output.write(name+'='+result[name]+'\n')
         if os.environ.get('GITHUB_STEP_SUMMARY'):
             with Path(os.environ['GITHUB_STEP_SUMMARY']).open('a',encoding='utf8') as summary:
-                summary.write('Forge '+result['tag']+': **'+result['mode']+'**\n\n'+result['reason']+'\n')
+                summary.write('Forge '+result['tag']+': **'+result['mode']+'**\n\n'+result['reason']+'\n\n'
+                              'Current publication readiness: **'+status['status']+'**. No evidence is fabricated.\n')
         print(json.dumps(result));return 0
     except (ValueError,OSError) as error:print('ERROR: '+str(error),file=sys.stderr);return 2
 

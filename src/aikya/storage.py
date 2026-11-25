@@ -2,7 +2,25 @@
 from __future__ import annotations
 import os
 import tempfile
+import time
 from pathlib import Path
+
+
+def _replace_prepared(source,path):
+    # Open readers/antivirus can briefly deny rename on Windows. Retry only the
+    # same fsynced sibling, never the caller's effects or admission operation.
+    deadline=time.monotonic()+.25
+    while True:
+        if path.is_symlink() or path.parent.is_symlink():
+            raise ValueError('Symlinked durable destination')
+        try:
+            os.replace(source,path)
+            return
+        except OSError as error:
+            remaining=deadline-time.monotonic()
+            if getattr(error,'winerror',None) not in (5,32,33) or remaining<=0:
+                raise
+            time.sleep(min(.01,remaining))
 
 
 def atomic_write(path, raw, *, mode=None):
@@ -16,7 +34,7 @@ def atomic_write(path, raw, *, mode=None):
         with os.fdopen(fd,'wb') as stream:
             if mode is not None and hasattr(os,'fchmod'):os.fchmod(stream.fileno(),mode)
             stream.write(payload);stream.flush();os.fsync(stream.fileno())
-        os.replace(name,path)
+        _replace_prepared(name,path)
         if hasattr(os,'O_DIRECTORY'):
             directory=os.open(path.parent,os.O_RDONLY|os.O_DIRECTORY)
             try:os.fsync(directory)

@@ -26,8 +26,20 @@ def _leases(root):
             and type(value) in (int, float) and 0 <= time.time() - value < 21600}
 
 
+def _launcher_guard(root):
+    guard = safe_file(root, '.harness/state/memory-view/launcher/.lock').parent
+    guard.mkdir(parents=True, exist_ok=True)
+    return guard
+
+
 def active_sessions(root):
-    return bool(_leases(root))
+    root = project_root(root)
+    if not safe_file(root, LEASES).exists():
+        return False
+    # Windows cannot replace a lease file while the observer has it open.
+    # Share the writer lock so SessionEnd does not lose its durable release.
+    with locked(_launcher_guard(root)):
+        return bool(_leases(root))
 
 
 def mark_dirty(root, paths):
@@ -62,9 +74,7 @@ def process_event(root, event):
         return
     if hook == 'SessionEnd' and not path.exists():
         return
-    guard = safe_file(root, '.harness/state/memory-view/launcher/.lock').parent
-    guard.mkdir(parents=True, exist_ok=True)
-    with locked(guard):
+    with locked(_launcher_guard(root)):
         leases = _leases(root)
         key = hashlib.sha256(session.encode()).hexdigest()
         if hook == 'SessionEnd':

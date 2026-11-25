@@ -1,7 +1,5 @@
 name: Aikya | Clean installers
 on:
-  pull_request:
-    branches: [develop, main]
   push:
     branches: [develop, main]
   workflow_dispatch:
@@ -35,7 +33,7 @@ jobs:
           path: dist/
   native:
     needs: build
-    if: always() && (needs.build.result == 'success' || needs.build.result == 'skipped')
+    if: always() && !cancelled() && (needs.build.result == 'success' || needs.build.result == 'skipped')
     strategy:
       fail-fast: false
       matrix:
@@ -83,7 +81,7 @@ jobs:
           if-no-files-found: ignore
   linux-distros:
     needs: build
-    if: always() && (needs.build.result == 'success' || needs.build.result == 'skipped')
+    if: always() && !cancelled() && (needs.build.result == 'success' || needs.build.result == 'skipped')
     runs-on: ubuntu-latest
     timeout-minutes: 20
     strategy:
