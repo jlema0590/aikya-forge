@@ -9,6 +9,8 @@ The inherited Harness v7/v8 changelog remains in
 - Preserve the memory lease when the pinned Pi SDK binds UI extensions again for
   the same session. Renew the existing owner instead of briefly retiring its
   observer; keep final shutdown and other-session ownership checks intact.
+- Serialize observer lease reads with session updates using the existing launcher
+  lock, preventing a concurrent open reader from blocking durable release on Windows.
 - Repeat Windows same-session binding and complete ODD/SDD task regressions on
   both supported Node versions without changing their time or inference limits.
 - Retain bounded observer-state and lease-count diagnostics on SDK fixture cleanup
