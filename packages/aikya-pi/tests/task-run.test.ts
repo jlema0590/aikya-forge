@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import {test} from 'node:test';
 import {removeProject} from './project-cleanup.ts';
+import {taskFailureEvidence} from './task-run-diagnostics.ts';
 import {execFileSync} from 'node:child_process';
 import {mkdtempSync,existsSync} from 'node:fs';
 import {tmpdir} from 'node:os';
@@ -91,7 +92,11 @@ test('the real SDK completes selected ODD and SDD tasks with confirmed source ch
           if(['recorded','stopped'].includes(String(status.status)))break;
           await new Promise(resolve=>setTimeout(resolve,50));
         }
-        assert.deepEqual(errors,[]);assert.equal(status.status,'recorded',JSON.stringify({status,
+        // Print before teardown so a second cleanup failure cannot hide the cause.
+        const diagnostic=status.status==='recorded'?undefined:{method,authorCalls,reviewCalls,
+          ...taskFailureEvidence(root,String(status.run_id))};
+        if(diagnostic)console.error('TASK_FIXTURE_FAILURE '+JSON.stringify(diagnostic));
+        assert.deepEqual(errors,[]);assert.equal(status.status,'recorded',JSON.stringify({status,diagnostic,
           evidence:runtime.session.messages.filter(m=>m.role==='custom').slice(-8).map(m=>({type:m.customType,content:String(m.content).slice(0,1500)}))}));
         assert.equal(status.delivery_authorized,false);assert.equal(authorCalls,2);assert.equal(reviewCalls,1);
         assert.equal(readFileSync(join(root,'value.py'),'utf8'),'VALUE=1\n');

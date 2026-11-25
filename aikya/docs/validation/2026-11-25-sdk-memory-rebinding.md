@@ -1,0 +1,82 @@
+# SDK same-session memory ownership validation
+
+The real SDK regression first failed: rebinding extensions temporarily emptied
+the session registry. Renewing the existing same-session owner made it pass.
+The four real memory lifecycle cases passed, including final shutdown.
+
+The first local SDK execution completed 131 cases: 130 passed, one unrelated
+Windows-only executable-discovery case skipped, no failures. TypeScript checking
+passed. The ODD/SDD completion, same-session rebinding and declined-record
+resumption cases each passed three additional trials (nine executions total),
+using controlled local providers and unchanged limits. The ten Python memory
+integration tests also passed with isolated project storage and loopback access.
+
+A synthetic stuck fixture still failed at its existing ten-second bound and
+remained on disk. Its timeout included only whitelisted observer state, PID and
+session count; assertions verified that the private fixture path, session token
+and arbitrary metadata were absent and the message stayed below 512 characters.
+
+Modified workflows passed actionlint 1.7.12; only its unsupported pre-existing
+`concurrency.queue` schema diagnostic was excluded. Source quality checked 14
+changed source files with no errors, warnings or Python duplicates. The release
+contract passed for version 0.2.0 against origin/develop; no release was created.
+
+Fresh hosted Windows Node 22/26 execution, the full mandatory acceptance and a
+normal protected integration remain required. Earlier 45-job successes belong
+to the previous head and do not validate this follow-up. Publication still
+requires genuine accepted real-provider evidence.
+
+The first hosted follow-up passed both Windows full SDK suites but failed an
+additional Node 22 task-completion repetition in run 45587069011. Its reported
+state was `stopped` / `needs_host_action`, not the earlier cleanup timeout. The
+flow remains unverified. Additional test-only diagnostics retain whitelisted
+checkpoint/execution values before teardown; dedicated tests first failed when
+the helper was absent and when unknown metadata values could escape, then passed.
+No runtime budgets, check limits or admission decisions were changed to hide it.
+
+With the evidence helper included, the full local SDK command completed 133
+cases: 132 passed, one Windows-only skip, no failures. TypeScript and changed
+source quality passed (17 files, no errors, warnings or Python duplication).
+Fresh hosted evidence is still required to identify the additional Windows stop.
+
+Hosted run 45589860422 passed the Node 22 task repetition step. Node 26 reported
+an initial-publication cleanup conflict in the new binding fixture (`Updating`,
+zero sessions). The revised setup waits on initial publication, retaining the
+existing startup and shutdown bounds. Its counterfactual run with same-session
+renewal removed failed the original registry-gap assertion. The production fix
+was restored immediately; no failing mutation was committed.
+
+After the readiness setup change, the full local SDK suite again completed 133
+cases: 132 passed, one Windows-only skip, no failures. TypeScript and whitespace
+checks passed. The production memory module has no additional diff; these changes
+isolate the regression fixture and improve failure evidence only. Hosted
+Windows repetitions remain necessary before declaring the intermittent stop fixed.
+
+Independent hosted run 45593173592 exposed a retained live session during Node 22
+declined-record cleanup. The new concurrent-reader regression first failed when
+SessionEnd proceeded during an open registry read, then passed when readers used
+the existing writer lock. All nine Python Pi memory cases passed with actual local
+observation. The full SDK suite passed again (132 passed, one Windows-only skip,
+zero failures); changed Python source quality and whitespace checks passed.
+An initial local SDK invocation had lost the private interpreter selection during
+environment isolation and failed imports; it was rerun with that selection passed
+inside the isolated environment. Only the corrected invocation is passing evidence.
+Fresh hosted checks are required for the reader-lock correction.
+
+The next hosted Windows Node 22 run showed a dead observer, an empty registry
+and stale final status; Node 26 passed its repetitions. The exception itself was
+not retained, so the exact crash must not be inferred from those values alone.
+Durable replacement fault tests then reproduced immediate failure on transient
+Windows sharing errors. A bounded prepared-file rename retry made those tests
+pass, including persistent refusal and destination-redirection protection.
+The native Windows open-reader test remains explicitly skipped locally.
+
+With that storage correction, the selected Python suite completed 63 cases:
+62 passed and one native Windows skip. The full SDK suite again completed 133
+cases: 132 passed, one Windows-only skip, zero failures. Source quality checked
+22 changed tracked files without errors, warnings or Python duplication; the
+new storage test and module also passed explicit quality checking. Actionlint
+passed for the two modified workflows, and whitespace checking passed.
+Hosted native sharing semantics and all mandatory PR checks remain required.
+
+GENERATED BY AIKYA FORGE

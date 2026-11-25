@@ -19,6 +19,11 @@ implementation analysis into the PR before integration.
 - [ ] Inspect existing branch protection and require the final acceptance check
   without removing any existing safeguards, once the check exists and is verified.
 
+The required workflow must not subscribe to edit-only events: two complete
+45-job source successes were followed by backend admission failures when an
+edit-only run superseded them. Use opened/synchronize/reopened; require reopening
+after retargeting and verify a real title/body edit leaves acceptance intact.
+
 No automatic merge or release publication is authorized by a passing PR analysis.
 External provider trials still run in the separately agreed environment.
 

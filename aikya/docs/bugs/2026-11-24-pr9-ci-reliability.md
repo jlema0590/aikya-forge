@@ -1,0 +1,86 @@
+# PR 9: cancelled analysis and publication blocking integration
+
+## Observed evidence
+
+PR [9](https://github.com/jlema0590/aikya-forge/pull/9) promotes develop to main.
+In [run 45429026489](https://github.com/jlema0590/aikya-forge/actions/runs/45429026489),
+the initial Windows Python 3.10 installer job failed inside setup-python before
+Forge ran: CPython could not import `encodings`. Two macOS jobs were not acquired
+by hosted runners. The same three jobs passed on attempt 2 without product changes.
+This establishes runner/setup failures for those attempts, not a Forge runtime bug.
+
+The same run genuinely refused the pending real-provider acceptance report. Its
+aggregate correctly refused to pass. The user subsequently approved a different
+policy: technically validated code may integrate while publication stays blocked.
+No real-provider observations have been added or approved by this correction.
+
+Title/body edits previously shared concurrency with source changes and launched
+all reusable matrices again, cancelling earlier analysis at the same source SHA.
+PR 9 also lacked main's merge ancestry and was marked behind under strict checks.
+
+## Correction
+
+Separate harmless metadata events from full source/base analysis and required
+check contexts. Keep all technical stages mandatory, including the generation of
+a truthful, informational publication readiness report. Treat abandoned results
+as failures. Pending evidence selects preparation only for a new main version;
+explicit new publication still refuses and both strict publication gates remain.
+Published assets, tags and original stable Pages recovery remain immutable.
+
+The correction branch includes current main history. Its normal reviewed merge
+into develop updates PR 9 without bypassing protected branches. Hosted acceptance
+of the correction is distinct from the successful infrastructure retry above.
+
+## Required-check binding follow-up
+
+The first correction completed all 45 jobs in run 45448887151, including native
+assembly. GitHub reported the final check successful and required, but refused a
+normal merge with "Required status check ... is expected". Repeating only the
+aggregate and reapplying identical strict/app-bound requirements did not resolve
+that discrepancy. No requirement was removed or replaced with a synthetic status.
+
+The final check name previously depended on `needs.route.outputs`, unavailable
+when the job graph is registered; skipped metadata jobs displayed the unresolved
+expression. Its identity now uses only the trusted PR event, available immediately,
+and metadata uses a distinct non-required name. A regression rejects dependency
+outputs in that identity. A fresh hosted run and actual protected-branch merge
+remain necessary to verify this correction; the earlier 45 passes are not proof
+that GitHub can merge the updated workflow.
+
+## Hosted metadata identity follow-up
+
+PR 12 source head c0cfd44 passed all 45 mandatory jobs in run 45597158485.
+GitHub reported CLEAN and recognized the required develop acceptance. Editing
+the title/body then produced successful metadata run 45607044873 but changed
+the backend merge state to BLOCKED, despite the required check remaining green.
+The skipped final job retained its literal name expression instead of resolving
+to `PR metadata update`. No rulesets or branch-protection changes explained it.
+
+The final job is now always scheduled so harmless metadata gets a real resolved
+identity. Its mandatory acceptance step still executes only for source/base
+analysis or a failed classifier; metadata cannot emit an approved required check.
+The separate concurrency groups and full source/base matrices are unchanged.
+Nine routing/acceptance tests and actionlint pass locally. A fresh full run and
+post-green metadata edit must still verify backend integration; the prior source
+success alone did not complete that verification.
+
+## Isolate the required workflow from edits
+
+Follow-up head 64dad20 completed all 45 mandatory jobs in run 45607610215.
+Metadata run 45607661220 also succeeded under the resolved name, but the backend
+still rejected normal integration with `Required status check "Forge PR acceptance
+| develop" is expected`. The head check remained approved, the synthetic merge
+commit had no competing checks/statuses, no rulesets existed and protection was
+unchanged. Resolving the metadata name alone was insufficient.
+
+The required workflow now uses only opened, synchronize and reopened PR events.
+It never creates an edit-only run that can supersede source acceptance. The
+classifier rejects edited events instead of registering partial analysis, and the
+final job always evaluates every mandatory stage under its target-specific name.
+After retargeting, close and reopen the PR to obtain new target acceptance; both
+READMEs document this and protection remains strict. Tests first failed on accepted
+edit events and the metadata-derived identity, then all nine cases and actionlint
+passed. A fresh full source run and an actual description edit without a new
+workflow run still need hosted verification.
+
+GENERATED BY AIKYA FORGE

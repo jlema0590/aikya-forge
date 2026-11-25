@@ -126,6 +126,7 @@ jobs:
       - name: Verify indexing, observation, local serving and installed assets
         shell: bash
         run: |
+          python -B -m unittest discover -s tests -p test_atomic_storage.py -v
           python -B -m unittest discover -s tests -p test_asset_line_endings.py -v
           python -B -m unittest discover -s tests -p test_code_index.py -v
           python -B -m unittest discover -s tests -p test_code_index_languages.py -v

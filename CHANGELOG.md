@@ -6,11 +6,34 @@ The inherited Harness v7/v8 changelog remains in
 
 ## Unreleased
 
+- Preserve the memory lease when the pinned Pi SDK binds UI extensions again for
+  the same session. Renew the existing owner instead of briefly retiring its
+  observer; keep final shutdown and other-session ownership checks intact.
+- Serialize observer lease reads with session updates using the existing launcher
+  lock, preventing a concurrent open reader from blocking durable release on Windows.
+- Bound prepared-file rename retries to 250 ms for Windows sharing/access conflicts;
+  preserve the previous destination on persistent denial and never replay caller effects.
+  Verify real open-reader replacement and idle lease renewal in Windows matrices.
+- Repeat Windows same-session binding and complete ODD/SDD task regressions on
+  both supported Node versions without changing their time or inference limits.
+- Retain bounded observer-state and lease-count diagnostics on SDK fixture cleanup
+  failure, preserving the failed fixture and excluding paths or session contents.
+- Capture whitelisted task phase and check execution outcomes before failed SDK
+  assertions, so teardown cannot conceal the original validation evidence.
+- Exercise SDK rebinding after the observer's initial publication; retain the
+  existing cleanup deadline and report bounded process-liveness metadata on failure.
+
 - Run complete reusable PR acceptance for develop/main, including all Python/Pi,
   memory/browser, installer and seven-target native checks plus shared real archive
   assembly. Consolidate failures in one final fail-closed check and summary.
-- Validate current real-provider release evidence before integrating to main,
-  preserving the publication gate and avoiding duplicate PR workflow runs.
+- Allow technically validated code to integrate into develop/main while reporting
+  publication readiness separately. Pending real-provider trials permit native
+  preparation only; both publication checkpoints retain strict evidence validation.
+- Run mandatory acceptance only on PR opening, source updates and reopening;
+  title/body edits cannot supersede a validated workflow run. Document reopening
+  after retargeting to obtain full acceptance for the protected destination.
+- Resolve required-check identities from the target event before jobs run,
+  preserving strict GitHub Actions app binding and every mandatory stage.
 
 - Exclude retained native-failure diagnostics from release artifact selection
   after retries, preserving strict seven-platform provenance and checksum checks.
