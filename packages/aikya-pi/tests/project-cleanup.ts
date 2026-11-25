@@ -15,8 +15,13 @@ function metadata(root:string,name:string) {
 /** Whitelist state and counts, never paths, session IDs, source or note content. */
 function diagnostic(root:string) {
   const state=metadata(root,'status.json'),sessions=metadata(root,'sessions.json');
+  const pid=Number.isSafeInteger(state?.pid)&&state.pid>0?state.pid:null;
+  let alive:boolean|null=null;
+  if(pid!==null)try {process.kill(pid,0);alive=true;}
+  catch(error) {if((error as NodeJS.ErrnoException).code==='ESRCH')alive=false;}
   return JSON.stringify({state:['Starting','Updating','Watching','Up to date','Partial','Stopped'].includes(state?.state)?state.state:'unavailable',
-    pid:Number.isSafeInteger(state?.pid)&&state.pid>0?state.pid:null,
+    pid,alive,heartbeat_age_ms:typeof state?.heartbeat==='number'&&Number.isFinite(state.heartbeat)
+      ?Math.max(0,Math.min(Math.round(Date.now()-state.heartbeat*1000),86400000)):null,
     active_sessions:sessions&&typeof sessions==='object'&&!Array.isArray(sessions)?Math.min(Object.keys(sessions).length,100):null});
 }
 

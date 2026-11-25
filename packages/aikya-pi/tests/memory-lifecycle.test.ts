@@ -63,6 +63,12 @@ test('rebinding the real SDK UI preserves continuous ownership of the same memor
     execFileSync(python,['-I','-B','-c','from pathlib import Path;import sys;from aikya.code_index.policy import configure;configure(Path(sys.argv[1]),approved=True)',root]);
     const runtime=await createReadOnlySession(root,{python});
     try {
+      // Exercise rebinding an established observer, independently from the
+      // first index publication. Shutdown is allowed to finish an active batch.
+      await until(()=>{
+        const state=JSON.parse(readFileSync(join(root,'.harness/state/memory-view/status.json'),'utf8'));
+        return ['Watching','Up to date','Partial'].includes(state.state)&&state.last_verified_at>0;
+      });
       let released=false;
       const sample=()=>{
         try {if(Object.keys(JSON.parse(readFileSync(leases,'utf8'))).length===0)released=true;}
