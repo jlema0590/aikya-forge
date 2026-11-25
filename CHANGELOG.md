@@ -13,6 +13,8 @@ The inherited Harness v7/v8 changelog remains in
   both supported Node versions without changing their time or inference limits.
 - Retain bounded observer-state and lease-count diagnostics on SDK fixture cleanup
   failure, preserving the failed fixture and excluding paths or session contents.
+- Capture whitelisted task phase and check execution outcomes before failed SDK
+  assertions, so teardown cannot conceal the original validation evidence.
 
 - Run complete reusable PR acceptance for develop/main, including all Python/Pi,
   memory/browser, installer and seven-target native checks plus shared real archive
